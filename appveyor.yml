@@ -1,7 +1,8 @@
 environment:
   matrix:
-    - QTDIR: E:\qt\QT\5.11.1\mingw53_32
-      MINGW: E:\qt\QT\Tools\mingw530_32
+    - QTDIR: C:\Qt\5.9\mingw53_32
+      MINGW: C:\Qt\Tools\mingw53_32
+    - QTDIR: C:\Qt\5.9\msvc2015_64
 
 configuration:
   - release
