@@ -1,0 +1,1 @@
+-IE:/GitHub/ImageBeautify/build/helloworld_autogen/include -isystem E:/qt/QT/5.11.1/mingw53_32/include -isystem E:/qt/QT/5.11.1/mingw53_32/include/QtWidgets -isystem E:/qt/QT/5.11.1/mingw53_32/include/QtGui -isystem E:/qt/QT/5.11.1/mingw53_32/include/QtANGLE -isystem E:/qt/QT/5.11.1/mingw53_32/include/QtCore -isystem E:/qt/QT/5.11.1/mingw53_32/./mkspecs/win32-g++ 
