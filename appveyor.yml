@@ -1,0 +1,44 @@
+environment:
+  matrix:
+    - QTDIR: E:\qt\QT\5.11.1\mingw53_32
+      MINGW: E:\qt\QT\Tools\mingw530_32
+
+configuration:
+  - release
+
+# Get the project submodules
+# Set the environment variables and paths to make
+install:
+  - git submodule update --init --recursive
+  - call "%QTDIR%\bin\qtenv2.bat"
+  - set PATH=%PATH%;%QTDIR%\bin;%MINGW%\bin
+  - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
+  - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
+  - if not %QTDIR:msvc2015=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %ARCH%
+  - if not %QTDIR:msvc2017=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %ARCH%
+  - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
+  - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
+
+# Run qmake
+before_build:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - cd code
+  - qmake code.pro
+
+
+# Build the projects
+build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - cd code
+  - '%make%'
+  
+  
+# after_build:
+#   - cd %APPVEYOR_BUILD_FOLDER%
+#   - cd code\release
+#   - dir
+#   - windeployqt SameWorld.exe
+  
+
+artifacts:
+  - path: code\release

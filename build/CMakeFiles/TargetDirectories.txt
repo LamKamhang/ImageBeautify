@@ -1,4 +1,0 @@
-E:/GitHub/ImageBeautify/build/CMakeFiles/helloworld.dir
-E:/GitHub/ImageBeautify/build/CMakeFiles/edit_cache.dir
-E:/GitHub/ImageBeautify/build/CMakeFiles/rebuild_cache.dir
-E:/GitHub/ImageBeautify/build/CMakeFiles/helloworld_autogen.dir

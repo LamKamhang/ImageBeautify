@@ -1,3 +1,0 @@
-F:\Cmake\bin\cmake.exe -E remove -f CMakeFiles\helloworld.dir/objects.a
-F:\gcc\mingw64\bin\ar.exe cr CMakeFiles\helloworld.dir/objects.a @CMakeFiles\helloworld.dir\objects1.rsp
-F:\gcc\mingw64\bin\g++.exe   -mwindows -Wl,--whole-archive CMakeFiles\helloworld.dir/objects.a -Wl,--no-whole-archive  -o helloworld.exe -Wl,--out-implib,libhelloworld.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\helloworld.dir\linklibs.rsp
