@@ -38,6 +38,9 @@ public:
 
     // some process method
     void _blur(uint w = 7, uint h = 7);
+    void _gaussianBlur(uint w = 3, uint h = 3);
+    void _medianBlur(uint ksize = 5);
+    void _bilateralFilter(double sigmaColor = 25.0, double sigmaSpace = 25.0);
     void _emboss();
     void _gray();
 

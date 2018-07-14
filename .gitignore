@@ -33,3 +33,13 @@
 
 # vscode folder
 .vscode
+
+# mac file
+.DS_Store
+__MACOSX
+
+# OpenCV
+OpenCV
+
+# build
+build
