@@ -20,13 +20,19 @@ void Image::_medianBlur(uint ksize)
 
 void Image::_bilateralFilter(double sigmaColor, double sigmaSpace)
 {
-    bilateralFilter(old_img, new_img, 25, sigmaColor, sigmaSpace);
+	bilateralFilter(old_img, new_img, 0, sigmaColor, sigmaSpace);
 }
 
 void Image::_emboss()
 {
 }
 
-void Image::_gray()
+void Image::_gray(int mode)
 {
+	cvtColor(old_img, new_img, mode);
+}
+
+void Image::_inverted()
+{
+	new_img = 255 - old_img;
 }

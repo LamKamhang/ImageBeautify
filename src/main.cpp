@@ -23,21 +23,26 @@ int main(int argc, char const *argv[])
     cout << "Hello, OpenCV!" << endl;
 
     Image testImg;
-	testImg.AttachTo("lena.jpg");
+	testImg.AttachTo("lena.png");
 	test("origin", testImg);
 
-	//testImg._blur();
-	//test("mean_blur", testImg);
-	//
-	//testImg._gaussianBlur();
-	//test("gaussian_blur", testImg);
- //   
- //   testImg._medianBlur();
- //   test("median_blur", testImg);
+	testImg._blur();
+	test("mean_blur", testImg);
+	
+	testImg._gaussianBlur();
+	test("gaussian_blur", testImg);
+    
+    testImg._medianBlur();
+    test("median_blur", testImg);
 
-    testImg._bilateralFilter();
+    testImg._bilateralFilter(50, 3);
     test("bilateralFilter", testImg);
 
+	testImg._gray();
+	test("gray", testImg);
+
+	testImg._inverted();
+	test("inverted", testImg);
 	cv::waitKey();
 
     

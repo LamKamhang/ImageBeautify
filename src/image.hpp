@@ -18,7 +18,8 @@ public:
     Image(const std::string &name):
         image_name(name)
     {
-        new_img = old_img = cv::imread(name);
+        old_img = cv::imread(name);
+		new_img = cv::imread(name);
     }
 
     ~Image() = default;
@@ -26,7 +27,8 @@ public:
     // change to another image
     void AttachTo(const std::string &name)
     {
-        new_img = old_img = cv::imread(name);
+        old_img = cv::imread(name);
+		new_img = cv::imread(name);
     }
 
     void ImgShow(const std::string &windowName) throw(ErrorMsg)
@@ -40,9 +42,10 @@ public:
     void _blur(uint w = 7, uint h = 7);
     void _gaussianBlur(uint w = 3, uint h = 3);
     void _medianBlur(uint ksize = 5);
-    void _bilateralFilter(double sigmaColor = 25.0, double sigmaSpace = 25.0);
+    void _bilateralFilter(double sigmaColor = 50, double sigmaSpace = 3);
     void _emboss();
-    void _gray();
+    void _gray(int mode = CV_BGR2GRAY);
+	void _inverted();
 
 private:
     std::string image_name;
