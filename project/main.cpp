@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QTextCodec>
-#include <opencv2/core.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/highgui.hpp>
+//#include <QTextCodec>
+#include "Include/opencv2/core.hpp"
+#include "Include/opencv2/imgcodecs.hpp"
+#include "Include/opencv2/highgui.hpp"
 #include <iostream>
 #include <string>
 using namespace cv;
@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //QTextCodec::setCodecForTr(QTextCodec::codecForLocale());
+//    QTextCodec::setCodecForTr(QTextCodec::codecForLocale());
     MainWindow w;
     w.move(50,50);
     w.show();

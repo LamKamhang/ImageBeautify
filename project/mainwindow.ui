@@ -14,45 +14,50 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QMdiArea" name="mdiArea">
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
+     <widget class="QScrollArea" name="imageGround">
       <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
-      <property name="background">
-       <brush brushstyle="SolidPattern">
-        <color alpha="100">
-         <red>191</red>
-         <green>191</green>
-         <blue>191</blue>
-        </color>
-       </brush>
-      </property>
-      <property name="viewMode">
-       <enum>QMdiArea::TabbedView</enum>
-      </property>
-      <property name="documentMode">
-       <bool>false</bool>
-      </property>
-      <property name="tabsClosable">
+      <property name="widgetResizable">
        <bool>true</bool>
       </property>
-      <property name="tabsMovable">
-       <bool>true</bool>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Triangular</enum>
-      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>880</width>
+         <height>606</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="imgLabel">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>5</y>
+          <width>861</width>
+          <height>591</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>请打开一张图片</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="margin">
+         <number>10</number>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -87,7 +92,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionnew_file_N"/>
    <addaction name="separator"/>
@@ -182,8 +187,8 @@
   </widget>
   <action name="actionnew_file_N">
    <property name="icon">
-    <iconset>
-     <normaloff>images/24x24/insert-image.png</normaloff>images/24x24/insert-image.png</iconset>
+    <iconset resource="imagerc.qrc">
+     <normaloff>:/myImage/images/24x24/insert-image.png</normaloff>:/myImage/images/24x24/insert-image.png</iconset>
    </property>
    <property name="text">
     <string>新建(&amp;N)</string>
@@ -211,8 +216,8 @@
   </action>
   <action name="actionbaocun_S">
    <property name="icon">
-    <iconset>
-     <normaloff>images/24x24/document-save.png</normaloff>images/24x24/document-save.png</iconset>
+    <iconset resource="imagerc.qrc">
+     <normaloff>:/myImage/images/24x24/document-save.png</normaloff>:/myImage/images/24x24/document-save.png</iconset>
    </property>
    <property name="text">
     <string>保存(&amp;S)</string>
@@ -223,6 +228,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="imagerc.qrc"/>
+ </resources>
  <connections/>
 </ui>

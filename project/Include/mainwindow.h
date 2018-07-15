@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QVector>
 #include <QDragEnterEvent>
-#include "imagecontainer.h"
+#include "imageManager.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,10 +19,9 @@ public:
     ~MainWindow();
 
 protected:
-    ImageContainer ImageManager;
     QVector<int> ImageIDs;
-//    void dragEnterEvent(QDragEnterEvent * event);
-//    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent * event);
+    void dropEvent(QDropEvent *event);
 
 private slots:
     void on_actionnew_file_N_triggered();
@@ -32,6 +31,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    ImageManager imageManager;
+
+private:
+    void saveImage();
+    void openImage();
 };
 
 #endif // MAINWINDOW_H

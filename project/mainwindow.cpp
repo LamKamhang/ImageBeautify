@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "Include/mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QAction>
 #include <QMenu>
@@ -14,14 +14,24 @@
 #include <QDragEnterEvent>
 #include <QUrl>
 #include <QFile>
+#include <QLabel>
+#include <QMouseEvent>
+#include <QDragMoveEvent>
+#include <QPainter>
 #include <QTextStream>
 #include <QDropEvent>
 #include <QFileDialog>
 #include <QDebug>
+#include <QMimeData>
+#include <QDrag>
+#include <QByteArray>
+#include <QDataStream>
+#include <QMessageBox>
+#include "Include/savedialog.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    ImageManager()
+    imageManager(ui)
 {
     ImageIDs.clear();
     ui->setupUi(this);
@@ -32,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->statusBar->addPermanentWidget(permanent);
 
     connect(ui->dockWidget,SIGNAL(visibilityChanged(bool)),this,SLOT(tool_box_T_2_dockWidget()));
+    ui->imageGround->setAcceptDrops(true);
+    setAcceptDrops(true);
 //    ui->label->resize(512,512);
 //    ui->label->setPixmap(QPixmap("images/image.png"));
 
@@ -79,17 +91,43 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->mainToolBar->addAction(action_textImage);
 }
 
-//void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-//{
-//    if(event->mimeData()->hasImage())
-//        event->acceptProposedAction();
-//    else event->ignore();
-//}
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if(event->mimeData()->hasUrls()){
 
-//void MainWindow::dropEvent(QDropEvent *event)
-//{
-//    const QMimeData * mimeData = event->mimeData();
-//}
+        event->acceptProposedAction();
+    }
+    else event->ignore();
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    QList<QUrl>urls = event->mimeData()->urls();
+    if(urls.isEmpty())return;
+    QString fileName = urls.first().toLocalFile();
+    if(fileName.isEmpty())return;
+    else{
+        if(imageManager.getCurPhoto() && imageManager.getCurPhoto()->IsEnabled() && imageManager.getCurPhoto()->IsEdited()){
+            SaveDialog sdlg;
+            sdlg.exec();
+        }
+        else{
+            Photo * oldimg = imageManager.getCurPhoto();
+            imageManager.getCurPhoto() = new Photo(fileName);
+            if(oldimg)delete oldimg;
+        }
+        imageManager.showImage();
+//        QImage *img = new QImage(fileName);
+//        if(!img)return;
+//        QLabel *imageLabel = new QLabel(this);
+//        imageLabel->setAlignment(Qt::AlignCenter);
+//        imageLabel->setPixmap(QPixmap::fromImage(*img));
+//        ui->imageGround->setBackgroundRole(QPalette::Dark);
+//        ui->imageGround->setWidgetResizable(true);
+//        ui->imageGround->setAlignment(Qt::AlignCenter);
+//        ui->imageGround->setWidget(imageLabel);
+    }
+}
 
 MainWindow::~MainWindow()
 {
@@ -98,43 +136,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionnew_file_N_triggered()
 {
-    QString filename;
-    filename = QFileDialog::getOpenFileName(this,tr("选择图像"),"",tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
-    int imgID = ImageManager.loadQImage(filename);
-    ImageIDs.push_back(imgID);
+    openImage();
+    imageManager.showImage();
+//    QString filename;
+//    filename = QFileDialog::getOpenFileName(this,tr("选择图像"),"",tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
+//    int imgID = imageManager.loadQImage(filename);
+//    qDebug() << "imgID: "<< imgID;
+//    ImageIDs.push_back(imgID);
+//    QImage *img = imageManager.getQImage(imgID);
 
-    QImage *img = ImageManager.getQImage(imgID);
-//    QImage img(filename);
+//    int imgWidth = img->width();qDebug()<<"imgWidth: "<<imgWidth;
+//    int imgHeight = img->height();qDebug()<<"imgHeight: "<<imgHeight;
+//    float imgRate = float(imgWidth)/float(imgHeight);qDebug()<<"imgRate: "<<imgRate;
 
-
-//    qDebug()<<"filename is: "<<filename;
-//    qDebug()<<"filename index of '/' is: "<<filename.indexOf('/');
-
-    int imgWidth = img->width();qDebug()<<"imgWidth: "<<imgWidth;
-    int imgHeight = img->height();qDebug()<<"imgHeight: "<<imgHeight;
-    float imgRate = float(imgWidth)/float(imgHeight);qDebug()<<"imgRate: "<<imgRate;
-    int mdiWidth = ui->mdiArea->width();qDebug()<<"mdiWidth: "<<mdiWidth;
-    int mdiHeight = ui->mdiArea->height();qDebug()<<"mdiHeight: "<<imgHeight;
-    if(imgRate > 1.0f)
-        img->scaled(mdiWidth,int(mdiWidth*imgRate));
-    else img->scaled(int(mdiHeight/imgRate),mdiHeight);
-    qDebug()<<"imgWidth: "<<img->width();
-    qDebug()<<"imgHeight: "<<img->height();
-
-    QLabel *label = new QLabel(this);
-    label->resize(img->height(),img->width());
-    label->setAlignment(Qt::AlignCenter);
-    label->setPixmap(QPixmap::fromImage(*img));
-//    label->setPixmap(QPixmap("images/image.png"));
-    QMdiSubWindow *child = ui->mdiArea->addSubWindow(label);
-    ImageManager.bindView(imgID,child);
-
-    int childWidth = child->width();qDebug()<<"childWidth: "<<childWidth;
-    int childHeight = child->height();qDebug()<<"childHeight: "<<childHeight;
-
-    child->setWindowTitle(filename);
-
-    child->show();
+//    QLabel *imageLabel = new QLabel(this);
+//    imageLabel->setAlignment(Qt::AlignCenter);
+//    imageLabel->setPixmap(QPixmap::fromImage(*img));
+//    ui->imageGround->setBackgroundRole(QPalette::Dark);
+//    ui->imageGround->setWidgetResizable(true);
+//    ui->imageGround->setWidget(imageLabel);
 }
 
 void MainWindow::on_actiontool_box_T_triggered()
@@ -153,24 +173,34 @@ void MainWindow::tool_box_T_2_dockWidget()
 
 void MainWindow::on_actionbaocun_S_triggered()
 {
-    int allcnt = 0;
-    int cnt = 0;
-    int focusedChild = -1;
-    for(int imgID:ImageIDs){
-        allcnt++;
-        QMdiSubWindow* view = ImageManager.getView(imgID);
-        if(view && view->hasFocus()){
-            cnt++;
-            focusedChild = imgID;
-            qDebug()<<"has focus: "<<view->windowTitle();
-        }
-    }
-    qDebug()<<"allcnt: "<<allcnt;
-    qDebug()<<"cnt: "<<cnt;
-    qDebug()<<"focusedChild: "<<focusedChild;
-    if(focusedChild != -1){
+    saveImage();
+}
+
+void MainWindow::saveImage()
+{
+    if(imageManager.getCurPhoto() && imageManager.getCurPhoto()->IsEnabled()){
         QString savePath = QFileDialog::getSaveFileName(this,tr("保存文件"),"/",tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
-        qDebug()<<"savePath: "<<savePath;
-        ImageManager.getQImage(focusedChild)->save(savePath);
+        imageManager.saveImage(savePath);
     }
 }
+
+void MainWindow::openImage()
+{
+    // && imageManager.getCurPhoto()->IsEdited()
+    if(imageManager.getCurPhoto() && imageManager.getCurPhoto()->IsEnabled()){
+        SaveDialog sdlg;
+        sdlg.exec();
+//        sdlg.show();
+        qDebug()<<"sdlg.state == SaveDialog::NOT_SAVE" << (sdlg.state == SaveDialog::NOT_SAVE);
+    }
+    else{
+        QString filename = QFileDialog::getOpenFileName(this,tr("选择图像"),"",tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
+        Photo * oldimg = imageManager.getCurPhoto();
+        imageManager.getCurPhoto() = new Photo(filename);
+        if(oldimg)delete oldimg;
+    }
+}
+
+
+
+

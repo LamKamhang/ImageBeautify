@@ -1,13 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-07-13T08:20:58
+# Project created by QtCreator 2018-07-14T09:54:53
 #
 #-------------------------------------------------
 
 QT       += core gui
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = myMainWindow
+TARGET = ibproject
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -24,28 +25,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    savedialog.cpp
 
 HEADERS += \
-        mainwindow.h \
-    tools.h \
-    imagecontainer.h \
+        Include/mainwindow.h \
+    Include/tools.h \
+    Include/imageManager.h \
+    Include/savedialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    savedialog.ui
 
-#DISTFILES +=
-#INCLUDEPATH += /usr/local/include
-#LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_imgproc
-#LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_core
-#LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_highgui
-#LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_imgcodecs
 DISTFILES +=
-INCLUDEPATH += E:/"Visual Studio 2017"/OpenCV/opencv/opencv/build/include
-LIBS += -LE:/"Visual Studio 2017"/OpenCV/opencv/opencv/build/x64/vc15/lib -lopencv_world341
-LIBS += -LE:/"Visual Studio 2017"/OpenCV/opencv/opencv/build/x64/vc15/bin -lopencv*.lib
-LIBS += -LE:/"Visual Studio 2017"/OpenCV/opencv/opencv/build/x64/vc15/bin -lopencv*.dll
+
+INCLUDEPATH += /usr/local/include
+
+LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_core
+LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_highgui
+LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_imgproc
+LIBS += -L/usr/local/Cellar/opencv/3.4.1_2/lib/ -lopencv_imgcodecs
+
 
 RESOURCES += \
     imagerc.qrc
-
