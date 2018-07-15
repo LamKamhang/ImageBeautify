@@ -44,8 +44,20 @@ public:
     void _medianBlur(uint ksize = 5);
     void _bilateralFilter(double sigmaColor = 50, double sigmaSpace = 3);
     void _emboss();
+    void _sculpture();
+    void _frostGlass();
+    void _sketch();
+    void _oilPaint();
+    void _woodCut();
+    void _onTrackbar();
     void _gray(int mode = CV_BGR2GRAY);
 	void _inverted();
+    void _dilate(int shape = MORPH_RECT, int size = 5);
+    void _erode(int shape = MORPH_RECT, int size = 5);
+    void _memory();
+    void _draw();
+    void _freezing();
+    void _casting();
 
 private:
     std::string image_name;
