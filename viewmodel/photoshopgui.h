@@ -41,6 +41,7 @@ public:
     PhotoshopGUI();
 
 private slots:
+    // file system operation
     void open();
     void saveAs();
     void print();
@@ -54,6 +55,8 @@ private slots:
     void normalSize();
     void fitToWindow();
     void about();
+
+    // basic operation
     void redChannel();
     void greenChannel();
     void blueChannel();
@@ -73,6 +76,7 @@ private slots:
     void histogram();
     void level();
 
+    // basic receiver
     void receiveApplyAlgebraicOperation(QJsonObject, QImage);
     void receiveApplyHSLAdjust(QJsonObject, QImage);
     void receiveApplyDualThreshold(QJsonObject, QImage);
@@ -87,6 +91,36 @@ private slots:
     void receiveApplyHistoEqualize(QImage);
     void receiveApplyLevelAdjust(QImage);
 
+    // special effects operation
+    void hotSpecialEffects();
+    void basicSpecialEffects();
+    void lomoSpecialEffects();
+    void humanFaceSpecialEffects();
+    void fashionSpecialEffects();
+    void artSpecialEffects();
+
+    // special effects receiver
+    void receiveApplyHotSpecialEffects();
+    void receiveApplyBasicSpecialEffects();
+    void receiveApplyLomoSpecialEffects();
+    void receiveApplyHumanFaceSpecialEffects();
+    void receiveApplyFashionSpecialEffects();
+    void receiveApplyArtSpecialEffects();
+
+    // frame operation
+    void colorfulFrame();
+    void simpleFrame();
+    void textureFrame();
+    void tearFrame();
+    void relaxedFrame();
+
+    // frame receiver
+    void receiveApplyColorfulFrame();
+    void receiveApplySimpleFrame();
+    void receiveApplyTextureFrame();
+    void receiveApplyTearFrame();
+    void receiveApplyRelaxedFrame();
+
 private:
     Log *log;
     ImageOperations *imageOperation;
@@ -95,6 +129,8 @@ private:
     void initializeFileMenu();
     void initializeEditMenu();
     void initializeImageMenu();
+    void initializeSpecialEffectsMenu();
+    void initializeFrameMenu();
     void initializeViewMenu();
     void initializeAboutMenu();
     void updateActions();
@@ -123,6 +159,8 @@ private:
 #endif
 
     QMenu *imageMenu;
+    QMenu *specialEffectsMenu;
+    QMenu *frameMenu;
 
     QAction *saveAsAct;
     QAction *printAct;

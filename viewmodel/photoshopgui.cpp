@@ -45,6 +45,8 @@ void PhotoshopGUI::initializeViews(){
     initializeFileMenu();
     initializeEditMenu();
     initializeImageMenu();
+    initializeSpecialEffectsMenu();
+    initializeFrameMenu();
     initializeViewMenu();
     initializeAboutMenu();
 }
@@ -128,6 +130,55 @@ void PhotoshopGUI::initializeImageMenu(){
     mathematicalMorphologySubMenu->addAction(tr("&Binary Morphology..."), this, SLOT(binaryMorphology()));
     mathematicalMorphologySubMenu->addAction(tr("Gray-scale Morphology..."), this, SLOT(grayMorphology()));
 }
+
+void PhotoshopGUI::initializeSpecialEffectsMenu(){
+    specialEffectsMenu = menuBar()->addMenu(tr("特效"));
+    specialEffectsMenu->setEnabled(false);
+
+    specialEffectsMenu->addAction(tr("热门特效..."),this,SLOT(hotSpecialEffects()));
+    specialEffectsMenu->addAction(tr("基础特效..."),this,SLOT(basicSpecialEffects()));
+    specialEffectsMenu->addAction(tr("LOMO特效..."),this,SLOT(lomoSpecialEffects()));
+    specialEffectsMenu->addAction(tr("人像特效..."),this,SLOT(humanFaceSpecialEffects()));
+    specialEffectsMenu->addAction(tr("时尚特效..."),this,SLOT(fashionSpecialEffects()));
+    specialEffectsMenu->addAction(tr("艺术特效..."),this,SLOT(artSpecialEffects()));
+}
+
+void PhotoshopGUI::hotSpecialEffects(){}
+void PhotoshopGUI::basicSpecialEffects(){}
+void PhotoshopGUI::lomoSpecialEffects(){}
+void PhotoshopGUI::humanFaceSpecialEffects(){}
+void PhotoshopGUI::fashionSpecialEffects(){}
+void PhotoshopGUI::artSpecialEffects(){}
+
+void PhotoshopGUI::receiveApplyHotSpecialEffects(){}
+void PhotoshopGUI::receiveApplyBasicSpecialEffects(){}
+void PhotoshopGUI::receiveApplyLomoSpecialEffects(){}
+void PhotoshopGUI::receiveApplyHumanFaceSpecialEffects(){}
+void PhotoshopGUI::receiveApplyFashionSpecialEffects(){}
+void PhotoshopGUI::receiveApplyArtSpecialEffects(){}
+
+void PhotoshopGUI::initializeFrameMenu(){
+    frameMenu = menuBar()->addMenu(tr("边框"));
+    frameMenu->setEnabled(false);
+
+    frameMenu->addAction(tr("炫彩边框..."),this,SLOT(colorfulFrame()));
+    frameMenu->addAction(tr("简单边框..."),this,SLOT(simpleFrame()));
+    frameMenu->addAction(tr("纹理边框..."),this,SLOT(textureFrame()));
+    frameMenu->addAction(tr("撕边边框..."),this,SLOT(tearFrame()));
+    frameMenu->addAction(tr("轻松边框..."),this,SLOT(relaxedFrame()));
+}
+
+void PhotoshopGUI::colorfulFrame(){}
+void PhotoshopGUI::simpleFrame(){}
+void PhotoshopGUI::textureFrame(){}
+void PhotoshopGUI::tearFrame(){}
+void PhotoshopGUI::relaxedFrame(){}
+
+void PhotoshopGUI::receiveApplyColorfulFrame(){}
+void PhotoshopGUI::receiveApplySimpleFrame(){}
+void PhotoshopGUI::receiveApplyTextureFrame(){}
+void PhotoshopGUI::receiveApplyTearFrame(){}
+void PhotoshopGUI::receiveApplyRelaxedFrame(){}
 
 void PhotoshopGUI::initializeViewMenu(){
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
@@ -566,6 +617,9 @@ void PhotoshopGUI::about()
 void PhotoshopGUI::updateActions()
 {
     imageMenu->setEnabled(!image.isNull());
+    specialEffectsMenu->setEnabled(!image.isNull());
+    frameMenu->setEnabled(!image.isNull());
+
     saveAsAct->setEnabled(!image.isNull());
     copyAct->setEnabled(!image.isNull());
     zoomInAct->setEnabled(!fitToWindowAct->isChecked());
