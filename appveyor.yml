@@ -23,23 +23,26 @@ install:
 # Run qmake
 before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - cd code
-  - qmake code.pro
+  - mkdir build
+  - cd build
+  - qmake ..\src\imageBeautify.pro
 
 
 # Build the projects
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - cd code
+  - cd build
   - '%make%'
   
   
-# after_build:
-#   - cd %APPVEYOR_BUILD_FOLDER%
-#   - cd code\release
-#   - dir
-#   - windeployqt SameWorld.exe
+after_build:
+  - cd %APPVEYOR_BUILD_FOLDER%\build\release
+  - mkdir release
+  - cd release
+  - xcopy %APPVEYOR_BUILD_FOLDER%\build\release\imageBeautify.exe %APPVEYOR_BUILD_FOLDER%\build\release\release\
+  - windeployqt imageBeautify.exe
   
 
 artifacts:
-  - path: code\release
+  - path: build\release\release\
+  - path: src\
