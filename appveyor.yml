@@ -2,7 +2,6 @@ environment:
   matrix:
     - QTDIR: C:\Qt\5.9\mingw53_32
       MINGW: C:\Qt\Tools\mingw53_32
-    - QTDIR: C:\Qt\5.9\msvc2015_64
 
 configuration:
   - release
@@ -39,7 +38,7 @@ after_build:
   - cd %APPVEYOR_BUILD_FOLDER%\build\release
   - mkdir release
   - cd release
-  - xcopy %APPVEYOR_BUILD_FOLDER%\build\release\imageBeautify.exe %APPVEYOR_BUILD_FOLDER%\build\release\release\
+  - xcopy %APPVEYOR_BUILD_FOLDER%\build\release\release\ %APPVEYOR_BUILD_FOLDER%\build\release\imageBeautify.exe
   - windeployqt imageBeautify.exe
   
 
