@@ -43,3 +43,6 @@ OpenCV
 
 # build
 build
+
+# pro user
+*.pro.user
