@@ -26,11 +26,15 @@ private slots:
     void apply();
     void channelChanged(int);
     void shadowSliderChanged();
+    void shadowSliderChanged(int);
     void midtonesSliderChanged();
+    void midtonesSliderChanged(int);
     void highlightSliderChanged();
     void highlightSliderChanged(int);
     void outShadowSliderChanged();
+    void outShadowSliderChanged(int);
     void outHighlightSliderChanged();
+    void outHighlightSliderChanged(int);
 
 private:
     ImageOperations *imageOp;
