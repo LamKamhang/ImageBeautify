@@ -38,7 +38,7 @@ after_build:
   - cd %APPVEYOR_BUILD_FOLDER%\build\release
   - mkdir release
   - cd release
-  - xcopy %APPVEYOR_BUILD_FOLDER%\build\release\release\ %APPVEYOR_BUILD_FOLDER%\build\release\imageBeautify.exe
+  - xcopy %APPVEYOR_BUILD_FOLDER%\build\release\imageBeautify.exe %APPVEYOR_BUILD_FOLDER%\build\release\release\
   - windeployqt imageBeautify.exe
   
 
