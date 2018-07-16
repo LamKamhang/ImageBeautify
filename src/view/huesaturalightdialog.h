@@ -32,6 +32,9 @@ private slots:
     void hueSliderChanged();
     void saturationSliderChanged();
     void lightnessSliderChanged();
+    void hueSliderChanged(int);
+    void saturationSliderChanged(int);
+    void lightnessSliderChanged(int);
     void apply();
     void targetColorChanged(int);
 

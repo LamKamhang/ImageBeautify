@@ -142,9 +142,15 @@ HueSaturaLightDialog::HueSaturaLightDialog(QWidget *parent, QImage src)
     connect(hueEdit, SIGNAL(editingFinished()), this, SLOT(hueEditChanged()));
     connect(saturationEdit, SIGNAL(editingFinished()), this, SLOT(saturationEditChanged()));
     connect(lightnessEdit, SIGNAL(editingFinished()), this, SLOT(lightnessEditChanged()));
+
     connect(hueSlider, SIGNAL(sliderReleased()), this, SLOT(hueSliderChanged()));
     connect(saturationSlider, SIGNAL(sliderReleased()), this, SLOT(saturationSliderChanged()));
     connect(lightnessSlider, SIGNAL(sliderReleased()), this, SLOT(lightnessSliderChanged()));
+
+    connect(hueSlider, SIGNAL(sliderMoved(int)), this, SLOT(hueSliderChanged(int)));
+    connect(saturationSlider, SIGNAL(sliderMoved(int)), this, SLOT(saturationSliderChanged(int)));
+    connect(lightnessSlider, SIGNAL(sliderMoved(int)), this, SLOT(lightnessSliderChanged(int)));
+
     connect(closeButton, &QAbstractButton::clicked, this, &QWidget::close);
     connect(applyButton, &QAbstractButton::clicked, this, &HueSaturaLightDialog::apply);
 
@@ -200,6 +206,18 @@ void HueSaturaLightDialog::hueSliderChanged(){
     updateImage(newImage);
 }
 
+void HueSaturaLightDialog::hueSliderChanged(int value){
+    QString str;
+    if(value >= 0){
+        str = "+";
+    }
+    str += QString::number(value);
+    hueEdit->setText(str);
+    hueValues[hueTargetColor->currentIndex()] = value;
+    QImage newImage = imageOperation->adjustHue(srcImg, img, hueValues);
+    updateImage(newImage);
+}
+
 void HueSaturaLightDialog::saturationSliderChanged(){
     int value = saturationSlider->value();
     QString str;
@@ -212,8 +230,30 @@ void HueSaturaLightDialog::saturationSliderChanged(){
     updateImage(newImage);
 }
 
+void HueSaturaLightDialog::saturationSliderChanged(int value){
+    QString str;
+    if(value >= 0){
+        str = "+";
+    }
+    str += QString::number(value);
+    saturationEdit->setText(str);
+    QImage newImage = imageOperation->adjustLightness(srcImg, img, value);
+    updateImage(newImage);
+}
+
 void HueSaturaLightDialog::lightnessSliderChanged(){
     int value = lightnessSlider->value();
+    QString str;
+    if(value >= 0){
+        str = "+";
+    }
+    str += QString::number(value);
+    lightnessEdit->setText(str);
+    QImage newImage = imageOperation->adjustLightness(srcImg, img, value);
+    updateImage(newImage);
+}
+
+void HueSaturaLightDialog::lightnessSliderChanged(int value){
     QString str;
     if(value >= 0){
         str = "+";
