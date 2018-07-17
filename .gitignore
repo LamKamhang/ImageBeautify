@@ -42,7 +42,7 @@ __MACOSX
 OpenCV
 
 # build
-build
+*build*
 
 # pro user
 *.pro.user
