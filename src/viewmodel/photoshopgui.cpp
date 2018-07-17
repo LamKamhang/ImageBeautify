@@ -52,48 +52,48 @@ void PhotoshopGUI::initializeViews(){
 }
 
 void PhotoshopGUI::initializeFileMenu(){
-    QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    QMenu *fileMenu = menuBar()->addMenu(tr("文件"));
 
-    QAction *openAct = fileMenu->addAction(tr("&Open..."), this, &PhotoshopGUI::open);
+    QAction *openAct = fileMenu->addAction(tr("打开..."), this, &PhotoshopGUI::open);
     openAct->setShortcut(QKeySequence::Open);
 
-    saveAsAct = fileMenu->addAction(tr("&Save As..."), this, &PhotoshopGUI::saveAs);
+    saveAsAct = fileMenu->addAction(tr("另存为..."), this, &PhotoshopGUI::saveAs);
     saveAsAct->setShortcut(tr("Ctrl+S"));
     saveAsAct->setEnabled(false);
 
-    printAct = fileMenu->addAction(tr("&Print..."), this, &PhotoshopGUI::print);
+    printAct = fileMenu->addAction(tr("打印..."), this, &PhotoshopGUI::print);
     printAct->setShortcut(QKeySequence::Print);
     printAct->setEnabled(false);
 
     fileMenu->addSeparator();
 
-    QAction *exitAct = fileMenu->addAction(tr("E&xit"), this, &QWidget::close);
+    QAction *exitAct = fileMenu->addAction(tr("退出"), this, &QWidget::close);
     exitAct->setShortcut(tr("Ctrl+Q"));
 }
 
 void PhotoshopGUI::initializeEditMenu(){
-    QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
+    QMenu *editMenu = menuBar()->addMenu(tr("编辑"));
 
-    undoAct = editMenu->addAction(tr("&Undo"), this, &PhotoshopGUI::undo);
+    undoAct = editMenu->addAction(tr("撤销"), this, &PhotoshopGUI::undo);
     undoAct->setShortcut(QKeySequence::Undo);
     undoAct->setEnabled(false);
 
-    redoAct = editMenu->addAction(tr("&Redo"), this, &PhotoshopGUI::redo);
+    redoAct = editMenu->addAction(tr("重做"), this, &PhotoshopGUI::redo);
     redoAct->setShortcut(QKeySequence::Redo);
     redoAct->setEnabled(false);
 
     editMenu->addSeparator();
 
-    copyAct = editMenu->addAction(tr("&Copy"), this, &PhotoshopGUI::copy);
+    copyAct = editMenu->addAction(tr("复制"), this, &PhotoshopGUI::copy);
     copyAct->setShortcut(QKeySequence::Copy);
     copyAct->setEnabled(false);
 
-    QAction *pasteAct = editMenu->addAction(tr("&Paste"), this, &PhotoshopGUI::paste);
+    QAction *pasteAct = editMenu->addAction(tr("粘贴"), this, &PhotoshopGUI::paste);
     pasteAct->setShortcut(QKeySequence::Paste);
 }
 
 void PhotoshopGUI::initializeImageMenu(){
-    imageMenu = menuBar()->addMenu(tr("&Image"));
+    imageMenu = menuBar()->addMenu(tr("工具"));
     imageMenu->setEnabled(false);
 
     QMenu *channelSubMenu = imageMenu->addMenu(tr("&Channel Separation"));
@@ -181,7 +181,7 @@ void PhotoshopGUI::receiveApplyTearFrame(){}
 void PhotoshopGUI::receiveApplyRelaxedFrame(){}
 
 void PhotoshopGUI::initializeViewMenu(){
-    QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
+    QMenu *viewMenu = menuBar()->addMenu(tr("视图"));
 
     zoomInAct = viewMenu->addAction(tr("Zoom &In (25%)"), this, &PhotoshopGUI::zoomIn);
     zoomInAct->setShortcut(QKeySequence::ZoomIn);

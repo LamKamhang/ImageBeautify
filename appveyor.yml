@@ -2,7 +2,6 @@ environment:
   matrix:
     - QTDIR: C:\Qt\5.9\mingw53_32
       MINGW: C:\Qt\Tools\mingw53_32
-    - QTDIR: C:\Qt\5.9\msvc2015_64
 
 configuration:
   - release
@@ -23,23 +22,33 @@ install:
 # Run qmake
 before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - cd code
-  - qmake code.pro
+  - mkdir build
+  - cd build
+  - qmake ..\src\imageBeautify.pro
 
 
 # Build the projects
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - cd code
+  - cd build
   - '%make%'
   
   
-# after_build:
-#   - cd %APPVEYOR_BUILD_FOLDER%
-#   - cd code\release
-#   - dir
-#   - windeployqt SameWorld.exe
+after_build:
+  - cd %APPVEYOR_BUILD_FOLDER%\build\release
+  - mkdir release
+  - cd release
+  - xcopy %APPVEYOR_BUILD_FOLDER%\build\release\imageBeautify.exe %APPVEYOR_BUILD_FOLDER%\build\release\release\
+  - windeployqt imageBeautify.exe
   
 
 artifacts:
-  - path: code\release
+  - path: build\release\release\
+    name: image_beautify_bin
+  - path: src\
+    name: image_beautify_src
+
+deploy:
+  - provider: GitHub
+    auth_token:
+      secure: 0ITmy8HuewW3zTSS4Zfusi9wn6G2Hmq718SLrQNDiDFC89ZcrBrYSyE1gWQJ9Om2

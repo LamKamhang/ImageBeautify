@@ -458,7 +458,6 @@ QImage ImageOperations::medianFilter(QImage img, int col, int row, int x, int y)
     int size = row * col;
     QImage newImage(w, h, img.format());
     unsigned int *values = new unsigned int[size];
-    //unsigned int values[size];
     if(x == -1){
         x = col/2;
     }
@@ -480,7 +479,7 @@ QImage ImageOperations::medianFilter(QImage img, int col, int row, int x, int y)
             }
         }
     }
-    delete[] values;
+    delete []values;
     return newImage;
 }
 
@@ -490,8 +489,7 @@ QImage ImageOperations::gaussianFilter(QImage img, int col, int row, int x, int 
     w = img.width();
     QImage newImage(w, h, img.format());
     int size = row * col;
-    double* gaussian = new double[size];
-    //double gaussian[size];
+    double *gaussian = new double[size];
     double sum;
     int mx = col/2, my = col/2;
     for(int i = 0; i < col; i++){
@@ -535,7 +533,7 @@ QImage ImageOperations::gaussianFilter(QImage img, int col, int row, int x, int 
             }
         }
     }
-    delete[] gaussian;
+    delete []gaussian;
     return newImage;
 }
 

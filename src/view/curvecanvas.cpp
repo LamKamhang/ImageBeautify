@@ -70,6 +70,33 @@ void CurveCanvas::mouseMoveEvent(QMouseEvent *e){
         points[moveIndex] = QPoint(p.x() + dx, p.y() + dy);
         moveBeginPos = e->pos();
         update();
+
+        if(true){
+            QPoint leftP, rightP;
+            if(points[0].x() <= points[1].x()){
+                leftP = points[0];
+                rightP = points[1];
+            } else {
+                leftP = points[1];
+                rightP = points[0];
+            }
+            QPoint newl, newr;
+            newl = canvasToPos(leftP);
+            newr = canvasToPos(rightP);
+            if(type == LINEAR){
+                emit linearCurveChanged(newl, newr);
+            } else if(type == PIECEWISE_LINEAR){
+                emit pieceLinCurveChanged(newl, newr);
+            } else if(type == LOGARITHM){
+                double b = (log(newr.x() + 1) - log(newl.x() + 1)) / (newr.y() - newl.y());
+                double a = newl.y() - log(newl.x() + 1) / b;
+                emit logCurveChanged(a, b);
+            } else if(type == EXPONENTIAL){
+                double b = (log(newr.y() + 1) - log(newl.y() + 1)) / (newr.x() - newl.x());
+                double a = newl.x() - log(newl.y() + 1) / b;
+                emit expCurveChanged(a, b);
+            }
+        }
     }
 }
 

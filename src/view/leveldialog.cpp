@@ -199,11 +199,15 @@ LevelDialog::LevelDialog(QImage image)
     connect(applyButton, &QAbstractButton::clicked, this, &LevelDialog::apply);
     connect(channelBox, SIGNAL(currentIndexChanged(int)), this, SLOT(channelChanged(int)));
     connect(shadowSlider, SIGNAL(sliderReleased()), this, SLOT(shadowSliderChanged()));
+    connect(shadowSlider, SIGNAL(sliderMoved(int)), this, SLOT(shadowSliderChanged(int)));
     connect(midtonesSlider, SIGNAL(sliderReleased()), this, SLOT(midtonesSliderChanged()));
-    connect(highlightSlider, SIGNAL(sliderMoved(int)), this, SLOT(highlightSliderChanged(int)));
+    connect(midtonesSlider, SIGNAL(sliderMoved(int)), this, SLOT(midtonesSliderChanged(int)));
     connect(highlightSlider, SIGNAL(sliderReleased()), this, SLOT(highlightSliderChanged()));
+    connect(highlightSlider, SIGNAL(sliderMoved(int)), this, SLOT(highlightSliderChanged(int)));
     connect(outShadowSlider, SIGNAL(sliderReleased()), this, SLOT(outShadowSliderChanged()));
+    connect(outShadowSlider, SIGNAL(sliderMoved(int)), this, SLOT(outShadowSliderChanged(int)));
     connect(outHighlightSlider, SIGNAL(sliderReleased()), this, SLOT(outHighlightSliderChanged()));
+    connect(outHighlightSlider, SIGNAL(sliderMoved(int)), this, SLOT(outHighlightSliderChanged(int)));
 }
 
 void LevelDialog::apply(){
@@ -247,8 +251,21 @@ void LevelDialog::shadowSliderChanged(){
     updateView();
 }
 
+void LevelDialog::shadowSliderChanged(int value){
+    shadowValue->setText(QString::number(value));
+    currentItem->Shadow = value;
+    updateView();
+}
+
 void LevelDialog::midtonesSliderChanged(){
     int value = midtonesSlider->value();
+    float realVal = value / 10.0;
+    midtonesValue->setText(QString::number(realVal));
+    currentItem->Midtones = realVal;
+    updateView();
+}
+
+void LevelDialog::midtonesSliderChanged(int value){
     float realVal = value / 10.0;
     midtonesValue->setText(QString::number(realVal));
     currentItem->Midtones = realVal;
@@ -275,8 +292,20 @@ void LevelDialog::outShadowSliderChanged(){
     updateView();
 }
 
+void LevelDialog::outShadowSliderChanged(int value){
+    outShadowValue->setText(QString::number(value));
+    currentItem->OutShadow = value;
+    updateView();
+}
+
 void LevelDialog::outHighlightSliderChanged(){
     int value = outHighlightSlider->value();
+    outHighlightValue->setText(QString::number(value));
+    currentItem->OutHighlight = value;
+    updateView();
+}
+
+void LevelDialog::outHighlightSliderChanged(int value){
     outHighlightValue->setText(QString::number(value));
     currentItem->OutHighlight = value;
     updateView();
