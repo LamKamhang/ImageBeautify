@@ -822,7 +822,8 @@ void PhotoshopGUI::receiveApplyBinaryMorpho(QJsonObject json){
     QString desc = "Binary Morphology: Operation: ";
     int size = json["size"].toInt();
     QJsonArray elem = json["elem"].toArray();
-    int array[size * size];
+    int *array = new int[size*size];
+    //int array[size * size];
     for(int i = 0; i < size * size; i++){
         array[i] = elem[i].toInt();
     }
@@ -881,13 +882,15 @@ void PhotoshopGUI::receiveApplyBinaryMorpho(QJsonObject json){
     }
     makeCommit(image, desc);
     updateImage(newImage);
+    delete[] array;
 }
 
 void PhotoshopGUI::receiveApplyGrayMorpho(QJsonObject json){
     QString desc = "Grayscale Morphology: Operation: ";
     int size = json["size"].toInt();
     QJsonArray elem = json["elem"].toArray();
-    int array[size * size];
+    int* array = new int[size*size];
+    //int array[size * size];
     for(int i = 0; i < size * size; i++){
         array[i] = elem[i].toInt();
     }
@@ -932,6 +935,7 @@ void PhotoshopGUI::receiveApplyGrayMorpho(QJsonObject json){
     }
     makeCommit(image, desc);
     updateImage(newImage);
+    delete[] array;
 }
 
 void PhotoshopGUI::receiveApplyCurve(QJsonObject json, QImage img){
