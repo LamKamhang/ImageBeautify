@@ -1,15 +1,23 @@
 #ifndef OPENFILECOMMAND_H
 #define OPENFILECOMMAND_H
 #include "../../common/etlbase.h"
-#include "VIEWMODEL/viewmodel.h"
+#include "viewmodel/viewmodel.h"
+#include "../../common/parameters.h"
 
-class OpenFileCommand : public ICommandBase{
-private:
-    std::shared_ptr<ViewModel> viewmodel;
+class ViewModel;
+
+class OpenFileCommand
+    : public ICommandBase
+{
 public:
-    OpenFileCommand(std::shared_ptr<ViewModel> vm);
+    OpenFileCommand(ViewModel* vm);
     ~OpenFileCommand();
-    void exec();
+    virtual void SetParameter(const std::shared_ptr<ParametersBase>& param);
+    virtual void Exec();
+
+private:
+    ViewModel* viewmodel;
+    std::string filepath;
 };
 
 #endif // OPENFILECOMMAND_H

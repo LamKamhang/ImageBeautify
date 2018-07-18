@@ -1,7 +1,7 @@
 #include "util.h"
 
 
-static cv::Mat Tools::QImage2Mat(const QImage &rhs)
+cv::Mat Tools::QImage2Mat(const QImage &rhs)
 {
     cv::Mat mat;
     switch (rhs.format())
@@ -22,12 +22,12 @@ static cv::Mat Tools::QImage2Mat(const QImage &rhs)
     return mat;
 }
 
-static QImage Tools::Mat2QImage(const cv::Mat& rhs)
+QImage Tools::Mat2QImage(const cv::Mat& rhs)
 {
     // 8-bits unsigned, NO. OF CHANNELS = 1
     if(rhs.type() == CV_8UC1)
     {
-        qDebug() << "CV_8UC1";
+//        qDebug() << "CV_8UC1";
         QImage image(rhs.cols, rhs.rows, QImage::Format_Indexed8);
         // Set the color table (used to translate colour indexes to qRgb values)
         image.setColorCount(256);
@@ -48,7 +48,7 @@ static QImage Tools::Mat2QImage(const cv::Mat& rhs)
     // 8-bits unsigned, NO. OF CHANNELS = 3
     else if(rhs.type() == CV_8UC3)
     {
-        qDebug() << "CV_8UC3";
+//        qDebug() << "CV_8UC3";
         // Copy input Mat
         const uchar *pSrc = (const uchar*)rhs.data;
         // Create QImage with same dimensions as input Mat
@@ -57,7 +57,7 @@ static QImage Tools::Mat2QImage(const cv::Mat& rhs)
     }
     else if(rhs.type() == CV_8UC4)
     {
-        qDebug() << "CV_8UC4";
+//        qDebug() << "CV_8UC4";
         // Copy input Mat
         const uchar *pSrc = (const uchar*)rhs.data;
         // Create QImage with same dimensions as input Mat
@@ -66,7 +66,7 @@ static QImage Tools::Mat2QImage(const cv::Mat& rhs)
     }
     else
     {
-        qDebug() << "ERROR: Mat could not be converted to QImage.";
+//        qDebug() << "ERROR: Mat could not be converted to QImage.";
         return QImage();
     }
 }

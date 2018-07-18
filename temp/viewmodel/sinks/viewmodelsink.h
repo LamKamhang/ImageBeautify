@@ -9,7 +9,7 @@ class ViewModelSink: public IPropertyNotification
 {
 public:
     ViewModelSink(ViewModel *vm);
-    virtual void OnPropertyChanged(const std::string& str);
+    virtual void OnPropertyChanged(const propertyType ppt);
 private:
     ViewModel *viewmodel;
 };

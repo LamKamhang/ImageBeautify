@@ -5,7 +5,9 @@
 #include <string>
 
 
-OpenFileCommand::OpenFileCommand(std::shared_ptr<ViewModel> vm):viewmodel(vm){
+OpenFileCommand::OpenFileCommand(ViewModel* vm)
+    :viewmodel(vm)
+{
 
 }
 

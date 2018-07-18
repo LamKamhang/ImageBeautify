@@ -1,7 +1,7 @@
 #include "../model.h"
 
 
-void Model::crop(int x1, int y1, int x2, int y2)
+void Model::crop(int x1, int y1, int x2, int y2) throw(errorType)
 {
     if (originImg.empty())
     {

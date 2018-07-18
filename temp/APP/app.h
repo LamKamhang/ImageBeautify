@@ -1,29 +1,21 @@
 #ifndef APP_H
 #define APP_H
 
-#include "../MODEL/swmodel.h"
-#include "../VIEWMODEL/swviewmodel.h"
-#include "../WINDOW/gamewindow.h"
-#include "../WINDOW/startpage.h"
-#include "commands/startbuttoncommand.h"
+#include "../model/model.h"
+#include "../viewmodel/viewmodel.h"
+#include "../view/mainview.h"
 
-
-class GameAPP
-{
-private:
-    startpage window1;
-    gamewindow window2;
-    std::shared_ptr<SWModel> model;
-    std::shared_ptr<SWViewModel> viewmodel;
-
-    std::shared_ptr<StartButtonCommand> sp_StartButtonCommand_;
-
+class ImageBeautifyApp{
 public:
-    GameAPP();
-    ~GameAPP();
+    ImageBeautifyApp();
+    ~ImageBeautifyApp();
+
     void run();
-    startpage* getStartPage();
-    gamewindow* getGameWindow();
+
+private:
+    std::shared_ptr<MainView> view;
+    std::shared_ptr<Model> model;
+    std::shared_ptr<ViewModel> viewmodel;
 };
 
 

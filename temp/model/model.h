@@ -14,7 +14,7 @@
 
 
 class Model
-    //: public Proxy_PropertyNotification<Model>
+    : public Proxy_PropertyNotification<Model>
 {
 public:
     Model(){}
@@ -24,8 +24,8 @@ public:
     // basic methods.
     void open_file(const std::string &path) throw(errorType);
     void save_file(const std::string &path) throw();
-    void reset() throw(errorType);
-    void crop(int x1, int y1, int x2, int y2) throw(errorType);
+//    void reset() throw(errorType);
+//    void crop(int x1, int y1, int x2, int y2) throw(errorType);
 
 private:
     cv::Mat originImg;

@@ -6,6 +6,10 @@ ViewModelSink::ViewModelSink(ViewModel *vm)
    viewmodel = vm;
 }
 
-void ViewModelSink::OnPropertyChanged(const std::string& str){
-    viewmodel->Fire_OnPropertyChanged(str);
+void ViewModelSink::OnPropertyChanged(const propertyType ppt){
+    if(ppt == MAIN_IMAGE){
+        viewmodel->setImageFromModel();
+    }
+
+    viewmodel->Fire_OnPropertyChanged(ppt);
 }

@@ -87,7 +87,7 @@ void MainView::open(){
     QString filePath = QFileDialog::getOpenFileName(this,tr("Save File As"),initPath,tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
     if(filePath == "")return;
 
-    openFileCommand->SetParameter(std::static_pointer_cast<Parameters, PathParameters>(std::shared_ptr<PathParameters>(new PathParameters(filePath.toStdString()))));
+    openFileCommand->SetParameter(std::make_shared<StringParameters>(filePath.toStdString()));
     openFileCommand->Exec();
 
     setWindowFilePath(filePath);
@@ -102,14 +102,12 @@ void MainView::saveAs(){
     QString savePath = QFileDialog::getSaveFileName(this,tr("Save File As"),initPath,tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
     if(savePath == "")return;
 
-    saveFileCommand->SetParameter(std::static_pointer_cast<Parameters, PathParameters>(std::shared_ptr<PathParameters>(new PathParameters(savePath.toStdString()))));
+    saveFileCommand->SetParameter(std::make_shared<StringParameters>(savePath.toStdString()));
     saveFileCommand->Exec();
 
     const QString message = tr("Wrote \"%1\"").arg(QDir::toNativeSeparators(savePath));
     statusBar()->showMessage(message);
 }
-
-
 
 void MainView::setImage(std::shared_ptr<QImage> img){
     image = img;
@@ -125,5 +123,53 @@ void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
     return std::static_pointer_cast<IPropertyNotification>(mainViewSink);
+}
+
+void MainView::mouseMoveEvent(QMouseEvent *e){
+    QString posMsg;
+    QString rgbMsg;
+    int x = e->x();
+    int y = e->y();
+    QRect imageRect = QRect(imageLabel->pos() + scrollArea->pos(), imageLabel->size());
+    if(image->isNull()
+            || !imageRect.contains(e->pos())){
+        posMsg = "  Windows position: ";
+        posMsg += "(" + QString::number(x) + "," + QString::number(y) + ")";
+        rgbMsg = " RGB(#,#,#)";
+        pixelColorLabel->clear();
+    }
+    else {
+        QSize initSize = imageLabel->pixmap()->size();
+        posMsg = "  Canvas position: ";
+        int imageX = (x - imageRect.x()) * initSize.width() / imageRect.width();
+        int imageY = (y - imageRect.y()) * initSize.height() / imageRect.height();
+        posMsg += "(" + QString::number(imageX) + "," + QString::number(imageY) + ")";
+
+        QRgb rgb = image->pixel(imageX, imageY);
+        rgbMsg = " RGB(" + QString::number(qRed(rgb)) + ","
+                + QString::number(qGreen(rgb)) + ","
+                + QString::number(qBlue(rgb)) + ")";
+        QPixmap pixelColor(20, 20);
+        pixelColor.fill(QColor(rgb));
+        pixelColorLabel->setPixmap(pixelColor);
+    }
+    positionLabel->setText(posMsg);
+    pixelRGBLabel->setText(rgbMsg);
+}
+
+void MainView::update(){
+    imageLabel->setPixmap(QPixmap::fromImage(*image));
+    scaleFactor = 1.0;
+    scrollArea->setVisible(true);
+
+//    set actions enable
+    updateActions();
+
+//    if (!fitToWindowAct->isChecked())
+        imageLabel->adjustSize();
+}
+
+void MainView::updateActions(){
+    saveAsAct->setEnabled(!image->isNull());
 }
 

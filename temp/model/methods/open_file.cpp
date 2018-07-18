@@ -1,6 +1,6 @@
 #include "../model.h"
 
-void Model::open_file(const std::string &path)
+void Model::open_file(const std::string &path) throw(errorType)
 {
     tmpImg = cv::imread(path);
     if(tmpImg.empty())
@@ -11,6 +11,6 @@ void Model::open_file(const std::string &path)
     {
         tmpImg.copyTo(originImg);
         tmpImg.copyTo(showImg);
-        Fire_OnPropertyChanged("MAIN_IMAGE");
+        Fire_OnPropertyChanged(MAIN_IMAGE);
     }
 }

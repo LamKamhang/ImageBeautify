@@ -20,4 +20,4 @@ public:
     static cv::Mat QImage2Mat(const QImage &rhs);
 
     static QImage Mat2QImage(const cv::Mat& rhs);
-}
+};

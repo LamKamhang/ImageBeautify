@@ -9,10 +9,10 @@ class MainImageSink : public IPropertyNotification
 {
 public:
     MainImageSink(MainView *mainview);
-    virtual void OnPropertyChanged(const std::string& str);
+    virtual void OnPropertyChanged(const propertyType pt);
 
 private:
     MainView * mainview;
-}
+};
 
 #endif // MAINIMAGESINK_H

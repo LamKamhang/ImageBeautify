@@ -1,14 +1,19 @@
 #ifndef VIEWMODEL_H
 #define VIEWMODEL_H
+
 #include <QImage>
 #include <memory>
-//#include "../MODEL/model.h"
+#include "../model/model.h"
 #include "../common/etlbase.h"
+#include "../common/type.h"
 #include "commands/openfilecommand.h"
 #include "commands/savefilecommand.h"
 #include "sinks/viewmodelsink.h"
 #include <opencv2/opencv.hpp>
 using namespace cv;
+
+class OpenFileCommand;
+class SaveFileCommand;
 
 class ViewModel
     : public Proxy_PropertyNotification<ViewModel>
@@ -25,6 +30,7 @@ public:
     std::shared_ptr<ICommandBase> getSaveFileCommand();
 
     std::shared_ptr<QImage> getImage();
+    void setImageFromModel();
 
 private:
     std::shared_ptr<QImage> image;

@@ -13,8 +13,8 @@
 
 
 enum commandsType{
-    open_file,
-    save_file,
+    OPEN_FILE,
+    SAVE_FILE,
 };
 
 enum propertyType{

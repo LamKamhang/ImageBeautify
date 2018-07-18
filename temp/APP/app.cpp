@@ -1,37 +1,53 @@
 #include <QApplication>
 #include "app.h"
 
-GameAPP::GameAPP(){}
-GameAPP::~GameAPP(){}
-void GameAPP::run()
+ImageBeautifyApp::ImageBeautifyApp()
+    : view(new MainView)
+    , model(new Model)
+    , viewmodel(new ViewModel)
 {
-    model = std::make_shared<SWModel>();
-    viewmodel = std::make_shared<SWViewModel>();
+    viewmodel->bindModel(model);
 
-    viewmodel->setSWModel(model);
+    view->setImage(viewmodel->getImage());
+    view->setOpenFileCommand(viewmodel->getOpenFileCommand());
+    view->setSaveFileCommand(viewmodel->getSaveFileCommand());
 
-
-    window2.set_ptrCommand(viewmodel->getLayoutCommand());
-    window2.set_ptrMouseMoveCommand(viewmodel->getMouseMoveCommand());
-    window2.set_Martix(viewmodel->getSWMatrix());
-    viewmodel->AddPropertyNotification(window2.getPtrWindowProSink());
-    viewmodel->AddCommandNotification(window2.getPtrWindowSetSink());
-    viewmodel->AddCommandNotification(window2.getPtrMouseMoveCommandSink());
-
-    sp_StartButtonCommand_ = std::make_shared<StartButtonCommand>(this);
-
-    window1.set_ptrCommand(std::static_pointer_cast<ICommandBase>(this->sp_StartButtonCommand_));
-    window1.show();
-
-
-
+    viewmodel->AddPropertyNotification(view->getMainViewSink());
 }
-startpage* GameAPP::getStartPage()
-{
-    return &window1;
+
+void ImageBeautifyApp::run(){
+    view->show();
 }
-gamewindow* GameAPP::getGameWindow()
-{
-    return &window2;
-}
+
+//void GameAPP::run()
+//{
+//    model = std::make_shared<Model>();
+//    viewmodel = std::make_shared<SWViewModel>();
+
+//    viewmodel->setSWModel(model);
+
+
+//    window2.set_ptrCommand(viewmodel->getLayoutCommand());
+//    window2.set_ptrMouseMoveCommand(viewmodel->getMouseMoveCommand());
+//    window2.set_Martix(viewmodel->getSWMatrix());
+//    viewmodel->AddPropertyNotification(window2.getPtrWindowProSink());
+//    viewmodel->AddCommandNotification(window2.getPtrWindowSetSink());
+//    viewmodel->AddCommandNotification(window2.getPtrMouseMoveCommandSink());
+
+//    sp_StartButtonCommand_ = std::make_shared<StartButtonCommand>(this);
+
+//    window1.set_ptrCommand(std::static_pointer_cast<ICommandBase>(this->sp_StartButtonCommand_));
+//    window1.show();
+
+
+
+//}
+//startpage* GameAPP::getStartPage()
+//{
+//    return &window1;
+//}
+//gamewindow* GameAPP::getGameWindow()
+//{
+//    return &window2;
+//}
 

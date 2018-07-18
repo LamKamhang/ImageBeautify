@@ -1,7 +1,7 @@
 #ifndef SWVIEWMODEL_H
 #define SWVIEWMODEL_H
 
-#include "../MODEL/swmodel.h"
+#include "../model/swmodel.h"
 #include "../common/etlbase.h"
 #include "sinks/swviewmodelsink.h"
 #include "commands/layoutcommand.h"

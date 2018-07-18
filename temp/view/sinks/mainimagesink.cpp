@@ -4,12 +4,11 @@
 MainImageSink::MainImageSink(MainView *mainview)
     :mainview(mainview)
 {
-
 }
 
-void MainImageSink::OnPropertyChanged(const std::string &str)
+void MainImageSink::OnPropertyChanged(const propertyType pt)
 {
-    if(str == "mainimage"){
+    if(pt == MAIN_IMAGE){
         mainview->update();
     }
 }

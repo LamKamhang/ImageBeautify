@@ -1,10 +1,10 @@
-#include "app.h"
 #include <QApplication>
+#include "app/app.h"
 
-int main(int argc, char *argv[])//this is submitted by productor
+int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    GameAPP app;
-    app.run();
+    ImageBeautifyApp *app = new ImageBeautifyApp;
+    app->run();
     return a.exec();
 }

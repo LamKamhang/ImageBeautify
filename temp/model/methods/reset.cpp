@@ -1,7 +1,7 @@
 #include "../model.h"
 
 
-void Model::reset()
+void Model::reset() throw(errorType)
 {
 	if (originImg.empty())
 	{

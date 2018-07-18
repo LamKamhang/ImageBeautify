@@ -1,38 +1,30 @@
-/*
- * File: etlbase.h
- * Version: 1.0
- * Author: kk
- * Created Date: Tue Jul 17 21:02:30 DST 2018
- * -------------------------------------------
- * 建立工厂类
- * 	- CommandBase
- */
 #pragma once
 
 #include <memory>
 #include <vector>
 #include <map>
 #include <stack>
+#include <string>
 #include "parameters.h"
 #include "type.h"
 
 /*
- * class: CommandBase
+ * class: ICommandBase
  * Version: 1.0
  * Author: kk
  * Created Date: Tue Jul 17 21:02:30 DST 2018
  * -------------------------------------------
- * 工厂类: CommandBase
+ * 工厂类: ICommandBase
  * 		所有的Command都需要继承该基类，并实现exec
  * 		参数会在调用Command的同时进行set到params中
  */
-class CommandBase
+class ICommandBase
 {
 public:
 	// std::static_pointer_cast<deriveClass, ParametersBase>(param)->getvalue();
 	virtual void SetParameter(const std::shared_ptr<ParametersBase>& param) = 0;
 
-	virtual void exec() = 0;
+    virtual void Exec() = 0;
 };
 
 /*
@@ -45,7 +37,7 @@ public:
  * 		这里使用模板是由于属性以及命令两种通知需要区分开
  */
 template <class T>
-class Notification
+class INotification
 {
 public:
 	void Clear() throw()
@@ -58,7 +50,7 @@ public:
 	}
 
 protected:
-	std::vector<std::shared_ptr<T>> m_array;
+    std::vector<std::shared_ptr<T> > m_array;
 };
 
 /*
@@ -70,7 +62,7 @@ protected:
  * 工厂类: PropertyNotification
  * 		属性通知的工厂类, 属性改变后发通知
  */
-class PropertyNotification
+class IPropertyNotification
 {
 public:
 	virtual void OnPropertyChanged(const propertyType ppt) = 0;
@@ -85,7 +77,7 @@ public:
  * 工厂类: CommandNotification
  * 		命令通知的工厂类, 命令完成后发通知
  */
-class CommandNotification
+class ICommandNotification
 {
 public:
 	virtual void OnCommandComplete(const commandsType cmd, bool OK) = 0;
@@ -101,10 +93,10 @@ public:
  * 		属性通知代理
  */
 template <class T>
-class Proxy_PropertyNotification : public Notification<PropertyNotification>
+class Proxy_PropertyNotification : public INotification<IPropertyNotification>
 {
 public:
-	void AddPropertyNotification(const std::shared_ptr<PropertyNotification>& p)
+    void AddPropertyNotification(const std::shared_ptr<IPropertyNotification>& p)
 	{
 		AddNotification(p);
 	}
@@ -127,10 +119,10 @@ public:
  * 		命令通知代理
  */
 template <class T>
-class Proxy_CommandNotification : public Notification<CommandNotification>
+class Proxy_CommandNotification : public INotification<ICommandNotification>
 {
 public:
-	void AddCommandNotification(const std::shared_ptr<CommandNotification>& p)
+    void AddCommandNotification(const std::shared_ptr<ICommandNotification>& p)
 	{
 		AddNotification(p);
 	}

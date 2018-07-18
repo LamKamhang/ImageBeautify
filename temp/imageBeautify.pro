@@ -50,55 +50,58 @@ SOURCES += \
     common/util.cpp \
     app/main.cpp \
     app/app.cpp \
-    app/commands/startbuttoncommand.cpp \
-    view/startpage.cpp \
-    view/gamewindow.cpp \
+#    app/commands/startbuttoncommand.cpp \
+#    view/startpage.cpp \
+#    view/gamewindow.cpp \
     view/mainview.cpp \
-    view/sinks/gamewindowprosink.cpp \
-    view/sinks/gamewindowsetsink.cpp \
-    view/sinks/mousemovecommandsink.cpp \
+#    view/sinks/gamewindowprosink.cpp \
+#    view/sinks/gamewindowsetsink.cpp \
+#    view/sinks/mousemovecommandsink.cpp \
     view/sinks/mainimagesink.cpp \
-    viewmodel/swviewmodel.cpp \
-    viewmodel/commands/layoutcommand.cpp \
-    viewmodel/commands/mousemovecommand.cpp \
+#    viewmodel/swviewmodel.cpp \
+#    viewmodel/commands/layoutcommand.cpp \
+#    viewmodel/commands/mousemovecommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
-    viewmodel/sinks/swviewmodelsink.cpp \
+#    viewmodel/sinks/swviewmodelsink.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    model/swmodel.cpp \
+#    model/swmodel.cpp \
     model/model.cpp \
-    model/methods/crop_image.cpp \
-    model/methods/open_file.cpp \
-    model/methods/reset.cpp \
-    model/methods/save_file.cpp
+#    model/methods/crop_image.cpp \
+#    model/methods/open_file.cpp \
+#    model/methods/reset.cpp \
+#    model/methods/save_file.cpp \
+    viewmodel/viewmodel.cpp \
+    viewmodel/commands/savefilecommand.cpp
 
 HEADERS += \
     common/etlbase.h \
-    common/SWMatrix.h \
+#    common/SWMatrix.h \
     common/type.h \
     common/util.h \
     common/parameters.h \
-    view/startpage.h \
-    view/gamewindow.h \
+#    view/startpage.h \
+#    view/gamewindow.h \
     view/mainview.h \
     view/sinks/mainimagesink.h \
-    view/sinks/mousemovecommandsink.h \
-    view/sinks/gamewindowprosink.h \
-    view/sinks/gamewindowsetsink.h \
+#    view/sinks/mousemovecommandsink.h \
+#    view/sinks/gamewindowprosink.h \
+#    view/sinks/gamewindowsetsink.h \
     app/app.h \
-    app/commands/startbuttoncommand.h \
+#    app/commands/startbuttoncommand.h \
     viewmodel/commands/savefilecommand.h \
-    viewmodel/commands/layoutcommand.h \
-    viewmodel/commands/mousemovecommand.h \
+#    viewmodel/commands/layoutcommand.h \
+#    viewmodel/commands/mousemovecommand.h \
     viewmodel/commands/openfilecommand.h \
-    viewmodel/swviewmodel.h \
+#    viewmodel/swviewmodel.h \
     viewmodel/viewmodel.h \
-    viewmodel/sinks/swviewmodelsink.h \
+#    viewmodel/sinks/swviewmodelsink.h \
     viewmodel/sinks/viewmodelsink.h \
-    model/swmodel.h \
+#    model/swmodel.h \
     model/model.h
 
-FORMS += \
-    view/startpage.ui \
-    view/gamewindow.ui
+FORMS +=
+# \
+#    view/startpage.ui \
+#    view/gamewindow.ui
 
 CONFIG += c++17
