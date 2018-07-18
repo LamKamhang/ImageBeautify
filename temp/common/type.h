@@ -18,5 +18,11 @@ enum commandsType{
 };
 
 enum propertyType{
-    image,
+    MAIN_IMAGE,
+};
+
+enum errorType{
+    CANNOT_OPEN_IMAGE,
+    EMPTY_IMAGE,
+    ILLEAGL_REGION,
 };

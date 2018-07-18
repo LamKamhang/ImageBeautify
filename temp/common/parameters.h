@@ -19,15 +19,16 @@ public:
 };
 
 
-class PathParameters: public ParametersBase
+class StringParameters :public ParametersBase
 {
 private:
-    std::string path;
+    std::string value;
 public:
-    PathParameters(const std::string &path):
-        path(path)
+    StringParameters(const std::string& value)
+        : value(value)
     {}
-    std::string get_path(){ return path;}
+    void setvalue(std::string s){value = s;}
+    std::string getvalue(){return value;}
 };
 
 class brightAndContrastParameters: public ParametersBase

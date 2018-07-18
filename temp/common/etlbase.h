@@ -14,7 +14,7 @@
 #include <map>
 #include <stack>
 #include "parameters.h"
-
+#include "type.h"
 
 /*
  * class: CommandBase
@@ -29,7 +29,8 @@
 class CommandBase
 {
 public:
-	virtual void SetParameter(const std::shared_ptr<ICommandParameter>& param) = 0;
+	// std::static_pointer_cast<deriveClass, ParametersBase>(param)->getvalue();
+	virtual void SetParameter(const std::shared_ptr<ParametersBase>& param) = 0;
 
 	virtual void exec() = 0;
 };
