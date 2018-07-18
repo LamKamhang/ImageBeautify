@@ -113,7 +113,6 @@ public:
 		for( ; iter != m_array.end(); ++ iter ) {
 			(*iter)->OnPropertyChanged(ppt);
 		}
-		// Clear();
 	}
 };
 
@@ -140,6 +139,5 @@ public:
 		for( ; iter != m_array.end(); ++ iter ) {
 			(*iter)->OnCommandComplete(cmd, OK);
 		}
-		// Clear();
 	}
 };
