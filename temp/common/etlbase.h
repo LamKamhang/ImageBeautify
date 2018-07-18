@@ -115,7 +115,6 @@ public:
 		for( ; iter != m_array.end(); ++ iter ) {
 			(*iter)->OnPropertyChanged(str);
 		}
-		// Clear();
 	}
 };
 
@@ -142,6 +141,5 @@ public:
 		for( ; iter != m_array.end(); ++ iter ) {
 			(*iter)->OnCommandComplete(str, bOK);
 		}
-		// Clear();
 	}
 };
