@@ -47,46 +47,55 @@ LIBS += /usr/local/lib/libopencv_highgui.so \
 }
 
 SOURCES += \
-    APP/main.cpp \
-    view/startpage.cpp \
-    view/gamewindow.cpp \
-    viewmodel/sinks/swviewmodelsink.cpp \
-    viewmodel/swviewmodel.cpp \
-    model/swmodel.cpp \
-    view/sinks/gamewindowprosink.cpp \
-    view/sinks/gamewindowsetsink.cpp \
-    viewmodel/commands/layoutcommand.cpp \
+    common/util.cpp \
+    app/main.cpp \
     app/app.cpp \
     app/commands/startbuttoncommand.cpp \
-    viewmodel/commands/mousemovecommand.cpp \
+    view/startpage.cpp \
+    view/gamewindow.cpp \
+    view/mainview.cpp \
+    view/sinks/gamewindowprosink.cpp \
+    view/sinks/gamewindowsetsink.cpp \
     view/sinks/mousemovecommandsink.cpp \
     view/sinks/mainimagesink.cpp \
-    view/mainview.cpp \
+    viewmodel/swviewmodel.cpp \
+    viewmodel/commands/layoutcommand.cpp \
+    viewmodel/commands/mousemovecommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
-    viewmodel/sinks/viewmodelsink.cpp
+    viewmodel/sinks/swviewmodelsink.cpp \
+    viewmodel/sinks/viewmodelsink.cpp \
+    model/swmodel.cpp \
+    model/model.cpp \
+    model/methods/crop_image.cpp \
+    model/methods/open_file.cpp \
+    model/methods/reset.cpp \
+    model/methods/save_file.cpp
 
 HEADERS += \
     common/etlbase.h \
+    common/SWMatrix.h \
+    common/type.h \
+    common/util.h \
+    common/parameters.h \
     view/startpage.h \
     view/gamewindow.h \
-    viewmodel/sinks/swviewmodelsink.h \
-    viewmodel/swviewmodel.h \
-    model/swmodel.h \
-    common/SWMatrix.h \
-    view/sinks/gamewindowprosink.h \
-    view/sinks/gamewindowsetsink.h \
-    viewmodel/commands/layoutcommand.h \
-    app/app.h \
-    app/commands/startbuttoncommand.h \
-    viewmodel/commands/mousemovecommand.h \
-    view/sinks/mousemovecommandsink.h \
-    common/parameters.h \
     view/mainview.h \
     view/sinks/mainimagesink.h \
-    viewmodel/commands/openfilecommand.h \
-    viewmodel/viewmodel.h \
+    view/sinks/mousemovecommandsink.h \
+    view/sinks/gamewindowprosink.h \
+    view/sinks/gamewindowsetsink.h \
+    app/app.h \
+    app/commands/startbuttoncommand.h \
     viewmodel/commands/savefilecommand.h \
-    viewmodel/sinks/viewmodelsink.h
+    viewmodel/commands/layoutcommand.h \
+    viewmodel/commands/mousemovecommand.h \
+    viewmodel/commands/openfilecommand.h \
+    viewmodel/swviewmodel.h \
+    viewmodel/viewmodel.h \
+    viewmodel/sinks/swviewmodelsink.h \
+    viewmodel/sinks/viewmodelsink.h \
+    model/swmodel.h \
+    model/model.h
 
 FORMS += \
     view/startpage.ui \
