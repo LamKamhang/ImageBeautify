@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = SameWorld
+TARGET = imageBeautify
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -39,7 +39,6 @@ SOURCES += \
     WINDOW/sinks/mousemovecommandsink.cpp
 
 HEADERS += \
-#common/any.h \
     common/etlbase.h \
     WINDOW/startpage.h \
     WINDOW/gamewindow.h \
@@ -54,7 +53,8 @@ HEADERS += \
     APP/commands/startbuttoncommand.h \
     VIEWMODEL/commands/mousemovecommand.h \
     WINDOW/sinks/mousemovecommandsink.h \
-    common/parameters.h
+    common/parameters.h \
+    WINDOW/mainview.h
 
 FORMS += \
     WINDOW/startpage.ui \
