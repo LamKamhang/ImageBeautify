@@ -28,10 +28,8 @@
  */
 class CommandBase
 {
-protected:
-	std::shared_ptr<Parameters> params;
 public:
-	void set_parameters(std::shared_ptr<Parameters> parameters){ params = parameters; }
+	virtual void SetParameter(const std::shared_ptr<ICommandParameter>& param) = 0;
 
 	virtual void exec() = 0;
 };
@@ -74,7 +72,7 @@ protected:
 class PropertyNotification
 {
 public:
-	virtual void OnPropertyChanged(const std::string& str) = 0;
+	virtual void OnPropertyChanged(const propertyType ppt) = 0;
 };
 
 /*
@@ -89,7 +87,7 @@ public:
 class CommandNotification
 {
 public:
-	virtual void OnCommandComplete(const std::string& str, bool OK) = 0;
+	virtual void OnCommandComplete(const commandsType cmd, bool OK) = 0;
 };
 
 /*
@@ -109,11 +107,11 @@ public:
 	{
 		AddNotification(p);
 	}
-	void Fire_OnPropertyChanged(const std::string& str)
+	void Fire_OnPropertyChanged(const propertyType ppt)
 	{
 		auto iter(m_array.begin());
 		for( ; iter != m_array.end(); ++ iter ) {
-			(*iter)->OnPropertyChanged(str);
+			(*iter)->OnPropertyChanged(ppt);
 		}
 		// Clear();
 	}
@@ -136,11 +134,11 @@ public:
 	{
 		AddNotification(p);
 	}
-	void Fire_OnCommandComplete(const std::string& str, bool bOK)
+	void Fire_OnCommandComplete(const commandsType cmd, bool OK)
 	{
 		auto iter(m_array.begin());
 		for( ; iter != m_array.end(); ++ iter ) {
-			(*iter)->OnCommandComplete(str, bOK);
+			(*iter)->OnCommandComplete(cmd, OK);
 		}
 		// Clear();
 	}

@@ -65,11 +65,11 @@ SOURCES += \
     Model/model.cpp \
     Notification/notification.cpp \
     Parameters/parameters.cpp \
-    View/MyView.cpp \
-    View/view.cpp \
     ViewModel/viewmodel.cpp \
     main.cpp \
     View/mainview.cpp
+#    View/MyView.cpp \
+#    View/view.cpp
 HEADERS += \
     App/app.h \
     Commands/aeroglass.h \
@@ -87,9 +87,9 @@ HEADERS += \
     Model/model.h \
     Notification/notification.h \
     Parameters/parameters.h \
-    View/MyView.h \
-    View/view.h \
     ViewModel/viewmodel.h \
     View/mainview.h
-FORMS += \
-    View/view.ui
+#    View/MyView.h \
+#    View/view.h \
+FORMS +=
+#    View/view.ui

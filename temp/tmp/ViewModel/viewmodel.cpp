@@ -44,9 +44,7 @@ void ViewModel::exec_detect_face_command(){
 }
 
 void ViewModel::exec_open_file_command(std::string path){
-//    qInfo() << QString("xixi");
     model->open_file(path);
-//    qInfo() << QString("xixi");
 }
 void ViewModel::exec_alter_bright_command(int nBright, int nContrast){
     //some operations to transfer "nBright" to "'int' nBright"
@@ -134,3 +132,6 @@ void ViewModel::notified(){
     *q_image = Mat2QImage(model->get());
     update_view_notification->exec();
 }
+
+
+
