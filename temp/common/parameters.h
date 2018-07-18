@@ -12,14 +12,14 @@
 
 #include <string>
 
-class Parameters
+class ParametersBase
 {
 public:
-    Parameters() = default;
+    ParametersBase() = default;
 };
 
 
-class PathParameters: public Parameters
+class PathParameters: public ParametersBase
 {
 private:
     std::string path;
@@ -30,7 +30,7 @@ public:
     std::string get_path(){ return path;}
 };
 
-class brightAndContrastParameters: public Parameters
+class brightAndContrastParameters: public ParametersBase
 {
 private:
     int nBright;
@@ -44,7 +44,7 @@ public:
     int get_nContrast(){return nContrast;}
 };
 
-class IntParameters :public Parameters 
+class IntParameters :public ParametersBase 
 {
 private:
     int value;
@@ -56,7 +56,7 @@ public:
     int getvalue() { return value; }
 };
 
-class MouseMoveParameters: public Parameters 
+class MouseMoveParameters: public ParametersBase 
 {
 private:
     double x_s;
