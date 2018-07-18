@@ -204,9 +204,9 @@ void PhotoshopGUI::initializeViewMenu(){
 }
 
 void PhotoshopGUI::initializeAboutMenu(){
-    QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
+    QMenu *helpMenu = menuBar()->addMenu(tr("帮助"));
 
-    helpMenu->addAction(tr("&About"), this, &PhotoshopGUI::about);
+    helpMenu->addAction(tr("关于"), this, &PhotoshopGUI::about);
 }
 
 void PhotoshopGUI::mouseMoveEvent(QMouseEvent *e){
@@ -600,18 +600,13 @@ void PhotoshopGUI::adjustScrollBar(QScrollBar *scrollBar, double factor)
 void PhotoshopGUI::about()
 {
     QMessageBox::about(this, tr("About Image Viewer"),
-            tr("<p>The <b>Image Viewer</b> example shows how to combine QLabel "
-               "and QScrollArea to display an image. QLabel is typically used "
-               "for displaying a text, but it can also display an image. "
-               "QScrollArea provides a scrolling view around another widget. "
-               "If the child widget exceeds the size of the frame, QScrollArea "
-               "automatically provides scroll bars. </p><p>The example "
-               "demonstrates how QLabel's ability to scale its contents "
-               "(QLabel::scaledContents), and QScrollArea's ability to "
-               "automatically resize its contents "
-               "(QScrollArea::widgetResizable), can be used to implement "
-               "zooming and scaling features. </p><p>In addition the example "
-               "shows how to use QPainter to print an image.</p>"));
+            tr("<h3>Image Beautify</h3>"
+               "<p><strong>版本：1.x版</strong></p>"
+               "<p><strong>日期：</strong> 2018-07-11T15:43:53.668Z</p>"
+               "<p><strong>架构：</strong> x86/x64/</p>"
+               "<p><strong>作者：</strong> kk,  Xiang,  Ye.</p>"
+               "<p><strong>版权声明：</strong>本作品采用知识共享署名-非商业性使用-禁止演绎 3.0 中 国大陆许可协议进行许可。要查看该许可协议，可访问 <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/cn/' target='_blank' class='url'>http://creativecommons.org/licenses/by-nc-nd/3.0/cn/</a> 或者写 信到 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA。</p>"
+               "<p>&nbsp;</p>"));
 }
 
 void PhotoshopGUI::updateActions()

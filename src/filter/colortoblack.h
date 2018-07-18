@@ -3,11 +3,10 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 
-class ColorToBlack
+class ColorToBlack//将图片变为黑白
 {
 public:
-    Mat ColorToBlack(Mat P,int per);
-    Mat img;
+    Mat ColorToBlack(Mat P);
 };
 
 #endif // COLORTOBLACK_H
