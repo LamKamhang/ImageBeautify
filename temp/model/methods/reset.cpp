@@ -5,11 +5,11 @@ void Model::reset()
 {
 	if (originImg.empty())
 	{
-		throw(EMPTY_IMAGE)
+		throw(EMPTY_IMAGE);
 	}
 	else 
     {
-		originImg.copyTo(newImg);
+		originImg.copyTo(showImg);
         Fire_OnPropertyChanged(MAIN_IMAGE);
 	}
 }

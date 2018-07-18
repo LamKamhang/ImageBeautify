@@ -3,5 +3,5 @@
 void Model::save_file(const std::string &path)
 {
     showImg.copyTo(originImg);
-    cv::imwrite(path, newImg);
+    cv::imwrite(path, showImg);
 }

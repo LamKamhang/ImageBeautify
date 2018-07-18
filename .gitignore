@@ -33,6 +33,7 @@
 
 # vscode folder
 .vscode
+.vs
 
 # mac file
 .DS_Store

@@ -1,11 +1,11 @@
 #include "model.h"
 
-const cv::Mat& getShow()
+const cv::Mat& Model::getShow()
 {
     return showImg;
 }
 
-const cv::Mat& getOrigin()
+const cv::Mat& Model::getOrigin()
 {
     return originImg;
 }
