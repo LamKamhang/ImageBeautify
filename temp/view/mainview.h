@@ -10,11 +10,10 @@
 #include <QScrollArea>
 #include <QJsonObject>
 #include <QMouseEvent>
-#include "Commands/command.h"
+#include "../common/etlbase.h"
+#include "./sinks/mainimagesink.h"
 
-class Notification;
-
-namespace UI{
+namespace UI {
 class MainView;
 }
 
@@ -27,11 +26,11 @@ public:
 
     void update();
 
-    void set_img(std::shared_ptr<QImage>);
-    void set_open_file_command(std::shared_ptr<Command>);
-    void set_save_file_command(std::shared_ptr<Command>);
+    void setImage(std::shared_ptr<QImage>);
+    void setOpenFileCommand(std::shared_ptr<ICommandBase>);
+    void setSaveFileCommand(std::shared_ptr<ICommandBase>);
 
-    std::shared_ptr<Notification> get_update_mainview_notification();
+    std::shared_ptr<IPropertyNotification> getMainViewSink();
 
 private slots:
     // file system operation
@@ -39,68 +38,10 @@ private slots:
     // file
     void open();
     void saveAs();
-    // edit
-    void undo();
-    void redo();
-    void copy();
-    void paste();
-    // view
-    void zoomIn();
-    void zoomOut();
-    void normalSize();
-    void fitToWindow();
-    // about
-    void about();
-
-    // basic operation
-    void redChannel();
-    void greenChannel();
-    void blueChannel();
-    void algebraic();
-    void grayScaleTransfer();
-    void hueSaturationLightness();
-    void otsu();
-    void dualThreshold();
-    void clip();
-    void scale();
-    void filter();
-    void edgeDetection();
-    void houghLineDetect();
-    void houghCircleDetect();
-    void binaryMorphology();
-    void grayMorphology();
-    void curve();
-    void histogram();
-    void level();
-
-    // special effects
-    void hotSpecialEffects();
-    void basicSpecialEffects();
-    void lomoSpecialEffects();
-    void humanFaceSpecialEffects();
-    void fashionSpecialEffects();
-    void artSpecialEffects();
-
-    // frame
-    void colorfulFrame();
-    void simpleFrame();
-    void textureFrame();
-    void tearFrame();
-    void relaxedFrame();
 
 private:
-
     void initializeViews();
     void initializeFileMenu();
-    void initializeEditMenu();
-    void initializeToolsMenu();
-    void initializeSpecialEffectsMenu();
-    void initializeFrameMenu();
-    void initializeViewMenu();
-    void initializeAboutMenu();
-
-    void scaleImage(double factor);
-    void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
     void updateActions();
     void mouseMoveEvent(QMouseEvent *e);
@@ -114,26 +55,15 @@ private:
     QScrollArea *scrollArea;
     double scaleFactor;
 
-    QMenu *toolsMenu;
-    QMenu *specialEffectsMenu;
-    QMenu *frameMenu;
+    //QMenu
+    //...
 
     QAction *saveAsAct;
 
-    QAction *copyAct;
+    std::shared_ptr<ICommandBase> openFileCommand;
+    std::shared_ptr<ICommandBase> saveFileCommand;
 
-    QAction *zoomInAct;
-    QAction *zoomOutAct;
-    QAction *normalSizeAct;
-    QAction *fitToWindowAct;
-
-    QAction *undoAct;
-    QAction *redoAct;
-
-    std::shared_ptr<Command> open_file_command;
-    std::shared_ptr<Command> save_file_command;
-
-    std::shared_ptr<Notification> update_mainview_notification;
+    std::shared_ptr<MainImageSink> mainViewSink;
 };
 
 #endif // MAINVIEW_H
