@@ -1,3 +1,6 @@
+#ifndef PARAMETERS_H
+#define PARAMETERS_H
+
 /*
  * File: parameters.h
  * Version: 1.0
@@ -5,10 +8,8 @@
  * Created Date: Tue Jul 17 21:56:41 DST 2018
  * -------------------------------------------
  * 参数基类与派生类的声明
- *  - 所有参数类都要继承parameters这个工厂类
+ *  - 所有参数类都要继承parametersbase这个工厂类
  */
-
-#pragma once
 
 #include <string>
 
@@ -16,17 +17,15 @@ class ParametersBase
 {
 public:
     ParametersBase() = default;
+    virtual ~ParametersBase() = default;
 };
-
 
 class PathParameters: public ParametersBase
 {
 private:
     std::string path;
 public:
-    PathParameters(const std::string &path):
-        path(path)
-    {}
+    PathParameters(const std::string &path):path(path){}
     std::string get_path(){ return path;}
 };
 
@@ -36,27 +35,40 @@ private:
     int nBright;
     int nContrast;
 public:
-    brightAndContrastParameters(int bright = 0, int contrast = 100):
-        nBright(bright), nContrast(contrast)
+    brightAndContrastParameters(int bright = 0, int contrast = 100)
+        : nBright(bright)
+        , nContrast(contrast)
     {}
 
     int get_nBright(){return nBright;}
     int get_nContrast(){return nContrast;}
 };
 
-class IntParameters :public ParametersBase 
+class IntParameters :public ParametersBase
 {
 private:
     int value;
 public:
-    IntParameters(int value):
-        value(value)
+    IntParameters(int value)
+        : value(value)
     {}
     void setvalue(int v) { value = v; }
     int getvalue() { return value; }
 };
 
-class MouseMoveParameters: public ParametersBase 
+class StringParameters :public ParametersBase
+{
+private:
+    std::string value;
+public:
+    StringParameters(const std::string& value)
+        : value(value)
+    {}
+    void setvalue(std::string s){value = s;}
+    std::string getvalue(){return value;}
+};
+
+class MouseMoveParameters: public ParametersBase
 {
 private:
     double x_s;
@@ -64,8 +76,11 @@ private:
     double x_e;
     double y_e;
 public:
-    MouseMoveParameters():
-        x_s(0), y_s(0), x_e(0), y_e(0) 
+    MouseMoveParameters()
+        : x_s(0)
+        , y_s(0)
+        , x_e(0)
+        , y_e(0)
     {}
 
     void set_start_pnt(double vx_s, double vy_s) { x_s = vx_s; y_s = vy_s; }
@@ -76,4 +91,4 @@ public:
     double gety_e() { return y_e; }
 };
 
-
+#endif // PARAMETERS_H

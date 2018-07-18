@@ -137,8 +137,41 @@ void MainView::initializeEditMenu(){
 
 void MainView::undo(){}
 void MainView::redo(){}
-void MainView::copy(){}
-void MainView::paste(){}
+
+void MainView::copy(){
+#ifndef QT_NO_CLIPBOARD
+    QGuiApplication::clipboard()->setImage(*image);
+#endif // !QT_NO_CLIPBOARD
+}
+
+#ifndef QT_NO_CLIPBOARD
+static QImage clipboardImage()
+{
+    if (const QMimeData *mimeData = QGuiApplication::clipboard()->mimeData()) {
+        if (mimeData->hasImage()) {
+            const QImage image = qvariant_cast<QImage>(mimeData->imageData());
+            if (!image.isNull())
+                return image;
+        }
+    }
+    return QImage();
+}
+#endif // !QT_NO_CLIPBOARD
+
+void MainView::paste(){
+#ifndef QT_NO_CLIPBOARD
+    const QImage newImage = clipboardImage();
+    if (newImage.isNull()) {
+        statusBar()->showMessage(tr("No image in clipboard"));
+    } else {
+        setImage(newImage);
+        setWindowFilePath(QString());
+        const QString message = tr("Obtained image from clipboard, %1x%2, Depth: %3")
+            .arg(newImage.width()).arg(newImage.height()).arg(newImage.depth());
+        statusBar()->showMessage(message);
+    }
+#endif // !QT_NO_CLIPBOARD
+}
 
 /******************* tools menu ********************/
 void MainView::initializeToolsMenu(){
