@@ -20,7 +20,7 @@ class gamewindow;
     Q_OBJECT
 
 public:
-     void mouseMoveEvent(QMouseEvent *e);
+    void mouseMoveEvent(QMouseEvent *e);
     explicit gamewindow(QWidget *parent = 0);
     ~gamewindow();
     void set_Martix(std::shared_ptr<SWMatrix> spMartix);
@@ -31,11 +31,11 @@ public:
     void paintEvent(QPaintEvent *);
     void set_ptrMouseMoveCommand(std::shared_ptr<ICommandBase> ptrMouseMoveCommand);
 
- private slots:
+private slots:
     void on_secondButton_clicked();
     void on_firstButton_clicked();
 
- private:
+private:
     Ui::gamewindow *ui;
     std::shared_ptr<SWMatrix> _spMartix;
     std::shared_ptr<gamewindowProSink> _ptrgWindowPROSink;

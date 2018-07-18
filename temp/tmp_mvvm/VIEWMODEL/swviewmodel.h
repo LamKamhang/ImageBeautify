@@ -22,7 +22,9 @@ public:
 
 private:
     std::shared_ptr<SWModel> sp_SWModel_;
+
     std::shared_ptr<SWViewModelSink> sp_SWViewModelSink_;
+
     std::shared_ptr<layoutCommand> sp_layoutCommand_;
     std::shared_ptr<mouseMoveCommand> sp_mouseMoveCommand_;
 };

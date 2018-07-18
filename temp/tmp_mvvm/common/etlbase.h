@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <stack>
+#include <string>
 #include "parameters.h"
 
 //command
