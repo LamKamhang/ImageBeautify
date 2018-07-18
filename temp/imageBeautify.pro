@@ -67,9 +67,9 @@ SOURCES += \
 #    model/swmodel.cpp \
     model/model.cpp \
 #    model/methods/crop_image.cpp \
-#    model/methods/open_file.cpp \
-#    model/methods/reset.cpp \
-#    model/methods/save_file.cpp \
+    model/methods/open_file.cpp \
+    model/methods/reset.cpp \
+    model/methods/save_file.cpp \
     viewmodel/viewmodel.cpp \
     viewmodel/commands/savefilecommand.cpp
 
