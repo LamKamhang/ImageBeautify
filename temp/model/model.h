@@ -25,7 +25,8 @@ public:
     void open_file(const std::string &path) throw(errorType);
     void save_file(const std::string &path) throw();
     void reset() throw(errorType);
-    void crop(int x1, int y1, int x2, int y2) throw(errorType);
+    
+    // image operation.
 
 private:
     cv::Mat originImg;
