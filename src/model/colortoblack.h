@@ -1,13 +1,13 @@
 #ifndef COLORTOBLACK_H
 #define COLORTOBLACK_H
-#include <QImage>
-#include "transportmandq.h"
+#include <opencv2/opencv.hpp>
+using namespace cv;
 
 class ColorToBlack
 {
 public:
-    QImage ColorToBlack(QImage P,int per);
-    QImage img;
+    Mat ColorToBlack(Mat P,int per);
+    Mat img;
 };
 
 #endif // COLORTOBLACK_H
