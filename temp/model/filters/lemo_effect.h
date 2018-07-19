@@ -14,5 +14,5 @@
 
 class LemoEffect
 {
-   
+   static void _nostalgia(const cv::Mat &scr,cv::Mat &dst);//怀旧
 }
