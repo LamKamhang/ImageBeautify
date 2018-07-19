@@ -12,6 +12,9 @@
 #include "commands/edgedetectioncommand.h"
 #include "commands/houghcircledetectioncommand.h"
 #include "commands/channelcommand.h"
+#include "commands/grayscaletransfercommand.h"
+#include "commands/houghlinedetectioncommand.h"
+#include "commands/otsucommand.h"
 #include "sinks/viewmodelsink.h"
 #include <opencv2/opencv.hpp>
 using namespace cv;
@@ -22,6 +25,9 @@ class FilterCommand;
 class EdgeDetectionCommand;
 class HoughCircleDetectionCommand;
 class ChannelCommand;
+class OtsuCommand;
+class HoughLineDetectionCommand;
+class GrayScaleTransferCommand;
 
 class ViewModel
     : public Proxy_PropertyNotification<ViewModel>
@@ -37,6 +43,9 @@ public:
     void execEdgeDetectionCommand(const std::shared_ptr<JsonParameters>& json);
     void execHoughCircleDetectionCommand(const std::shared_ptr<JsonParameters>& json);
     void execChannelCommand(const std::shared_ptr<EnumCommandParameters>& type);
+    void execHoughLineDetectionCommand();
+    void execGrayScaleTransferCommand();
+    void execOtsuCommand();
 
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
@@ -44,6 +53,9 @@ public:
     std::shared_ptr<ICommandBase> getEdgeDetectionCommand();
     std::shared_ptr<ICommandBase> getHoughCircleDetectionCommand();
     std::shared_ptr<ICommandBase> getChannelCommand();
+    std::shared_ptr<ICommandBase> getGrayScaleTransferCommand();
+    std::shared_ptr<ICommandBase> getOtsuCommand();
+    std::shared_ptr<ICommandBase> getHoughLineDetectionCommand();
 
     std::shared_ptr<QImage> getImage();
     void setImageFromModel();
@@ -60,6 +72,9 @@ private:
     std::shared_ptr<EdgeDetectionCommand> edgedetectioncommand;
     std::shared_ptr<HoughCircleDetectionCommand> houghcircledetectioncommand;
     std::shared_ptr<ChannelCommand> channelcommand;
+    std::shared_ptr<GrayScaleTransferCommand> grayscaletransfercommand;
+    std::shared_ptr<OtsuCommand> otsucommand;
+    std::shared_ptr<HoughLineDetectionCommand> houghlinedetectioncommand;
 };
 
 

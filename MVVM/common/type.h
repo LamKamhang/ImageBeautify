@@ -22,6 +22,9 @@ enum commandsType{
     RED_CHANNEL,
     GREEN_CHANNEL,
     BLUE_CHANNEL,
+    HOUGH_LINE_DETECTION,
+    GRAY_SCALE_TRANSFER,
+    OTSU,
 };
 
 enum propertyType{

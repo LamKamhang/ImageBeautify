@@ -76,7 +76,10 @@ HEADERS += \
     viewmodel/commands/openfilecommand.h \
     viewmodel/commands/savefilecommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h
+    viewmodel/viewmodel.h \
+    viewmodel/commands/grayscaletransfercommand.h \
+    viewmodel/commands/otsucommand.h \
+    viewmodel/commands/houghlinedetectioncommand.h
 
 SOURCES += \
     app/app.cpp \
@@ -97,4 +100,7 @@ SOURCES += \
     viewmodel/commands/openfilecommand.cpp \
     viewmodel/commands/savefilecommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp
+    viewmodel/viewmodel.cpp \
+    viewmodel/commands/grayscaletransfercommand.cpp \
+    viewmodel/commands/otsucommand.cpp \
+    viewmodel/commands/houghlinedetectioncommand.cpp
