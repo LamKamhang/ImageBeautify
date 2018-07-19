@@ -1,8 +1,7 @@
-#include "effects.h"
+#include "lemo_effect.h"
 
 using namespace cv;
 using namespace std;
-
 
 void _nostalgia(const cv::Mat &scr,cv::Mat &dst)
 {
@@ -26,4 +25,36 @@ void _nostalgia(const cv::Mat &scr,cv::Mat &dst)
             data[i*3] = max(0,min(B,255));
         }
     }
+}
+
+void _BlackComic(const cv::Mat &scr,cv::Mat &dst)
+{
+    int rowNum = scr.rows;
+     int colNum = scr.cols;
+     dst = scr.clone();
+
+     for(int j = 0;j<rowNum;j++){
+         uchar* data = dst.ptr<uchar>(j);
+         for(int i = 0;i<colNum;i++){
+             int b = data[i*3];
+             int g = data[i*3+1];
+             int r = data[i*3+2];
+
+             int R = (abs(2*g-b+r)*r)>>8;
+             int G = (abs(2*b-g+r)*r)>>8;
+             int B = (abs(2*b-g+r)*r)>>8;
+
+             R = max(0,min(R,255));
+             G = max(0,min(G,255));
+             B = max(0,min(B,255));
+
+             int gray = (R+G+B)/3;
+
+             R = min(255,gray + 10);
+
+             data[i*3+2] = R;
+             data[i*3+1] = R;
+             data[i*3] = gray;
+         }
+     }
 }
