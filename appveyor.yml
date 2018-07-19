@@ -1,6 +1,13 @@
 environment:
   matrix:
-    - QTDIR: C:\Qt\5.10\msvc2017_64
+    - QTDIR: C:\Qt\5.11\msvc2015
+      CMD_VCVARSALL: '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86'
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      MSVC_PLATFORM: "x86"
+    - QTDIR: C:\Qt\5.11\msvc2017_64
+      CMD_VCVARSALL: '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64'
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      MSVC_PLATFORM: "x64"
 
 configuration:
   - release
@@ -9,11 +16,9 @@ configuration:
 # Set the environment variables and paths to make
 install:
   - git submodule update --init --recursive
-  - set PATH=%PATH%;%QTDIR%\bin;%APPVEYOR_BUILD_FOLDER%\OpenCV\win32\bin
-  - if %QTDIR:msvc2015=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %ARCH%
-  - if %QTDIR:msvc2017=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %ARCH%
-  - if %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
-  - if %QTDIR:msvc=%==%QTDIR% %make% /? > nul
+  - dir %QTDIR%
+  - call %CMD_VCVARSALL%
+  - set PATH=%PATH%;%QTDIR%\bin;%APPVEYOR_BUILD_FOLDER%\OpenCV\bin
 
 # Run qmake
 before_build:
