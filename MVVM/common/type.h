@@ -15,6 +15,9 @@
 enum commandsType{
     OPEN_FILE,
     SAVE_FILE,
+    FILTER,
+    EDGE_DETECTION,
+    HOUGH_CIRCLE_DETECTION,
 };
 
 enum propertyType{

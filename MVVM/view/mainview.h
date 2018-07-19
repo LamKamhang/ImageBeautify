@@ -12,6 +12,9 @@
 #include <QMouseEvent>
 #include "../common/etlbase.h"
 #include "./sinks/mainimagesink.h"
+#include "../view/filterdialog.h"
+#include "../view/edgedetectiondialog.h"
+#include "../view/houghcircledetectiondialog.h"
 
 namespace UI {
 class MainView;
@@ -29,6 +32,9 @@ public:
     void setImage(std::shared_ptr<QImage>);
     void setOpenFileCommand(std::shared_ptr<ICommandBase>);
     void setSaveFileCommand(std::shared_ptr<ICommandBase>);
+    void setFilterCommand(std::shared_ptr<ICommandBase>);
+    void setEdgeDetectionCommand(std::shared_ptr<ICommandBase>);
+    void setHoughCircleDetectionCommand(std::shared_ptr<ICommandBase>);
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
 
@@ -71,6 +77,11 @@ private slots:
     void curve();
     void histogram();
     void level();
+
+    // basic operation receiver
+    void receiveApplyFilter(std::shared_ptr<JsonParameters>);
+    void receiveApplyEdgeDetection(std::shared_ptr<JsonParameters>);
+    void receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters>);
 
     // special effects
     void hotSpecialEffects();
@@ -131,6 +142,9 @@ private:
 
     std::shared_ptr<ICommandBase> openFileCommand;
     std::shared_ptr<ICommandBase> saveFileCommand;
+    std::shared_ptr<ICommandBase> filterCommand;
+    std::shared_ptr<ICommandBase> edgeDetectionCommand;
+    std::shared_ptr<ICommandBase> houghCircleDetectionCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
 };
