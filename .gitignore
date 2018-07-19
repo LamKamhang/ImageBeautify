@@ -39,8 +39,6 @@
 .DS_Store
 __MACOSX
 
-# OpenCV
-OpenCV
 
 # build
 *build*
