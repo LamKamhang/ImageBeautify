@@ -82,9 +82,6 @@ SOURCES += \
     app/app.cpp \
     app/main.cpp \
     common/util.cpp \
-    model/methods/open_file.cpp \
-    model/methods/reset.cpp \
-    model/methods/save_file.cpp \
     model/imageoperation/aux_image_alg.cpp \
     model/imageoperation/imageoperation.cpp \
     model/model.cpp \
