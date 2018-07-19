@@ -70,5 +70,5 @@ std::shared_ptr<QImage> ViewModel::getImage(){
 }
 
 void ViewModel::setImageFromModel(){
-    *image = Tools::Mat2QImage(model->getShow());
+    *image = Tools::Mat2QImage(model->getMain());
 }

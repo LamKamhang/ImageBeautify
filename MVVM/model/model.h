@@ -11,6 +11,7 @@
 #include <opencv2/opencv.hpp>
 #include <string>
 #include "../common/etlbase.h"
+#include "imageoperation/aux_image_alg.h"
 
 
 class Model
@@ -50,7 +51,7 @@ public:
     bool cannyEdgeDetection(int lo, int hi);
     bool houghLineDetect();
     bool houghCircleDetect(int lo, int hi);
-    bool clip(, int startX, int endX, int startY, int endY);
+    bool clip(int startX, int endX, int startY, int endY);
     bool dilation(int size, int x, int y, int *array);
     bool erosion(int size, int x, int y, int *array);
     bool opening(int size, int x, int y, int *array);
@@ -58,7 +59,7 @@ public:
     bool thinning();
     bool thicking();
     bool distanceTransform();
-    bool skeletonization(, int size, int x, int y, int *array);
+    bool skeletonization(int size, int x, int y, int *array);
     bool skeletionReconstruct(int size, int x, int y, int *array);
     bool binaryReconstruction(int size, int x, int y, int *array);
     bool obr(int size, int x, int y, int *array);

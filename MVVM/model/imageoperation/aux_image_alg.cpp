@@ -1,4 +1,4 @@
-#include "imageoperations.h"
+#include "aux_image_alg.h"
 #include <iostream>
 #include <math.h>
 #include <QPixmap>
@@ -6,11 +6,6 @@
 #include <stack>
 
 #define PI 3.1415926
-
-ImageOperations::ImageOperations()
-{
-
-}
 
 QImage ImageOperations::imageAdd(QImage img1, QImage img2, double param1, double param2){
     int h, w;
@@ -651,7 +646,7 @@ QImage ImageOperations::cannyEdgeDetection(QImage img, int lo, int hi){
         }
     }
 
-    int v, tt;
+    unsigned int v, tt;
     for(int j = 0; j < h; j++){
         for(int i = 0; i < w; i++){
             if(i < 2 || i >= w - 2 || j < 2 || j >= h - 2){

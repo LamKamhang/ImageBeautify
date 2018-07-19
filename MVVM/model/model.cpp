@@ -48,7 +48,7 @@ bool Model::save_file(const std::string &path)
     }
     else
     {
-        mainImg.copyTo(originImg)
+        mainImg.copyTo(originImg);
         cv::imwrite(path, mainImg);
         return true;
     }

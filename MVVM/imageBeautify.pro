@@ -54,47 +54,49 @@ INCLUDEPATH += $$PWD/../OpenCV/win32/include
 DEPENDPATH += $$PWD/../OpenCV/win32/include
 }
 
-SOURCES += \
-    common/util.cpp \
-    app/main.cpp \
-    app/app.cpp \
-    view/mainview.cpp \
-    view/sinks/mainimagesink.cpp \
-    viewmodel/commands/openfilecommand.cpp \
-    viewmodel/commands/savefilecommand.cpp \
-    viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp \
-    model/model.cpp \
-    model/methods/open_file.cpp \
-    model/methods/reset.cpp \
-    model/methods/save_file.cpp \
-    view/filterdialog.cpp \
-    viewmodel/commands/filtercommand.cpp \
-    viewmodel/commands/edgedetectioncommand.cpp \
-    view/edgedetectiondialog.cpp \
-    view/houghcircledetectiondialog.cpp \
-    viewmodel/commands/houghcircledetectioncommand.cpp
 
-HEADERS += \
-    common/etlbase.h \
-    common/type.h \
-    common/util.h \
-    common/parameters.h \
-    view/mainview.h \
-    view/sinks/mainimagesink.h \
-    app/app.h \
-    viewmodel/commands/savefilecommand.h \
-    viewmodel/commands/openfilecommand.h \
-    viewmodel/viewmodel.h \
-    viewmodel/sinks/viewmodelsink.h \
-    model/model.h \
-    view/filterdialog.h \
-    viewmodel/commands/filtercommand.h \
-    viewmodel/commands/edgedetectioncommand.h \
-    view/edgedetectiondialog.h \
-    view/houghcircledetectiondialog.h \
-    viewmodel/commands/houghcircledetectioncommand.h
 
 FORMS +=
 
 CONFIG += c++14
+
+HEADERS += \
+    APP/app.h \
+    common/etlbase.h \
+    common/parameters.h \
+    common/type.h \
+    common/util.h \
+    model/imageoperation/aux_image_alg.h \
+    model/model.h \
+    view/sinks/mainimagesink.h \
+    view/edgedetectiondialog.h \
+    view/filterdialog.h \
+    view/houghcircledetectiondialog.h \
+    view/mainview.h \
+    viewmodel/commands/edgedetectioncommand.h \
+    viewmodel/commands/filtercommand.h \
+    viewmodel/commands/houghcircledetectioncommand.h \
+    viewmodel/commands/openfilecommand.h \
+    viewmodel/commands/savefilecommand.h \
+    viewmodel/sinks/viewmodelsink.h \
+    viewmodel/viewmodel.h
+
+SOURCES += \
+    APP/app.cpp \
+    APP/main.cpp \
+    common/util.cpp \
+    model/imageoperation/aux_image_alg.cpp \
+    model/imageoperation/imageoperation.cpp \
+    model/model.cpp \
+    view/sinks/mainimagesink.cpp \
+    view/edgedetectiondialog.cpp \
+    view/filterdialog.cpp \
+    view/houghcircledetectiondialog.cpp \
+    view/mainview.cpp \
+    viewmodel/commands/edgedetectioncommand.cpp \
+    viewmodel/commands/filtercommand.cpp \
+    viewmodel/commands/houghcircledetectioncommand.cpp \
+    viewmodel/commands/openfilecommand.cpp \
+    viewmodel/commands/savefilecommand.cpp \
+    viewmodel/sinks/viewmodelsink.cpp \
+    viewmodel/viewmodel.cpp

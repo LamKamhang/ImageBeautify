@@ -4,7 +4,7 @@
 
 bool Model::imageAdd(double param1, double param2)
 {
-    if (mainImg.height != subImg.height || mainImg.width != subImg.width)
+    if (mainImg.rows != subImg.rows || mainImg.cols != subImg.cols)
     {
         return false;
     }
@@ -21,7 +21,7 @@ bool Model::imageAdd(double param1, double param2)
 
 bool Model::imageSubtract(double param1, double param2)
 {
-    if (mainImg.height != subImg.height || mainImg.width != subImg.width)
+    if (mainImg.rows != subImg.rows || mainImg.cols != subImg.cols)
     {
         return false;
     }
@@ -38,7 +38,7 @@ bool Model::imageSubtract(double param1, double param2)
 
 bool Model::imageMultiply()
 {
-    if (mainImg.height != subImg.height || mainImg.width != subImg.width)
+    if (mainImg.rows != subImg.rows || mainImg.cols != subImg.cols)
     {
         return false;
     }
@@ -206,7 +206,7 @@ bool Model::houghCircleDetect(int lo, int hi)
     return true;
 }
 
-bool Model::clip(, int startX, int endX, int startY, int endY)
+bool Model::clip(int startX, int endX, int startY, int endY)
 {
     QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::clip(src, startX, endX, startY, endY);
@@ -217,11 +217,11 @@ bool Model::clip(, int startX, int endX, int startY, int endY)
 
 bool Model::dilation(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::dilation(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -230,11 +230,11 @@ bool Model::dilation(int size, int x, int y, int *array)
 
 bool Model::erosion(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::erosion(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -243,11 +243,11 @@ bool Model::erosion(int size, int x, int y, int *array)
 
 bool Model::opening(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::opening(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -256,11 +256,11 @@ bool Model::opening(int size, int x, int y, int *array)
 
 bool Model::closing(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::closing(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -269,11 +269,11 @@ bool Model::closing(int size, int x, int y, int *array)
 
 bool Model::thinning()
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::thinning(src);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -282,11 +282,11 @@ bool Model::thinning()
 
 bool Model::thicking()
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::thicking(src);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -295,24 +295,24 @@ bool Model::thicking()
 
 bool Model::distanceTransform()
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::distanceTransform(src);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
     return true;
 }
 
-bool Model::skeletonization(, int size, int x, int y, int *array)
+bool Model::skeletonization(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::skeletonization(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -321,11 +321,11 @@ bool Model::skeletonization(, int size, int x, int y, int *array)
 
 bool Model::skeletionReconstruct(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::skeletionReconstruct(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -334,11 +334,11 @@ bool Model::skeletionReconstruct(int size, int x, int y, int *array)
 
 bool Model::binaryReconstruction(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::binaryReconstruction(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -347,11 +347,11 @@ bool Model::binaryReconstruction(int size, int x, int y, int *array)
 
 bool Model::obr(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::obr(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);
@@ -360,11 +360,11 @@ bool Model::obr(int size, int x, int y, int *array)
 
 bool Model::cbr(int size, int x, int y, int *array)
 {
-    QImage src = Tools::Mat2QImage(mainImg);
-    if (!isBinaryImage(src))
+    if (!isBinaryImage())
     {
         return false;
     }
+    QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::cbr(src, size, x, y, array);
     mainImg = Tools::QImage2Mat(dst);
     Fire_OnPropertyChanged(MAIN_IMAGE);

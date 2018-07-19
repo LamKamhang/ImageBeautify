@@ -1,6 +1,7 @@
 #ifndef IMAGEOPERATIONS_H
 #define IMAGEOPERATIONS_H
 
+#include "../../common/type.h"
 #include <QImage>
 #include <QVector>
 #include <vector>
@@ -26,67 +27,64 @@ typedef struct
 class ImageOperations
 {
 public:
-    enum ChannelType{RED = 0, GREEN, BLUE};
-
-    ImageOperations();
-    QImage imageAdd(QImage img1, QImage img2, double param1, double param2);
-    QImage imageSubtract(QImage img1, QImage img2, double param1, double param2);
-    QImage imageMultiply(QImage img1, QImage img2);
-    QImage getSingleChannel(QImage, ChannelType);
-    QImage grayScale(QImage);
-    QImage adjustHue(QImage, QImage, QVector<int> hueValues);
-    QImage adjustSaturation(QImage, QImage, int saturation);
-    QImage adjustLightness(QImage, QImage, int lightness);
-    QImage otsu(QImage);
-    QImage dualThreshold(QImage img, int thresh1, int thresh2);
-    QImage nearnestInterpolation(QImage img, int scale, int rotation);
-    QImage BilinearInterpolation(QImage img, int scale, int rotation);
-    QImage meanFilter(QImage img, int col, int row, int x, int y);
-    QImage medianFilter(QImage image, int col, int row, int x, int y);
-    QImage gaussianFilter(QImage image, int col, int row, int x, int y, double sigma);
-    QImage sobelEdgeDetection(QImage img, int threshold);
-    QImage laplacianEdgeDetection(QImage img, int threshold);
-    QImage cannyEdgeDetection(QImage img, int lo, int hi);
-    QImage houghLineDetect(QImage img);
-    QImage houghCircleDetect(QImage img, int lo, int hi);
-    QImage clip(QImage img, int startX, int endX, int startY, int endY);
-    QImage dilation(QImage img, int size, int x, int y, int *array);
-    QImage erosion(QImage img, int size, int x, int y, int *array);
-    QImage opening(QImage img, int size, int x, int y, int *array);
-    QImage closing(QImage img, int size, int x, int y, int *array);
-    QImage thinning(QImage img);
-    QImage thicking(QImage img);
-    QImage distanceTransform(QImage img);
-    QImage skeletonization(QImage img, int size, int x, int y, int *array);
-    QImage skeletionReconstruct(QImage img, int size, int x, int y, int *array);
-    QImage binaryReconstruction(QImage img, int size, int x, int y, int *array);
-    QImage obr(QImage img, int size, int x, int y, int *array);
-    QImage cbr(QImage img, int size, int x, int y, int *array);
-    QImage linearContrastAdjust(QImage img, int x1, int y1, int x2, int y2);
-    QImage pieceLinContrastAdjust(QImage img, int x1, int y1, int x2, int y2);
-    QImage logContrastAdjust(QImage img, double a, double b);
-    QImage expContrastAdjust(QImage img, double a, double b);
-    void getHistogram(QImage img, int *histo);
-    QImage histogramEqualization(QImage img, int *histo);
-    QImage colorLevel(QImage img, PColorLevelData clData);
-    QImage watershed(QImage img);
-    QImage Or(QImage &img1, QImage &img2);
-    QImage And(QImage &img1, QImage &img2);
-    bool isBinaryImage(QImage &);
-    bool isGrayImage(QImage &);
+    static QImage imageAdd(QImage img1, QImage img2, double param1, double param2);
+    static QImage imageSubtract(QImage img1, QImage img2, double param1, double param2);
+    static QImage imageMultiply(QImage img1, QImage img2);
+    static QImage getSingleChannel(QImage, ChannelType);
+    static QImage grayScale(QImage);
+    static QImage adjustHue(QImage, QImage, QVector<int> hueValues);
+    static QImage adjustSaturation(QImage, QImage, int saturation);
+    static QImage adjustLightness(QImage, QImage, int lightness);
+    static QImage otsu(QImage);
+    static QImage dualThreshold(QImage img, int thresh1, int thresh2);
+    static QImage nearnestInterpolation(QImage img, int scale, int rotation);
+    static QImage BilinearInterpolation(QImage img, int scale, int rotation);
+    static QImage meanFilter(QImage img, int col, int row, int x, int y);
+    static QImage medianFilter(QImage image, int col, int row, int x, int y);
+    static QImage gaussianFilter(QImage image, int col, int row, int x, int y, double sigma);
+    static QImage sobelEdgeDetection(QImage img, int threshold);
+    static QImage laplacianEdgeDetection(QImage img, int threshold);
+    static QImage cannyEdgeDetection(QImage img, int lo, int hi);
+    static QImage houghLineDetect(QImage img);
+    static QImage houghCircleDetect(QImage img, int lo, int hi);
+    static QImage clip(QImage img, int startX, int endX, int startY, int endY);
+    static QImage dilation(QImage img, int size, int x, int y, int *array);
+    static QImage erosion(QImage img, int size, int x, int y, int *array);
+    static QImage opening(QImage img, int size, int x, int y, int *array);
+    static QImage closing(QImage img, int size, int x, int y, int *array);
+    static QImage thinning(QImage img);
+    static QImage thicking(QImage img);
+    static QImage distanceTransform(QImage img);
+    static QImage skeletonization(QImage img, int size, int x, int y, int *array);
+    static QImage skeletionReconstruct(QImage img, int size, int x, int y, int *array);
+    static QImage binaryReconstruction(QImage img, int size, int x, int y, int *array);
+    static QImage obr(QImage img, int size, int x, int y, int *array);
+    static QImage cbr(QImage img, int size, int x, int y, int *array);
+    static QImage linearContrastAdjust(QImage img, int x1, int y1, int x2, int y2);
+    static QImage pieceLinContrastAdjust(QImage img, int x1, int y1, int x2, int y2);
+    static QImage logContrastAdjust(QImage img, double a, double b);
+    static QImage expContrastAdjust(QImage img, double a, double b);
+    static void getHistogram(QImage img, int *histo);
+    static QImage histogramEqualization(QImage img, int *histo);
+    static QImage colorLevel(QImage img, PColorLevelData clData);
+    static QImage watershed(QImage img);
+    static QImage Or(QImage &img1, QImage &img2);
+    static QImage And(QImage &img1, QImage &img2);
+    static bool isBinaryImage(QImage &);
+    static bool isGrayImage(QImage &);
 
 private:
-    int threshold(int *list);
-    inline int round(double);
-    unsigned int median(unsigned int *, int, int);
-    bool isBlackImage(QImage &img);
-    bool isWhiteImage(QImage &img);
-    void binaryReverse(QImage &img);
-    bool isSame(QImage &img1, QImage &img2);
-    QImage grayscaleReconstruct(QImage img, QImage marker, int size, int x, int y, int *array);
-    void grayValueTransfer(QImage &img, int *corres);
-    bool getColorLevelTable(PColorLevelItem item, unsigned char *clTable);
-    bool checkColorLevelData(PColorLevelData clData, unsigned char clTables[][256]);
+    static int threshold(int *list);
+    static inline int round(double);
+    static unsigned int median(unsigned int *, int, int);
+    static bool isBlackImage(QImage &img);
+    static bool isWhiteImage(QImage &img);
+    static void binaryReverse(QImage &img);
+    static bool isSame(QImage &img1, QImage &img2);
+    static QImage grayscaleReconstruct(QImage img, QImage marker, int size, int x, int y, int *array);
+    static void grayValueTransfer(QImage &img, int *corres);
+    static bool getColorLevelTable(PColorLevelItem item, unsigned char *clTable);
+    static bool checkColorLevelData(PColorLevelData clData, unsigned char clTables[][256]);
 };
 
 class WatershedPixel {
@@ -164,10 +162,6 @@ public:
                 watershedStructure.push_back(new WatershedPixel(x, y, qRed(img.pixel(x, y))));
 
         for (int y = 0; y < height; ++y) {
-            int offset = y * width;
-            int topOffset = offset + width;
-            int bottomOffset = offset - width;
-
             for (int x = 0; x < width; ++x) {
                 int currentindex = x + y*width;
                 WatershedPixel* currentPixel = watershedStructure.at(currentindex);
@@ -208,7 +202,7 @@ public:
         }
     }
 
-    int size() { return watershedStructure.size(); }
+    size_t size() { return watershedStructure.size(); }
 
     WatershedPixel* at(int i) { return watershedStructure.at(i); }
 };

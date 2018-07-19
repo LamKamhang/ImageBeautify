@@ -24,3 +24,9 @@ enum propertyType{
     MAIN_IMAGE,
     SUB_IMAGE,
 };
+
+enum ChannelType{
+    RED,
+    GREEN,
+    BLUE,
+};
