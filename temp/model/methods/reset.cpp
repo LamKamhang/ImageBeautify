@@ -1,11 +1,11 @@
 #include "../model.h"
 
 
-void Model::reset()// throw(errorType)
+void Model::reset() throw(errorType)
 {
 	if (originImg.empty())
 	{
-//		throw(EMPTY_IMAGE);
+		throw(EMPTY_IMAGE);
 	}
 	else 
     {
