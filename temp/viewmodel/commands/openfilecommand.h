@@ -11,7 +11,6 @@ class OpenFileCommand
 {
 public:
     OpenFileCommand(ViewModel* vm);
-    ~OpenFileCommand();
     virtual void SetParameter(const std::shared_ptr<ParametersBase>& param);
     virtual void Exec();
 

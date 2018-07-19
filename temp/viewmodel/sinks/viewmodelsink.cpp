@@ -10,6 +10,5 @@ void ViewModelSink::OnPropertyChanged(const propertyType ppt){
     if(ppt == MAIN_IMAGE){
         viewmodel->setImageFromModel();
     }
-
     viewmodel->Fire_OnPropertyChanged(ppt);
 }

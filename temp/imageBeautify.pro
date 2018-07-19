@@ -62,16 +62,18 @@ SOURCES += \
 #    viewmodel/commands/layoutcommand.cpp \
 #    viewmodel/commands/mousemovecommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
-#    viewmodel/sinks/swviewmodelsink.cpp \
+    viewmodel/commands/savefilecommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
+    viewmodel/viewmodel.cpp \
+#    viewmodel/sinks/swviewmodelsink.cpp \
 #    model/swmodel.cpp \
     model/model.cpp \
 #    model/methods/crop_image.cpp \
     model/methods/open_file.cpp \
     model/methods/reset.cpp \
-    model/methods/save_file.cpp \
-    viewmodel/viewmodel.cpp \
-    viewmodel/commands/savefilecommand.cpp
+    model/methods/save_file.cpp
+
+
 
 HEADERS += \
     common/etlbase.h \
@@ -104,4 +106,4 @@ FORMS +=
 #    view/startpage.ui \
 #    view/gamewindow.ui
 
-CONFIG += c++17
+CONFIG += c++14
