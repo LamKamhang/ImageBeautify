@@ -22,9 +22,9 @@ public:
     const cv::Mat& getOrigin();
 
     // basic methods.
-    void open_file(const std::string &path);
+    void open_file(const std::string &path) throw(errorType);
     void save_file(const std::string &path);
-    void reset();
+    void reset() throw(errorType);
     
     // image operation.
 
