@@ -73,7 +73,8 @@ SOURCES += \
     viewmodel/commands/edgedetectioncommand.cpp \
     view/edgedetectiondialog.cpp \
     view/houghcircledetectiondialog.cpp \
-    viewmodel/commands/houghcircledetectioncommand.cpp
+    viewmodel/commands/houghcircledetectioncommand.cpp \
+    viewmodel/commands/channelcommand.cpp
 
 HEADERS += \
     common/etlbase.h \
@@ -93,7 +94,8 @@ HEADERS += \
     viewmodel/commands/edgedetectioncommand.h \
     view/edgedetectiondialog.h \
     view/houghcircledetectiondialog.h \
-    viewmodel/commands/houghcircledetectioncommand.h
+    viewmodel/commands/houghcircledetectioncommand.h \
+    viewmodel/commands/channelcommand.h
 
 FORMS +=
 

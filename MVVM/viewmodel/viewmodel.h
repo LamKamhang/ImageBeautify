@@ -11,6 +11,7 @@
 #include "commands/filtercommand.h"
 #include "commands/edgedetectioncommand.h"
 #include "commands/houghcircledetectioncommand.h"
+#include "commands/channelcommand.h"
 #include "sinks/viewmodelsink.h"
 #include <opencv2/opencv.hpp>
 using namespace cv;
@@ -20,6 +21,7 @@ class SaveFileCommand;
 class FilterCommand;
 class EdgeDetectionCommand;
 class HoughCircleDetectionCommand;
+class ChannelCommand;
 
 class ViewModel
     : public Proxy_PropertyNotification<ViewModel>
@@ -34,12 +36,14 @@ public:
     void execFilterCommand(const std::shared_ptr<JsonParameters>& json);
     void execEdgeDetectionCommand(const std::shared_ptr<JsonParameters>& json);
     void execHoughCircleDetectionCommand(const std::shared_ptr<JsonParameters>& json);
+    void execChannelCommand(const std::shared_ptr<EnumCommandParameters>& type);
 
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
     std::shared_ptr<ICommandBase> getFilterCommand();
     std::shared_ptr<ICommandBase> getEdgeDetectionCommand();
     std::shared_ptr<ICommandBase> getHoughCircleDetectionCommand();
+    std::shared_ptr<ICommandBase> getChannelCommand();
 
     std::shared_ptr<QImage> getImage();
     void setImageFromModel();
@@ -55,6 +59,7 @@ private:
     std::shared_ptr<FilterCommand> filtercommand;
     std::shared_ptr<EdgeDetectionCommand> edgedetectioncommand;
     std::shared_ptr<HoughCircleDetectionCommand> houghcircledetectioncommand;
+    std::shared_ptr<ChannelCommand> channelcommand;
 };
 
 

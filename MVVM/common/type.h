@@ -18,6 +18,10 @@ enum commandsType{
     FILTER,
     EDGE_DETECTION,
     HOUGH_CIRCLE_DETECTION,
+    CHANNEL,
+    RED_CHANNEL,
+    GREEN_CHANNEL,
+    BLUE_CHANNEL,
 };
 
 enum propertyType{

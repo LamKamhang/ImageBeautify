@@ -14,6 +14,7 @@ ViewModel::ViewModel()
     filtercommand = std::make_shared<FilterCommand>(this);
     edgedetectioncommand = std::make_shared<EdgeDetectionCommand>(this);
     houghcircledetectioncommand = std::make_shared<HoughCircleDetectionCommand>(this);
+    channelcommand = std::make_shared<ChannelCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -45,6 +46,24 @@ void ViewModel::execHoughCircleDetectionCommand(const std::shared_ptr<JsonParame
     // model
 }
 
+void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> &type){
+    switch (type->getvalue()) {
+    case RED_CHANNEL:
+        qDebug() << "red channel command";
+        //model
+        break;
+    case GREEN_CHANNEL:
+        qDebug() << "green channel command";
+        break;
+    case BLUE_CHANNEL:
+        qDebug() << "blue channel command";
+        break;
+    default:
+        qDebug() << "error channel!";
+        break;
+    }
+}
+
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
     return openfilecommand;
 }
@@ -63,6 +82,10 @@ std::shared_ptr<ICommandBase> ViewModel::getEdgeDetectionCommand(){
 
 std::shared_ptr<ICommandBase> ViewModel::getHoughCircleDetectionCommand(){
     return houghcircledetectioncommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getChannelCommand(){
+    return channelcommand;
 }
 
 std::shared_ptr<QImage> ViewModel::getImage(){

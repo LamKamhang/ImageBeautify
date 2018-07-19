@@ -211,9 +211,18 @@ void MainView::initializeToolsMenu(){
     mathematicalMorphologySubMenu->addAction(tr("Gray-scale Morphology..."), this, SLOT(grayMorphology()));
 }
 
-void MainView::redChannel(){}
-void MainView::greenChannel(){}
-void MainView::blueChannel(){}
+void MainView::redChannel(){
+    channelCommand->SetParameter(std::make_shared<EnumCommandParameters>(RED_CHANNEL));
+    channelCommand->Exec();
+}
+void MainView::greenChannel(){
+    channelCommand->SetParameter(std::make_shared<EnumCommandParameters>(GREEN_CHANNEL));
+    channelCommand->Exec();
+}
+void MainView::blueChannel(){
+    channelCommand->SetParameter(std::make_shared<EnumCommandParameters>(BLUE_CHANNEL));
+    channelCommand->Exec();
+}
 void MainView::grayScaleTransfer(){}
 void MainView::hueSaturationLightness(){}
 void MainView::curve(){}
@@ -409,6 +418,10 @@ void MainView::setEdgeDetectionCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setHoughCircleDetectionCommand(std::shared_ptr<ICommandBase> command){
     houghCircleDetectionCommand = command;
+}
+
+void MainView::setChannelCommand(std::shared_ptr<ICommandBase> command){
+    channelCommand = command;
 }
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){

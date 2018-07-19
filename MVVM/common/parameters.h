@@ -12,6 +12,7 @@
 
 #include <string>
 #include <map>
+#include "type.h"
 
 class ParametersBase
 {
@@ -86,4 +87,17 @@ public:
     double getvalue() { return value; }
 private:
     double value;
+};
+
+class EnumCommandParameters
+    : public ParametersBase
+{
+public:
+    EnumCommandParameters(enum commandsType type):
+        value(type)
+    {}
+    void setvalue(enum commandsType type){ value = type; }
+    enum commandsType getvalue() { return value; }
+private:
+    enum commandsType value;
 };

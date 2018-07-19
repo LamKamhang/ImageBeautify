@@ -36,6 +36,9 @@ public:
     void setEdgeDetectionCommand(std::shared_ptr<ICommandBase>);
     void setHoughCircleDetectionCommand(std::shared_ptr<ICommandBase>);
 
+    void setChannelCommand(std::shared_ptr<ICommandBase>);
+
+
     std::shared_ptr<IPropertyNotification> getMainViewSink();
 
 private slots:
@@ -145,6 +148,7 @@ private:
     std::shared_ptr<ICommandBase> filterCommand;
     std::shared_ptr<ICommandBase> edgeDetectionCommand;
     std::shared_ptr<ICommandBase> houghCircleDetectionCommand;
+    std::shared_ptr<ICommandBase> channelCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
 };
