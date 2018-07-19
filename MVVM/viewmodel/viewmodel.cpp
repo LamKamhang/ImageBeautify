@@ -33,7 +33,26 @@ void ViewModel::execSaveFileCommand(std::string path){
 void ViewModel::execFilterCommand(const std::shared_ptr<JsonParameters>& json){
     qDebug() << "filter command";
     // model filter
-    //    model->save_file(path);
+    int type = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["type"])->getvalue();
+    int col = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["col"])->getvalue();
+    int row = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["row"])->getvalue();
+    int x = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["x"])->getvalue();
+    int y = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["y"])->getvalue();
+    switch (type) {
+    case 0:
+        qDebug()<<"mean filter command";
+        model->meanFilter(col,row,x,y);
+        break;
+    case 1:
+        qDebug()<<"median filter command";
+        model->medianFilter(col,row,x,y);
+        break;
+    case 2:
+        qDebug()<<"guassian filter command";
+        double sigma = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["sigma"])->getvalue();
+        model->gaussianFilter(col,row,x,y,sigma);
+        break;
+    }
 }
 
 void ViewModel::execEdgeDetectionCommand(const std::shared_ptr<JsonParameters> &json){
@@ -51,12 +70,15 @@ void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> 
     case RED_CHANNEL:
         qDebug() << "red channel command";
         //model
+        model->getSingleChannel(RED);
         break;
     case GREEN_CHANNEL:
         qDebug() << "green channel command";
+//        model->getSingleChannel(GREEN);
         break;
     case BLUE_CHANNEL:
         qDebug() << "blue channel command";
+//        model->getSingleChannel(BLUE);
         break;
     default:
         qDebug() << "error channel!";
