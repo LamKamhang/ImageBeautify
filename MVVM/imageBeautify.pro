@@ -62,6 +62,7 @@ HEADERS += \
     common/parameters.h \
     common/type.h \
     common/util.h \
+    model/imageoperation/aux_image_alg.h \
     model/model.h \
     view/sinks/mainimagesink.h \
     view/edgedetectiondialog.h \
@@ -84,6 +85,8 @@ SOURCES += \
     model/methods/open_file.cpp \
     model/methods/reset.cpp \
     model/methods/save_file.cpp \
+    model/imageoperation/aux_image_alg.cpp \
+    model/imageoperation/imageoperation.cpp \
     model/model.cpp \
     view/sinks/mainimagesink.cpp \
     view/edgedetectiondialog.cpp \

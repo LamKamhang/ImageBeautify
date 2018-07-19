@@ -26,10 +26,11 @@ enum commandsType{
 
 enum propertyType{
     MAIN_IMAGE,
+    SUB_IMAGE,
 };
 
-enum errorType{
-    CANNOT_OPEN_IMAGE,
-    EMPTY_IMAGE,
-    ILLEAGL_REGION,
+enum ChannelType{
+    RED,
+    GREEN,
+    BLUE,
 };
