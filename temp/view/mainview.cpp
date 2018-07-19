@@ -79,7 +79,7 @@ void MainView::initializeFileMenu(){
 
     fileMenu->addSeparator();
 
-    QAction *exitAct = fileMenu->addAction(tr("exit"), this, &QWidget::close);
+    QAction *exitAct = fileMenu->addAction(tr("退出"), this, &QWidget::close);
     exitAct->setShortcut(tr("Ctrl+Q"));
 }
 
