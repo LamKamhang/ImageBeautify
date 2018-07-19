@@ -29,12 +29,6 @@ LIBS += /usr/local/Cellar/opencv/3.4.1_2/lib/libopencv_highgui.dylib \
         /usr/local/Cellar/opencv/3.4.1_2/lib/libopencv_imgcodecs.dylib \
         /usr/local/Cellar/opencv/3.4.1_2/lib/libopencv_*.dylib
 
-#LIBS += /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_highgui.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_core.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_imgproc.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_imgcodecs.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_*.dylib
-
 INCLUDEPATH += /usr/local/Cellar/opencv/3.4.1_2/include/
 }
 
@@ -44,6 +38,14 @@ LIBS += /usr/local/lib/libopencv_highgui.so \
         /usr/local/lib/libopencv_imgproc.so \
         /usr/local/lib/libopencv_imgcodecs.so\
         /usr/local/lib/libopencv_*.so
+}
+
+win32 {
+CONFIG(debug, debug|release): LIBS += -L$$PWD/../OpenCV/win32/lib/ -lopencv_world342d
+CONFIG(release, debug|release): LIBS += -L$$PWD/../OpenCV/win32/lib/ -lopencv_world342
+
+INCLUDEPATH += $$PWD/../OpenCV/win32/include
+DEPENDPATH += $$PWD/../OpenCV/win32/include
 }
 
 SOURCES += \

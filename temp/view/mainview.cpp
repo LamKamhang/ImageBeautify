@@ -346,8 +346,13 @@ void MainView::initializeAboutMenu(){
 
 void MainView::about(){
     QMessageBox::about(this, tr("About ImageBeautify"),
-                tr("<p><b>Image Beautify</b> is based on MVVM framework and Qt/C++,"
-                   " and the core algrithms are implemented with OpenCV."));
+                tr("<p><strong>版本:1.x版</strong></p>"
+                   "<p><strong>日期:</strong> 2018-07-11T15:43:53.668Z</p>"
+                   "<p><strong>架构:</strong> x86/x64/</p>"
+                   "<p><strong>框架:</strong> MVVM</p>"
+                   "<p><strong>作者:</strong> kk,  cc,  ye.</p>"
+                   "<p><strong>版权声明:</strong>本作品采用知识共享署名-非商业性使用-禁止演绎 3.0 中 国大陆许可协议进行许可。要查看该许可协议，可访问 <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/cn/' target='_blank' class='url'>http://creativecommons.org/licenses/by-nc-nd/3.0/cn/</a> 或者写 信到 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA。</p>"
+                   "<p>&nbsp;</p>"));
 }
 
 

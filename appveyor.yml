@@ -11,7 +11,7 @@ configuration:
 install:
   - git submodule update --init --recursive
   - call "%QTDIR%\bin\qtenv2.bat"
-  - set PATH=%PATH%;%QTDIR%\bin;%MINGW%\bin
+  - set PATH=%PATH%;%QTDIR%\bin;%MINGW%\bin;%APPVEYOR_BUILD_FOLDER%\OpenCV\win32\bin
   - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
   - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
   - if not %QTDIR:msvc2015=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %ARCH%
@@ -24,7 +24,7 @@ before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - qmake ..\src\imageBeautify.pro
+  - qmake ..\temp\imageBeautify.pro
 
 
 # Build the projects
@@ -45,7 +45,7 @@ after_build:
 artifacts:
   - path: build\release\release\
     name: image_beautify_bin
-  - path: src\
+  - path: temp\
     name: image_beautify_src
 
 deploy:
