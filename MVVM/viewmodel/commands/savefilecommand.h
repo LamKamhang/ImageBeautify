@@ -15,7 +15,7 @@ public:
     virtual void Exec();
 private:
     ViewModel* viewmodel;
-    std::string filepath;
+    QString filepath;
 };
 
 #endif // SAVEFILECOMMAND_H

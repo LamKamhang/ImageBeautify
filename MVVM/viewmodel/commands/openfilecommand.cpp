@@ -7,7 +7,7 @@ OpenFileCommand::OpenFileCommand(ViewModel* vm)
 }
 
 void OpenFileCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    filepath = std::static_pointer_cast<StringParameters,ParametersBase>(param)->getvalue();
+    filepath = std::static_pointer_cast<QStringParameters,ParametersBase>(param)->getvalue();
 }
 
 void OpenFileCommand::Exec(){
