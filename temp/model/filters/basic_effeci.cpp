@@ -233,3 +233,9 @@ Mat defog::getTImage()
     m_tImage = temp;
     return m_tImage;
 }
+
+void _soft(const cv::Mat &scr,cv::Mat &dst)
+{
+    Mat temp = scr.clone();
+    GaussianBlur(temp,dst,Size(1,1),0);
+}
