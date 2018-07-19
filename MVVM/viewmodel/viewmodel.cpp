@@ -15,6 +15,9 @@ ViewModel::ViewModel()
     edgedetectioncommand = std::make_shared<EdgeDetectionCommand>(this);
     houghcircledetectioncommand = std::make_shared<HoughCircleDetectionCommand>(this);
     channelcommand = std::make_shared<ChannelCommand>(this);
+    grayscaletransfercommand = std::make_shared<GrayScaleTransferCommand>(this);
+    otsucommand = std::make_shared<OtsuCommand>(this);
+    houghlinedetectioncommand = std::make_shared<HoughLineDetectionCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -41,16 +44,16 @@ void ViewModel::execFilterCommand(const std::shared_ptr<JsonParameters>& json){
     switch (type) {
     case 0:
         qDebug()<<"mean filter command";
-        model->meanFilter(col,row,x,y);
+//        model->meanFilter(col,row,x,y);
         break;
     case 1:
         qDebug()<<"median filter command";
-        model->medianFilter(col,row,x,y);
+//        model->medianFilter(col,row,x,y);
         break;
     case 2:
         qDebug()<<"guassian filter command";
         double sigma = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["sigma"])->getvalue();
-        model->gaussianFilter(col,row,x,y,sigma);
+//        model->gaussianFilter(col,row,x,y,sigma);
         break;
     }
 }
@@ -58,11 +61,30 @@ void ViewModel::execFilterCommand(const std::shared_ptr<JsonParameters>& json){
 void ViewModel::execEdgeDetectionCommand(const std::shared_ptr<JsonParameters> &json){
     qDebug() << "edge detection command";
     // model edge detection
+    int type = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["type"])->getvalue();
+    if(type == 2){
+        int lo = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lo"])->getvalue();
+        int hi = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["hi"])->getvalue();
+        qDebug() << "canny detection command";
+//        model->cannyEdgeDetection(lo,hi);
+    } else {
+        int threshold = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["threshold"])->getvalue();
+        if(type == 0){
+            qDebug() << "sobel detection command";
+//            model->sobelEdgeDetection(threshold);
+        } else {
+            qDebug() << "laplacian detection command";
+//            model->laplacianEdgeDetection(threshold);
+        }
+    }
 }
 
 void ViewModel::execHoughCircleDetectionCommand(const std::shared_ptr<JsonParameters> &json){
     qDebug() << "hough circle detection command";
     // model
+    int lo = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lo"])->getvalue();
+    int hi = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["hi"])->getvalue();
+//    model->houghCircleDetect(lo,hi);
 }
 
 void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> &type){
@@ -84,6 +106,18 @@ void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> 
         qDebug() << "error channel!";
         break;
     }
+}
+
+void ViewModel::execHoughLineDetectionCommand(){
+    qDebug()<<"execHoughLineDetectionCommand()";
+}
+
+void ViewModel::execOtsuCommand(){
+    qDebug()<<"execOtsuCommand()";
+}
+
+void ViewModel::execGrayScaleTransferCommand(){
+    qDebug()<<"execGrayScaleTransferCommand()";
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
@@ -108,6 +142,18 @@ std::shared_ptr<ICommandBase> ViewModel::getHoughCircleDetectionCommand(){
 
 std::shared_ptr<ICommandBase> ViewModel::getChannelCommand(){
     return channelcommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getOtsuCommand(){
+    return otsucommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getHoughLineDetectionCommand(){
+    return houghlinedetectioncommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getGrayScaleTransferCommand(){
+    return grayscaletransfercommand;
 }
 
 std::shared_ptr<QImage> ViewModel::getImage(){

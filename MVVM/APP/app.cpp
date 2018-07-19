@@ -15,6 +15,9 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setEdgeDetectionCommand(viewmodel->getEdgeDetectionCommand());
     view->setHoughCircleDetectionCommand(viewmodel->getHoughCircleDetectionCommand());
     view->setChannelCommand(viewmodel->getChannelCommand());
+    view->setOtsuCommand(viewmodel->getOtsuCommand());
+    view->setGrayScaleTransferCommand(viewmodel->getGrayScaleTransferCommand());
+    view->setHoughLineDetectionCommand(viewmodel->getHoughLineDetectionCommand());
 
     viewmodel->AddPropertyNotification(view->getMainViewSink());
 }

@@ -14,6 +14,7 @@
 #include <QscrollBar>
 #include <QClipboard>
 #include <QMimeData>
+#include <QString>
 #include "mainview.h"
 
 MainView::MainView()

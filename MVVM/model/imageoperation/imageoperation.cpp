@@ -58,8 +58,6 @@ bool Model::getSingleChannel(ChannelType channel)
     QImage src = Tools::Mat2QImage(mainImg);
     QImage dst = ImageOperations::getSingleChannel(src, channel);
     mainImg = Tools::QImage2Mat(dst);
-    cv::imshow("window",mainImg);
-    cv::waitKey();
     Fire_OnPropertyChanged(MAIN_IMAGE);
     return true;
 }
