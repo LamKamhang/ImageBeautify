@@ -89,7 +89,7 @@ void MainView::open(){
     QString filePath = QFileDialog::getOpenFileName(this,tr("Save File As"),initPath,tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
     if(filePath == "")return;
 
-    openFileCommand->SetParameter(std::make_shared<StringParameters>(filePath.toStdString()));
+    openFileCommand->SetParameter(std::make_shared<QStringParameters>(filePath));
     openFileCommand->Exec();
 
     setWindowFilePath(filePath);
@@ -104,7 +104,7 @@ void MainView::saveAs(){
     QString savePath = QFileDialog::getSaveFileName(this,tr("Save File As"),initPath,tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
     if(savePath == "")return;
 
-    saveFileCommand->SetParameter(std::make_shared<StringParameters>(savePath.toStdString()));
+    saveFileCommand->SetParameter(std::make_shared<QStringParameters>(savePath));
     saveFileCommand->Exec();
 
     const QString message = tr("Wrote \"%1\"").arg(QDir::toNativeSeparators(savePath));
