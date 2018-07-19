@@ -35,8 +35,10 @@ public:
     void setFilterCommand(std::shared_ptr<ICommandBase>);
     void setEdgeDetectionCommand(std::shared_ptr<ICommandBase>);
     void setHoughCircleDetectionCommand(std::shared_ptr<ICommandBase>);
-
     void setChannelCommand(std::shared_ptr<ICommandBase>);
+    void setGrayScaleTransferCommand(std::shared_ptr<ICommandBase>);
+    void setOtsuCommand(std::shared_ptr<ICommandBase>);
+    void setHoughLineDetectionCommand(std::shared_ptr<ICommandBase>);
 
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
@@ -149,6 +151,9 @@ private:
     std::shared_ptr<ICommandBase> edgeDetectionCommand;
     std::shared_ptr<ICommandBase> houghCircleDetectionCommand;
     std::shared_ptr<ICommandBase> channelCommand;
+    std::shared_ptr<ICommandBase> grayScaleTransferCommand;
+    std::shared_ptr<ICommandBase> otsuCommand;
+    std::shared_ptr<ICommandBase> houghLineDetectionCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
 };

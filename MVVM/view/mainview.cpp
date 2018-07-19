@@ -223,14 +223,18 @@ void MainView::blueChannel(){
     channelCommand->SetParameter(std::make_shared<EnumCommandParameters>(BLUE_CHANNEL));
     channelCommand->Exec();
 }
-void MainView::grayScaleTransfer(){}
+void MainView::grayScaleTransfer(){
+    grayScaleTransferCommand->Exec();
+}
 void MainView::hueSaturationLightness(){}
 void MainView::curve(){}
 void MainView::level(){}
 void MainView::clip(){}
 void MainView::scale(){}
 void MainView::histogram(){}
-void MainView::otsu(){}
+void MainView::otsu(){
+    otsuCommand->Exec();
+}
 void MainView::dualThreshold(){}
 void MainView::algebraic(){}
 
@@ -258,7 +262,9 @@ void MainView::receiveApplyEdgeDetection(std::shared_ptr<JsonParameters> json){
     edgeDetectionCommand->Exec();
 }
 
-void MainView::houghLineDetect(){}
+void MainView::houghLineDetect(){
+    houghLineDetectionCommand->Exec();
+}
 
 void MainView::houghCircleDetect(){
     HoughCircleDetectionDialog *dialog = new HoughCircleDetectionDialog();
@@ -422,6 +428,18 @@ void MainView::setHoughCircleDetectionCommand(std::shared_ptr<ICommandBase> comm
 
 void MainView::setChannelCommand(std::shared_ptr<ICommandBase> command){
     channelCommand = command;
+}
+
+void MainView::setGrayScaleTransferCommand(std::shared_ptr<ICommandBase> command){
+    grayScaleTransferCommand = command;
+}
+
+void MainView::setOtsuCommand(std::shared_ptr<ICommandBase> command){
+    otsuCommand = command;
+}
+
+void MainView::setHoughLineDetectionCommand(std::shared_ptr<ICommandBase> command){
+    houghLineDetectionCommand = command;
 }
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
