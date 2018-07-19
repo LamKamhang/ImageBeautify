@@ -198,7 +198,7 @@ void MainView::initializeToolsMenu(){
     imageBinarizationSubMenu->addAction(tr("&OTSU"), this, SLOT(otsu()));
     imageBinarizationSubMenu->addAction(tr("Dual Threshold"), this, SLOT(dualThreshold()));
 
-    toolsMenu->addAction(tr("&Algebraic Operations..."), this, SLOT(algebraic));
+    toolsMenu->addAction(tr("&Algebraic Operations..."), this, SLOT(algebraic()));
     toolsMenu->addAction(tr("&Filtering..."), this, SLOT(filter()));
     toolsMenu->addAction(tr("&Edge Detection..."), this, SLOT(edgeDetection()));
 
@@ -224,10 +224,45 @@ void MainView::histogram(){}
 void MainView::otsu(){}
 void MainView::dualThreshold(){}
 void MainView::algebraic(){}
-void MainView::filter(){}
-void MainView::edgeDetection(){}
+
+void MainView::filter(){
+    FilterDialog *dialog = new FilterDialog();
+    connect(dialog,SIGNAL(sendApplyFilter(std::shared_ptr<JsonParameters>))
+            ,this,SLOT(receiveApplyFilter(std::shared_ptr<JsonParameters>)));
+    dialog->exec();
+}
+
+void MainView::receiveApplyFilter(std::shared_ptr<JsonParameters> json){
+    filterCommand->SetParameter(json);
+    filterCommand->Exec();
+}
+
+void MainView::edgeDetection(){
+    EdgeDetectionDialog *dialog = new EdgeDetectionDialog();
+    connect(dialog,SIGNAL(sendApplyEdgeDetection(std::shared_ptr<JsonParameters>))
+            ,this,SLOT(receiveApplyEdgeDetection(std::shared_ptr<JsonParameters>)));
+    dialog->exec();
+}
+
+void MainView::receiveApplyEdgeDetection(std::shared_ptr<JsonParameters> json){
+    edgeDetectionCommand->SetParameter(json);
+    edgeDetectionCommand->Exec();
+}
+
 void MainView::houghLineDetect(){}
-void MainView::houghCircleDetect(){}
+
+void MainView::houghCircleDetect(){
+    HoughCircleDetectionDialog *dialog = new HoughCircleDetectionDialog();
+    connect(dialog, SIGNAL(sendApplyHoughCircleDetection(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters>)));
+    dialog->exec();
+}
+
+void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> json){
+    houghCircleDetectionCommand->SetParameter(json);
+    houghCircleDetectionCommand->Exec();
+}
+
 void MainView::binaryMorphology(){}
 void MainView::grayMorphology(){}
 
@@ -346,13 +381,8 @@ void MainView::initializeAboutMenu(){
 
 void MainView::about(){
     QMessageBox::about(this, tr("About ImageBeautify"),
-                tr("<p><strong>版本:1.x版</strong></p>"
-                   "<p><strong>日期:</strong> 2018-07-11T15:43:53.668Z</p>"
-                   "<p><strong>架构:</strong> x86/x64/</p>"
-                   "<p><strong>框架:</strong> MVVM</p>"
-                   "<p><strong>作者:</strong> kk,  cc,  ye.</p>"
-                   "<p><strong>版权声明:</strong>本作品采用知识共享署名-非商业性使用-禁止演绎 3.0 中 国大陆许可协议进行许可。要查看该许可协议，可访问 <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/cn/' target='_blank' class='url'>http://creativecommons.org/licenses/by-nc-nd/3.0/cn/</a> 或者写 信到 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA。</p>"
-                   "<p>&nbsp;</p>"));
+                tr("<p><b>Image Beautify</b> is based on MVVM framework and Qt/C++,"
+                   " and the core algrithms are implemented with OpenCV."));
 }
 
 
@@ -367,6 +397,18 @@ void MainView::setOpenFileCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
     saveFileCommand = command;
+}
+
+void MainView::setFilterCommand(std::shared_ptr<ICommandBase> command){
+    filterCommand = command;
+}
+
+void MainView::setEdgeDetectionCommand(std::shared_ptr<ICommandBase> command){
+    edgeDetectionCommand = command;
+}
+
+void MainView::setHoughCircleDetectionCommand(std::shared_ptr<ICommandBase> command){
+    houghCircleDetectionCommand = command;
 }
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
