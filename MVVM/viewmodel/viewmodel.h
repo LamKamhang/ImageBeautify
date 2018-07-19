@@ -31,8 +31,8 @@ public:
     ViewModel();
     ~ViewModel(){}
     void bindModel(std::shared_ptr<Model> model);// binding model
-    void execOpenFileCommand(std::string path);
-    void execSaveFileCommand(std::string path);
+    void execOpenFileCommand(const QString &path);
+    void execSaveFileCommand(const QString &path);
     void execFilterCommand(const std::shared_ptr<JsonParameters>& json);
     void execEdgeDetectionCommand(const std::shared_ptr<JsonParameters>& json);
     void execHoughCircleDetectionCommand(const std::shared_ptr<JsonParameters>& json);

@@ -22,11 +22,11 @@ void ViewModel::bindModel(std::shared_ptr<Model> model){
     model->AddPropertyNotification(std::static_pointer_cast<IPropertyNotification>(viewModelSink));
 }
 
-void ViewModel::execOpenFileCommand(std::string path){
+void ViewModel::execOpenFileCommand(const QString &path){
     model->open_file(path);
 }
 
-void ViewModel::execSaveFileCommand(std::string path){
+void ViewModel::execSaveFileCommand(const QString &path){
     model->save_file(path);
 }
 
@@ -115,5 +115,5 @@ std::shared_ptr<QImage> ViewModel::getImage(){
 }
 
 void ViewModel::setImageFromModel(){
-    *image = Tools::Mat2QImage(model->getMain());
+    *image = model->getMain();
 }

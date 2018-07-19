@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include <opencv2/opencv.hpp>
 #include <string>
 #include "../common/etlbase.h"
 #include "imageoperation/aux_image_alg.h"
@@ -19,13 +18,13 @@ class Model
 {
 public:
     Model(){}
-    const cv::Mat &getMain();
-    const cv::Mat &getSub();
+    const QImage &getMain();
+    const QImage &getSub();
 
     // basic methods.
-    bool open_file(const std::string &path);
-    bool open_sub_file(const std::string &path);
-    bool save_file(const std::string &path);
+    bool open_file(const QString &path);
+    bool open_sub_file(const QString &path);
+    bool save_file(const QString &path);
     bool sub2main();
     bool origin2main();
     bool main2sub();
@@ -76,8 +75,8 @@ public:
     bool isGrayImage();
 
 private:
-    cv::Mat originImg;
-    cv::Mat mainImg;
-    cv::Mat subImg;
-    cv::Mat tmpImg;
+    QImage originImg;
+    QImage mainImg;
+    QImage subImg;
+    QImage tmpImg;
 };
