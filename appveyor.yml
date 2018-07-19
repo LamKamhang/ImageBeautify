@@ -32,7 +32,7 @@ before_build:
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - cd build
-  - '%make%'
+  - nmake
   
   
 after_build:
