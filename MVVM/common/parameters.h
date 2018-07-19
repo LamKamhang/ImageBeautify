@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include "type.h"
+#include <QString>
 
 class ParametersBase
 {
@@ -48,6 +49,19 @@ public:
     std::string getvalue(){return value;}
 private:
     std::string value;
+};
+
+class QStringParameters
+    : public ParametersBase
+{
+public:
+    QStringParameters(const QString& value)
+        : value(value)
+    {}
+    void setvalue(QString s){value = s;}
+    QString getvalue(){return value;}
+private:
+    QString value;
 };
 
 class IntParameters

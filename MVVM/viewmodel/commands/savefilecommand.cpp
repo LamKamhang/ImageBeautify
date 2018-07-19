@@ -7,7 +7,7 @@ SaveFileCommand::SaveFileCommand(ViewModel* vm)
 }
 
 void SaveFileCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    filepath = std::static_pointer_cast<StringParameters,ParametersBase>(param)->getvalue();
+    filepath = std::static_pointer_cast<QStringParameters,ParametersBase>(param)->getvalue();
 }
 
 void SaveFileCommand::Exec(){

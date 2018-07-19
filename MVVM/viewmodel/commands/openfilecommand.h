@@ -16,7 +16,7 @@ public:
 
 private:
     ViewModel* viewmodel;
-    std::string filepath;
+    QString filepath;
 };
 
 #endif // OPENFILECOMMAND_H
