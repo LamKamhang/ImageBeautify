@@ -44,16 +44,16 @@ void ViewModel::execFilterCommand(const std::shared_ptr<JsonParameters>& json){
     switch (type) {
     case 0:
         qDebug()<<"mean filter command";
-//        model->meanFilter(col,row,x,y);
+        model->meanFilter(col,row,x,y);
         break;
     case 1:
         qDebug()<<"median filter command";
-//        model->medianFilter(col,row,x,y);
+        model->medianFilter(col,row,x,y);
         break;
     case 2:
         qDebug()<<"guassian filter command";
         double sigma = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["sigma"])->getvalue();
-//        model->gaussianFilter(col,row,x,y,sigma);
+        model->gaussianFilter(col,row,x,y,sigma);
         break;
     }
 }
@@ -66,15 +66,15 @@ void ViewModel::execEdgeDetectionCommand(const std::shared_ptr<JsonParameters> &
         int lo = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lo"])->getvalue();
         int hi = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["hi"])->getvalue();
         qDebug() << "canny detection command";
-//        model->cannyEdgeDetection(lo,hi);
+        model->cannyEdgeDetection(lo,hi);
     } else {
         int threshold = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["threshold"])->getvalue();
         if(type == 0){
             qDebug() << "sobel detection command";
-//            model->sobelEdgeDetection(threshold);
+            model->sobelEdgeDetection(threshold);
         } else {
             qDebug() << "laplacian detection command";
-//            model->laplacianEdgeDetection(threshold);
+            model->laplacianEdgeDetection(threshold);
         }
     }
 }
@@ -84,7 +84,7 @@ void ViewModel::execHoughCircleDetectionCommand(const std::shared_ptr<JsonParame
     // model
     int lo = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lo"])->getvalue();
     int hi = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["hi"])->getvalue();
-//    model->houghCircleDetect(lo,hi);
+    model->houghCircleDetect(lo,hi);
 }
 
 void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> &type){
@@ -96,11 +96,11 @@ void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> 
         break;
     case GREEN_CHANNEL:
         qDebug() << "green channel command";
-//        model->getSingleChannel(GREEN);
+        model->getSingleChannel(GREEN);
         break;
     case BLUE_CHANNEL:
         qDebug() << "blue channel command";
-//        model->getSingleChannel(BLUE);
+        model->getSingleChannel(BLUE);
         break;
     default:
         qDebug() << "error channel!";
