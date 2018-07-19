@@ -1,9 +1,5 @@
 environment:
   matrix:
-    - QTDIR: C:\Qt\5.11\msvc2015
-      CMD_VCVARSALL: '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86'
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      MSVC_PLATFORM: "x86"
     - QTDIR: C:\Qt\5.11\msvc2017_64
       CMD_VCVARSALL: '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64'
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
@@ -25,7 +21,7 @@ before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - qmake ..\temp\imageBeautify.pro
+  - qmake ..\MVVM\imageBeautify.pro
 
 
 # Build the projects
@@ -46,7 +42,7 @@ after_build:
 artifacts:
   - path: build\release\release\
     name: image_beautify_bin
-  - path: temp\
+  - path: MVVM\
     name: image_beautify_src
 
 deploy:
