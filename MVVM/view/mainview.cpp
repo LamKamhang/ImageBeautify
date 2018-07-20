@@ -256,39 +256,39 @@ void MainView::curve(){
 }
 
 void MainView::level(){
-    openSubDialogCommand->Exec();// set mainimg to subimg
-    LevelDialog *dialog = new LevelDialog(subimage);
-    connect(dialog,SIGNAL(sendApplyLevel(std::shared_ptr<JsonParameters>))
-            , this,SLOT(receiveApplyLevel(std::shared_ptr<JsonParameters>)));
-    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
-    dialog->exec();
+//    openSubDialogCommand->Exec();// set mainimg to subimg
+//    LevelDialog *dialog = new LevelDialog(subimage);
+//    connect(dialog,SIGNAL(sendApplyLevel(std::shared_ptr<JsonParameters>))
+//            , this,SLOT(receiveApplyLevel(std::shared_ptr<JsonParameters>)));
+//    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+//    dialog->exec();
 }
 
 void MainView::clip(){
-    openSubDialogCommand->Exec();// set mainimg to subimg
-    ClipDialog *dialog = new ClipDialog(subimage);
-    connect(dialog,SIGNAL(sendApplyClip(std::shared_ptr<JsonParameters>))
-            , this,SLOT(receiveApplyClip(std::shared_ptr<JsonParameters>)));
-    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
-    dialog->exec();
+//    openSubDialogCommand->Exec();// set mainimg to subimg
+//    ClipDialog *dialog = new ClipDialog(subimage);
+//    connect(dialog,SIGNAL(sendApplyClip(std::shared_ptr<JsonParameters>))
+//            , this,SLOT(receiveApplyClip(std::shared_ptr<JsonParameters>)));
+//    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+//    dialog->exec();
 }
 
 void MainView::scale(){
-    openSubDialogCommand->Exec();// set mainimg to subimg
-    ScaleDialog *dialog = new ScaleDialog(subimage);
-    connect(dialog,SIGNAL(sendApplyScale(std::shared_ptr<JsonParameters>))
-            , this,SLOT(receiveApplyScale(std::shared_ptr<JsonParameters>)));
-    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
-    dialog->exec();
+//    openSubDialogCommand->Exec();// set mainimg to subimg
+//    ScaleDialog *dialog = new ScaleDialog(subimage);
+//    connect(dialog,SIGNAL(sendApplyScale(std::shared_ptr<JsonParameters>))
+//            , this,SLOT(receiveApplyScale(std::shared_ptr<JsonParameters>)));
+//    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+//    dialog->exec();
 }
 
 void MainView::histogram(){
-    openSubDialogCommand->Exec();// set mainimg to subimg
-    HistogramDialog *dialog = new HistogramDialog(subimage);
-    connect(dialog,SIGNAL(sendApplyHistogram(std::shared_ptr<JsonParameters>))
-            , this,SLOT(receiveApplyHistogram(std::shared_ptr<JsonParameters>)));
-    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
-    dialog->exec();
+//    openSubDialogCommand->Exec();// set mainimg to subimg
+//    HistogramDialog *dialog = new HistogramDialog(subimage);
+//    connect(dialog,SIGNAL(sendApplyHistogram(std::shared_ptr<JsonParameters>))
+//            , this,SLOT(receiveApplyHistogram(std::shared_ptr<JsonParameters>)));
+//    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+//    dialog->exec();
 }
 
 void MainView::otsu(){
@@ -340,12 +340,12 @@ void MainView::receiveApplyAlgebraic(std::shared_ptr<JsonParameters> json){
 }
 
 void MainView::algebraic(){
-    openSubDialogCommand->Exec();// set mainimg to subimg
-    AlgebraicDialog *dialog = new AlgebraicDialog(subimage);
-    connect(dialog,SIGNAL(sendApplyAlgebraic(std::shared_ptr<JsonParameters>))
-            , this,SLOT(receiveApplyAlgebraic(std::shared_ptr<JsonParameters>)));
-    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
-    dialog->exec();
+//    openSubDialogCommand->Exec();// set mainimg to subimg
+//    AlgebraicDialog *dialog = new AlgebraicDialog(subimage);
+//    connect(dialog,SIGNAL(sendApplyAlgebraic(std::shared_ptr<JsonParameters>))
+//            , this,SLOT(receiveApplyAlgebraic(std::shared_ptr<JsonParameters>)));
+//    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+//    dialog->exec();
 }
 
 void MainView::filter(){

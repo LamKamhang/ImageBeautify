@@ -62,77 +62,107 @@ HEADERS += \
     common/parameters.h \
     common/type.h \
     common/util.h \
+    model/filters/art_effect.h \
+#    model/filters/basic_effect.h \
+#    model/filters/blur.h \
+#    model/filters/fasion_effect.h \
+#    model/filters/frame_effect.h \
+#    model/filters/hot_effect.h \
+#    model/filters/human_effect.h \
+#    model/filters/lemo_effect.h \
     model/imageoperation/aux_image_alg.h \
     model/logoperation/aux_log_alg.h \
     model/model.h \
     view/sinks/mainimagesink.h \
+    view/algebraicdialog.h \
+    view/clipdialog.h \
+    view/curvecanvas.h \
+    view/curvedialog.h \
     view/dualthresholddialog.h \
     view/edgedetectiondialog.h \
     view/filterdialog.h \
+    view/histogramdialog.h \
     view/houghcircledetectiondialog.h \
+    view/huesaturalightdialog.h \
+    view/leveldialog.h \
     view/mainview.h \
+    view/scaledialog.h \
+#    viewmodel/commands/AlgebraicCommand.h \
+#    viewmodel/commands/BinaryMorphodCommand.h \
     viewmodel/commands/channelcommand.h \
+#    viewmodel/commands/ClipCommand.h \
+#    viewmodel/commands/CurveCommand.h \
     viewmodel/commands/dualthresholdcommand.h \
     viewmodel/commands/edgedetectioncommand.h \
     viewmodel/commands/filtercommand.h \
+#    viewmodel/commands/GrayMorphodCommand.h \
     viewmodel/commands/grayscaletransfercommand.h \
+#    viewmodel/commands/HistogramCommand.h \
     viewmodel/commands/houghcircledetectioncommand.h \
     viewmodel/commands/houghlinedetectioncommand.h \
+    viewmodel/commands/huesaturalightcommand.h \
+#    viewmodel/commands/LevelCommand.h \
     viewmodel/commands/openfilecommand.h \
     viewmodel/commands/opensubdialogcommand.h \
     viewmodel/commands/otsucommand.h \
-    viewmodel/commands/savefilecommand.h \
-    viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h \
-    viewmodel/commands/undocommand.h \
     viewmodel/commands/redocommand.h \
-    view/huesaturalightdialog.h \
-    viewmodel/commands/huesaturalightcommand.h \
-    view/curvedialog.h \
-    view/curvecanvas.h \
-    view/leveldialog.h \
-    view/clipdialog.h \
-    view/scaledialog.h \
-    view/algebraicdialog.h \
-    view/histogramdialog.h
+    viewmodel/commands/savefilecommand.h \
+#    viewmodel/commands/ScaleCommand.h \
+    viewmodel/commands/undocommand.h \
+    viewmodel/sinks/viewmodelsink.h \
+    viewmodel/viewmodel.h
 
 SOURCES += \
     app/app.cpp \
     app/main.cpp \
     common/util.cpp \
+    model/filteroperation/filteroperation.cpp \
+    model/filters/art_effect.cpp \
+#    model/filters/basic_effect.cpp \
+#    model/filters/blur.cpp \
+#    model/filters/human_effect.cpp \
+#    model/filters/lemo_effect.cpp \
     model/imageoperation/aux_image_alg.cpp \
     model/imageoperation/imageoperation.cpp \
     model/logoperation/aux_log_alg.cpp \
     model/logoperation/logoperation.cpp \
     model/model.cpp \
     view/sinks/mainimagesink.cpp \
+    view/algebraicdialog.cpp \
+    view/clipdialog.cpp \
+    view/curvecanvas.cpp \
+    view/curvedialog.cpp \
     view/dualthresholddialog.cpp \
     view/edgedetectiondialog.cpp \
     view/filterdialog.cpp \
+    view/histogramdialog.cpp \
     view/houghcircledetectiondialog.cpp \
+    view/huesaturalightdialog.cpp \
+    view/leveldialog.cpp \
     view/mainview.cpp \
+    view/scaledialog.cpp \
+#    viewmodel/commands/AlgebraicCommand.cpp \
+#    viewmodel/commands/BinaryMorphodCommand.cpp \
     viewmodel/commands/channelcommand.cpp \
+#    viewmodel/commands/ClipCommand.cpp \
+#    viewmodel/commands/CurveCommand.cpp \
     viewmodel/commands/dualthresholdcommand.cpp \
     viewmodel/commands/edgedetectioncommand.cpp \
     viewmodel/commands/filtercommand.cpp \
+#    viewmodel/commands/GrayMorphodCommand.cpp \
     viewmodel/commands/grayscaletransfercommand.cpp \
+#    viewmodel/commands/HistogramCommand.cpp \
     viewmodel/commands/houghcircledetectioncommand.cpp \
     viewmodel/commands/houghlinedetectioncommand.cpp \
+    viewmodel/commands/huesaturalightcommand.cpp \
+#    viewmodel/commands/LevelCommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
     viewmodel/commands/opensubdialogcommand.cpp \
     viewmodel/commands/otsucommand.cpp \
-    viewmodel/commands/savefilecommand.cpp \
-    viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp \
-    viewmodel/commands/undocommand.cpp \
     viewmodel/commands/redocommand.cpp \
-    view/huesaturalightdialog.cpp \
-    viewmodel/commands/huesaturalightcommand.cpp \
-    view/curvedialog.cpp \
-    view/curvecanvas.cpp \
-    view/leveldialog.cpp \
-    view/clipdialog.cpp \
-    view/scaledialog.cpp \
-    view/algebraicdialog.cpp \
-    view/histogramdialog.cpp
+    viewmodel/commands/savefilecommand.cpp \
+#    viewmodel/commands/ScaleCommand.cpp \
+    viewmodel/commands/undocommand.cpp \
+    viewmodel/sinks/viewmodelsink.cpp \
+    viewmodel/viewmodel.cpp
 

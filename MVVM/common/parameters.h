@@ -15,6 +15,7 @@
 #include "type.h"
 #include <QString>
 #include <QVector>
+#include <QPoint>
 
 class ParametersBase
 {

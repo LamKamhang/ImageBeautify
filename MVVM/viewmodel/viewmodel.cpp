@@ -31,13 +31,13 @@ ViewModel::ViewModel()
     huesaturalightcommand = std::make_shared<HueSaturaLightCommand>(this);
 
     curvecommand = std::make_shared<CurveCommand>(this);
-    levelcommand = std::make_shared<LevelCommand>(this);
-    clipcommand = std::make_shared<ClipCommand>(this);
-    scalecommand = std::make_shared<ScaleCommand>(this);
-    histogramcommand = std::make_shared<HistogramCommand>(this);
-    algebraiccommand = std::make_shared<AlgebraicCommand>(this);
-    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
-    graymorphodcommand = std::make_shared<GrayMorphodCommand>(this);
+//    levelcommand = std::make_shared<LevelCommand>(this);
+//    clipcommand = std::make_shared<ClipCommand>(this);
+//    scalecommand = std::make_shared<ScaleCommand>(this);
+//    histogramcommand = std::make_shared<HistogramCommand>(this);
+//    algebraiccommand = std::make_shared<AlgebraicCommand>(this);
+//    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
+//    graymorphodcommand = std::make_shared<GrayMorphodCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -340,47 +340,47 @@ std::shared_ptr<ICommandBase> ViewModel::getCurveCommand()
     return curvecommand;
 }
 
-std::shared_ptr<ICommandBase> ViewModel::getLevelCommand()
-{
-    qDebug() << "getLevelCommand";
-    return levelcommand;
-}
+//std::shared_ptr<ICommandBase> ViewModel::getLevelCommand()
+//{
+//    qDebug() << "getLevelCommand";
+//    return levelcommand;
+//}
 
-std::shared_ptr<ICommandBase> ViewModel::getClipCommand()
-{
-    qDebug() << "getClipCommand";
-    return clipcommand;
-}
+//std::shared_ptr<ICommandBase> ViewModel::getClipCommand()
+//{
+//    qDebug() << "getClipCommand";
+//    return clipcommand;
+//}
 
-std::shared_ptr<ICommandBase> ViewModel::getScaleCommand()
-{
-    qDebug() << "getScaleCommand";
-    return scalecommand;
-}
+//std::shared_ptr<ICommandBase> ViewModel::getScaleCommand()
+//{
+//    qDebug() << "getScaleCommand";
+//    return scalecommand;
+//}
 
-std::shared_ptr<ICommandBase> ViewModel::getHistogramCommand()
-{
-    qDebug() << "getHistogramCommand";
-    return histogramcommand;
-}
+//std::shared_ptr<ICommandBase> ViewModel::getHistogramCommand()
+//{
+//    qDebug() << "getHistogramCommand";
+//    return histogramcommand;
+//}
 
-std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
-{
-    qDebug() << "getAlgebraicCommand";
-    return algebraiccommand;
-}
+//std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
+//{
+//    qDebug() << "getAlgebraicCommand";
+//    return algebraiccommand;
+//}
 
-std::shared_ptr<ICommandBase> ViewModel::getBinaryMorphodCommand()
-{
-    qDebug() << "getBinaryMorphodCommand";
-    return binarymorphodcommand;
-}
+//std::shared_ptr<ICommandBase> ViewModel::getBinaryMorphodCommand()
+//{
+//    qDebug() << "getBinaryMorphodCommand";
+//    return binarymorphodcommand;
+//}
 
-std::shared_ptr<ICommandBase> ViewModel::getGrayMorphodCommand()
-{
-    qDebug() << "getGrayMorphodCommand";
-    return graymorphodcommand;
-}
+//std::shared_ptr<ICommandBase> ViewModel::getGrayMorphodCommand()
+//{
+//    qDebug() << "getGrayMorphodCommand";
+//    return graymorphodcommand;
+//}
 
 
 void ViewModel::setImageFromModel(){
