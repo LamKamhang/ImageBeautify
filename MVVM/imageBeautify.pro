@@ -112,10 +112,6 @@ SOURCES += \
     viewmodel/commands/otsucommand.cpp \
     viewmodel/commands/savefilecommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-<<<<<<< HEAD
-    viewmodel/viewmodel.cpp
-
-=======
     viewmodel/viewmodel.cpp \
     viewmodel/commands/grayscaletransfercommand.cpp \
     viewmodel/commands/otsucommand.cpp \
@@ -123,4 +119,3 @@ SOURCES += \
     view/dualthresholddialog.cpp \
     viewmodel/commands/opensubdialogcommand.cpp \
     viewmodel/commands/dualthresholdcommand.cpp
->>>>>>> ccdev
