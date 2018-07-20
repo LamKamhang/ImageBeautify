@@ -3,7 +3,7 @@
 using namespace cv;
 using namespace std;
 
-void _sharpen(const cv::Mat &scr, cv::Mat &dst)
+void BasicEffect::_sharpen(const cv::Mat &scr, cv::Mat &dst)
 {
     Mat kernel(3,3,CV_32F,Scalar(0));
     kernel.at<float>(1,1) = 5;
@@ -18,7 +18,7 @@ void _sharpen(const cv::Mat &scr, cv::Mat &dst)
     dst.col(dst.cols-1).setTo(Scalar(0,0,0));
 }
 
-void _inversecolor(const cv::Mat &scr, cv::Mat &dst)
+void BasicEffect::_inversecolor(const cv::Mat &scr, cv::Mat &dst)
 {
     int rowNum = scr.rows;
     int colNum = scr.cols*scr.channels();
@@ -33,7 +33,7 @@ void _inversecolor(const cv::Mat &scr, cv::Mat &dst)
     }
 }
 
-void _colortoblack(const cv::Mat &scr, cv::Mat &dst)
+void BasicEffect::_colortoblack(const cv::Mat &scr, cv::Mat &dst)
 {
     Mat temp_1;
 
@@ -41,7 +41,7 @@ void _colortoblack(const cv::Mat &scr, cv::Mat &dst)
     cvtColor(temp_1,dst,COLOR_GRAY2BGR);
 }
 
-void _defog(const cv:: Mat &scr,cv::Mat &dst)
+void BasicEffect::_defog(const cv:: Mat &scr,cv::Mat &dst)
 {
     Mat c;
     Mat b = scr.clone();
@@ -234,7 +234,7 @@ Mat defog::getTImage()
     return m_tImage;
 }
 
-void _balance(const cv::Mat &scr,cv::Mat &dst)
+void BasicEffect::_balance(const cv::Mat &scr,cv::Mat &dst)
 {
     Mat image = dst.clone();
     Mat mergeImg;
@@ -254,7 +254,7 @@ void _balance(const cv::Mat &scr,cv::Mat &dst)
     dst = mergeImg.clone();
 }
 
-void _soft(const cv::Mat &scr,cv::Mat &dst)
+void BasicEffect::_soft(const cv::Mat &scr,cv::Mat &dst)
 {
     Mat temp = scr.clone();
     GaussianBlur(temp,dst,Size(1,1),0);

@@ -16,12 +16,19 @@
 
 class BasicEffect
 {
-   static void _sharpen(const cv::Mat &scr, cv::Mat &dst);//锐化
-   static void _inversecolor(const cv::Mat &scr, cv::Mat &dst);//反色
-   static void _colortoblack(const cv::Mat &scr, cv::Mat &dst);//黑白
-   static void _defog(const cv:: Mat &scr,cv::Mat &dst);//去雾气
-   static void _soft(const cv::Mat &scr,cv::Mat &dst);//柔和
-   static void _balance(const cv::Mat &scr,cv::Mat &dst);//均衡图
+public:
+    //锐化
+   static void _sharpen(const cv::Mat &scr, cv::Mat &dst);
+   //反色
+   static void _inversecolor(const cv::Mat &scr, cv::Mat &dst);
+   //黑白
+   static void _colortoblack(const cv::Mat &scr, cv::Mat &dst);
+   //去雾气
+   static void _defog(const cv:: Mat &scr,cv::Mat &dst);
+   //柔和
+   static void _soft(const cv::Mat &scr,cv::Mat &dst);
+   //均衡图
+   static void _balance(const cv::Mat &scr,cv::Mat &dst);
 };
 
 class defog

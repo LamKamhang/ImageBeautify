@@ -14,7 +14,13 @@
 
 class LemoEffect
 {
-   static void _nostalgia(const cv::Mat &scr,cv::Mat &dst);//怀旧
-   static void _BlackComic(const cv::Mat &scr,cv::Mat &dst);//连环画
-   static void _timetuunel(const cv::Mat &scr,cv::Mat &dst);//时光隧道
+public:
+    //怀旧
+   static void _nostalgia(const cv::Mat &scr,cv::Mat &dst);
+   //连环画
+   static void _BlackComic(const cv::Mat &scr,cv::Mat &dst);
+   //时光隧道
+   static void _timetuunel(const cv::Mat &scr,cv::Mat &dst);
+   //经典lomo
+   static void _classiclomo(const cv::Mat &scr,cv::Mat &dst);
 }
