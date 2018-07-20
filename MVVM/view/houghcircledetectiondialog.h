@@ -17,7 +17,7 @@ public:
     HoughCircleDetectionDialog();
 
 signals:
-    void sendApplyHoughCircleDetection(const std::shared_ptr<JsonParameters>& json);
+    void sendApplyHoughCircleDetection(std::shared_ptr<JsonParameters> json);
 
 private slots:
     void apply();

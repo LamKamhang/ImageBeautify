@@ -44,7 +44,7 @@ public:
     EdgeDetectionDialog();
 
 signals:
-    void sendApplyEdgeDetection(const std::shared_ptr<JsonParameters>& json);
+    void sendApplyEdgeDetection(std::shared_ptr<JsonParameters> json);
 
 private slots:
     void apply();

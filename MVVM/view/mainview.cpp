@@ -197,7 +197,7 @@ void MainView::initializeToolsMenu(){
 
     QMenu *imageBinarizationSubMenu = toolsMenu->addMenu(tr("&Image Binarization"));
     imageBinarizationSubMenu->addAction(tr("&OTSU"), this, SLOT(otsu()));
-    imageBinarizationSubMenu->addAction(tr("Dual Threshold"), this, SLOT(dualThreshold()));
+    imageBinarizationSubMenu->addAction(tr("Dual Threshold..."), this, SLOT(dualThreshold()));
 
     toolsMenu->addAction(tr("&Algebraic Operations..."), this, SLOT(algebraic()));
     toolsMenu->addAction(tr("&Filtering..."), this, SLOT(filter()));
@@ -236,7 +236,21 @@ void MainView::histogram(){}
 void MainView::otsu(){
     otsuCommand->Exec();
 }
-void MainView::dualThreshold(){}
+
+void MainView::dualThreshold(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    DualThresholdDialog *dialog = new DualThresholdDialog(this,subimage);
+    connect(dialog, SIGNAL(sendApplyDualThreshold(std::shared_ptr<JsonParameters>))
+            ,this, SLOT(receiveApplyDualThreshold(std::shared_ptr<JsonParameters>)));
+    connect(this, SIGNAL(subImageChanged()), dialog, SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::receiveApplyDualThreshold(std::shared_ptr<JsonParameters> json){
+    dualThresholdCommand->SetParameter(json);
+    dualThresholdCommand->Exec();
+}
+
 void MainView::algebraic(){}
 
 void MainView::filter(){
@@ -247,6 +261,7 @@ void MainView::filter(){
 }
 
 void MainView::receiveApplyFilter(std::shared_ptr<JsonParameters> json){
+    setCursor(Qt::WaitCursor);
     filterCommand->SetParameter(json);
     filterCommand->Exec();
 }
@@ -259,11 +274,13 @@ void MainView::edgeDetection(){
 }
 
 void MainView::receiveApplyEdgeDetection(std::shared_ptr<JsonParameters> json){
+    setCursor(Qt::WaitCursor);
     edgeDetectionCommand->SetParameter(json);
     edgeDetectionCommand->Exec();
 }
 
 void MainView::houghLineDetect(){
+    setCursor(Qt::WaitCursor);
     houghLineDetectionCommand->Exec();
 }
 
@@ -275,6 +292,7 @@ void MainView::houghCircleDetect(){
 }
 
 void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> json){
+    setCursor(Qt::WaitCursor);
     houghCircleDetectionCommand->SetParameter(json);
     houghCircleDetectionCommand->Exec();
 }
@@ -407,12 +425,20 @@ void MainView::setImage(std::shared_ptr<QImage> img){
     image = img;
 }
 
+void MainView::setSubImage(std::shared_ptr<QImage> img){
+    subimage = img;
+}
+
 void MainView::setOpenFileCommand(std::shared_ptr<ICommandBase> command){
     openFileCommand = command;
 }
 
 void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
     saveFileCommand = command;
+}
+
+void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){
+    openSubDialogCommand = command;
 }
 
 void MainView::setFilterCommand(std::shared_ptr<ICommandBase> command){
@@ -489,6 +515,12 @@ void MainView::update(){
 
     if (!fitToWindowAct->isChecked())
         imageLabel->adjustSize();
+
+    setCursor(Qt::ArrowCursor);
+}
+
+void MainView::updateSubImage(){
+    emit subImageChanged();
 }
 
 void MainView::updateActions(){

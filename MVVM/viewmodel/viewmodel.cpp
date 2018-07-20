@@ -6,11 +6,14 @@
 
 ViewModel::ViewModel()
     : image(new QImage())
+    , subimage(new QImage())
 {
     viewModelSink = std::make_shared<ViewModelSink>(this);
 
     openfilecommand = std::make_shared<OpenFileCommand>(this);
     savefilecommand = std::make_shared<SaveFileCommand>(this);
+    opensubdialogcommand = std::make_shared<OpenSubDialogCommand>(this);
+
     filtercommand = std::make_shared<FilterCommand>(this);
     edgedetectioncommand = std::make_shared<EdgeDetectionCommand>(this);
     houghcircledetectioncommand = std::make_shared<HoughCircleDetectionCommand>(this);
@@ -33,7 +36,11 @@ void ViewModel::execSaveFileCommand(const QString &path){
     model->save_file(path);
 }
 
-void ViewModel::execFilterCommand(const std::shared_ptr<JsonParameters>& json){
+void ViewModel::execOpenSubDialogCommand(){
+    model->main2sub();
+}
+
+void ViewModel::execFilterCommand(std::shared_ptr<JsonParameters> json){
     qDebug() << "filter command";
     // model filter
     int type = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["type"])->getvalue();
@@ -58,7 +65,7 @@ void ViewModel::execFilterCommand(const std::shared_ptr<JsonParameters>& json){
     }
 }
 
-void ViewModel::execEdgeDetectionCommand(const std::shared_ptr<JsonParameters> &json){
+void ViewModel::execEdgeDetectionCommand(std::shared_ptr<JsonParameters> json){
     qDebug() << "edge detection command";
     // model edge detection
     int type = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["type"])->getvalue();
@@ -79,7 +86,7 @@ void ViewModel::execEdgeDetectionCommand(const std::shared_ptr<JsonParameters> &
     }
 }
 
-void ViewModel::execHoughCircleDetectionCommand(const std::shared_ptr<JsonParameters> &json){
+void ViewModel::execHoughCircleDetectionCommand(std::shared_ptr<JsonParameters>json){
     qDebug() << "hough circle detection command";
     // model
     int lo = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lo"])->getvalue();
@@ -87,7 +94,7 @@ void ViewModel::execHoughCircleDetectionCommand(const std::shared_ptr<JsonParame
     model->houghCircleDetect(lo,hi);
 }
 
-void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> &type){
+void ViewModel::execChannelCommand(std::shared_ptr<EnumCommandParameters> type){
     switch (type->getvalue()) {
     case RED_CHANNEL:
         qDebug() << "red channel command";
@@ -110,14 +117,18 @@ void ViewModel::execChannelCommand(const std::shared_ptr<EnumCommandParameters> 
 
 void ViewModel::execHoughLineDetectionCommand(){
     qDebug()<<"execHoughLineDetectionCommand()";
+    //    qDebug()<<"bug here";
+    //    model->houghLineDetect();
 }
 
 void ViewModel::execOtsuCommand(){
     qDebug()<<"execOtsuCommand()";
+    model->otsu();
 }
 
 void ViewModel::execGrayScaleTransferCommand(){
     qDebug()<<"execGrayScaleTransferCommand()";
+    model->grayScale();
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
@@ -126,6 +137,10 @@ std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
 
 std::shared_ptr<ICommandBase> ViewModel::getSaveFileCommand(){
     return savefilecommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getOpenSubDialogCommand(){
+    return opensubdialogcommand;
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getFilterCommand(){
@@ -160,6 +175,14 @@ std::shared_ptr<QImage> ViewModel::getImage(){
     return image;
 }
 
+std::shared_ptr<QImage> ViewModel::getSubImage(){
+    return subimage;
+}
+
 void ViewModel::setImageFromModel(){
     *image = model->getMain();
+}
+
+void ViewModel::setSubImageFromModel(){
+    *subimage = model->getSub();
 }

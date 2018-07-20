@@ -9,8 +9,12 @@ ImageBeautifyApp::ImageBeautifyApp()
     viewmodel->bindModel(model);
 
     view->setImage(viewmodel->getImage());
+    view->setSubImage(viewmodel->getSubImage());
+
     view->setOpenFileCommand(viewmodel->getOpenFileCommand());
     view->setSaveFileCommand(viewmodel->getSaveFileCommand());
+    view->setOpenSubDialogCommand(viewmodel->getOpenSubDialogCommand());
+
     view->setFilterCommand(viewmodel->getFilterCommand());
     view->setEdgeDetectionCommand(viewmodel->getEdgeDetectionCommand());
     view->setHoughCircleDetectionCommand(viewmodel->getHoughCircleDetectionCommand());

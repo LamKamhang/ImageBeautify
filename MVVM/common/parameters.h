@@ -64,6 +64,19 @@ private:
     QString value;
 };
 
+class BoolParameters
+    :public ParametersBase
+{
+public:
+    BoolParameters(bool value)
+        :value(value)
+    {}
+    void setvalue(bool v){value = v;}
+    bool getvalue(){return value;}
+private:
+    bool value;
+};
+
 class IntParameters
     : public ParametersBase
 {

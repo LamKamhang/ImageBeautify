@@ -79,7 +79,9 @@ HEADERS += \
     viewmodel/viewmodel.h \
     viewmodel/commands/grayscaletransfercommand.h \
     viewmodel/commands/otsucommand.h \
-    viewmodel/commands/houghlinedetectioncommand.h
+    viewmodel/commands/houghlinedetectioncommand.h \
+    view/dualthresholddialog.h \
+    viewmodel/commands/opensubdialogcommand.h
 
 SOURCES += \
     app/app.cpp \
@@ -103,4 +105,6 @@ SOURCES += \
     viewmodel/viewmodel.cpp \
     viewmodel/commands/grayscaletransfercommand.cpp \
     viewmodel/commands/otsucommand.cpp \
-    viewmodel/commands/houghlinedetectioncommand.cpp
+    viewmodel/commands/houghlinedetectioncommand.cpp \
+    view/dualthresholddialog.cpp \
+    viewmodel/commands/opensubdialogcommand.cpp
