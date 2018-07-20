@@ -134,8 +134,12 @@ void MainView::initializeEditMenu(){
     pasteAct->setShortcut(QKeySequence::Paste);
 }
 
-void MainView::undo(){}
-void MainView::redo(){}
+void MainView::undo(){
+    undoCommand->Exec();
+}
+void MainView::redo(){
+    redoCommand->Exec();
+}
 
 void MainView::copy(){
 #ifndef QT_NO_CLIPBOARD
@@ -227,12 +231,27 @@ void MainView::blueChannel(){
 void MainView::grayScaleTransfer(){
     grayScaleTransferCommand->Exec();
 }
-void MainView::hueSaturationLightness(){}
+
+void MainView::hueSaturationLightness(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    HueSaturaLightDialog *dialog = new HueSaturaLightDialog(this,subimage);
+    connect(dialog, SIGNAL(sendApplyHSLAdjust(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyHueSaturaLight(std::shared_ptr<JsonParameters>)));
+    connect(this, SIGNAL(subImageChanged()), dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::receiveApplyHueSaturaLight(std::shared_ptr<JsonParameters> json){
+    hueSaturaLightCommand->SetParameter(json);
+    hueSaturaLightCommand->Exec();
+}
+
 void MainView::curve(){}
 void MainView::level(){}
 void MainView::clip(){}
 void MainView::scale(){}
 void MainView::histogram(){}
+
 void MainView::otsu(){
     otsuCommand->Exec();
 }
@@ -429,6 +448,22 @@ void MainView::setSubImage(std::shared_ptr<QImage> img){
     subimage = img;
 }
 
+void MainView::setUndoEnabled(std::shared_ptr<bool> u){
+    undoEnabled = u;
+}
+
+void MainView::setRedoEnabled(std::shared_ptr<bool> r){
+    redoEnabled = r;
+}
+
+void MainView::setUndoMsg(std::shared_ptr<QString> u){
+    undoMsg = u;
+}
+
+void MainView::setRedoMsg(std::shared_ptr<QString> r){
+    redoMsg = r;
+}
+
 void MainView::setOpenFileCommand(std::shared_ptr<ICommandBase> command){
     openFileCommand = command;
 }
@@ -439,6 +474,14 @@ void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){
     openSubDialogCommand = command;
+}
+
+void MainView::setUndoCommand(std::shared_ptr<ICommandBase> command){
+    undoCommand = command;
+}
+
+void MainView::setRedoCommand(std::shared_ptr<ICommandBase> command){
+    redoCommand = command;
 }
 
 void MainView::setFilterCommand(std::shared_ptr<ICommandBase> command){
@@ -471,6 +514,10 @@ void MainView::setHoughLineDetectionCommand(std::shared_ptr<ICommandBase> comman
 
 void MainView::setDualThresholdCommand(std::shared_ptr<ICommandBase> command){
     dualThresholdCommand = command;
+}
+
+void MainView::setHueSaturaLightCommand(std::shared_ptr<ICommandBase> command){
+    hueSaturaLightCommand = command;
 }
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
@@ -525,6 +572,21 @@ void MainView::update(){
 
 void MainView::updateSubImage(){
     emit subImageChanged();
+}
+
+void MainView::updateLogManager(){
+    undoAct->setEnabled(*undoEnabled);
+    if(*undoEnabled){
+        undoAct->setStatusTip("Undo: " + *undoMsg);
+    } else {
+        undoAct->setStatusTip(tr(""));
+    }
+    redoAct->setEnabled(*redoEnabled);
+    if(*redoEnabled){
+        redoAct->setStatusTip("Redo: " + *redoMsg);
+    } else {
+        redoAct->setStatusTip(tr(""));
+    }
 }
 
 void MainView::updateActions(){

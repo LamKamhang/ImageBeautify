@@ -65,7 +65,7 @@ bool Model::grayScale()
 
 bool Model::adjustHue(QVector<int> hueValues)
 {
-    QImage tmp(ImageOperations::adjustHue(subImg, subImg, hueValues));
+    QImage tmp(ImageOperations::adjustHue(mainImg, subImg, hueValues));
 	subImg = tmp;
     Fire_OnPropertyChanged(SUB_IMAGE);
     return true;
@@ -73,7 +73,7 @@ bool Model::adjustHue(QVector<int> hueValues)
 
 bool Model::adjustSaturation(int saturation)
 {
-    QImage tmp(ImageOperations::adjustSaturation(subImg, subImg, saturation));
+    QImage tmp(ImageOperations::adjustSaturation(mainImg, subImg, saturation));
 	subImg = tmp;
     Fire_OnPropertyChanged(SUB_IMAGE);
     return true;
@@ -81,7 +81,7 @@ bool Model::adjustSaturation(int saturation)
 
 bool Model::adjustLightness(int lightness)
 {
-    QImage tmp(ImageOperations::adjustLightness(subImg, subImg, lightness));
+    QImage tmp(ImageOperations::adjustLightness(mainImg, subImg, lightness));
 	subImg = tmp;
     Fire_OnPropertyChanged(SUB_IMAGE);
     return true;

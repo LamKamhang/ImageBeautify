@@ -14,6 +14,7 @@
 #include <map>
 #include "type.h"
 #include <QString>
+#include <QVector>
 
 class ParametersBase
 {
@@ -63,6 +64,24 @@ public:
 private:
     QString value;
 };
+
+template <class T>
+class QVectorParameters
+    : public ParametersBase
+{
+public:
+    QVectorParameters(const QVector<T>& value)
+        : value(value)
+    {}
+    void setvalue(QVector<T> v){
+        QVector<T> tmp(v);
+        value = tmp;
+    }
+    QVector<T> getvalue(){ return value; }
+private:
+    QVector<T> value;
+};
+
 
 class BoolParameters
     :public ParametersBase

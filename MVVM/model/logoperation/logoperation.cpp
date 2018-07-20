@@ -1,6 +1,6 @@
 #include "../model.h"
 #include "aux_log_alg.h"
-
+#include <QDebug>
 bool Model::redo()
 {
     if (log.redoEnabled())
@@ -8,6 +8,7 @@ bool Model::redo()
         QImage tmp = log.redo();
         mainImg = tmp;
         Fire_OnPropertyChanged(MAIN_IMAGE);
+        Fire_OnPropertyChanged(LOG);
         return true;
     }
     else
@@ -21,8 +22,11 @@ bool Model::undo()
     if (log.undoEnabled())
     {
         QImage tmp = log.undo(&mainImg);
+        qDebug()<<"tmp.save()  "
+               <<tmp.save(QString("/Users/huangwencan/gui/tmp.png"));
         mainImg = tmp;
         Fire_OnPropertyChanged(MAIN_IMAGE);
+        Fire_OnPropertyChanged(LOG);
         return true;
     }
     else
@@ -44,6 +48,7 @@ QString Model::getUndoMsg()
 bool Model::commit(const QString &cmd)
 {
     log.commit(mainImg, cmd);
+    Fire_OnPropertyChanged(LOG);
     return true;
 }
 

@@ -12,6 +12,8 @@ void MainImageSink::OnPropertyChanged(const propertyType pt)
         mainview->update();
     } else if(pt == SUB_IMAGE){
         mainview->updateSubImage();
+    } else if(pt == LOG){
+        mainview->updateLogManager();
     }
 }
 

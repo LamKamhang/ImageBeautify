@@ -27,12 +27,14 @@ enum commandsType{
     OTSU,
     OPEN_SUB_DIALOG,
     DUAL_THRESHOLD,
+    HUE_SATURA_LIGHT,
 };
 
 enum propertyType{
     MAIN_IMAGE,
     SUB_IMAGE,
     TMP_IMAGE,
+    LOG,
 };
 
 enum ChannelType{
