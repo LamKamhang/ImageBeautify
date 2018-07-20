@@ -85,7 +85,9 @@ HEADERS += \
     viewmodel/sinks/viewmodelsink.h \
     viewmodel/viewmodel.h \
     viewmodel/commands/undocommand.h \
-    viewmodel/commands/redocommand.h
+    viewmodel/commands/redocommand.h \
+    view/huesaturalightdialog.h \
+    viewmodel/commands/huesaturalightcommand.h
 
 SOURCES += \
     app/app.cpp \
@@ -116,5 +118,7 @@ SOURCES += \
     viewmodel/sinks/viewmodelsink.cpp \
     viewmodel/viewmodel.cpp \
     viewmodel/commands/undocommand.cpp \
-    viewmodel/commands/redocommand.cpp
+    viewmodel/commands/redocommand.cpp \
+    view/huesaturalightdialog.cpp \
+    viewmodel/commands/huesaturalightcommand.cpp
 

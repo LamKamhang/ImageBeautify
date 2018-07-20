@@ -16,6 +16,7 @@
 #include "../view/edgedetectiondialog.h"
 #include "../view/houghcircledetectiondialog.h"
 #include "../view/dualthresholddialog.h"
+#include "../view/huesaturalightdialog.h"
 
 namespace UI {
 class MainView;
@@ -53,6 +54,7 @@ public:
     void setOtsuCommand(std::shared_ptr<ICommandBase>);
     void setHoughLineDetectionCommand(std::shared_ptr<ICommandBase>);
     void setDualThresholdCommand(std::shared_ptr<ICommandBase>);
+    void setHueSaturaLightCommand(std::shared_ptr<ICommandBase>);
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
 
@@ -104,6 +106,7 @@ private slots:
     void receiveApplyEdgeDetection(std::shared_ptr<JsonParameters>);
     void receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters>);
     void receiveApplyDualThreshold(std::shared_ptr<JsonParameters>);
+    void receiveApplyHueSaturaLight(std::shared_ptr<JsonParameters>);
 
     // special effects
     void hotSpecialEffects();
@@ -171,6 +174,8 @@ private:
     std::shared_ptr<ICommandBase> openFileCommand;
     std::shared_ptr<ICommandBase> saveFileCommand;
     std::shared_ptr<ICommandBase> openSubDialogCommand;
+    std::shared_ptr<ICommandBase> undoCommand;
+    std::shared_ptr<ICommandBase> redoCommand;
 
     std::shared_ptr<ICommandBase> filterCommand;
     std::shared_ptr<ICommandBase> edgeDetectionCommand;
@@ -180,8 +185,7 @@ private:
     std::shared_ptr<ICommandBase> otsuCommand;
     std::shared_ptr<ICommandBase> houghLineDetectionCommand;
     std::shared_ptr<ICommandBase> dualThresholdCommand;
-    std::shared_ptr<ICommandBase> undoCommand;
-    std::shared_ptr<ICommandBase> redoCommand;
+    std::shared_ptr<ICommandBase> hueSaturaLightCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
 };

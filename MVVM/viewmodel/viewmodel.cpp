@@ -17,6 +17,8 @@ ViewModel::ViewModel()
     openfilecommand = std::make_shared<OpenFileCommand>(this);
     savefilecommand = std::make_shared<SaveFileCommand>(this);
     opensubdialogcommand = std::make_shared<OpenSubDialogCommand>(this);
+    undocommand = std::make_shared<UndoCommand>(this);
+    redocommand = std::make_shared<RedoCommand>(this);
 
     filtercommand = std::make_shared<FilterCommand>(this);
     edgedetectioncommand = std::make_shared<EdgeDetectionCommand>(this);
@@ -26,8 +28,7 @@ ViewModel::ViewModel()
     otsucommand = std::make_shared<OtsuCommand>(this);
     houghlinedetectioncommand = std::make_shared<HoughLineDetectionCommand>(this);
     dualthresholdcommand = std::make_shared<DualThresholdCommand>(this);
-    undocommand = std::make_shared<UndoCommand>(this);
-    redocommand = std::make_shared<RedoCommand>(this);
+    huesaturalightcommand = std::make_shared<HueSaturaLightCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -194,6 +195,26 @@ void ViewModel::execDualThresholdCommand(std::shared_ptr<JsonParameters> json){
     }
 }
 
+void ViewModel::execHueSaturaLightCommand(std::shared_ptr<JsonParameters> json){
+    qDebug()<<"execHueSaturaLightCommand(std::shared_ptr<JsonParameters> json)";
+    bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
+    bool hue = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["hue"])->getvalue();
+    bool saturation = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["saturation"])->getvalue();
+    bool lightness = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["lightness"])->getvalue();
+    QVector<int> hueValues = std::static_pointer_cast<QVectorParameters<int>,ParametersBase>((*json)["hueValues"])->getvalue();
+    int saturationValue = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["saturationValue"])->getvalue();
+    int lightnessValue = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lightnessValue"])->getvalue();
+    qDebug()<<"saturationValue = "<<saturationValue;
+    qDebug()<<"lightnessValue = "<<lightnessValue;
+    for(int i=0;i<7;i++){
+        qDebug()<<"hueValues["<< i <<"] = "<< hueValues[i];
+    }
+    if(hue)model->adjustHue(hueValues);
+    if(saturation)model->adjustSaturation(saturationValue);
+    if(lightness)model->adjustLightness(lightnessValue);
+    if(apply)model->sub2main();
+}
+
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
     return openfilecommand;
 }
@@ -246,6 +267,9 @@ std::shared_ptr<ICommandBase> ViewModel::getDualThresholdCommand(){
     return dualthresholdcommand;
 }
 
+std::shared_ptr<ICommandBase> ViewModel::getHueSaturaLightCommand(){
+    return huesaturalightcommand;
+}
 
 std::shared_ptr<QImage> ViewModel::getImage(){
     return image;

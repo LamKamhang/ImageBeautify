@@ -29,6 +29,7 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setGrayScaleTransferCommand(viewmodel->getGrayScaleTransferCommand());
     view->setHoughLineDetectionCommand(viewmodel->getHoughLineDetectionCommand());
     view->setDualThresholdCommand(viewmodel->getDualThresholdCommand());
+    view->setHueSaturaLightCommand(viewmodel->getHueSaturaLightCommand());
 
     viewmodel->AddPropertyNotification(view->getMainViewSink());
 }

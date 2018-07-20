@@ -27,6 +27,7 @@ enum commandsType{
     OTSU,
     OPEN_SUB_DIALOG,
     DUAL_THRESHOLD,
+    HUE_SATURA_LIGHT,
 };
 
 enum propertyType{

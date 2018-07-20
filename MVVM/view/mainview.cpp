@@ -231,12 +231,27 @@ void MainView::blueChannel(){
 void MainView::grayScaleTransfer(){
     grayScaleTransferCommand->Exec();
 }
-void MainView::hueSaturationLightness(){}
+
+void MainView::hueSaturationLightness(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    HueSaturaLightDialog *dialog = new HueSaturaLightDialog(this,subimage);
+    connect(dialog, SIGNAL(sendApplyHSLAdjust(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyHueSaturaLight(std::shared_ptr<JsonParameters>)));
+    connect(this, SIGNAL(subImageChanged()), dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::receiveApplyHueSaturaLight(std::shared_ptr<JsonParameters> json){
+    hueSaturaLightCommand->SetParameter(json);
+    hueSaturaLightCommand->Exec();
+}
+
 void MainView::curve(){}
 void MainView::level(){}
 void MainView::clip(){}
 void MainView::scale(){}
 void MainView::histogram(){}
+
 void MainView::otsu(){
     otsuCommand->Exec();
 }
@@ -499,6 +514,10 @@ void MainView::setHoughLineDetectionCommand(std::shared_ptr<ICommandBase> comman
 
 void MainView::setDualThresholdCommand(std::shared_ptr<ICommandBase> command){
     dualThresholdCommand = command;
+}
+
+void MainView::setHueSaturaLightCommand(std::shared_ptr<ICommandBase> command){
+    hueSaturaLightCommand = command;
 }
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){

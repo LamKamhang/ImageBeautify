@@ -19,8 +19,8 @@
 #include "commands/grayscaletransfercommand.h"
 #include "commands/houghlinedetectioncommand.h"
 #include "commands/otsucommand.h"
-
 #include "commands/dualthresholdcommand.h"
+#include "commands/huesaturalightcommand.h"
 
 #include "sinks/viewmodelsink.h"
 #include <opencv2/opencv.hpp>
@@ -39,6 +39,7 @@ class OtsuCommand;
 class HoughLineDetectionCommand;
 class GrayScaleTransferCommand;
 class DualThresholdCommand;
+class HueSaturaLightCommand;
 
 class ViewModel
     : public Proxy_PropertyNotification<ViewModel>
@@ -62,6 +63,7 @@ public:
     void execGrayScaleTransferCommand();
     void execOtsuCommand();
     void execDualThresholdCommand(std::shared_ptr<JsonParameters> json);
+    void execHueSaturaLightCommand(std::shared_ptr<JsonParameters> json);
 
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
@@ -77,6 +79,7 @@ public:
     std::shared_ptr<ICommandBase> getOtsuCommand();
     std::shared_ptr<ICommandBase> getHoughLineDetectionCommand();
     std::shared_ptr<ICommandBase> getDualThresholdCommand();
+    std::shared_ptr<ICommandBase> getHueSaturaLightCommand();
 
     std::shared_ptr<QImage> getImage();
     std::shared_ptr<QImage> getSubImage();
@@ -115,6 +118,7 @@ private:
     std::shared_ptr<OtsuCommand> otsucommand;
     std::shared_ptr<HoughLineDetectionCommand> houghlinedetectioncommand;
     std::shared_ptr<DualThresholdCommand> dualthresholdcommand;
+    std::shared_ptr<HueSaturaLightCommand> huesaturalightcommand;
 
 };
 
