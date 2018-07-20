@@ -87,7 +87,14 @@ HEADERS += \
     viewmodel/commands/undocommand.h \
     viewmodel/commands/redocommand.h \
     view/huesaturalightdialog.h \
-    viewmodel/commands/huesaturalightcommand.h
+    viewmodel/commands/huesaturalightcommand.h \
+    view/curvedialog.h \
+    view/curvecanvas.h \
+    view/leveldialog.h \
+    view/clipdialog.h \
+    view/scaledialog.h \
+    view/algebraicdialog.h \
+    view/histogramdialog.h
 
 SOURCES += \
     app/app.cpp \
@@ -120,5 +127,12 @@ SOURCES += \
     viewmodel/commands/undocommand.cpp \
     viewmodel/commands/redocommand.cpp \
     view/huesaturalightdialog.cpp \
-    viewmodel/commands/huesaturalightcommand.cpp
+    viewmodel/commands/huesaturalightcommand.cpp \
+    view/curvedialog.cpp \
+    view/curvecanvas.cpp \
+    view/leveldialog.cpp \
+    view/clipdialog.cpp \
+    view/scaledialog.cpp \
+    view/algebraicdialog.cpp \
+    view/histogramdialog.cpp
 

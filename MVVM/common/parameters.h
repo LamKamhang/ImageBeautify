@@ -82,6 +82,21 @@ private:
     QVector<T> value;
 };
 
+class QPointParameters
+    : public ParametersBase
+{
+public:
+    QPointParameters(const QPoint& value)
+        : value(value)
+    {}
+    void setvalue(QPoint v){
+        QPoint tmp(v);
+        value = tmp;
+    }
+    QPoint getvalue(){ return value; }
+private:
+    QPoint value;
+};
 
 class BoolParameters
     :public ParametersBase

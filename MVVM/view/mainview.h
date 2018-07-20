@@ -17,6 +17,12 @@
 #include "../view/houghcircledetectiondialog.h"
 #include "../view/dualthresholddialog.h"
 #include "../view/huesaturalightdialog.h"
+#include "../view/curvedialog.h"
+#include "../view/leveldialog.h"
+#include "../view/clipdialog.h"
+#include "../view/scaledialog.h"
+#include "../view/histogramdialog.h"
+#include "../view/algebraicdialog.h"
 
 namespace UI {
 class MainView;
@@ -55,6 +61,12 @@ public:
     void setHoughLineDetectionCommand(std::shared_ptr<ICommandBase>);
     void setDualThresholdCommand(std::shared_ptr<ICommandBase>);
     void setHueSaturaLightCommand(std::shared_ptr<ICommandBase>);
+    void setCurveCommand(std::shared_ptr<ICommandBase>);
+    void setLevelCommand(std::shared_ptr<ICommandBase>);
+    void setClipCommand(std::shared_ptr<ICommandBase>);
+    void setScaleCommand(std::shared_ptr<ICommandBase>);
+    void setHistogramCommand(std::shared_ptr<ICommandBase>);
+    void setAlgebraicCommand(std::shared_ptr<ICommandBase>);
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
 
@@ -107,6 +119,12 @@ private slots:
     void receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters>);
     void receiveApplyDualThreshold(std::shared_ptr<JsonParameters>);
     void receiveApplyHueSaturaLight(std::shared_ptr<JsonParameters>);
+    void receiveApplyCurve(std::shared_ptr<JsonParameters>);
+    void receiveApplyLevel(std::shared_ptr<JsonParameters>);
+    void receiveApplyClip(std::shared_ptr<JsonParameters>);
+    void receiveApplyScale(std::shared_ptr<JsonParameters>);
+    void receiveApplyHistogram(std::shared_ptr<JsonParameters>);
+    void receiveApplyAlgebraic(std::shared_ptr<JsonParameters>);
 
     // special effects
     void hotSpecialEffects();
@@ -186,6 +204,12 @@ private:
     std::shared_ptr<ICommandBase> houghLineDetectionCommand;
     std::shared_ptr<ICommandBase> dualThresholdCommand;
     std::shared_ptr<ICommandBase> hueSaturaLightCommand;
+    std::shared_ptr<ICommandBase> curveCommand;
+    std::shared_ptr<ICommandBase> levelCommand;
+    std::shared_ptr<ICommandBase> clipCommand;
+    std::shared_ptr<ICommandBase> scaleCommand;
+    std::shared_ptr<ICommandBase> histogramCommand;
+    std::shared_ptr<ICommandBase> algebraicCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
 };

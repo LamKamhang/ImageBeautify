@@ -246,11 +246,50 @@ void MainView::receiveApplyHueSaturaLight(std::shared_ptr<JsonParameters> json){
     hueSaturaLightCommand->Exec();
 }
 
-void MainView::curve(){}
-void MainView::level(){}
-void MainView::clip(){}
-void MainView::scale(){}
-void MainView::histogram(){}
+void MainView::curve(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    CurveDialog *dialog = new CurveDialog(subimage);
+    connect(dialog,SIGNAL(sendApplyCurve(std::shared_ptr<JsonParameters>))
+            , this,SLOT(receiveApplyCurve(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::level(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    LevelDialog *dialog = new LevelDialog(subimage);
+    connect(dialog,SIGNAL(sendApplyLevel(std::shared_ptr<JsonParameters>))
+            , this,SLOT(receiveApplyLevel(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::clip(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    ClipDialog *dialog = new ClipDialog(subimage);
+    connect(dialog,SIGNAL(sendApplyClip(std::shared_ptr<JsonParameters>))
+            , this,SLOT(receiveApplyClip(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::scale(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    ScaleDialog *dialog = new ScaleDialog(subimage);
+    connect(dialog,SIGNAL(sendApplyScale(std::shared_ptr<JsonParameters>))
+            , this,SLOT(receiveApplyScale(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::histogram(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    HistogramDialog *dialog = new HistogramDialog(subimage);
+    connect(dialog,SIGNAL(sendApplyHistogram(std::shared_ptr<JsonParameters>))
+            , this,SLOT(receiveApplyHistogram(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+    dialog->exec();
+}
 
 void MainView::otsu(){
     otsuCommand->Exec();
@@ -270,7 +309,44 @@ void MainView::receiveApplyDualThreshold(std::shared_ptr<JsonParameters> json){
     dualThresholdCommand->Exec();
 }
 
-void MainView::algebraic(){}
+void MainView::receiveApplyCurve(std::shared_ptr<JsonParameters> json){
+    curveCommand->SetParameter(json);
+    curveCommand->Exec();
+}
+
+void MainView::receiveApplyLevel(std::shared_ptr<JsonParameters> json){
+    levelCommand->SetParameter(json);
+    levelCommand->Exec();
+}
+
+void MainView::receiveApplyClip(std::shared_ptr<JsonParameters> json){
+    clipCommand->SetParameter(json);
+    clipCommand->Exec();
+}
+
+void MainView::receiveApplyScale(std::shared_ptr<JsonParameters> json){
+    scaleCommand->SetParameter(json);
+    scaleCommand->Exec();
+}
+
+void MainView::receiveApplyHistogram(std::shared_ptr<JsonParameters> json){
+    histogramCommand->SetParameter(json);
+    histogramCommand->Exec();
+}
+
+void MainView::receiveApplyAlgebraic(std::shared_ptr<JsonParameters> json){
+    algebraicCommand->SetParameter(json);
+    algebraicCommand->Exec();
+}
+
+void MainView::algebraic(){
+    openSubDialogCommand->Exec();// set mainimg to subimg
+    AlgebraicDialog *dialog = new AlgebraicDialog(subimage);
+    connect(dialog,SIGNAL(sendApplyAlgebraic(std::shared_ptr<JsonParameters>))
+            , this,SLOT(receiveApplyAlgebraic(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChange()),dialog,SLOT(update()));
+    dialog->exec();
+}
 
 void MainView::filter(){
     FilterDialog *dialog = new FilterDialog();
@@ -518,6 +594,30 @@ void MainView::setDualThresholdCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setHueSaturaLightCommand(std::shared_ptr<ICommandBase> command){
     hueSaturaLightCommand = command;
+}
+
+void MainView::setCurveCommand(std::shared_ptr<ICommandBase> command){
+    curveCommand = command;
+}
+
+void MainView::setLevelCommand(std::shared_ptr<ICommandBase> command){
+    levelCommand = command;
+}
+
+void MainView::setClipCommand(std::shared_ptr<ICommandBase> command){
+    clipCommand = command;
+}
+
+void MainView::setScaleCommand(std::shared_ptr<ICommandBase> command){
+    scaleCommand = command;
+}
+
+void MainView::setHistogramCommand(std::shared_ptr<ICommandBase> command){
+    histogramCommand = command;
+}
+
+void MainView::setAlgebraicCommand(std::shared_ptr<ICommandBase> command){
+    algebraicCommand = command;
 }
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
