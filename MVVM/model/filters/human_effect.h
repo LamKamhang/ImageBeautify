@@ -14,5 +14,10 @@
 
 class HumanEffect
 {
-   
-}
+public:
+    static void _whiteFace(const cv::Mat &src, cv::Mat &dst);
+    static void _beautifyFace(const cv::Mat &src, cv::Mat &dst);
+    static void _pinkLady(const cv::Mat &src, cv::Mat &dst);
+private:
+    static void _aux_func(cv::Mat &src, int alpha, int beta);
+};
