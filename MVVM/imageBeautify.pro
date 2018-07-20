@@ -57,7 +57,7 @@ DEPENDPATH += $$PWD/../OpenCV/win32/include
 CONFIG += c++14
 
 HEADERS += \
-    APP/app.h \
+    app/app.h \
     common/etlbase.h \
     common/parameters.h \
     common/type.h \
@@ -66,31 +66,28 @@ HEADERS += \
     model/logoperation/aux_log_alg.h \
     model/model.h \
     view/sinks/mainimagesink.h \
+    view/dualthresholddialog.h \
     view/edgedetectiondialog.h \
     view/filterdialog.h \
     view/houghcircledetectiondialog.h \
     view/mainview.h \
     viewmodel/commands/channelcommand.h \
+    viewmodel/commands/dualthresholdcommand.h \
     viewmodel/commands/edgedetectioncommand.h \
     viewmodel/commands/filtercommand.h \
     viewmodel/commands/grayscaletransfercommand.h \
     viewmodel/commands/houghcircledetectioncommand.h \
     viewmodel/commands/houghlinedetectioncommand.h \
     viewmodel/commands/openfilecommand.h \
+    viewmodel/commands/opensubdialogcommand.h \
     viewmodel/commands/otsucommand.h \
     viewmodel/commands/savefilecommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h \
-    viewmodel/commands/grayscaletransfercommand.h \
-    viewmodel/commands/otsucommand.h \
-    viewmodel/commands/houghlinedetectioncommand.h \
-    view/dualthresholddialog.h \
-    viewmodel/commands/opensubdialogcommand.h \
-    viewmodel/commands/dualthresholdcommand.h
+    viewmodel/viewmodel.h
 
 SOURCES += \
-    APP/app.cpp \
-    APP/main.cpp \
+    app/app.cpp \
+    app/main.cpp \
     common/util.cpp \
     model/imageoperation/aux_image_alg.cpp \
     model/imageoperation/imageoperation.cpp \
@@ -98,24 +95,22 @@ SOURCES += \
     model/logoperation/logoperation.cpp \
     model/model.cpp \
     view/sinks/mainimagesink.cpp \
+    view/dualthresholddialog.cpp \
     view/edgedetectiondialog.cpp \
     view/filterdialog.cpp \
     view/houghcircledetectiondialog.cpp \
     view/mainview.cpp \
     viewmodel/commands/channelcommand.cpp \
+    viewmodel/commands/dualthresholdcommand.cpp \
     viewmodel/commands/edgedetectioncommand.cpp \
     viewmodel/commands/filtercommand.cpp \
     viewmodel/commands/grayscaletransfercommand.cpp \
     viewmodel/commands/houghcircledetectioncommand.cpp \
     viewmodel/commands/houghlinedetectioncommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
+    viewmodel/commands/opensubdialogcommand.cpp \
     viewmodel/commands/otsucommand.cpp \
     viewmodel/commands/savefilecommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp \
-    viewmodel/commands/grayscaletransfercommand.cpp \
-    viewmodel/commands/otsucommand.cpp \
-    viewmodel/commands/houghlinedetectioncommand.cpp \
-    view/dualthresholddialog.cpp \
-    viewmodel/commands/opensubdialogcommand.cpp \
-    viewmodel/commands/dualthresholdcommand.cpp
+    viewmodel/viewmodel.cpp
+
