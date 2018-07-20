@@ -134,8 +134,12 @@ void MainView::initializeEditMenu(){
     pasteAct->setShortcut(QKeySequence::Paste);
 }
 
-void MainView::undo(){}
-void MainView::redo(){}
+void MainView::undo(){
+    undoCommand->Exec();
+}
+void MainView::redo(){
+    redoCommand->Exec();
+}
 
 void MainView::copy(){
 #ifndef QT_NO_CLIPBOARD
@@ -429,6 +433,22 @@ void MainView::setSubImage(std::shared_ptr<QImage> img){
     subimage = img;
 }
 
+void MainView::setUndoEnabled(std::shared_ptr<bool> u){
+    undoEnabled = u;
+}
+
+void MainView::setRedoEnabled(std::shared_ptr<bool> r){
+    redoEnabled = r;
+}
+
+void MainView::setUndoMsg(std::shared_ptr<QString> u){
+    undoMsg = u;
+}
+
+void MainView::setRedoMsg(std::shared_ptr<QString> r){
+    redoMsg = r;
+}
+
 void MainView::setOpenFileCommand(std::shared_ptr<ICommandBase> command){
     openFileCommand = command;
 }
@@ -439,6 +459,14 @@ void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){
     openSubDialogCommand = command;
+}
+
+void MainView::setUndoCommand(std::shared_ptr<ICommandBase> command){
+    undoCommand = command;
+}
+
+void MainView::setRedoCommand(std::shared_ptr<ICommandBase> command){
+    redoCommand = command;
 }
 
 void MainView::setFilterCommand(std::shared_ptr<ICommandBase> command){
@@ -525,6 +553,21 @@ void MainView::update(){
 
 void MainView::updateSubImage(){
     emit subImageChanged();
+}
+
+void MainView::updateLogManager(){
+    undoAct->setEnabled(*undoEnabled);
+    if(*undoEnabled){
+        undoAct->setStatusTip("Undo: " + *undoMsg);
+    } else {
+        undoAct->setStatusTip(tr(""));
+    }
+    redoAct->setEnabled(*redoEnabled);
+    if(*redoEnabled){
+        redoAct->setStatusTip("Redo: " + *redoMsg);
+    } else {
+        redoAct->setStatusTip(tr(""));
+    }
 }
 
 void MainView::updateActions(){

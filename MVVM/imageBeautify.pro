@@ -83,7 +83,9 @@ HEADERS += \
     viewmodel/commands/otsucommand.h \
     viewmodel/commands/savefilecommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h
+    viewmodel/viewmodel.h \
+    viewmodel/commands/undocommand.h \
+    viewmodel/commands/redocommand.h
 
 SOURCES += \
     app/app.cpp \
@@ -112,5 +114,7 @@ SOURCES += \
     viewmodel/commands/otsucommand.cpp \
     viewmodel/commands/savefilecommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp
+    viewmodel/viewmodel.cpp \
+    viewmodel/commands/undocommand.cpp \
+    viewmodel/commands/redocommand.cpp
 

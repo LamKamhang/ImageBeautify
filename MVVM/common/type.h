@@ -32,6 +32,7 @@ enum commandsType{
 enum propertyType{
     MAIN_IMAGE,
     SUB_IMAGE,
+    LOG,
 };
 
 enum ChannelType{

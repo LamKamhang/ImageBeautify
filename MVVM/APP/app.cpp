@@ -10,10 +10,16 @@ ImageBeautifyApp::ImageBeautifyApp()
 
     view->setImage(viewmodel->getImage());
     view->setSubImage(viewmodel->getSubImage());
+    view->setUndoEnabled(viewmodel->getUndoEnabled());
+    view->setRedoEnabled(viewmodel->getRedoEnabled());
+    view->setUndoMsg(viewmodel->getUndoMsg());
+    view->setRedoMsg(viewmodel->getRedoMsg());
 
     view->setOpenFileCommand(viewmodel->getOpenFileCommand());
     view->setSaveFileCommand(viewmodel->getSaveFileCommand());
     view->setOpenSubDialogCommand(viewmodel->getOpenSubDialogCommand());
+    view->setRedoCommand(viewmodel->getRedoCommand());
+    view->setUndoCommand(viewmodel->getUndoCommand());
 
     view->setFilterCommand(viewmodel->getFilterCommand());
     view->setEdgeDetectionCommand(viewmodel->getEdgeDetectionCommand());
