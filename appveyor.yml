@@ -1,7 +1,9 @@
 environment:
   matrix:
-    - QTDIR: C:\Qt\5.9\mingw53_32
-      MINGW: C:\Qt\Tools\mingw53_32
+    - QTDIR: C:\Qt\5.11\msvc2017_64
+      CMD_VCVARSALL: '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64'
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      MSVC_PLATFORM: "x64"
 
 configuration:
   - release
@@ -10,28 +12,23 @@ configuration:
 # Set the environment variables and paths to make
 install:
   - git submodule update --init --recursive
-  - call "%QTDIR%\bin\qtenv2.bat"
-  - set PATH=%PATH%;%QTDIR%\bin;%MINGW%\bin
-  - if %QTDIR:msvc=%==%QTDIR% set make=mingw32-make.exe
-  - if %QTDIR:_64=%==%QTDIR% ( set ARCH=x86 ) else set ARCH=x64
-  - if not %QTDIR:msvc2015=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %ARCH%
-  - if not %QTDIR:msvc2017=%==%QTDIR% call "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %ARCH%
-  - if not %QTDIR:msvc=%==%QTDIR% set make=nmake.exe
-  - if not %QTDIR:msvc=%==%QTDIR% %make% /? > nul
+  - dir %QTDIR%
+  - call %CMD_VCVARSALL%
+  - set PATH=%PATH%;%QTDIR%\bin;%APPVEYOR_BUILD_FOLDER%\OpenCV\bin
 
 # Run qmake
 before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - qmake ..\src\imageBeautify.pro
+  - qmake ..\MVVM\imageBeautify.pro
 
 
 # Build the projects
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - cd build
-  - '%make%'
+  - nmake
   
   
 after_build:
@@ -45,7 +42,7 @@ after_build:
 artifacts:
   - path: build\release\release\
     name: image_beautify_bin
-  - path: src\
+  - path: MVVM\
     name: image_beautify_src
 
 deploy:
