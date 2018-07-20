@@ -15,14 +15,15 @@
 
 class ArtEffect
 {
+public:
     // 浮雕
     static void _emboss(const cv::Mat &src, cv::Mat &dst);
     // 雕刻
     static void _sculpture(const cv::Mat &src, cv::Mat &dst);
     // 膨胀
-    static void _dilate(const cv::Mat &src, cv::Mat &dst, int shape = MORPH_RECT, int size = 5);
+    static void _dilate(const cv::Mat &src, cv::Mat &dst, int shape = cv::MORPH_RECT, int size = 5);
     // 腐蚀
-    static void _erode(const cv::Mat &src, cv::Mat &dst, int shape = MORPH_RECT, int size = 5);
+    static void _erode(const cv::Mat &src, cv::Mat &dst, int shape = cv::MORPH_RECT, int size = 5);
     // 磨砂玻璃
     static void _frostGlass(const cv::Mat &src, cv::Mat &dst);
     // 手稿
@@ -31,8 +32,6 @@ class ArtEffect
     static void _oilPaint(const cv::Mat &src, cv::Mat &dst);
     // 木刻
     static void _woodCut(const cv::Mat &src, cv::Mat &dst);
-    // 轨道
-    static void _onTrackbar(const cv::Mat &src, cv::Mat &dst);
     // 反色
     static void _inverted(const cv::Mat &src, cv::Mat &dst);
     // 回忆
@@ -43,4 +42,4 @@ class ArtEffect
     static void _casting(const cv::Mat &src, cv::Mat &dst);
     // 连环画
     static void _comicStrip(const cv::Mat &src, cv::Mat &dst);
-}
+};

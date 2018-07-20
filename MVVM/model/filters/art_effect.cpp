@@ -1,4 +1,7 @@
 #include "art_effect.h"
+#include <opencv2/opencv.hpp>
+#include <string>
+#include <cstring>
 
 using namespace std;
 using namespace cv;
@@ -6,11 +9,11 @@ using namespace cv;
 // 浮雕
 void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
 {
-	Mat img(src.size(),CV_8UC3);
+    Mat img(src.size(), CV_8UC3);
 	for (int y=1; y<src.rows-1; y++)
 	{
-		uchar *p0 = src.ptr<uchar>(y);
-		uchar *p1 = src.ptr<uchar>(y+1);
+        const uchar *p0 = src.ptr<uchar>(y);
+        const uchar *p1 = src.ptr<uchar>(y+1);
  
 		uchar *img_ptr = img.ptr<uchar>(y);
 		for (int x=1; x<src.cols-1; x++)
@@ -37,8 +40,8 @@ void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 	Mat img(src.size(),CV_8UC3);
 	for (int y=1; y<src.rows-1; y++)
 	{
-		uchar *p0 = src.ptr<uchar>(y);
-		uchar *p1 = src.ptr<uchar>(y+1);
+        const uchar *p0 = src.ptr<uchar>(y);
+        const uchar *p1 = src.ptr<uchar>(y+1);
  
 		uchar *img_ptr = img.ptr<uchar>(y);
 		for (int x=1; x<src.cols-1; x++)
@@ -60,19 +63,19 @@ void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 膨胀
-void ArtEffect::_dilate(const cv::Mat &src, cv::Mat &dst, int shape = MORPH_RECT, int size = 5)
+void ArtEffect::_dilate(const cv::Mat &src, cv::Mat &dst, int shape, int size)
 {
 	dilate(src, dst, getStructuringElement(shape, Size(size, size)));
 }
 
 // 腐蚀
-void ArtEffect::_erode(const cv::Mat &src, cv::Mat &dst, int shape = MORPH_RECT, int size = 5)
+void ArtEffect::_erode(const cv::Mat &src, cv::Mat &dst, int shape, int size)
 {
 	erode(src, dst, getStructuringElement(shape, Size(size, size)));
 }
 
 // 磨砂玻璃
-static void _frostGlass(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_frostGlass(const cv::Mat &src, cv::Mat &dst)
 {
 	RNG rng; 
 	int randomNum; 
@@ -90,7 +93,7 @@ static void _frostGlass(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 手稿
-static void _sketch(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_sketch(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
@@ -121,7 +124,7 @@ static void _sketch(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 油画
-static void _oilPaint(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_oilPaint(const cv::Mat &src, cv::Mat &dst)
 {
 	cv::Mat tmp(src);
 	for(int j=0;j<src.rows-2;j++)
@@ -152,7 +155,7 @@ static void _oilPaint(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 木刻
-static void _woodCut(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_woodCut(const cv::Mat &src, cv::Mat &dst)
 {
 	cv::Mat tmp(src);
 	for(int j=0;j<src.rows;j++)
@@ -170,61 +173,22 @@ static void _woodCut(const cv::Mat &src, cv::Mat &dst)
 	tmp.copyTo(dst);
 }
 
-// 轨道
-static void _onTrackbar(const cv::Mat &src, cv::Mat &dst)
-{
-	int width=src.cols;
-	int heigh=src.rows;
-	angle = 0.0;
-	cv::Mat tmp(src);
-	for (int y=0; y<heigh; y++)
-	{
-		int changeX = A*sin(angle);
-		uchar *srcP = src.ptr<uchar>(y);
-		uchar *imgP = tmp.ptr<uchar>(y);
-		for (int x=0; x<width; x++)
-		{
-			if(changeX+x<width && changeX+x>0)		//正弦分布（-1,1）
-			{
-				imgP[3*x]=srcP[3*(x+changeX)];
-				imgP[3*x+1]=srcP[3*(x+changeX)+1];
-				imgP[3*x+2]=srcP[3*(x+changeX)+2];
-			}
-			//每行开始和结束的空白区;
-			else if(x<=changeX)       
-			{
-				imgP[3*x]=srcP[0];
-				imgP[3*x+1]=srcP[1];
-				imgP[3*x+2]=srcP[2];
-			}
-			else if (x>=width-changeX)
-			{
-				imgP[3*x]=srcP[3*(width-1)];
-				imgP[3*x+1]=srcP[3*(width-1)+1];
-				imgP[3*x+2]=srcP[3*(width-1)+2];
-			}
-		}
-		angle += ((double)deltaI)/100;
-	}
-	tmp.copyTo(dst);
-}
-
 // 反色
-static void _inverted(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_inverted(const cv::Mat &src, cv::Mat &dst)
 {
 	dst = 255 - src;
 }
 
 // 回忆
-static void _memory(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_memory(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
 	Mat img(src.size(),CV_8UC3);
 	for (int y=0; y<heigh; y++)
 	{
-		uchar* P0  = src.ptr<uchar>(y);
-		uchar* P1  = img.ptr<uchar>(y);
+        const uchar* P0  = src.ptr<uchar>(y);
+        uchar* P1  = img.ptr<uchar>(y);
 		for (int x=0; x<width; x++)
 		{
 			float B=P0[3*x];
@@ -248,14 +212,14 @@ static void _memory(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 冰冻
-static void _freezing(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_freezing(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
 	Mat tmp(src.size(),CV_8UC3);
 	for (int y=0;y<heigh;y++)
 	{
-		uchar* imgP=src.ptr<uchar>(y);
+        const uchar* imgP=src.ptr<uchar>(y);
 		uchar* dstP=tmp.ptr<uchar>(y);
 		for (int x=0;x<width;x++)
 		{
@@ -279,14 +243,14 @@ static void _freezing(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 熔铸
-static void _casting(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_casting(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
 	Mat tmp(src.size(),CV_8UC3);
 	for (int y=0;y<heigh;y++)
 	{
-		uchar* imgP=src.ptr<uchar>(y);
+        const uchar* imgP=src.ptr<uchar>(y);
 		uchar* dstP=tmp.ptr<uchar>(y);
 		for (int x=0;x<width;x++)
 		{
@@ -311,14 +275,14 @@ static void _casting(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 连环画
-static void _comicStrip(const cv::Mat &src, cv::Mat &dst)
+void ArtEffect::_comicStrip(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
 	Mat img(src.size(),CV_8UC3);
 	for (int y=0; y<heigh; y++)
 	{
-		uchar* P0  = src.ptr<uchar>(y);
+        const uchar* P0  = src.ptr<uchar>(y);
 		uchar* P1  = img.ptr<uchar>(y);
 		for (int x=0; x<width; x++)
 		{
