@@ -111,3 +111,18 @@ bool Model::main2sub()
         return true;
     }
 }
+
+bool Model::sub2tmp()
+{
+    if (subImg.isNull())
+    {
+        return false;
+    }
+    else
+    {
+        QImage tmp(subImg);
+        tmpImg = tmp;
+        // Fire_OnPropertyChanged(TMP_IMAGE);
+        return true;
+    }
+}
