@@ -6,10 +6,10 @@ CurveCommand::CurveCommand(ViewModel* vm)
 }
 
 void CurveCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    commandType = std::static_pointer_cast<EnumCommandParameters,ParametersBase>(param);
+    json = std::static_pointer_cast<JsonParameters,ParametersBase>(param);
 }
 
 void CurveCommand::Exec(){
-    viewmodel->execCurveCommand(commandType);
+    viewmodel->execCurveCommand(json);
     viewmodel->Fire_OnCommandComplete(CURVE, true);
 }

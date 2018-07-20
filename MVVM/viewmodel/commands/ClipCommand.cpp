@@ -6,10 +6,10 @@ ClipCommand::ClipCommand(ViewModel* vm)
 }
 
 void ClipCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    commandType = std::static_pointer_cast<EnumCommandParameters,ParametersBase>(param);
+    json = std::static_pointer_cast<JsonParameters,ParametersBase>(param);
 }
 
 void ClipCommand::Exec(){
-    viewmodel->execClipCommand(commandType);
+    viewmodel->execClipCommand(json);
     viewmodel->Fire_OnCommandComplete(BINARY_MCLIPORPHOD, true);
 }

@@ -6,10 +6,10 @@ LevelCommand::LevelCommand(ViewModel* vm)
 }
 
 void LevelCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    commandType = std::static_pointer_cast<EnumCommandParameters,ParametersBase>(param);
+    json = std::static_pointer_cast<JsonParameters,ParametersBase>(param);
 }
 
 void LevelCommand::Exec(){
-    viewmodel->execLevelCommand(commandType);
+    viewmodel->execLevelCommand(json);
     viewmodel->Fire_OnCommandComplete(LEVEL, true);
 }

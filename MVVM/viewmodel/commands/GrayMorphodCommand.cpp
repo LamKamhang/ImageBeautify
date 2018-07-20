@@ -6,10 +6,10 @@ GrayMorphodCommand::GrayMorphodCommand(ViewModel* vm)
 }
 
 void GrayMorphodCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    commandType = std::static_pointer_cast<EnumCommandParameters,ParametersBase>(param);
+    json = std::static_pointer_cast<JsonParameters,ParametersBase>(param);
 }
 
 void GrayMorphodCommand::Exec(){
-    viewmodel->execGrayMorphodCommand(commandType);
+    viewmodel->execGrayMorphodCommand(json);
     viewmodel->Fire_OnCommandComplete(GRAY_MORPHOD, true);
 }

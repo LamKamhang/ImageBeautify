@@ -6,10 +6,10 @@ ScaleCommand::ScaleCommand(ViewModel* vm)
 }
 
 void ScaleCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    commandType = std::static_pointer_cast<EnumCommandParameters,ParametersBase>(param);
+    json = std::static_pointer_cast<JsonParameters,ParametersBase>(param);
 }
 
 void ScaleCommand::Exec(){
-    viewmodel->execScaleCommand(commandType);
+    viewmodel->execScaleCommand(json);
     viewmodel->Fire_OnCommandComplete(SCALE, true);
 }
