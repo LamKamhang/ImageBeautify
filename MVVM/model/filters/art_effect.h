@@ -20,9 +20,9 @@ public:
     static void _emboss(const cv::Mat &src, cv::Mat &dst);
     // 雕刻
     static void _sculpture(const cv::Mat &src, cv::Mat &dst);
-    // 膨胀
+    // 虚幻
     static void _dilate(const cv::Mat &src, cv::Mat &dst);
-    // 腐蚀
+    // 惊悚
     static void _erode(const cv::Mat &src, cv::Mat &dst);
     // 磨砂玻璃
     static void _frostGlass(const cv::Mat &src, cv::Mat &dst);

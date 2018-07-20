@@ -62,16 +62,26 @@ void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 	normalize(dst, dst, 255, 0, CV_MINMAX);
 }
 
-// 膨胀
+// 虚幻
 void ArtEffect::_dilate(const cv::Mat &src, cv::Mat &dst)
 {
-	dilate(src, dst, getStructuringElement(MORPH_RECT, Size(5, 5)));
+    cv::Mat tmp(src);
+    for (int i = 0; i < 2; ++i)
+    {
+        dilate(tmp, tmp, getStructuringElement(MORPH_RECT, Size(5, 5)));
+    }
+    tmp.copyTo((dst));
 }
 
-// 腐蚀
+// 惊悚
 void ArtEffect::_erode(const cv::Mat &src, cv::Mat &dst)
 {
-	erode(src, dst, getStructuringElement(MORPH_RECT, Size(5, 5)));
+    cv::Mat tmp(src);
+    for (int i = 0; i < 1; ++i)
+    {
+        erode(tmp, tmp, getStructuringElement(MORPH_RECT, Size(5, 5)));
+    }
+    tmp.copyTo(dst);
 }
 
 // 磨砂玻璃
@@ -173,11 +183,6 @@ void ArtEffect::_woodCut(const cv::Mat &src, cv::Mat &dst)
 	tmp.copyTo(dst);
 }
 
-// 反色
-void ArtEffect::_inverted(const cv::Mat &src, cv::Mat &dst)
-{
-	dst = 255 - src;
-}
 
 // 回忆
 void ArtEffect::_memory(const cv::Mat &src, cv::Mat &dst)
@@ -302,7 +307,8 @@ void ArtEffect::_comicStrip(const cv::Mat &src, cv::Mat &dst)
 			P1[3*x+1] = (uchar)newG;
 			P1[3*x+2] = (uchar)newR;
 		}
-	}
-	cvtColor(img,dst,CV_BGR2GRAY);
-	normalize(dst,dst,255,0,CV_MINMAX);
+    }
+    cvtColor(img,dst,CV_BGR2GRAY);
+    normalize(dst,dst,255,0,CV_MINMAX);
 }
+

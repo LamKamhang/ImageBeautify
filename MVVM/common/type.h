@@ -33,6 +33,7 @@ enum commandsType{
 enum propertyType{
     MAIN_IMAGE,
     SUB_IMAGE,
+    TMP_IMAGE,
     LOG,
 };
 

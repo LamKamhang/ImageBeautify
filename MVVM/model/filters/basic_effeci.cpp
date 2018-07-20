@@ -20,17 +20,9 @@ void BasicEffect::_sharpen(const cv::Mat &scr, cv::Mat &dst)
 
 void BasicEffect::_inversecolor(const cv::Mat &scr, cv::Mat &dst)
 {
-    int rowNum = scr.rows;
-    int colNum = scr.cols*scr.channels();
-
-    dst = scr.clone();
-
-    for(int j = 0; j < rowNum ; j++){
-        uchar * row = dst.ptr<uchar>(j);
-        for(int i = 0;i<colNum;i++){
-            row[i] = 255 - row[i];
-        }
-    }
+    Mat temp;
+    temp = 255 -scr;
+    dst = temp.clone();
 }
 
 void BasicEffect::_colortoblack(const cv::Mat &scr, cv::Mat &dst)
