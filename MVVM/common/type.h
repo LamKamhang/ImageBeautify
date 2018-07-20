@@ -28,6 +28,14 @@ enum commandsType{
     OPEN_SUB_DIALOG,
     DUAL_THRESHOLD,
     HUE_SATURA_LIGHT,
+    CURVE
+    LEVEL
+    CLIP
+    SCALE
+    HISTOGRAM
+    ALGEBRAIC
+    BINARY_MORPHOD
+    GRAY_MORPHOD
 };
 
 enum propertyType{
