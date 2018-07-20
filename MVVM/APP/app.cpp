@@ -22,6 +22,7 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setOtsuCommand(viewmodel->getOtsuCommand());
     view->setGrayScaleTransferCommand(viewmodel->getGrayScaleTransferCommand());
     view->setHoughLineDetectionCommand(viewmodel->getHoughLineDetectionCommand());
+    view->setDualThresholdCommand(viewmodel->getDualThresholdCommand());
 
     viewmodel->AddPropertyNotification(view->getMainViewSink());
 }

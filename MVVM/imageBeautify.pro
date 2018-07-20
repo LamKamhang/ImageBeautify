@@ -81,7 +81,8 @@ HEADERS += \
     viewmodel/commands/otsucommand.h \
     viewmodel/commands/houghlinedetectioncommand.h \
     view/dualthresholddialog.h \
-    viewmodel/commands/opensubdialogcommand.h
+    viewmodel/commands/opensubdialogcommand.h \
+    viewmodel/commands/dualthresholdcommand.h
 
 SOURCES += \
     app/app.cpp \
@@ -107,4 +108,5 @@ SOURCES += \
     viewmodel/commands/otsucommand.cpp \
     viewmodel/commands/houghlinedetectioncommand.cpp \
     view/dualthresholddialog.cpp \
-    viewmodel/commands/opensubdialogcommand.cpp
+    viewmodel/commands/opensubdialogcommand.cpp \
+    viewmodel/commands/dualthresholdcommand.cpp

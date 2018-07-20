@@ -151,8 +151,8 @@ void DualThresholdDialog::apply(){
     JsonParameters obj;
     bool apply = true;
     obj.insert("apply", std::make_shared<BoolParameters>(apply));
-    obj.insert("low", std::make_shared<QStringParameters>(lowThresholdEdit->text()));
-    obj.insert("high", std::make_shared<QStringParameters>(highThresholdEdit->text()));
+    obj.insert("low", std::make_shared<IntParameters>(lowThresholdSlider->value()));
+    obj.insert("high", std::make_shared<IntParameters>(highThresholdSlider->value()));
     emit sendApplyDualThreshold(std::make_shared<JsonParameters>(obj));
     close();
 }

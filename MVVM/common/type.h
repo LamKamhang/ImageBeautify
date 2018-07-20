@@ -25,6 +25,8 @@ enum commandsType{
     HOUGH_LINE_DETECTION,
     GRAY_SCALE_TRANSFER,
     OTSU,
+    OPEN_SUB_DIALOG,
+    DUAL_THRESHOLD,
 };
 
 enum propertyType{

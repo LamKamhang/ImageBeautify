@@ -5,10 +5,11 @@ OpenSubDialogCommand::OpenSubDialogCommand(ViewModel *vm)
 {
 }
 
-OpenSubDialogCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
+void OpenSubDialogCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
 
 }
 
-OpenSubDialogCommand::Exec(){
+void OpenSubDialogCommand::Exec(){
     viewmodel->execOpenSubDialogCommand();
+    viewmodel->Fire_OnCommandComplete(OPEN_SUB_DIALOG,true);
 }

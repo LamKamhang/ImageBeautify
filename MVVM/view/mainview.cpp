@@ -469,6 +469,10 @@ void MainView::setHoughLineDetectionCommand(std::shared_ptr<ICommandBase> comman
     houghLineDetectionCommand = command;
 }
 
+void MainView::setDualThresholdCommand(std::shared_ptr<ICommandBase> command){
+    dualThresholdCommand = command;
+}
+
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
     return std::static_pointer_cast<IPropertyNotification>(mainViewSink);
 }
