@@ -80,7 +80,13 @@ HEADERS += \
     viewmodel/commands/otsucommand.h \
     viewmodel/commands/savefilecommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h
+    viewmodel/viewmodel.h \
+    viewmodel/commands/grayscaletransfercommand.h \
+    viewmodel/commands/otsucommand.h \
+    viewmodel/commands/houghlinedetectioncommand.h \
+    view/dualthresholddialog.h \
+    viewmodel/commands/opensubdialogcommand.h \
+    viewmodel/commands/dualthresholdcommand.h
 
 SOURCES += \
     APP/app.cpp \
@@ -106,5 +112,15 @@ SOURCES += \
     viewmodel/commands/otsucommand.cpp \
     viewmodel/commands/savefilecommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
+<<<<<<< HEAD
     viewmodel/viewmodel.cpp
 
+=======
+    viewmodel/viewmodel.cpp \
+    viewmodel/commands/grayscaletransfercommand.cpp \
+    viewmodel/commands/otsucommand.cpp \
+    viewmodel/commands/houghlinedetectioncommand.cpp \
+    view/dualthresholddialog.cpp \
+    viewmodel/commands/opensubdialogcommand.cpp \
+    viewmodel/commands/dualthresholdcommand.cpp
+>>>>>>> ccdev

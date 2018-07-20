@@ -15,6 +15,7 @@
 #include "../view/filterdialog.h"
 #include "../view/edgedetectiondialog.h"
 #include "../view/houghcircledetectiondialog.h"
+#include "../view/dualthresholddialog.h"
 
 namespace UI {
 class MainView;
@@ -28,10 +29,15 @@ public:
     ~MainView();
 
     void update();
+    void updateSubImage();
 
     void setImage(std::shared_ptr<QImage>);
+    void setSubImage(std::shared_ptr<QImage>);
+
     void setOpenFileCommand(std::shared_ptr<ICommandBase>);
     void setSaveFileCommand(std::shared_ptr<ICommandBase>);
+    void setOpenSubDialogCommand(std::shared_ptr<ICommandBase>);
+
     void setFilterCommand(std::shared_ptr<ICommandBase>);
     void setEdgeDetectionCommand(std::shared_ptr<ICommandBase>);
     void setHoughCircleDetectionCommand(std::shared_ptr<ICommandBase>);
@@ -39,9 +45,12 @@ public:
     void setGrayScaleTransferCommand(std::shared_ptr<ICommandBase>);
     void setOtsuCommand(std::shared_ptr<ICommandBase>);
     void setHoughLineDetectionCommand(std::shared_ptr<ICommandBase>);
-
+    void setDualThresholdCommand(std::shared_ptr<ICommandBase>);
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
+
+signals:
+    void subImageChanged();
 
 private slots:
     // file system operation
@@ -87,6 +96,7 @@ private slots:
     void receiveApplyFilter(std::shared_ptr<JsonParameters>);
     void receiveApplyEdgeDetection(std::shared_ptr<JsonParameters>);
     void receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters>);
+    void receiveApplyDualThreshold(std::shared_ptr<JsonParameters>);
 
     // special effects
     void hotSpecialEffects();
@@ -121,6 +131,7 @@ private:
 
     UI::MainView *ui;
     std::shared_ptr<QImage> image;
+    std::shared_ptr<QImage> subimage;
     QLabel *imageLabel;
     QLabel *positionLabel;
     QLabel *pixelColorLabel;
@@ -147,6 +158,8 @@ private:
 
     std::shared_ptr<ICommandBase> openFileCommand;
     std::shared_ptr<ICommandBase> saveFileCommand;
+    std::shared_ptr<ICommandBase> openSubDialogCommand;
+
     std::shared_ptr<ICommandBase> filterCommand;
     std::shared_ptr<ICommandBase> edgeDetectionCommand;
     std::shared_ptr<ICommandBase> houghCircleDetectionCommand;
@@ -154,6 +167,7 @@ private:
     std::shared_ptr<ICommandBase> grayScaleTransferCommand;
     std::shared_ptr<ICommandBase> otsuCommand;
     std::shared_ptr<ICommandBase> houghLineDetectionCommand;
+    std::shared_ptr<ICommandBase> dualThresholdCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
 };

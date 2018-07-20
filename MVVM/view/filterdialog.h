@@ -17,7 +17,7 @@ public:
     FilterDialog();
 
 signals:
-    void sendApplyFilter(const std::shared_ptr<JsonParameters>& json);
+    void sendApplyFilter(std::shared_ptr<JsonParameters> json);
 
 private slots:
     void apply();

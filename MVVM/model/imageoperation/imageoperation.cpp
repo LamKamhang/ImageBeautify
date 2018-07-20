@@ -97,7 +97,7 @@ bool Model::otsu()
 
 bool Model::dualThreshold(int thresh1, int thresh2)
 {
-    QImage tmp(ImageOperations::dualThreshold(subImg, thresh1, thresh2));
+    QImage tmp(ImageOperations::dualThreshold(mainImg, thresh1, thresh2));
 	subImg = tmp;
     Fire_OnPropertyChanged(SUB_IMAGE);
     return true;
