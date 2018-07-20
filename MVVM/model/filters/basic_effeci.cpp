@@ -234,6 +234,26 @@ Mat defog::getTImage()
     return m_tImage;
 }
 
+void _balance(const cv::Mat &scr,cv::Mat &dst)
+{
+    Mat image = dst.clone();
+    Mat mergeImg;
+
+
+    vector<Mat> splitBGR(image.channels());
+
+    split(image,splitBGR);
+
+
+    for(int i=0; i<image.channels(); i++)
+
+        equalizeHist(splitBGR[i],splitBGR[i]);
+
+
+    merge(splitBGR,mergeImg);
+    dst = mergeImg.clone();
+}
+
 void _soft(const cv::Mat &scr,cv::Mat &dst)
 {
     Mat temp = scr.clone();

@@ -11,7 +11,8 @@
 
 #include <opencv2/opencv.hpp>
 #include <string>
-
+#include <iostream>
+#include <math.h>
 
 class BasicEffect
 {
@@ -20,6 +21,7 @@ class BasicEffect
    static void _colortoblack(const cv::Mat &scr, cv::Mat &dst);//黑白
    static void _defog(const cv:: Mat &scr,cv::Mat &dst);//去雾气
    static void _soft(const cv::Mat &scr,cv::Mat &dst);//柔和
+   static void _balance(const cv::Mat &scr,cv::Mat &dst);//均衡图
 };
 
 class defog
