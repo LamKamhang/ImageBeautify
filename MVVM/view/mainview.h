@@ -30,13 +30,20 @@ public:
 
     void update();
     void updateSubImage();
+    void updateLogManager();
 
     void setImage(std::shared_ptr<QImage>);
     void setSubImage(std::shared_ptr<QImage>);
+    void setUndoEnabled(std::shared_ptr<bool>);
+    void setRedoEnabled(std::shared_ptr<bool>);
+    void setUndoMsg(std::shared_ptr<QString>);
+    void setRedoMsg(std::shared_ptr<QString>);
 
     void setOpenFileCommand(std::shared_ptr<ICommandBase>);
     void setSaveFileCommand(std::shared_ptr<ICommandBase>);
     void setOpenSubDialogCommand(std::shared_ptr<ICommandBase>);
+    void setUndoCommand(std::shared_ptr<ICommandBase>);
+    void setRedoCommand(std::shared_ptr<ICommandBase>);
 
     void setFilterCommand(std::shared_ptr<ICommandBase>);
     void setEdgeDetectionCommand(std::shared_ptr<ICommandBase>);
@@ -132,6 +139,11 @@ private:
     UI::MainView *ui;
     std::shared_ptr<QImage> image;
     std::shared_ptr<QImage> subimage;
+    std::shared_ptr<bool> undoEnabled;
+    std::shared_ptr<bool> redoEnabled;
+    std::shared_ptr<QString> undoMsg;
+    std::shared_ptr<QString> redoMsg;
+
     QLabel *imageLabel;
     QLabel *positionLabel;
     QLabel *pixelColorLabel;
@@ -168,6 +180,8 @@ private:
     std::shared_ptr<ICommandBase> otsuCommand;
     std::shared_ptr<ICommandBase> houghLineDetectionCommand;
     std::shared_ptr<ICommandBase> dualThresholdCommand;
+    std::shared_ptr<ICommandBase> undoCommand;
+    std::shared_ptr<ICommandBase> redoCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
 };

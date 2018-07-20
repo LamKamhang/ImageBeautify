@@ -11,6 +11,8 @@ void ViewModelSink::OnPropertyChanged(const propertyType ppt){
         viewmodel->setImageFromModel();
     }else if(ppt == SUB_IMAGE){
         viewmodel->setSubImageFromModel();
+    }else if(ppt == LOG){
+        viewmodel->updateLogManagerFromModel();
     }
     viewmodel->Fire_OnPropertyChanged(ppt);
 }

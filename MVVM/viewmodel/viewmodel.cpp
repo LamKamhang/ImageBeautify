@@ -7,6 +7,10 @@
 ViewModel::ViewModel()
     : image(new QImage())
     , subimage(new QImage())
+    , undoEnabled(new bool(false))
+    , redoEnabled(new bool(false))
+    , undoMsg(new QString())
+    , redoMsg(new QString())
 {
     viewModelSink = std::make_shared<ViewModelSink>(this);
 
@@ -22,7 +26,8 @@ ViewModel::ViewModel()
     otsucommand = std::make_shared<OtsuCommand>(this);
     houghlinedetectioncommand = std::make_shared<HoughLineDetectionCommand>(this);
     dualthresholdcommand = std::make_shared<DualThresholdCommand>(this);
-
+    undocommand = std::make_shared<UndoCommand>(this);
+    redocommand = std::make_shared<RedoCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -42,6 +47,16 @@ void ViewModel::execOpenSubDialogCommand(){
     model->main2sub();
 }
 
+void ViewModel::execUndoCommand(){
+    qDebug()<<"undo command";
+    model->undo();
+}
+
+void ViewModel::execRedoCommand(){
+    qDebug()<<"redo command";
+    model->redo();
+}
+
 void ViewModel::execFilterCommand(std::shared_ptr<JsonParameters> json){
     qDebug() << "filter command";
     // model filter
@@ -50,18 +65,32 @@ void ViewModel::execFilterCommand(std::shared_ptr<JsonParameters> json){
     int row = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["row"])->getvalue();
     int x = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["x"])->getvalue();
     int y = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["y"])->getvalue();
+    QString desc = "Filter: Type: ";
     switch (type) {
     case 0:
         qDebug()<<"mean filter command";
+        desc += "mean filter, Kernel: (Size: (";
+        desc += QString::number(col) + ", " + QString::number(row) + "), Anchor: (";
+        desc += QString::number(x) + ", " + QString::number(y) + "))";
+        model->commit(desc);
         model->meanFilter(col,row,x,y);
         break;
     case 1:
         qDebug()<<"median filter command";
+        desc += "median filter, Kernel: (Size: (";
+        desc += QString::number(col) + ", " + QString::number(row) + "), Anchor: (";
+        desc += QString::number(x) + ", " + QString::number(y) + "))";
+        model->commit(desc);
         model->medianFilter(col,row,x,y);
         break;
     case 2:
         qDebug()<<"guassian filter command";
         double sigma = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["sigma"])->getvalue();
+        desc += "median filter, Kernel: (Size: (";
+        desc += QString::number(col) + ", " + QString::number(row) + "), Anchor: (";
+        desc += QString::number(x) + ", " + QString::number(y) + "), ";
+        desc += "Sigma: " + QString::number(sigma) + ")";
+        model->commit(desc);
         model->gaussianFilter(col,row,x,y,sigma);
         break;
     }
@@ -71,18 +100,27 @@ void ViewModel::execEdgeDetectionCommand(std::shared_ptr<JsonParameters> json){
     qDebug() << "edge detection command";
     // model edge detection
     int type = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["type"])->getvalue();
+    QString desc = "Edge Detection: Type:";
     if(type == 2){
         int lo = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lo"])->getvalue();
         int hi = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["hi"])->getvalue();
         qDebug() << "canny detection command";
+        desc += "canny, ";
+        desc += "Low Threshold: " + QString::number(lo) + ", ";
+        desc += "High Threshold: " + QString::number(hi);
+        model->commit(desc);
         model->cannyEdgeDetection(lo,hi);
     } else {
         int threshold = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["threshold"])->getvalue();
         if(type == 0){
             qDebug() << "sobel detection command";
+            desc += "sobel, Threshold: " + QString::number(threshold);
+            model->commit(desc);
             model->sobelEdgeDetection(threshold);
         } else {
             qDebug() << "laplacian detection command";
+            desc += "laplacian, Threshold: " + QString(threshold);
+            model->commit(desc);
             model->laplacianEdgeDetection(threshold);
         }
     }
@@ -90,9 +128,11 @@ void ViewModel::execEdgeDetectionCommand(std::shared_ptr<JsonParameters> json){
 
 void ViewModel::execHoughCircleDetectionCommand(std::shared_ptr<JsonParameters>json){
     qDebug() << "hough circle detection command";
-    // model
+    QString desc = "Hough Transformation: Detect Circle: ";
     int lo = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["lo"])->getvalue();
     int hi = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["hi"])->getvalue();
+    desc += "Radius: from " + QString::number(lo) + " to " + QString::number(hi);
+    model->commit(desc);
     model->houghCircleDetect(lo,hi);
 }
 
@@ -101,14 +141,17 @@ void ViewModel::execChannelCommand(std::shared_ptr<EnumCommandParameters> type){
     case RED_CHANNEL:
         qDebug() << "red channel command";
         //model
+        model->commit("Channel Separation: Red");
         model->getSingleChannel(RED);
         break;
     case GREEN_CHANNEL:
         qDebug() << "green channel command";
+        model->commit("Channel Separation: Green");
         model->getSingleChannel(GREEN);
         break;
     case BLUE_CHANNEL:
         qDebug() << "blue channel command";
+        model->commit("Channel Separation: Blue");
         model->getSingleChannel(BLUE);
         break;
     default:
@@ -125,11 +168,13 @@ void ViewModel::execHoughLineDetectionCommand(){
 
 void ViewModel::execOtsuCommand(){
     qDebug()<<"execOtsuCommand()";
+    model->commit("Image Binarization: OTSU");
     model->otsu();
 }
 
 void ViewModel::execGrayScaleTransferCommand(){
     qDebug()<<"execGrayScaleTransferCommand()";
+    model->commit("Gray-Scale Transfer");
     model->grayScale();
 }
 
@@ -140,7 +185,13 @@ void ViewModel::execDualThresholdCommand(std::shared_ptr<JsonParameters> json){
     int hi = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["high"])->getvalue();
     qDebug()<<"low = "<<lo <<"high = "<<hi;
     model->dualThreshold(lo,hi);
-    if(apply)model->sub2main();
+    if(apply){
+        QString desc = "Image Binarization: DualThreshold: (low threshold: ";
+        desc += QString::number(lo) + ", ";
+        desc += "high threshold: " + QString::number(hi) + ")";
+        model->commit(desc);
+        model->sub2main();
+    }
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
@@ -153,6 +204,14 @@ std::shared_ptr<ICommandBase> ViewModel::getSaveFileCommand(){
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenSubDialogCommand(){
     return opensubdialogcommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getUndoCommand(){
+    return undocommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getRedoCommand(){
+    return redocommand;
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getFilterCommand(){
@@ -196,10 +255,30 @@ std::shared_ptr<QImage> ViewModel::getSubImage(){
     return subimage;
 }
 
+std::shared_ptr<bool> ViewModel::getUndoEnabled(){
+    return undoEnabled;
+}
+std::shared_ptr<bool> ViewModel::getRedoEnabled(){
+    return redoEnabled;
+}
+std::shared_ptr<QString> ViewModel::getUndoMsg(){
+    return undoMsg;
+}
+std::shared_ptr<QString> ViewModel::getRedoMsg(){
+    return redoMsg;
+}
+
 void ViewModel::setImageFromModel(){
     *image = model->getMain();
 }
 
 void ViewModel::setSubImageFromModel(){
     *subimage = model->getSub();
+}
+
+void ViewModel::updateLogManagerFromModel(){
+    *undoEnabled = model->undoEnabled();
+    *redoEnabled = model->redoEnabled();
+    *undoMsg = model->getUndoMsg();
+    *redoMsg = model->getRedoMsg();
 }
