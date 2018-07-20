@@ -63,15 +63,15 @@ void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 膨胀
-void ArtEffect::_dilate(const cv::Mat &src, cv::Mat &dst, int shape, int size)
+void ArtEffect::_dilate(const cv::Mat &src, cv::Mat &dst)
 {
-	dilate(src, dst, getStructuringElement(shape, Size(size, size)));
+	dilate(src, dst, getStructuringElement(MORPH_RECT, Size(5, 5)));
 }
 
 // 腐蚀
-void ArtEffect::_erode(const cv::Mat &src, cv::Mat &dst, int shape, int size)
+void ArtEffect::_erode(const cv::Mat &src, cv::Mat &dst)
 {
-	erode(src, dst, getStructuringElement(shape, Size(size, size)));
+	erode(src, dst, getStructuringElement(MORPH_RECT, Size(5, 5)));
 }
 
 // 磨砂玻璃

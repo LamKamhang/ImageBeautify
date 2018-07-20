@@ -21,9 +21,9 @@ public:
     // 雕刻
     static void _sculpture(const cv::Mat &src, cv::Mat &dst);
     // 膨胀
-    static void _dilate(const cv::Mat &src, cv::Mat &dst, int shape = cv::MORPH_RECT, int size = 5);
+    static void _dilate(const cv::Mat &src, cv::Mat &dst);
     // 腐蚀
-    static void _erode(const cv::Mat &src, cv::Mat &dst, int shape = cv::MORPH_RECT, int size = 5);
+    static void _erode(const cv::Mat &src, cv::Mat &dst);
     // 磨砂玻璃
     static void _frostGlass(const cv::Mat &src, cv::Mat &dst);
     // 手稿
@@ -40,6 +40,6 @@ public:
     static void _freezing(const cv::Mat &src, cv::Mat &dst);
     // 熔铸
     static void _casting(const cv::Mat &src, cv::Mat &dst);
-    // 连环画
+    // 黑白漫画
     static void _comicStrip(const cv::Mat &src, cv::Mat &dst);
 };
