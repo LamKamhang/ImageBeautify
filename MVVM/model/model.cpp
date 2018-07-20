@@ -26,6 +26,7 @@ bool Model::open_file(const QString &path)
         QImage tmp(originImg);
 		mainImg = tmp;
         Fire_OnPropertyChanged(MAIN_IMAGE);
+        return true;
     }
 }
 
