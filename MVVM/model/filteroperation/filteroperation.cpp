@@ -1,6 +1,7 @@
 #include "../model.h"
 #include "../filters/art_effect.h"
-#include "../common/util.h"
+#include "../../common/util.h"
+
 // 浮雕
 void Model::_emboss()
 {

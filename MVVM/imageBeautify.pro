@@ -91,7 +91,7 @@ HEADERS += \
 #    viewmodel/commands/BinaryMorphodCommand.h \
     viewmodel/commands/channelcommand.h \
 #    viewmodel/commands/ClipCommand.h \
-#    viewmodel/commands/CurveCommand.h \
+    viewmodel/commands/CurveCommand.h \
     viewmodel/commands/dualthresholdcommand.h \
     viewmodel/commands/edgedetectioncommand.h \
     viewmodel/commands/filtercommand.h \
@@ -116,7 +116,7 @@ SOURCES += \
     app/app.cpp \
     app/main.cpp \
     common/util.cpp \
-    model/filteroperation/filteroperation.cpp \
+#    model/filteroperation/filteroperation.cpp \
     model/filters/art_effect.cpp \
 #    model/filters/basic_effect.cpp \
 #    model/filters/blur.cpp \
@@ -145,7 +145,7 @@ SOURCES += \
 #    viewmodel/commands/BinaryMorphodCommand.cpp \
     viewmodel/commands/channelcommand.cpp \
 #    viewmodel/commands/ClipCommand.cpp \
-#    viewmodel/commands/CurveCommand.cpp \
+    viewmodel/commands/CurveCommand.cpp \
     viewmodel/commands/dualthresholdcommand.cpp \
     viewmodel/commands/edgedetectioncommand.cpp \
     viewmodel/commands/filtercommand.cpp \
