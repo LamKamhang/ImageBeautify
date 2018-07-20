@@ -14,5 +14,6 @@
 
 class LemoEffect
 {
-   
+   static void _nostalgia(const cv::Mat &scr,cv::Mat &dst);//怀旧
+   static void _BlackComic(const cv::Mat &scr,cv::Mat &dst);//连环画
 }

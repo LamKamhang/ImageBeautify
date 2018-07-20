@@ -57,12 +57,13 @@ DEPENDPATH += $$PWD/../OpenCV/win32/include
 CONFIG += c++14
 
 HEADERS += \
-    app/app.h \
+    APP/app.h \
     common/etlbase.h \
     common/parameters.h \
     common/type.h \
     common/util.h \
     model/imageoperation/aux_image_alg.h \
+    model/logoperation/aux_log_alg.h \
     model/model.h \
     view/sinks/mainimagesink.h \
     view/edgedetectiondialog.h \
@@ -72,21 +73,23 @@ HEADERS += \
     viewmodel/commands/channelcommand.h \
     viewmodel/commands/edgedetectioncommand.h \
     viewmodel/commands/filtercommand.h \
+    viewmodel/commands/grayscaletransfercommand.h \
     viewmodel/commands/houghcircledetectioncommand.h \
+    viewmodel/commands/houghlinedetectioncommand.h \
     viewmodel/commands/openfilecommand.h \
+    viewmodel/commands/otsucommand.h \
     viewmodel/commands/savefilecommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h \
-    viewmodel/commands/grayscaletransfercommand.h \
-    viewmodel/commands/otsucommand.h \
-    viewmodel/commands/houghlinedetectioncommand.h
+    viewmodel/viewmodel.h
 
 SOURCES += \
-    app/app.cpp \
-    app/main.cpp \
+    APP/app.cpp \
+    APP/main.cpp \
     common/util.cpp \
     model/imageoperation/aux_image_alg.cpp \
     model/imageoperation/imageoperation.cpp \
+    model/logoperation/aux_log_alg.cpp \
+    model/logoperation/logoperation.cpp \
     model/model.cpp \
     view/sinks/mainimagesink.cpp \
     view/edgedetectiondialog.cpp \
@@ -96,11 +99,12 @@ SOURCES += \
     viewmodel/commands/channelcommand.cpp \
     viewmodel/commands/edgedetectioncommand.cpp \
     viewmodel/commands/filtercommand.cpp \
+    viewmodel/commands/grayscaletransfercommand.cpp \
     viewmodel/commands/houghcircledetectioncommand.cpp \
+    viewmodel/commands/houghlinedetectioncommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
+    viewmodel/commands/otsucommand.cpp \
     viewmodel/commands/savefilecommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp \
-    viewmodel/commands/grayscaletransfercommand.cpp \
-    viewmodel/commands/otsucommand.cpp \
-    viewmodel/commands/houghlinedetectioncommand.cpp
+    viewmodel/viewmodel.cpp
+

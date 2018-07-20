@@ -1,5 +1,13 @@
-#ifndef IMAGEOPERATIONS_H
-#define IMAGEOPERATIONS_H
+/*
+ * File: aux_image_alg.h
+ * Version: 1.0
+ * Author: kk
+ * Created Date: Fri Jul 20 13:23:58 DST 2018
+ * -------------------------------------------
+ * 图像基本操作算法辅助类
+ */
+
+#pragma once
 
 #include "../../common/type.h"
 #include <QImage>
@@ -207,5 +215,3 @@ public:
     WatershedPixel* at(int i) { return watershedStructure.at(i); }
 };
 
-
-#endif // IMAGEOPERATIONS_H
