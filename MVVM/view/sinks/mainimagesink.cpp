@@ -10,6 +10,8 @@ void MainImageSink::OnPropertyChanged(const propertyType pt)
 {
     if(pt == MAIN_IMAGE){
         mainview->update();
+    } else if(pt == SUB_IMAGE){
+        mainview->updateSubImage();
     }
 }
 

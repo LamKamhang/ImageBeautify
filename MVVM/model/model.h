@@ -11,6 +11,7 @@
 #include <string>
 #include "../common/etlbase.h"
 #include "imageoperation/aux_image_alg.h"
+#include "logoperation/aux_log_alg.h"
 
 
 class Model
@@ -74,9 +75,22 @@ public:
     bool isBinaryImage();
     bool isGrayImage();
 
+    // log operation
+    bool redo();
+    bool undo();
+    QString getRedoMsg();
+    QString getUndoMsg();
+    bool commit(const QString &cmd);
+    bool redoEnabled();
+    bool undoEnabled();
+    bool clear();
+
+
 private:
     QImage originImg;
     QImage mainImg;
     QImage subImg;
     QImage tmpImg;
+
+    Log log;
 };

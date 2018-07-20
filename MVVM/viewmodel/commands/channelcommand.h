@@ -5,6 +5,8 @@
 #include "../../common/parameters.h"
 #include "../../common/type.h"
 
+class ViewModel;
+
 class ChannelCommand
     : public ICommandBase
 {

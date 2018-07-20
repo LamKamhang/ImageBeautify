@@ -541,7 +541,7 @@ QImage ImageOperations::sobelEdgeDetection(QImage img, int threshold){
     QColor color;
     int dx[9] = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
     int dy[9] = {1, 2, 1, 0, 0, 0, -1, -2, -1};
-    int gx, gy, g, grayScale;
+    int gx, gy, g, grayscale;
 
     for(int j = 0; j < h; j++){
         for(int i = 0; i < w; i++){
@@ -552,9 +552,9 @@ QImage ImageOperations::sobelEdgeDetection(QImage img, int threshold){
                 gy = 0;
                 for(int r = j - 1; r < j + 2; r++){
                     for(int c = i - 1; c < i + 2; c++){
-                        grayScale = qRed(img.pixel(c, r));
-                        gx += dx[3 * (r - j + 1) + c - i + 1] * grayScale;
-                        gy += dy[3 * (r - j + 1) + c - i + 1] * grayScale;
+                        grayscale = qRed(img.pixel(c, r));
+                        gx += dx[3 * (r - j + 1) + c - i + 1] * grayscale;
+                        gy += dy[3 * (r - j + 1) + c - i + 1] * grayscale;
                     }
                 }
                 g = abs(gx) + abs(gy);
@@ -578,7 +578,7 @@ QImage ImageOperations::laplacianEdgeDetection(QImage img, int threshold){
     QImage newImage = QImage(w, h, img.format());
     QColor color;
     int laplacian[9] = {0, -1, 0, -1, 4, -1, 0, -1, 0};
-    int num, grayScale;
+    int num, grayscale;
 
     for(int j = 0; j < h; j++){
         for(int i = 0; i < w; i++){
@@ -588,8 +588,8 @@ QImage ImageOperations::laplacianEdgeDetection(QImage img, int threshold){
                 num = 0;
                 for(int r = j - 1; r < j + 2; r++){
                     for(int c = i - 1; c < i + 2; c++){
-                        grayScale = qRed(img.pixel(c, r));
-                        num += laplacian[3 * (r - j + 1) + c - i + 1] * grayScale;
+                        grayscale = qRed(img.pixel(c, r));
+                        num += laplacian[3 * (r - j + 1) + c - i + 1] * grayscale;
                     }
                 }
                 num = abs(num);
@@ -616,7 +616,7 @@ QImage ImageOperations::cannyEdgeDetection(QImage img, int lo, int hi){
     QImage nmsImage = QImage(w, h, img.format());
     int dx[9] = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
     int dy[9] = {1, 2, 1, 0, 0, 0, -1, -2, -1};
-    int gx, gy, g, grayScale;
+    int gx, gy, g, grayscale;
     double theta;
 
     for(int j = 1; j < h - 1; j++){
@@ -625,9 +625,9 @@ QImage ImageOperations::cannyEdgeDetection(QImage img, int lo, int hi){
             gy = 0;
             for(int r = j - 1; r < j + 2; r++){
                 for(int c = i - 1; c < i + 2; c++){
-                    grayScale = qRed(img.pixel(c, r));
-                    gx += dx[3 * (r - j + 1) + c - i + 1] * grayScale;
-                    gy += dy[3 * (r - j + 1) + c - i + 1] * grayScale;
+                    grayscale = qRed(img.pixel(c, r));
+                    gx += dx[3 * (r - j + 1) + c - i + 1] * grayscale;
+                    gy += dy[3 * (r - j + 1) + c - i + 1] * grayscale;
                 }
             }
             g = abs(gx) + abs(gy);
