@@ -15,5 +15,5 @@ public:
 
 private:
     ViewModel* viewmodel;
-    std::shared_ptr<JsonParameters> json;
+    std::shared_ptr<VectorParameters<int> > histo;
 };

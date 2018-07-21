@@ -12,11 +12,30 @@
 
 #include <string>
 #include <map>
+#include <vector>
+
 #include "type.h"
-#include "../model/imageoperation/aux_image_alg.h"
 #include <QString>
 #include <QVector>
 #include <QPoint>
+
+typedef struct
+{
+    int Shadow;
+    float Midtones;
+    int Highlight;
+    int OutShadow;
+    int OutHighlight;
+}ColorLevelItem, *PColorLevelItem;
+
+typedef struct
+{
+    ColorLevelItem Blue;
+    ColorLevelItem Green;
+    ColorLevelItem Red;
+    ColorLevelItem RGB;
+}ColorLevelData, *PColorLevelData;
+
 
 class ParametersBase
 {
@@ -199,4 +218,18 @@ public:
     enum commandsType getvalue() { return value; }
 private:
     enum commandsType value;
+};
+
+template<typename T>
+class VectorParameters
+    : public ParametersBase
+{
+public:
+    VectorParameters(const std::vector<T> &value):
+        value(value)
+    {}
+    void setvalue(const std::vector<T> &value){this->value = value; }
+    std::vector<T> getvalue() {return value; }
+private:
+    std::vector<T> value;
 };

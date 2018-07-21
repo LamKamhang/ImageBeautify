@@ -275,17 +275,14 @@ void MainView::scale(){
    ScaleDialog *dialog = new ScaleDialog();
    connect(dialog,SIGNAL(sendApplyScale(std::shared_ptr<JsonParameters>))
            , this,SLOT(receiveApplyScale(std::shared_ptr<JsonParameters>)));
-   connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
    dialog->exec();
 }
 
 void MainView::histogram(){
-//    openSubDialogCommand->Exec();// set mainimg to subimg
-//    HistogramDialog *dialog = new HistogramDialog(subimage);
-//    connect(dialog,SIGNAL(sendApplyHistogram(std::shared_ptr<JsonParameters>))
-//            , this,SLOT(receiveApplyHistogram(std::shared_ptr<JsonParameters>)));
-//    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
-//    dialog->exec();
+   HistogramDialog *dialog = new HistogramDialog(image);
+   connect(dialog,SIGNAL(sendApplyHistogramEqualization(std::shared_ptr<VectorParameters<int> >))
+           , this,SLOT(receiveApplyHistogram(std::shared_ptr<VectorParameters<int> >)));
+   dialog->exec();
 }
 
 void MainView::otsu(){
@@ -326,8 +323,8 @@ void MainView::receiveApplyScale(std::shared_ptr<JsonParameters> json){
     scaleCommand->Exec();
 }
 
-void MainView::receiveApplyHistogram(std::shared_ptr<JsonParameters> json){
-    histogramCommand->SetParameter(json);
+void MainView::receiveApplyHistogram(std::shared_ptr<VectorParameters<int> > histo){
+    histogramCommand->SetParameter(histo);
     histogramCommand->Exec();
 }
 

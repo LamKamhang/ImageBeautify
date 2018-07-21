@@ -33,8 +33,8 @@ ViewModel::ViewModel()
     curvecommand = std::make_shared<CurveCommand>(this);
     levelcommand = std::make_shared<LevelCommand>(this);
     clipcommand = std::make_shared<ClipCommand>(this);
-   scalecommand = std::make_shared<ScaleCommand>(this);
-//    histogramcommand = std::make_shared<HistogramCommand>(this);
+    scalecommand = std::make_shared<ScaleCommand>(this);
+    histogramcommand = std::make_shared<HistogramCommand>(this);
 //    algebraiccommand = std::make_shared<AlgebraicCommand>(this);
 //    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
 //    graymorphodcommand = std::make_shared<GrayMorphodCommand>(this);
@@ -293,9 +293,11 @@ void ViewModel::execScaleCommand(std::shared_ptr<JsonParameters> json)
         model->nearnestInterpolation(scale, rotation);(scale, rotation);
     }
 }
-void ViewModel::execHistogramCommand(std::shared_ptr<JsonParameters> json)
+void ViewModel::execHistogramCommand(std::shared_ptr<VectorParameters<int> > histo)
 {
     qDebug() << "execHistogramCommand";
+    model->commit("Histogram Equalization");
+    model->histogramEqualization(&(histo->getvalue())[0]);
 }
 void ViewModel::execAlgebraicCommand(std::shared_ptr<JsonParameters> json)
 {
@@ -411,11 +413,11 @@ std::shared_ptr<ICommandBase> ViewModel::getScaleCommand()
     return scalecommand;
 }
 
-//std::shared_ptr<ICommandBase> ViewModel::getHistogramCommand()
-//{
-//    qDebug() << "getHistogramCommand";
-//    return histogramcommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getHistogramCommand()
+{
+    qDebug() << "getHistogramCommand";
+    return histogramcommand;
+}
 
 //std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
 //{

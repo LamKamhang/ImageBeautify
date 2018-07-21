@@ -6,10 +6,10 @@ HistogramCommand::HistogramCommand(ViewModel* vm)
 }
 
 void HistogramCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
-    json = std::static_pointer_cast<JsonParameters,ParametersBase>(param);
+    histo = std::static_pointer_cast<VectorParameters<int>,ParametersBase>(param);
 }
 
 void HistogramCommand::Exec(){
-    viewmodel->execHistogramCommand(json);
+    viewmodel->execHistogramCommand(histo);
     viewmodel->Fire_OnCommandComplete(HISTOGRAM, true);
 }

@@ -367,12 +367,6 @@ bool Model::expContrastAdjust(double a, double b)
     return true;
 }
 
-bool Model::getHistogram(int *histo)
-{
-    ImageOperations::getHistogram(mainImg, histo);
-    return true;
-}
-
 bool Model::histogramEqualization(int *histo)
 {
     QImage tmp(ImageOperations::histogramEqualization(mainImg, histo));

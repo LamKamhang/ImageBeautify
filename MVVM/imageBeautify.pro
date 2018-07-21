@@ -82,6 +82,7 @@ HEADERS += \
     view/edgedetectiondialog.h \
     view/filterdialog.h \
     view/histogramdialog.h \
+    view/histogramview.h    \
     view/houghcircledetectiondialog.h \
     view/huesaturalightdialog.h \
     view/leveldialog.h \
@@ -97,7 +98,7 @@ HEADERS += \
     viewmodel/commands/filtercommand.h \
 #    viewmodel/commands/GrayMorphodCommand.h \
     viewmodel/commands/grayscaletransfercommand.h \
-#    viewmodel/commands/HistogramCommand.h \
+    viewmodel/commands/HistogramCommand.h \
     viewmodel/commands/houghcircledetectioncommand.h \
     viewmodel/commands/houghlinedetectioncommand.h \
     viewmodel/commands/huesaturalightcommand.h \
@@ -137,6 +138,7 @@ SOURCES += \
     view/edgedetectiondialog.cpp \
     view/filterdialog.cpp \
     view/histogramdialog.cpp \
+    view/histogramview.cpp  \
     view/houghcircledetectiondialog.cpp \
     view/huesaturalightdialog.cpp \
     view/leveldialog.cpp \
@@ -152,7 +154,7 @@ SOURCES += \
     viewmodel/commands/filtercommand.cpp \
 #    viewmodel/commands/GrayMorphodCommand.cpp \
     viewmodel/commands/grayscaletransfercommand.cpp \
-#    viewmodel/commands/HistogramCommand.cpp \
+    viewmodel/commands/HistogramCommand.cpp \
     viewmodel/commands/houghcircledetectioncommand.cpp \
     viewmodel/commands/houghlinedetectioncommand.cpp \
     viewmodel/commands/huesaturalightcommand.cpp \

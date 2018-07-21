@@ -69,7 +69,6 @@ public:
     bool pieceLinContrastAdjust(int x1, int y1, int x2, int y2);
     bool logContrastAdjust(double a, double b);
     bool expContrastAdjust(double a, double b);
-    bool getHistogram(int *histo);
     bool histogramEqualization(int *histo);
     bool colorLevel(PColorLevelData clData);
     bool watershed();

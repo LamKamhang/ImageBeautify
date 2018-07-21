@@ -123,7 +123,7 @@ private slots:
     void receiveApplyLevel(std::shared_ptr<JsonParameters>);
     void receiveApplyClip(std::shared_ptr<JsonParameters>);
     void receiveApplyScale(std::shared_ptr<JsonParameters>);
-    void receiveApplyHistogram(std::shared_ptr<JsonParameters>);
+    void receiveApplyHistogram(std::shared_ptr<VectorParameters<int> >);
     void receiveApplyAlgebraic(std::shared_ptr<JsonParameters>);
 
     // special effects
