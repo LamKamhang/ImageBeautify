@@ -14,6 +14,8 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setRedoEnabled(viewmodel->getRedoEnabled());
     view->setUndoMsg(viewmodel->getUndoMsg());
     view->setRedoMsg(viewmodel->getRedoMsg());
+    view->setIsBinary(viewmodel->getIsBinary());
+    view->setIsGray(viewmodel->getIsGray());
 
     view->setOpenFileCommand(viewmodel->getOpenFileCommand());
     view->setSaveFileCommand(viewmodel->getSaveFileCommand());
@@ -42,6 +44,7 @@ ImageBeautifyApp::ImageBeautifyApp()
 //    view->setGrayMorphodCommand(viewmodel->getGrayMorphodCommand());
 
     viewmodel->AddPropertyNotification(view->getMainViewSink());
+    viewmodel->AddCommandNotification(view->getMainCommandSink());
 }
 
 void ImageBeautifyApp::run(){

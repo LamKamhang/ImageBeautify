@@ -546,12 +546,24 @@ void MainView::setRedoMsg(std::shared_ptr<QString> r){
     redoMsg = r;
 }
 
+void MainView::setIsBinary(std::shared_ptr<bool> binary){
+    isBinary = binary;
+}
+
+void MainView::setIsGray(std::shared_ptr<bool> gray){
+    isGray = gray;
+}
+
 void MainView::setOpenFileCommand(std::shared_ptr<ICommandBase> command){
     openFileCommand = command;
 }
 
 void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
     saveFileCommand = command;
+}
+
+void MainView::setBinaryMorphologyCommand(std::shared_ptr<ICommandBase> command){
+    binaryMorphologyCommand = command;
 }
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){
@@ -632,6 +644,10 @@ void MainView::setAlgebraicCommand(std::shared_ptr<ICommandBase> command){
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
     return std::static_pointer_cast<IPropertyNotification>(mainViewSink);
+}
+
+std::shared_ptr<ICommandNotification> MainView::getMainCommandSink(){
+    return std::static_pointer_cast<ICommandNotification>(mainCommandSink);
 }
 
 void MainView::mouseMoveEvent(QMouseEvent *e){
