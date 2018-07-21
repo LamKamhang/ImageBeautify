@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include "type.h"
+#include "../model/imageoperation/aux_image_alg.h"
 #include <QString>
 #include <QVector>
 #include <QPoint>
@@ -98,6 +99,42 @@ public:
 private:
     QPoint value;
 };
+
+//typedef struct
+//{
+//    int Shadow;
+//    float Midtones;
+//    int Highlight;
+//    int OutShadow;
+//    int OutHighlight;
+//}ColorLevelItem, *PColorLevelItem;
+
+//typedef struct
+//{
+//    ColorLevelItem Blue;
+//    ColorLevelItem Green;
+//    ColorLevelItem Red;
+//    ColorLevelItem RGB;
+//}ColorLevelData, *PColorLevelData;
+
+class ColorLevelDataParameters
+    : public ParametersBase
+{
+public:
+    ColorLevelDataParameters(const ColorLevelData& value)
+        : value(value)
+    {}
+    void setvalue(ColorLevelData v){
+        ColorLevelData tmp(v);
+        value = tmp;
+    }
+    ColorLevelData getvalue(){ return value; }
+private:
+    ColorLevelData value;
+};
+
+
+
 
 class BoolParameters
     :public ParametersBase

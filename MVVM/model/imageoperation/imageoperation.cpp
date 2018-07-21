@@ -383,7 +383,7 @@ bool Model::histogramEqualization(int *histo)
 
 bool Model::colorLevel(PColorLevelData clData)
 {
-    QImage tmp(ImageOperations::colorLevel(subImg, clData));
+    QImage tmp(ImageOperations::colorLevel(mainImg, clData));
 	subImg = tmp;
     Fire_OnPropertyChanged(SUB_IMAGE);
     return true;

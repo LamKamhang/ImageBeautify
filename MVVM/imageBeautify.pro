@@ -62,7 +62,7 @@ HEADERS += \
     common/parameters.h \
     common/type.h \
     common/util.h \
-    model/filters/art_effect.h \
+#    model/filters/art_effect.h \
 #    model/filters/basic_effect.h \
 #    model/filters/blur.h \
 #    model/filters/fasion_effect.h \
@@ -74,7 +74,7 @@ HEADERS += \
     model/logoperation/aux_log_alg.h \
     model/model.h \
     view/sinks/mainimagesink.h \
-    view/algebraicdialog.h \
+#    view/algebraicdialog.h \
     view/clipdialog.h \
     view/curvecanvas.h \
     view/curvedialog.h \
@@ -90,7 +90,7 @@ HEADERS += \
 #    viewmodel/commands/AlgebraicCommand.h \
 #    viewmodel/commands/BinaryMorphodCommand.h \
     viewmodel/commands/channelcommand.h \
-#    viewmodel/commands/ClipCommand.h \
+    viewmodel/commands/ClipCommand.h \
     viewmodel/commands/CurveCommand.h \
     viewmodel/commands/dualthresholdcommand.h \
     viewmodel/commands/edgedetectioncommand.h \
@@ -101,7 +101,7 @@ HEADERS += \
     viewmodel/commands/houghcircledetectioncommand.h \
     viewmodel/commands/houghlinedetectioncommand.h \
     viewmodel/commands/huesaturalightcommand.h \
-#    viewmodel/commands/LevelCommand.h \
+    viewmodel/commands/LevelCommand.h \
     viewmodel/commands/openfilecommand.h \
     viewmodel/commands/opensubdialogcommand.h \
     viewmodel/commands/otsucommand.h \
@@ -110,14 +110,15 @@ HEADERS += \
 #    viewmodel/commands/ScaleCommand.h \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h
+    viewmodel/viewmodel.h \
+    view/clipbox.h
 
 SOURCES += \
     app/app.cpp \
     app/main.cpp \
     common/util.cpp \
 #    model/filteroperation/filteroperation.cpp \
-    model/filters/art_effect.cpp \
+#    model/filters/art_effect.cpp \
 #    model/filters/basic_effect.cpp \
 #    model/filters/blur.cpp \
 #    model/filters/human_effect.cpp \
@@ -128,7 +129,7 @@ SOURCES += \
     model/logoperation/logoperation.cpp \
     model/model.cpp \
     view/sinks/mainimagesink.cpp \
-    view/algebraicdialog.cpp \
+#    view/algebraicdialog.cpp \
     view/clipdialog.cpp \
     view/curvecanvas.cpp \
     view/curvedialog.cpp \
@@ -144,7 +145,7 @@ SOURCES += \
 #    viewmodel/commands/AlgebraicCommand.cpp \
 #    viewmodel/commands/BinaryMorphodCommand.cpp \
     viewmodel/commands/channelcommand.cpp \
-#    viewmodel/commands/ClipCommand.cpp \
+    viewmodel/commands/ClipCommand.cpp \
     viewmodel/commands/CurveCommand.cpp \
     viewmodel/commands/dualthresholdcommand.cpp \
     viewmodel/commands/edgedetectioncommand.cpp \
@@ -155,7 +156,7 @@ SOURCES += \
     viewmodel/commands/houghcircledetectioncommand.cpp \
     viewmodel/commands/houghlinedetectioncommand.cpp \
     viewmodel/commands/huesaturalightcommand.cpp \
-#    viewmodel/commands/LevelCommand.cpp \
+    viewmodel/commands/LevelCommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
     viewmodel/commands/opensubdialogcommand.cpp \
     viewmodel/commands/otsucommand.cpp \
@@ -164,5 +165,6 @@ SOURCES += \
 #    viewmodel/commands/ScaleCommand.cpp \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp
+    viewmodel/viewmodel.cpp \
+    view/clipbox.cpp
 

@@ -4,12 +4,11 @@
 #include <cstring>
 
 using namespace std;
-using namespace cv;
 
 // 浮雕
 void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
 {
-    Mat img(src.size(), CV_8UC3);
+    cv::Mat img(src.size(), CV_8UC3);
 	for (int y=1; y<src.rows-1; y++)
 	{
         const uchar *p0 = src.ptr<uchar>(y);
@@ -37,7 +36,7 @@ void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
 // 雕刻
 void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 {
-	Mat img(src.size(),CV_8UC3);
+    cv::Mat img(src.size(),CV_8UC3);
 	for (int y=1; y<src.rows-1; y++)
 	{
         const uchar *p0 = src.ptr<uchar>(y);
@@ -107,7 +106,7 @@ void ArtEffect::_sketch(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
-	Mat gray0, gray1;
+    cv::Mat gray0, gray1;
 	//去色
 	cvtColor(src,gray0,CV_BGR2GRAY);
 	//反色
@@ -116,7 +115,7 @@ void ArtEffect::_sketch(const cv::Mat &src, cv::Mat &dst)
 	GaussianBlur(gray1,gray1,Size(11,11),0);
  
 	//融合：颜色减淡
-	Mat img(gray1.size(),CV_8UC1);
+    cv::Mat img(gray1.size(),CV_8UC1);
 	for (int y=0; y<heigh; y++)
 	{
  
@@ -189,7 +188,7 @@ void ArtEffect::_memory(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
-	Mat img(src.size(),CV_8UC3);
+    cv::Mat img(src.size(),CV_8UC3);
 	for (int y=0; y<heigh; y++)
 	{
         const uchar* P0  = src.ptr<uchar>(y);
@@ -221,7 +220,7 @@ void ArtEffect::_freezing(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
-	Mat tmp(src.size(),CV_8UC3);
+    cv::Mat tmp(src.size(),CV_8UC3);
 	for (int y=0;y<heigh;y++)
 	{
         const uchar* imgP=src.ptr<uchar>(y);
@@ -252,7 +251,7 @@ void ArtEffect::_casting(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
-	Mat tmp(src.size(),CV_8UC3);
+    cv::Mat tmp(src.size(),CV_8UC3);
 	for (int y=0;y<heigh;y++)
 	{
         const uchar* imgP=src.ptr<uchar>(y);
@@ -284,7 +283,7 @@ void ArtEffect::_comicStrip(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
-	Mat img(src.size(),CV_8UC3);
+    cv::Mat img(src.size(),CV_8UC3);
 	for (int y=0; y<heigh; y++)
 	{
         const uchar* P0  = src.ptr<uchar>(y);

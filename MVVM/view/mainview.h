@@ -22,7 +22,7 @@
 #include "../view/clipdialog.h"
 #include "../view/scaledialog.h"
 #include "../view/histogramdialog.h"
-#include "../view/algebraicdialog.h"
+//#include "../view/algebraicdialog.h"
 
 namespace UI {
 class MainView;
