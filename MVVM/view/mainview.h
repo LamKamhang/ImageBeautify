@@ -22,7 +22,7 @@
 #include "../view/clipdialog.h"
 #include "../view/scaledialog.h"
 #include "../view/histogramdialog.h"
-//#include "../view/algebraicdialog.h"
+#include "../view/algebraicdialog.h"
 
 namespace UI {
 class MainView;
@@ -49,6 +49,7 @@ public:
     void setOpenFileCommand(std::shared_ptr<ICommandBase>);
     void setSaveFileCommand(std::shared_ptr<ICommandBase>);
     void setOpenSubDialogCommand(std::shared_ptr<ICommandBase>);
+    void setOpenSubFileCommand(std::shared_ptr<ICommandBase>);
     void setUndoCommand(std::shared_ptr<ICommandBase>);
     void setRedoCommand(std::shared_ptr<ICommandBase>);
 
@@ -125,6 +126,7 @@ private slots:
     void receiveApplyScale(std::shared_ptr<JsonParameters>);
     void receiveApplyHistogram(std::shared_ptr<JsonParameters>);
     void receiveApplyAlgebraic(std::shared_ptr<JsonParameters>);
+    void receiveAlgebraicOpenFileImage2(QString);
 
     // special effects
     void hotSpecialEffects();
@@ -192,6 +194,7 @@ private:
     std::shared_ptr<ICommandBase> openFileCommand;
     std::shared_ptr<ICommandBase> saveFileCommand;
     std::shared_ptr<ICommandBase> openSubDialogCommand;
+    std::shared_ptr<ICommandBase> openSubFileCommand;
     std::shared_ptr<ICommandBase> undoCommand;
     std::shared_ptr<ICommandBase> redoCommand;
 

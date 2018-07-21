@@ -11,7 +11,7 @@ bool Model::imageAdd(double param1, double param2)
     else
     {
         QImage tmp(ImageOperations::imageAdd(mainImg, subImg, param1, param2));
-	mainImg = tmp;
+        mainImg = tmp;
         Fire_OnPropertyChanged(MAIN_IMAGE);
         return true;
     }
@@ -26,7 +26,7 @@ bool Model::imageSubtract(double param1, double param2)
     else
     {
         QImage tmp(ImageOperations::imageSubtract(mainImg, subImg, param1, param2));
-	mainImg = tmp;
+        mainImg = tmp;
         Fire_OnPropertyChanged(MAIN_IMAGE);
         return true;
     }
@@ -41,7 +41,7 @@ bool Model::imageMultiply()
     else
     {
         QImage tmp(ImageOperations::imageMultiply(mainImg, subImg));
-	mainImg = tmp;
+        mainImg = tmp;
         Fire_OnPropertyChanged(MAIN_IMAGE);
         return true;
     }
