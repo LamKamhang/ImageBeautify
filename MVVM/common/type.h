@@ -40,6 +40,7 @@ enum commandsType{
     ALGEBRAIC_MULTIPLY,
     BINARY_MORPHOD,
     GRAY_MORPHOD,
+    ART_EFFECTS,
 };
 
 enum propertyType{
@@ -53,4 +54,21 @@ enum ChannelType{
     RED,
     GREEN,
     BLUE,
+};
+
+enum EffectsType{
+    NOEFFECTS,
+    EMBOSS,
+    SCULPTURE,
+    DILATE,
+    ERODE,
+    FROSTGLASS,
+    SKETCH,
+    OILPAINT,
+    WOODCUT,
+    INVERTED,
+    MEMORY,
+    FREEZING,
+    CASTING,
+    COMICSTRIP,
 };

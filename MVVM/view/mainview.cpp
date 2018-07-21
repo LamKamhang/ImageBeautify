@@ -26,6 +26,7 @@ MainView::MainView()
     , scaleFactor(1)
 {
     mainViewSink = std::make_shared<MainImageSink>(MainImageSink(this));
+    mainCommandSink = std::make_shared<MainCommandSink>(MainCommandSink(this));
 
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -393,16 +394,16 @@ void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> 
 }
 
 void MainView::binaryMorphology(){
-    if(!(*isBinary)){
-        QMessageBox msgBox(QMessageBox::Warning, tr("Warning"),
-                           tr("Current image is not binary image."));
-        msgBox.exec();
-        return ;
-    }
-    BinaryMorphoDialog *dialog = new BinaryMorphoDialog();
-    connect(dialog, SIGNAL(sendApplyBinaryMorpho(QJsonObject)),
-            this, SLOT(receiveApplyBinaryMorpho(QJsonObject)));
-    dialog->exec();
+//    if(!(*isBinary)){
+//        QMessageBox msgBox(QMessageBox::Warning, tr("Warning"),
+//                           tr("Current image is not binary image."));
+//        msgBox.exec();
+//        return ;
+//    }
+//    BinaryMorphoDialog *dialog = new BinaryMorphoDialog();
+//    connect(dialog, SIGNAL(sendApplyBinaryMorpho(QJsonObject)),
+//            this, SLOT(receiveApplyBinaryMorpho(QJsonObject)));
+//    dialog->exec();
 }
 
 void MainView::grayMorphology(){
@@ -427,7 +428,19 @@ void MainView::basicSpecialEffects(){}
 void MainView::lomoSpecialEffects(){}
 void MainView::humanFaceSpecialEffects(){}
 void MainView::fashionSpecialEffects(){}
-void MainView::artSpecialEffects(){}
+void MainView::artSpecialEffects(){
+    openSubDialogCommand->Exec();
+    SpecialEffectDialog *dialog = new SpecialEffectDialog(subimage);
+    connect(dialog,SIGNAL(sendApplySpecialEffect(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyArtSpecialEffects(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::receiveApplyArtSpecialEffects(std::shared_ptr<JsonParameters> json){
+    artEffectsCommand->SetParameter(json);
+    artEffectsCommand->Exec();
+}
 
 /******************* frame menu ********************/
 void MainView::initializeFrameMenu(){
@@ -572,6 +585,10 @@ void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setBinaryMorphologyCommand(std::shared_ptr<ICommandBase> command){
     binaryMorphologyCommand = command;
+}
+
+void MainView::setArtEffectsCommand(std::shared_ptr<ICommandBase> command){
+    artEffectsCommand = command;
 }
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){

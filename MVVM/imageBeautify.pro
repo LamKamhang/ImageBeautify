@@ -62,7 +62,7 @@ HEADERS += \
     common/parameters.h \
     common/type.h \
     common/util.h \
-#    model/filters/art_effect.h \
+    model/filters/art_effect.h \
 #    model/filters/basic_effect.h \
 #    model/filters/blur.h \
 #    model/filters/fasion_effect.h \
@@ -114,14 +114,17 @@ HEADERS += \
     viewmodel/viewmodel.h \
     view/clipbox.h \
     viewmodel/commands/opensubfilecommand.h \
-    view/sinks/maincommandsink.h
+    view/sinks/maincommandsink.h \
+    view/specialeffectdialog.h \
+    view/clickableqlabel.h \
+    viewmodel/commands/arteffectscommand.h
 
 SOURCES += \
     app/app.cpp \
     app/main.cpp \
     common/util.cpp \
-#    model/filteroperation/filteroperation.cpp \
-#    model/filters/art_effect.cpp \
+    model/filteroperation/filteroperation.cpp \
+    model/filters/art_effect.cpp \
 #    model/filters/basic_effect.cpp \
 #    model/filters/blur.cpp \
 #    model/filters/human_effect.cpp \
@@ -172,5 +175,8 @@ SOURCES += \
     viewmodel/viewmodel.cpp \
     view/clipbox.cpp \
     viewmodel/commands/opensubfilecommand.cpp \
-    view/sinks/maincommandsink.cpp
+    view/sinks/maincommandsink.cpp \
+    view/specialeffectdialog.cpp \
+    view/clickableqlabel.cpp \
+    viewmodel/commands/arteffectscommand.cpp
 

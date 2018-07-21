@@ -87,31 +87,31 @@ public:
 
     // art effect
     // 浮雕
-//    void _emboss();
-//    // 雕刻
-//    void _sculpture();
-//    // 虚幻
-//    void _dilate();
-//    // 惊悚
-//    void _erode();
-//    // 磨砂玻璃
-//    void _frostGlass();
-//    // 手稿
-//    void _sketch();
-//    // 油画
-//    void _oilPaint();
-//    // 木刻
-//    void _woodCut();
-//    // 反色
-//    void _inverted();
-//    // 回忆
-//    void _memory();
-//    // 冰冻
-//    void _freezing();
-//    // 熔铸
-//    void _casting();
-//    // 黑白漫画
-//    void _comicStrip();
+    void _emboss();
+    // 雕刻
+    void _sculpture();
+    // 虚幻
+    void _dilate();
+    // 惊悚
+    void _erode();
+    // 磨砂玻璃
+    void _frostGlass();
+    // 手稿
+    void _sketch();
+    // 油画
+    void _oilPaint();
+    // 木刻
+    void _woodCut();
+    // 反色
+    void _inverted();
+    // 回忆
+    void _memory();
+    // 冰冻
+    void _freezing();
+    // 熔铸
+    void _casting();
+    // 黑白漫画
+    void _comicStrip();
 
 
 private:

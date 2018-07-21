@@ -9,6 +9,8 @@ ViewModel::ViewModel()
     , subimage(new QImage())
     , undoEnabled(new bool(false))
     , redoEnabled(new bool(false))
+    , isBinary(new bool(false))
+    , isGray(new bool(false))
     , undoMsg(new QString())
     , redoMsg(new QString())
 {
@@ -39,6 +41,8 @@ ViewModel::ViewModel()
     algebraiccommand = std::make_shared<AlgebraicCommand>(this);
 //    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
 //    graymorphodcommand = std::make_shared<GrayMorphodCommand>(this);
+
+    arteffectscommand = std::make_shared<ArtEffectsCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -357,6 +361,30 @@ void ViewModel::execGrayMorphodCommand(std::shared_ptr<JsonParameters> json)
     qDebug() << "execGrayMorphodCommand";
 }
 
+void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
+{
+    qDebug() << "execArtEffectsCommand";
+    enum EffectsType type = std::static_pointer_cast<EnumEffectsParameters,ParametersBase>((*json)["type"])->getvalue();
+    bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
+    int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
+    if(type == NOEFFECTS);// mixture
+    else if(type == EMBOSS)model->_emboss();
+    else if(type == SCULPTURE)model->_sculpture();
+    else if(type == DILATE)model->_dilate();
+    else if(type == ERODE)model->_erode();
+    else if(type == FROSTGLASS)model->_frostGlass();
+    else if(type == SKETCH)model->_sketch();
+    else if(type == OILPAINT)model->_oilPaint();
+    else if(type == WOODCUT)model->_woodCut();
+    else if(type == INVERTED);//model->_inverted();
+    else if(type == MEMORY)model->_memory();
+    else if(type == FREEZING)model->_freezing();
+    else if(type == CASTING)model->_casting();
+    else if(type == COMICSTRIP)model->_comicStrip();
+
+    if(apply)model->sub2main();
+}
+
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
     return openfilecommand;
 }
@@ -492,11 +520,17 @@ std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
 //    return graymorphodcommand;
 //}
 
+std::shared_ptr<ICommandBase> ViewModel::getArtEffectsCommand()
+{
+    return arteffectscommand;
+}
 
 void ViewModel::setImageFromModel(){
     *image = model->getMain();
     *isBinary = model->isBinaryImage();
     *isGray = model->isGrayImage();
+    qDebug()<<"isBinary = "<<*isBinary;
+    qDebug()<<"isGray = "<<*isGray;
 }
 
 void ViewModel::setSubImageFromModel(){

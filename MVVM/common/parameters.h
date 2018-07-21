@@ -152,9 +152,6 @@ private:
     ColorLevelData value;
 };
 
-
-
-
 class BoolParameters
     :public ParametersBase
 {
@@ -218,6 +215,19 @@ public:
     enum commandsType getvalue() { return value; }
 private:
     enum commandsType value;
+};
+
+class EnumEffectsParameters
+    : public ParametersBase
+{
+public:
+    EnumEffectsParameters(enum EffectsType type):
+        value(type)
+    {}
+    void setvalue(enum EffectsType type){ value = type; }
+    enum EffectsType getvalue() { return value; }
+private:
+    enum EffectsType value;
 };
 
 template<typename T>

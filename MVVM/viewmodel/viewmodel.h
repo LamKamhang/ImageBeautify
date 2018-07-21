@@ -30,6 +30,8 @@
 #include "commands/AlgebraicCommand.h"
 //#include "commands/BinaryMorphodCommand.h"
 //#include "commands/GrayMorphodCommand.h"
+#include "commands/arteffectscommand.h"
+
 #include "sinks/viewmodelsink.h"
 
 class OpenFileCommand;
@@ -56,6 +58,8 @@ class HistogramCommand;
 class AlgebraicCommand;
 //class BinaryMorphodCommand;
 //class GrayMorphodCommand;
+
+class ArtEffectsCommand;
 
 class ViewModel
     : public Proxy_PropertyNotification<ViewModel>
@@ -91,6 +95,8 @@ public:
     void execBinaryMorphodCommand(std::shared_ptr<JsonParameters> json);
     void execGrayMorphodCommand(std::shared_ptr<JsonParameters> json);
 
+    void execArtEffectsCommand(std::shared_ptr<JsonParameters> json);
+
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
     std::shared_ptr<ICommandBase> getOpenSubFileCommand();
@@ -116,6 +122,7 @@ public:
     std::shared_ptr<ICommandBase> getAlgebraicCommand();
 //    std::shared_ptr<ICommandBase> getBinaryMorphodCommand();
 //    std::shared_ptr<ICommandBase> getGrayMorphodCommand();
+    std::shared_ptr<ICommandBase> getArtEffectsCommand();
 
     std::shared_ptr<QImage> getImage();
     std::shared_ptr<QImage> getSubImage();
@@ -149,7 +156,6 @@ private:
 
     std::shared_ptr<OpenFileCommand> openfilecommand;
     std::shared_ptr<SaveFileCommand> savefilecommand;
-    std::shared_ptr<CheckImageCommand> checkimagecommand;
     std::shared_ptr<OpenSubFileCommand> opensubfilecommand;
     std::shared_ptr<OpenSubDialogCommand> opensubdialogcommand;
     std::shared_ptr<UndoCommand> undocommand;
@@ -173,6 +179,8 @@ private:
     std::shared_ptr<AlgebraicCommand> algebraiccommand;
 //    std::shared_ptr<BinaryMorphodCommand> binarymorphodcommand;
 //    std::shared_ptr<GrayMorphodCommand> graymorphodcommand;
+
+    std::shared_ptr<ArtEffectsCommand> arteffectscommand;
 
 };
 
