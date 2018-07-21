@@ -43,6 +43,8 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setBinaryMorphologyCommand(viewmodel->getBinaryMorphologyCommand());
     view->setGrayMorphologyCommand(viewmodel->getGrayMorphologyCommand());
 
+    view->setArtEffectsCommand(viewmodel->getArtEffectsCommand());
+
     viewmodel->AddPropertyNotification(view->getMainViewSink());
     viewmodel->AddCommandNotification(view->getMainCommandSink());
 }

@@ -86,7 +86,7 @@ public:
     bool clear();
 
     // art effect
-    //浮雕
+    // 浮雕
     void _emboss();
     // 雕刻
     void _sculpture();

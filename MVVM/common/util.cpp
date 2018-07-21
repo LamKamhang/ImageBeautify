@@ -1,4 +1,37 @@
 #include "util.h"
+#include <QImageReader>
+#include <QImageWriter>
+#include <QDebug>
+#define _PATH_  "../Cache/img.png"
+
+//QImage Tools::Mat2QImage(const cv::Mat & src)
+//{
+//     qDebug()<<"Mat2QImage";
+//     cv::imshow("hhh",src);
+//     cv::waitKey();
+//     cv::imwrite(_PATH_,src);
+//     QImageReader reader(_PATH_);
+//     reader.setAutoTransform(true);
+//     return reader.read();
+//}
+
+//cv::Mat Tools::QImage2Mat(const QImage& src)
+//{
+//    qDebug()<<"QImage2Mat";
+//    QImageWriter writer(_PATH_);
+//    if (writer.write(src))
+//    {
+//        qDebug()<<"QImage2Mat true";
+//        cv::Mat tmp = cv::imread(_PATH_);
+//        cv::imshow("emm",tmp);
+//        cv::waitKey();
+//        return tmp;
+//    }
+//    else {
+//        qDebug()<<"QImage2Mat false";
+//        return cv::Mat();
+//    }
+//}
 
 
 cv::Mat Tools::QImage2Mat(const QImage &rhs)

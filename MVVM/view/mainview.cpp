@@ -450,7 +450,19 @@ void MainView::basicSpecialEffects(){}
 void MainView::lomoSpecialEffects(){}
 void MainView::humanFaceSpecialEffects(){}
 void MainView::fashionSpecialEffects(){}
-void MainView::artSpecialEffects(){}
+void MainView::artSpecialEffects(){
+    openSubDialogCommand->Exec();
+    SpecialEffectDialog *dialog = new SpecialEffectDialog(subimage);
+    connect(dialog,SIGNAL(sendApplySpecialEffect(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyArtSpecialEffects(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
+    dialog->exec();
+}
+
+void MainView::receiveApplyArtSpecialEffects(std::shared_ptr<JsonParameters> json){
+    artEffectsCommand->SetParameter(json);
+    artEffectsCommand->Exec();
+}
 
 /******************* frame menu ********************/
 void MainView::initializeFrameMenu(){
@@ -599,6 +611,10 @@ void MainView::setBinaryMorphologyCommand(std::shared_ptr<ICommandBase> command)
 
 void MainView::setGrayMorphologyCommand(std::shared_ptr<ICommandBase> command){
     grayMorphologyCommand = command;
+}
+
+void MainView::setArtEffectsCommand(std::shared_ptr<ICommandBase> command){
+    artEffectsCommand = command;
 }
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){

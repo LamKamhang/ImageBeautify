@@ -40,6 +40,7 @@ enum commandsType{
     ALGEBRAIC_MULTIPLY,
     BINARY_MORPHOLOGY,
     GRAY_MORPHOLOGY,
+    ART_EFFECTS,
 };
 
 enum propertyType{
@@ -71,3 +72,19 @@ enum OperationType{
     WATERSHED,
 };
 
+enum EffectsType{
+    NOEFFECTS,
+    EMBOSS,
+    SCULPTURE,
+    DILATE,
+    ERODE,
+    FROSTGLASS,
+    SKETCH,
+    OILPAINT,
+    WOODCUT,
+    INVERTED,
+    MEMORY,
+    FREEZING,
+    CASTING,
+    COMICSTRIP,
+};

@@ -4,6 +4,7 @@
 #include <cstring>
 
 using namespace std;
+using namespace cv;
 
 // 浮雕
 void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
@@ -219,6 +220,11 @@ void ArtEffect::_memory(const cv::Mat &src, cv::Mat &dst)
 		}
 	}
     img.copyTo(dst);
+}
+
+void ArtEffect::_inverted(const Mat &src, Mat &dst)
+{
+    // debug
 }
 
 // 冰冻

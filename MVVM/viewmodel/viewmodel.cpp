@@ -42,6 +42,8 @@ ViewModel::ViewModel()
     algebraiccommand = std::make_shared<AlgebraicCommand>(this);
     binarymorphologycommand = std::make_shared<BinaryMorphologyCommand>(this);
     graymorphologycommand = std::make_shared<GrayMorphologyCommand>(this);
+
+    arteffectscommand = std::make_shared<ArtEffectsCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -496,6 +498,30 @@ void ViewModel::execGrayMorphologyCommand(std::shared_ptr<JsonParameters> json)
     }
 }
 
+void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
+{
+    qDebug() << "execArtEffectsCommand";
+    enum EffectsType type = std::static_pointer_cast<EnumEffectsParameters,ParametersBase>((*json)["type"])->getvalue();
+    bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
+    int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
+    if(type == NOEFFECTS);// mixture
+    else if(type == EMBOSS)model->_emboss();
+    else if(type == SCULPTURE)model->_sculpture();
+    else if(type == DILATE)model->_dilate();
+    else if(type == ERODE)model->_erode();
+    else if(type == FROSTGLASS)model->_frostGlass();
+    else if(type == SKETCH)model->_sketch();
+    else if(type == OILPAINT)model->_oilPaint();
+    else if(type == WOODCUT)model->_woodCut();
+    else if(type == INVERTED);//model->_inverted();
+    else if(type == MEMORY)model->_memory();
+    else if(type == FREEZING)model->_freezing();
+    else if(type == CASTING)model->_casting();
+    else if(type == COMICSTRIP)model->_comicStrip();
+
+    if(apply)model->sub2main();
+}
+
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
     return openfilecommand;
 }
@@ -631,15 +657,15 @@ std::shared_ptr<ICommandBase> ViewModel::getGrayMorphologyCommand()
    return graymorphologycommand;
 }
 
+std::shared_ptr<ICommandBase> ViewModel::getArtEffectsCommand()
+{
+    return arteffectscommand;
+}
 
 void ViewModel::setImageFromModel(){
-    qDebug() << "in view model set image from model";
     *image = model->getMain();
-    qDebug() << "in view model set image from model";
     *isBinary = model->isBinaryImage();
-    qDebug() << "in view model set image from model";
     *isGray = model->isGrayImage();
-    qDebug() << "in view model set image from model";
 }
 
 void ViewModel::setSubImageFromModel(){

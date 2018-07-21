@@ -30,6 +30,8 @@
 #include "commands/AlgebraicCommand.h"
 #include "commands/BinaryMorphologyCommand.h"
 #include "commands/GrayMorphologyCommand.h"
+#include "commands/arteffectscommand.h"
+
 #include "sinks/viewmodelsink.h"
 
 class OpenFileCommand;
@@ -56,6 +58,8 @@ class HistogramCommand;
 class AlgebraicCommand;
 class BinaryMorphologyCommand;
 class GrayMorphologyCommand;
+
+class ArtEffectsCommand;
 
 class ViewModel
     : public Proxy_PropertyNotification<ViewModel>
@@ -91,6 +95,8 @@ public:
     void execBinaryMorphologyCommand(std::shared_ptr<JsonParameters> json);
     void execGrayMorphologyCommand(std::shared_ptr<JsonParameters> json);
 
+    void execArtEffectsCommand(std::shared_ptr<JsonParameters> json);
+
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
     std::shared_ptr<ICommandBase> getOpenSubFileCommand();
@@ -116,6 +122,7 @@ public:
     std::shared_ptr<ICommandBase> getAlgebraicCommand();
     std::shared_ptr<ICommandBase> getBinaryMorphologyCommand();
     std::shared_ptr<ICommandBase> getGrayMorphologyCommand();
+    std::shared_ptr<ICommandBase> getArtEffectsCommand();
 
     std::shared_ptr<QImage> getImage();
     std::shared_ptr<QImage> getSubImage();
@@ -172,6 +179,8 @@ private:
     std::shared_ptr<AlgebraicCommand> algebraiccommand;
     std::shared_ptr<BinaryMorphologyCommand> binarymorphologycommand;
     std::shared_ptr<GrayMorphologyCommand> graymorphologycommand;
+
+    std::shared_ptr<ArtEffectsCommand> arteffectscommand;
 
 };
 

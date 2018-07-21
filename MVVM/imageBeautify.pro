@@ -56,6 +56,14 @@ HEADERS += \
     common/parameters.h \
     common/type.h \
     common/util.h \
+    model/filters/art_effect.h \
+#    model/filters/basic_effect.h \
+#    model/filters/blur.h \
+#    model/filters/fasion_effect.h \
+#    model/filters/frame_effect.h \
+#    model/filters/hot_effect.h \
+#    model/filters/human_effect.h \
+#    model/filters/lemo_effect.h \
     model/imageoperation/aux_image_alg.h \
     model/logoperation/aux_log_alg.h \
     model/model.h \
@@ -104,12 +112,23 @@ HEADERS += \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
     viewmodel/viewmodel.h \
-    model/filters/art_effect.h
+    view/clipbox.h \
+    viewmodel/commands/opensubfilecommand.h \
+    view/sinks/maincommandsink.h \
+    view/specialeffectdialog.h \
+    view/clickableqlabel.h \
+    viewmodel/commands/arteffectscommand.h
 
 SOURCES += \
     APP/app.cpp \
     APP/main.cpp \
     common/util.cpp \
+    model/filteroperation/filteroperation.cpp \
+    model/filters/art_effect.cpp \
+#    model/filters/basic_effect.cpp \
+#    model/filters/blur.cpp \
+#    model/filters/human_effect.cpp \
+#    model/filters/lemo_effect.cpp \
     model/imageoperation/aux_image_alg.cpp \
     model/imageoperation/imageoperation.cpp \
     model/logoperation/aux_log_alg.cpp \
@@ -160,8 +179,10 @@ SOURCES += \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
     viewmodel/viewmodel.cpp \
-    model/filteroperation/filteroperation.cpp \
-    model/filters/art_effect.cpp
-
-
+    view/clipbox.cpp \
+    viewmodel/commands/opensubfilecommand.cpp \
+    view/sinks/maincommandsink.cpp \
+    view/specialeffectdialog.cpp \
+    view/clickableqlabel.cpp \
+    viewmodel/commands/arteffectscommand.cpp
 

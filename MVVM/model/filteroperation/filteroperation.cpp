@@ -9,6 +9,7 @@ void Model::_emboss()
     cv::Mat dst;
     ArtEffect::_emboss(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -19,6 +20,7 @@ void Model::_sculpture()
     cv::Mat dst;
     ArtEffect::_sculpture(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -29,6 +31,7 @@ void Model::_dilate()
     cv::Mat dst;
     ArtEffect::_dilate(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -39,6 +42,7 @@ void Model::_erode()
     cv::Mat dst;
     ArtEffect::_erode(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -49,6 +53,7 @@ void Model::_frostGlass()
     cv::Mat dst;
     ArtEffect::_frostGlass(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -59,6 +64,7 @@ void Model::_sketch()
     cv::Mat dst;
     ArtEffect::_sketch(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -69,6 +75,7 @@ void Model::_oilPaint()
     cv::Mat dst;
     ArtEffect::_oilPaint(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -79,6 +86,7 @@ void Model::_woodCut()
     cv::Mat dst;
     ArtEffect::_woodCut(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -89,6 +97,7 @@ void Model::_inverted()
     cv::Mat dst;
     ArtEffect::_inverted(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -99,6 +108,7 @@ void Model::_memory()
     cv::Mat dst;
     ArtEffect::_memory(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -109,6 +119,7 @@ void Model::_freezing()
     cv::Mat dst;
     ArtEffect::_freezing(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -119,6 +130,7 @@ void Model::_casting()
     cv::Mat dst;
     ArtEffect::_casting(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 
@@ -129,5 +141,6 @@ void Model::_comicStrip()
     cv::Mat dst;
     ArtEffect::_comicStrip(src, dst);
 	subImg = Tools::Mat2QImage(dst);
+    tmpImg = Tools::Mat2QImage(dst);
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }

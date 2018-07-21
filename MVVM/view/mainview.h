@@ -26,6 +26,7 @@
 #include "../view/algebraicdialog.h"
 #include "../view/binarymorphologydialog.h"
 #include "../view/graymorphologydialog.h"
+#include "../view/specialeffectdialog.h"
 
 namespace UI {
 class MainView;
@@ -75,6 +76,8 @@ public:
     void setAlgebraicCommand(std::shared_ptr<ICommandBase>);
     void setBinaryMorphologyCommand(std::shared_ptr<ICommandBase>);
     void setGrayMorphologyCommand(std::shared_ptr<ICommandBase>);
+
+    void setArtEffectsCommand(std::shared_ptr<ICommandBase>);
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
     std::shared_ptr<ICommandNotification> getMainCommandSink();
@@ -145,6 +148,9 @@ private slots:
     void humanFaceSpecialEffects();
     void fashionSpecialEffects();
     void artSpecialEffects();
+
+    // special effects receiver
+    void receiveApplyArtSpecialEffects(std::shared_ptr<JsonParameters>);
 
     // frame
     void colorfulFrame();
@@ -230,6 +236,7 @@ private:
     std::shared_ptr<ICommandBase> binaryMorphologyCommand;
     std::shared_ptr<ICommandBase> grayMorphologyCommand;
 
+    std::shared_ptr<ICommandBase> artEffectsCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
     std::shared_ptr<MainCommandSink> mainCommandSink;
