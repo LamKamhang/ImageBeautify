@@ -333,13 +333,19 @@ void MainView::receiveApplyAlgebraic(std::shared_ptr<JsonParameters> json){
     algebraicCommand->Exec();
 }
 
+void MainView::receiveAlgebraicOpenFileImage2(QString filePath){
+    openSubFileCommand->SetParameter(std::make_shared<QStringParameters>(filePath));
+    openSubFileCommand->Exec();
+}
+
 void MainView::algebraic(){
-//    openSubDialogCommand->Exec();// set mainimg to subimg
-//    AlgebraicDialog *dialog = new AlgebraicDialog(subimage);
-//    connect(dialog,SIGNAL(sendApplyAlgebraic(std::shared_ptr<JsonParameters>))
-//            , this,SLOT(receiveApplyAlgebraic(std::shared_ptr<JsonParameters>)));
-//    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
-//    dialog->exec();
+    AlgebraicDialog *dialog = new AlgebraicDialog(this,*image,subimage);
+    connect(dialog,SIGNAL(sendApplyAlgebraicOperation(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyAlgebraic(std::shared_ptr<JsonParameters>)));
+    connect(dialog,SIGNAL(sendOpenFileImage2(QString))
+            ,this, SLOT(receiveAlgebraicOpenFileImage2(QString)));
+    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(updateImage2()));
+    dialog->exec();
 }
 
 void MainView::filter(){
@@ -544,6 +550,10 @@ void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){
     openSubDialogCommand = command;
+}
+
+void MainView::setOpenSubFileCommand(std::shared_ptr<ICommandBase> command){
+    openSubFileCommand = command;
 }
 
 void MainView::setUndoCommand(std::shared_ptr<ICommandBase> command){

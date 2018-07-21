@@ -17,6 +17,7 @@ ImageBeautifyApp::ImageBeautifyApp()
 
     view->setOpenFileCommand(viewmodel->getOpenFileCommand());
     view->setSaveFileCommand(viewmodel->getSaveFileCommand());
+    view->setOpenSubFileCommand(viewmodel->getOpenSubFileCommand());
     view->setOpenSubDialogCommand(viewmodel->getOpenSubDialogCommand());
     view->setRedoCommand(viewmodel->getRedoCommand());
     view->setUndoCommand(viewmodel->getUndoCommand());
@@ -36,7 +37,7 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setClipCommand(viewmodel->getClipCommand());
     view->setScaleCommand(viewmodel->getScaleCommand());
     view->setHistogramCommand(viewmodel->getHistogramCommand());
-//    view->setAlgebraicCommand(viewmodel->getAlgebraicCommand());
+    view->setAlgebraicCommand(viewmodel->getAlgebraicCommand());
 //    view->setBinaryMorphodCommand(viewmodel->getBinaryMorphodCommand());
 //    view->setGrayMorphodCommand(viewmodel->getGrayMorphodCommand());
 

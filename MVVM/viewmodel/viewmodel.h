@@ -9,6 +9,7 @@
 #include "../common/type.h"
 #include "commands/openfilecommand.h"
 #include "commands/savefilecommand.h"
+#include "commands/opensubfilecommand.h"
 #include "commands/opensubdialogcommand.h"
 #include "commands/undocommand.h"
 #include "commands/redocommand.h"
@@ -26,16 +27,18 @@
 #include "commands/ClipCommand.h"
 #include "commands/ScaleCommand.h"
 #include "commands/HistogramCommand.h"
-//#include "commands/AlgebraicCommand.h"
+#include "commands/AlgebraicCommand.h"
 //#include "commands/BinaryMorphodCommand.h"
 //#include "commands/GrayMorphodCommand.h"
 #include "sinks/viewmodelsink.h"
 
 class OpenFileCommand;
 class SaveFileCommand;
+class OpenSubFileCommand;
 class OpenSubDialogCommand;
 class UndoCommand;
 class RedoCommand;
+
 class FilterCommand;
 class EdgeDetectionCommand;
 class HoughCircleDetectionCommand;
@@ -50,7 +53,7 @@ class LevelCommand;
 class ClipCommand;
 class ScaleCommand;
 class HistogramCommand;
-//class AlgebraicCommand;
+class AlgebraicCommand;
 //class BinaryMorphodCommand;
 //class GrayMorphodCommand;
 
@@ -64,6 +67,7 @@ public:
     void bindModel(std::shared_ptr<Model> model);// binding model
     void execOpenFileCommand(const QString &path);
     void execSaveFileCommand(const QString &path);
+    void execOpenSubFileCommand(const QString &path);
     void execOpenSubDialogCommand();
     void execUndoCommand();
     void execRedoCommand();
@@ -89,6 +93,7 @@ public:
 
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
+    std::shared_ptr<ICommandBase> getOpenSubFileCommand();
     std::shared_ptr<ICommandBase> getOpenSubDialogCommand();
     std::shared_ptr<ICommandBase> getUndoCommand();
     std::shared_ptr<ICommandBase> getRedoCommand();
@@ -108,7 +113,7 @@ public:
     std::shared_ptr<ICommandBase> getClipCommand();
     std::shared_ptr<ICommandBase> getScaleCommand();
     std::shared_ptr<ICommandBase> getHistogramCommand();
-//    std::shared_ptr<ICommandBase> getAlgebraicCommand();
+    std::shared_ptr<ICommandBase> getAlgebraicCommand();
 //    std::shared_ptr<ICommandBase> getBinaryMorphodCommand();
 //    std::shared_ptr<ICommandBase> getGrayMorphodCommand();
 
@@ -137,6 +142,7 @@ private:
 
     std::shared_ptr<OpenFileCommand> openfilecommand;
     std::shared_ptr<SaveFileCommand> savefilecommand;
+    std::shared_ptr<OpenSubFileCommand> opensubfilecommand;
     std::shared_ptr<OpenSubDialogCommand> opensubdialogcommand;
     std::shared_ptr<UndoCommand> undocommand;
     std::shared_ptr<RedoCommand> redocommand;
@@ -156,7 +162,7 @@ private:
     std::shared_ptr<ClipCommand> clipcommand;
     std::shared_ptr<ScaleCommand> scalecommand;
     std::shared_ptr<HistogramCommand> histogramcommand;
-//    std::shared_ptr<AlgebraicCommand> algebraiccommand;
+    std::shared_ptr<AlgebraicCommand> algebraiccommand;
 //    std::shared_ptr<BinaryMorphodCommand> binarymorphodcommand;
 //    std::shared_ptr<GrayMorphodCommand> graymorphodcommand;
 
