@@ -275,17 +275,14 @@ void MainView::scale(){
    ScaleDialog *dialog = new ScaleDialog();
    connect(dialog,SIGNAL(sendApplyScale(std::shared_ptr<JsonParameters>))
            , this,SLOT(receiveApplyScale(std::shared_ptr<JsonParameters>)));
-   connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
    dialog->exec();
 }
 
 void MainView::histogram(){
-//    openSubDialogCommand->Exec();// set mainimg to subimg
-//    HistogramDialog *dialog = new HistogramDialog(subimage);
-//    connect(dialog,SIGNAL(sendApplyHistogram(std::shared_ptr<JsonParameters>))
-//            , this,SLOT(receiveApplyHistogram(std::shared_ptr<JsonParameters>)));
-//    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
-//    dialog->exec();
+   HistogramDialog *dialog = new HistogramDialog(image);
+   connect(dialog,SIGNAL(sendApplyHistogramEqualization(std::shared_ptr<VectorParameters<int> >))
+           , this,SLOT(receiveApplyHistogram(std::shared_ptr<VectorParameters<int> >)));
+   dialog->exec();
 }
 
 void MainView::otsu(){
@@ -326,8 +323,8 @@ void MainView::receiveApplyScale(std::shared_ptr<JsonParameters> json){
     scaleCommand->Exec();
 }
 
-void MainView::receiveApplyHistogram(std::shared_ptr<JsonParameters> json){
-    histogramCommand->SetParameter(json);
+void MainView::receiveApplyHistogram(std::shared_ptr<VectorParameters<int> > histo){
+    histogramCommand->SetParameter(histo);
     histogramCommand->Exec();
 }
 
@@ -336,13 +333,19 @@ void MainView::receiveApplyAlgebraic(std::shared_ptr<JsonParameters> json){
     algebraicCommand->Exec();
 }
 
+void MainView::receiveAlgebraicOpenFileImage2(QString filePath){
+    openSubFileCommand->SetParameter(std::make_shared<QStringParameters>(filePath));
+    openSubFileCommand->Exec();
+}
+
 void MainView::algebraic(){
-//    openSubDialogCommand->Exec();// set mainimg to subimg
-//    AlgebraicDialog *dialog = new AlgebraicDialog(subimage);
-//    connect(dialog,SIGNAL(sendApplyAlgebraic(std::shared_ptr<JsonParameters>))
-//            , this,SLOT(receiveApplyAlgebraic(std::shared_ptr<JsonParameters>)));
-//    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
-//    dialog->exec();
+    AlgebraicDialog *dialog = new AlgebraicDialog(this,*image,subimage);
+    connect(dialog,SIGNAL(sendApplyAlgebraicOperation(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyAlgebraic(std::shared_ptr<JsonParameters>)));
+    connect(dialog,SIGNAL(sendOpenFileImage2(QString))
+            ,this, SLOT(receiveAlgebraicOpenFileImage2(QString)));
+    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(updateImage2()));
+    dialog->exec();
 }
 
 void MainView::filter(){
@@ -389,8 +392,13 @@ void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> 
     houghCircleDetectionCommand->Exec();
 }
 
-void MainView::binaryMorphology(){}
-void MainView::grayMorphology(){}
+void MainView::binaryMorphology(){
+
+}
+
+void MainView::grayMorphology(){
+
+}
 
 /******************* special effects menu ********************/
 void MainView::initializeSpecialEffectsMenu(){
@@ -537,6 +545,14 @@ void MainView::setRedoMsg(std::shared_ptr<QString> r){
     redoMsg = r;
 }
 
+void MainView::setIsBinary(std::shared_ptr<bool> binary){
+    isBinary = binary;
+}
+
+void MainView::setIsGray(std::shared_ptr<bool> gray){
+    isGray = gray;
+}
+
 void MainView::setOpenFileCommand(std::shared_ptr<ICommandBase> command){
     openFileCommand = command;
 }
@@ -545,8 +561,16 @@ void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
     saveFileCommand = command;
 }
 
+void MainView::setBinaryMorphologyCommand(std::shared_ptr<ICommandBase> command){
+    binaryMorphologyCommand = command;
+}
+
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){
     openSubDialogCommand = command;
+}
+
+void MainView::setOpenSubFileCommand(std::shared_ptr<ICommandBase> command){
+    openSubFileCommand = command;
 }
 
 void MainView::setUndoCommand(std::shared_ptr<ICommandBase> command){
@@ -619,6 +643,10 @@ void MainView::setAlgebraicCommand(std::shared_ptr<ICommandBase> command){
 
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
     return std::static_pointer_cast<IPropertyNotification>(mainViewSink);
+}
+
+std::shared_ptr<ICommandNotification> MainView::getMainCommandSink(){
+    return std::static_pointer_cast<ICommandNotification>(mainCommandSink);
 }
 
 void MainView::mouseMoveEvent(QMouseEvent *e){

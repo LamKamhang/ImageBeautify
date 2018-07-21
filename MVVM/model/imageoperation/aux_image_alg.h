@@ -10,27 +10,11 @@
 #pragma once
 
 #include "../../common/type.h"
+#include "../../common/parameters.h"
 #include <QImage>
 #include <QVector>
 #include <vector>
 #include <queue>
-
-typedef struct
-{
-    int Shadow;
-    float Midtones;
-    int Highlight;
-    int OutShadow;
-    int OutHighlight;
-}ColorLevelItem, *PColorLevelItem;
-
-typedef struct
-{
-    ColorLevelItem Blue;
-    ColorLevelItem Green;
-    ColorLevelItem Red;
-    ColorLevelItem RGB;
-}ColorLevelData, *PColorLevelData;
 
 class ImageOperations
 {
@@ -72,7 +56,6 @@ public:
     static QImage pieceLinContrastAdjust(QImage img, int x1, int y1, int x2, int y2);
     static QImage logContrastAdjust(QImage img, double a, double b);
     static QImage expContrastAdjust(QImage img, double a, double b);
-    static void getHistogram(QImage img, int *histo);
     static QImage histogramEqualization(QImage img, int *histo);
     static QImage colorLevel(QImage img, PColorLevelData clData);
     static QImage watershed(QImage img);

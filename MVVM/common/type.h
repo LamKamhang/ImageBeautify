@@ -15,6 +15,7 @@
 enum commandsType{
     OPEN_FILE,
     SAVE_FILE,
+    OPEN_SUB_FILE,
     FILTER,
     EDGE_DETECTION,
     HOUGH_CIRCLE_DETECTION,
@@ -34,6 +35,9 @@ enum commandsType{
     SCALE,
     HISTOGRAM,
     ALGEBRAIC,
+    ALGEBRAIC_ADD,
+    ALGEBRAIC_SUBTRACT,
+    ALGEBRAIC_MULTIPLY,
     BINARY_MORPHOD,
     GRAY_MORPHOD,
 };

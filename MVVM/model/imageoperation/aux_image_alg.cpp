@@ -1386,25 +1386,6 @@ QImage ImageOperations::expContrastAdjust(QImage img, double a, double b){
     return img;
 }
 
-void ImageOperations::getHistogram(QImage img, int *histo){
-    for(int i = 0; i < 256; i++){
-        histo[i] = 0;
-    }
-    int w = img.width();
-    int h = img.height();
-    int v;
-    QRgb *line;
-    QColor color;
-    for(int j = 0; j < h; j++){
-        line = (QRgb *)img.scanLine(j);
-        for(int i = 0; i < w; i++){
-            color = QColor(line[i]);
-            v = color.lightness();
-            histo[v]++;
-        }
-    }
-}
-
 QImage ImageOperations::histogramEqualization(QImage img, int *histo){
     int w = img.width();
     int h = img.height();

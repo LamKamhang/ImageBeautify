@@ -12,6 +12,7 @@
 #include <QMouseEvent>
 #include "../common/etlbase.h"
 #include "./sinks/mainimagesink.h"
+#include "./sinks/maincommandsink.h"
 #include "../view/filterdialog.h"
 #include "../view/edgedetectiondialog.h"
 #include "../view/houghcircledetectiondialog.h"
@@ -22,7 +23,7 @@
 #include "../view/clipdialog.h"
 #include "../view/scaledialog.h"
 #include "../view/histogramdialog.h"
-//#include "../view/algebraicdialog.h"
+#include "../view/algebraicdialog.h"
 
 namespace UI {
 class MainView;
@@ -45,10 +46,13 @@ public:
     void setRedoEnabled(std::shared_ptr<bool>);
     void setUndoMsg(std::shared_ptr<QString>);
     void setRedoMsg(std::shared_ptr<QString>);
+    void setIsBinary(std::shared_ptr<bool>);
+    void setIsGray(std::shared_ptr<bool>);
 
     void setOpenFileCommand(std::shared_ptr<ICommandBase>);
     void setSaveFileCommand(std::shared_ptr<ICommandBase>);
     void setOpenSubDialogCommand(std::shared_ptr<ICommandBase>);
+    void setOpenSubFileCommand(std::shared_ptr<ICommandBase>);
     void setUndoCommand(std::shared_ptr<ICommandBase>);
     void setRedoCommand(std::shared_ptr<ICommandBase>);
 
@@ -67,8 +71,10 @@ public:
     void setScaleCommand(std::shared_ptr<ICommandBase>);
     void setHistogramCommand(std::shared_ptr<ICommandBase>);
     void setAlgebraicCommand(std::shared_ptr<ICommandBase>);
+    void setBinaryMorphologyCommand(std::shared_ptr<ICommandBase>);
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
+    std::shared_ptr<ICommandNotification> getMainCommandSink();
 
 signals:
     void subImageChanged();
@@ -123,8 +129,9 @@ private slots:
     void receiveApplyLevel(std::shared_ptr<JsonParameters>);
     void receiveApplyClip(std::shared_ptr<JsonParameters>);
     void receiveApplyScale(std::shared_ptr<JsonParameters>);
-    void receiveApplyHistogram(std::shared_ptr<JsonParameters>);
+    void receiveApplyHistogram(std::shared_ptr<VectorParameters<int> >);
     void receiveApplyAlgebraic(std::shared_ptr<JsonParameters>);
+    void receiveAlgebraicOpenFileImage2(QString);
 
     // special effects
     void hotSpecialEffects();
@@ -160,10 +167,14 @@ private:
     UI::MainView *ui;
     std::shared_ptr<QImage> image;
     std::shared_ptr<QImage> subimage;
+    // view log property
     std::shared_ptr<bool> undoEnabled;
     std::shared_ptr<bool> redoEnabled;
     std::shared_ptr<QString> undoMsg;
     std::shared_ptr<QString> redoMsg;
+    // image property
+    std::shared_ptr<bool> isBinary;
+    std::shared_ptr<bool> isGray;
 
     QLabel *imageLabel;
     QLabel *positionLabel;
@@ -192,6 +203,7 @@ private:
     std::shared_ptr<ICommandBase> openFileCommand;
     std::shared_ptr<ICommandBase> saveFileCommand;
     std::shared_ptr<ICommandBase> openSubDialogCommand;
+    std::shared_ptr<ICommandBase> openSubFileCommand;
     std::shared_ptr<ICommandBase> undoCommand;
     std::shared_ptr<ICommandBase> redoCommand;
 
@@ -210,8 +222,11 @@ private:
     std::shared_ptr<ICommandBase> scaleCommand;
     std::shared_ptr<ICommandBase> histogramCommand;
     std::shared_ptr<ICommandBase> algebraicCommand;
+    std::shared_ptr<ICommandBase> binaryMorphologyCommand;
+
 
     std::shared_ptr<MainImageSink> mainViewSink;
+    std::shared_ptr<MainCommandSink> mainCommandSink;
 };
 
 #endif // MAINVIEW_H

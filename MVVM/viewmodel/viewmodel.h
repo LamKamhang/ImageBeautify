@@ -9,6 +9,7 @@
 #include "../common/type.h"
 #include "commands/openfilecommand.h"
 #include "commands/savefilecommand.h"
+#include "commands/opensubfilecommand.h"
 #include "commands/opensubdialogcommand.h"
 #include "commands/undocommand.h"
 #include "commands/redocommand.h"
@@ -25,17 +26,19 @@
 #include "commands/LevelCommand.h"
 #include "commands/ClipCommand.h"
 #include "commands/ScaleCommand.h"
-//#include "commands/HistogramCommand.h"
-//#include "commands/AlgebraicCommand.h"
+#include "commands/HistogramCommand.h"
+#include "commands/AlgebraicCommand.h"
 //#include "commands/BinaryMorphodCommand.h"
 //#include "commands/GrayMorphodCommand.h"
 #include "sinks/viewmodelsink.h"
 
 class OpenFileCommand;
 class SaveFileCommand;
+class OpenSubFileCommand;
 class OpenSubDialogCommand;
 class UndoCommand;
 class RedoCommand;
+
 class FilterCommand;
 class EdgeDetectionCommand;
 class HoughCircleDetectionCommand;
@@ -49,8 +52,8 @@ class CurveCommand;
 class LevelCommand;
 class ClipCommand;
 class ScaleCommand;
-//class HistogramCommand;
-//class AlgebraicCommand;
+class HistogramCommand;
+class AlgebraicCommand;
 //class BinaryMorphodCommand;
 //class GrayMorphodCommand;
 
@@ -64,6 +67,7 @@ public:
     void bindModel(std::shared_ptr<Model> model);// binding model
     void execOpenFileCommand(const QString &path);
     void execSaveFileCommand(const QString &path);
+    void execOpenSubFileCommand(const QString &path);
     void execOpenSubDialogCommand();
     void execUndoCommand();
     void execRedoCommand();
@@ -82,13 +86,14 @@ public:
     void execLevelCommand(std::shared_ptr<JsonParameters> json);
     void execClipCommand(std::shared_ptr<JsonParameters> json);
     void execScaleCommand(std::shared_ptr<JsonParameters> json);
-    void execHistogramCommand(std::shared_ptr<JsonParameters> json);
+    void execHistogramCommand(std::shared_ptr<VectorParameters<int> > param);
     void execAlgebraicCommand(std::shared_ptr<JsonParameters> json);
     void execBinaryMorphodCommand(std::shared_ptr<JsonParameters> json);
     void execGrayMorphodCommand(std::shared_ptr<JsonParameters> json);
 
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
+    std::shared_ptr<ICommandBase> getOpenSubFileCommand();
     std::shared_ptr<ICommandBase> getOpenSubDialogCommand();
     std::shared_ptr<ICommandBase> getUndoCommand();
     std::shared_ptr<ICommandBase> getRedoCommand();
@@ -106,9 +111,9 @@ public:
     std::shared_ptr<ICommandBase> getCurveCommand();
     std::shared_ptr<ICommandBase> getLevelCommand();
     std::shared_ptr<ICommandBase> getClipCommand();
-   std::shared_ptr<ICommandBase> getScaleCommand();
-//    std::shared_ptr<ICommandBase> getHistogramCommand();
-//    std::shared_ptr<ICommandBase> getAlgebraicCommand();
+    std::shared_ptr<ICommandBase> getScaleCommand();
+    std::shared_ptr<ICommandBase> getHistogramCommand();
+    std::shared_ptr<ICommandBase> getAlgebraicCommand();
 //    std::shared_ptr<ICommandBase> getBinaryMorphodCommand();
 //    std::shared_ptr<ICommandBase> getGrayMorphodCommand();
 
@@ -118,6 +123,8 @@ public:
     std::shared_ptr<bool> getRedoEnabled();
     std::shared_ptr<QString> getUndoMsg();
     std::shared_ptr<QString> getRedoMsg();
+    std::shared_ptr<bool> getIsBinary();
+    std::shared_ptr<bool> getIsGray();
 
     void setImageFromModel();
     void setSubImageFromModel();
@@ -128,15 +135,22 @@ private:
     std::shared_ptr<QImage> subimage;
     std::shared_ptr<Model> model;
 
+    // view log property
     std::shared_ptr<bool> undoEnabled;
     std::shared_ptr<bool> redoEnabled;
     std::shared_ptr<QString> undoMsg;
     std::shared_ptr<QString> redoMsg;
 
+    // image property
+    std::shared_ptr<bool> isBinary;
+    std::shared_ptr<bool> isGray;
+
     std::shared_ptr<ViewModelSink> viewModelSink;
 
     std::shared_ptr<OpenFileCommand> openfilecommand;
     std::shared_ptr<SaveFileCommand> savefilecommand;
+    std::shared_ptr<CheckImageCommand> checkimagecommand;
+    std::shared_ptr<OpenSubFileCommand> opensubfilecommand;
     std::shared_ptr<OpenSubDialogCommand> opensubdialogcommand;
     std::shared_ptr<UndoCommand> undocommand;
     std::shared_ptr<RedoCommand> redocommand;
@@ -154,9 +168,9 @@ private:
     std::shared_ptr<CurveCommand> curvecommand;
     std::shared_ptr<LevelCommand> levelcommand;
     std::shared_ptr<ClipCommand> clipcommand;
-   std::shared_ptr<ScaleCommand> scalecommand;
-//    std::shared_ptr<HistogramCommand> histogramcommand;
-//    std::shared_ptr<AlgebraicCommand> algebraiccommand;
+    std::shared_ptr<ScaleCommand> scalecommand;
+    std::shared_ptr<HistogramCommand> histogramcommand;
+    std::shared_ptr<AlgebraicCommand> algebraiccommand;
 //    std::shared_ptr<BinaryMorphodCommand> binarymorphodcommand;
 //    std::shared_ptr<GrayMorphodCommand> graymorphodcommand;
 

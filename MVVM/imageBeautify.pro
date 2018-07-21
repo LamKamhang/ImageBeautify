@@ -74,7 +74,7 @@ HEADERS += \
     model/logoperation/aux_log_alg.h \
     model/model.h \
     view/sinks/mainimagesink.h \
-#    view/algebraicdialog.h \
+    view/algebraicdialog.h \
     view/clipdialog.h \
     view/curvecanvas.h \
     view/curvedialog.h \
@@ -82,12 +82,13 @@ HEADERS += \
     view/edgedetectiondialog.h \
     view/filterdialog.h \
     view/histogramdialog.h \
+    view/histogramview.h    \
     view/houghcircledetectiondialog.h \
     view/huesaturalightdialog.h \
     view/leveldialog.h \
     view/mainview.h \
     view/scaledialog.h \
-#    viewmodel/commands/AlgebraicCommand.h \
+    viewmodel/commands/AlgebraicCommand.h \
 #    viewmodel/commands/BinaryMorphodCommand.h \
     viewmodel/commands/channelcommand.h \
     viewmodel/commands/ClipCommand.h \
@@ -97,7 +98,7 @@ HEADERS += \
     viewmodel/commands/filtercommand.h \
 #    viewmodel/commands/GrayMorphodCommand.h \
     viewmodel/commands/grayscaletransfercommand.h \
-#    viewmodel/commands/HistogramCommand.h \
+    viewmodel/commands/HistogramCommand.h \
     viewmodel/commands/houghcircledetectioncommand.h \
     viewmodel/commands/houghlinedetectioncommand.h \
     viewmodel/commands/huesaturalightcommand.h \
@@ -111,7 +112,9 @@ HEADERS += \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
     viewmodel/viewmodel.h \
-    view/clipbox.h
+    view/clipbox.h \
+    viewmodel/commands/opensubfilecommand.h \
+    view/sinks/maincommandsink.h
 
 SOURCES += \
     app/app.cpp \
@@ -129,7 +132,7 @@ SOURCES += \
     model/logoperation/logoperation.cpp \
     model/model.cpp \
     view/sinks/mainimagesink.cpp \
-#    view/algebraicdialog.cpp \
+    view/algebraicdialog.cpp \
     view/clipdialog.cpp \
     view/curvecanvas.cpp \
     view/curvedialog.cpp \
@@ -137,12 +140,13 @@ SOURCES += \
     view/edgedetectiondialog.cpp \
     view/filterdialog.cpp \
     view/histogramdialog.cpp \
+    view/histogramview.cpp  \
     view/houghcircledetectiondialog.cpp \
     view/huesaturalightdialog.cpp \
     view/leveldialog.cpp \
     view/mainview.cpp \
     view/scaledialog.cpp \
-#    viewmodel/commands/AlgebraicCommand.cpp \
+    viewmodel/commands/AlgebraicCommand.cpp \
 #    viewmodel/commands/BinaryMorphodCommand.cpp \
     viewmodel/commands/channelcommand.cpp \
     viewmodel/commands/ClipCommand.cpp \
@@ -152,7 +156,7 @@ SOURCES += \
     viewmodel/commands/filtercommand.cpp \
 #    viewmodel/commands/GrayMorphodCommand.cpp \
     viewmodel/commands/grayscaletransfercommand.cpp \
-#    viewmodel/commands/HistogramCommand.cpp \
+    viewmodel/commands/HistogramCommand.cpp \
     viewmodel/commands/houghcircledetectioncommand.cpp \
     viewmodel/commands/houghlinedetectioncommand.cpp \
     viewmodel/commands/huesaturalightcommand.cpp \
@@ -166,5 +170,7 @@ SOURCES += \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
     viewmodel/viewmodel.cpp \
-    view/clipbox.cpp
+    view/clipbox.cpp \
+    viewmodel/commands/opensubfilecommand.cpp \
+    view/sinks/maincommandsink.cpp
 
