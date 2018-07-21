@@ -394,11 +394,39 @@ void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> 
 
 void MainView::binaryMorphology()
 {
-    
+    if(!*isBinary){
+        QMessageBox msgBox(QMessageBox::Warning, tr("Warning"),
+                           tr("Current image is not binary image."));
+        msgBox.exec();
+        return;
+    }
+    BinaryMorphologyDialog *dialog = new BinaryMorphologyDialog();
+    connect(dialog, SIGNAL(sendApplyBinaryMorphology(std::shared_ptr<JsonParameters>)), this,
+            SLOT(receiveApplyBinaryMorphology(std::shared_ptr<JsonParameters>)));
+    dialog->exec();
 }
+
 void MainView::grayMorphology()
 {
-    
+    if(!*isGray){
+        QMessageBox msgBox(QMessageBox::Warning, tr("Warning"),
+                           tr("Current image is not gray-scale image."));
+        msgBox.exec();
+        return;
+    }
+    GrayMorphologyDialog *dialog = new GrayMorphologyDialog();
+    connect(dialog, SIGNAL(sendApplyGrayMorphology(std::shared_ptr<JsonParameters>)), this,
+            SLOT(receiveApplyGrayMorphology(std::shared_ptr<JsonParameters>)));
+    dialog->exec();
+}
+
+void MainView::receiveApplyBinaryMorphology(std::shared_ptr<JsonParameters>)
+{
+
+}
+void MainView::receiveApplyGrayMorphology(std::shared_ptr<JsonParameters>)
+{
+
 }
 
 /******************* special effects menu ********************/
@@ -564,6 +592,10 @@ void MainView::setSaveFileCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setBinaryMorphologyCommand(std::shared_ptr<ICommandBase> command){
     binaryMorphologyCommand = command;
+}
+
+void MainView::setGrayMorphologyCommand(std::shared_ptr<ICommandBase> command){
+    grayMorphologyCommand = command;
 }
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){

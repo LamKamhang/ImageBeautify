@@ -40,8 +40,8 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setScaleCommand(viewmodel->getScaleCommand());
     view->setHistogramCommand(viewmodel->getHistogramCommand());
     view->setAlgebraicCommand(viewmodel->getAlgebraicCommand());
-//    view->setBinaryMorphodCommand(viewmodel->getBinaryMorphodCommand());
-//    view->setGrayMorphodCommand(viewmodel->getGrayMorphodCommand());
+    view->setBinaryMorphologyCommand(viewmodel->getBinaryMorphologyCommand());
+    view->setGrayMorphologyCommand(viewmodel->getGrayMorphologyCommand());
 
     viewmodel->AddPropertyNotification(view->getMainViewSink());
     viewmodel->AddCommandNotification(view->getMainCommandSink());

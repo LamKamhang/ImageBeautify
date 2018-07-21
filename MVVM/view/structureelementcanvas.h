@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QJsonArray>
+#include <vector>
 QT_BEGIN_NAMESPACE
 class QPoint;
 QT_END_NAMESPACE
@@ -15,7 +16,7 @@ class StructureElementCanvas : public QWidget
 public:
     StructureElementCanvas(QWidget *parent = 0, int s = 3, int ws = 200);
     void sizeChange(int);
-    void getElementArray(QJsonArray &array);
+    void getElementArray(std::vector<int> &array);
     void getAnchor(int &x, int &y);
     void setEnabled(bool);
 

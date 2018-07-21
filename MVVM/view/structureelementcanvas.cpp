@@ -93,10 +93,11 @@ void StructureElementCanvas::sizeChange(int s){
     update();
 }
 
-void StructureElementCanvas::getElementArray(QJsonArray &array){
+void StructureElementCanvas::getElementArray(std::vector<int> &array){
+    std::vector<int>().swap(array);
     for(int j = 0; j < size; j++){
         for(int i = 0; i < size; i++){
-            array.append(map[i][j]);
+            array.push_back(map[i][j]);
         }
     }
 }

@@ -5,11 +5,11 @@
 
 class ViewModel;
 
-class GrayMorphodCommand
+class GrayMorphologyCommand
     : public ICommandBase
 {
 public:
-    GrayMorphodCommand(ViewModel* vm);
+    GrayMorphologyCommand(ViewModel* vm);
     virtual void SetParameter(const std::shared_ptr<ParametersBase>& param);
     virtual void Exec();
 

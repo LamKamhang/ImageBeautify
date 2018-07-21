@@ -37,8 +37,8 @@ ViewModel::ViewModel()
     scalecommand = std::make_shared<ScaleCommand>(this);
     histogramcommand = std::make_shared<HistogramCommand>(this);
     algebraiccommand = std::make_shared<AlgebraicCommand>(this);
-//    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
-//    graymorphodcommand = std::make_shared<GrayMorphodCommand>(this);
+    binarymorphologycommand = std::make_shared<BinaryMorphologyCommand>(this);
+    graymorphologycommand = std::make_shared<GrayMorphologyCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -348,13 +348,13 @@ void ViewModel::execAlgebraicCommand(std::shared_ptr<JsonParameters> json)
     }
 }
 
-void ViewModel::execBinaryMorphodCommand(std::shared_ptr<JsonParameters> json)
+void ViewModel::execBinaryMorphologyCommand(std::shared_ptr<JsonParameters> json)
 {
-    qDebug() << "execBinaryMorphodCommand";
+    qDebug() << "execBinaryMorphologyCommand";
 }
-void ViewModel::execGrayMorphodCommand(std::shared_ptr<JsonParameters> json)
+void ViewModel::execGrayMorphologyCommand(std::shared_ptr<JsonParameters> json)
 {
-    qDebug() << "execGrayMorphodCommand";
+    qDebug() << "execGrayMorphologyCommand";
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
@@ -480,17 +480,17 @@ std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
     return algebraiccommand;
 }
 
-//std::shared_ptr<ICommandBase> ViewModel::getBinaryMorphodCommand()
-//{
-//    qDebug() << "getBinaryMorphodCommand";
-//    return binarymorphodcommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getBinaryMorphologyCommand()
+{
+   qDebug() << "getBinaryMorphologyCommand";
+   return binarymorphologycommand;
+}
 
-//std::shared_ptr<ICommandBase> ViewModel::getGrayMorphodCommand()
-//{
-//    qDebug() << "getGrayMorphodCommand";
-//    return graymorphodcommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getGrayMorphologyCommand()
+{
+   qDebug() << "getGrayMorphologyCommand";
+   return graymorphologycommand;
+}
 
 
 void ViewModel::setImageFromModel(){

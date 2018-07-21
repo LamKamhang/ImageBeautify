@@ -38,8 +38,8 @@ enum commandsType{
     ALGEBRAIC_ADD,
     ALGEBRAIC_SUBTRACT,
     ALGEBRAIC_MULTIPLY,
-    BINARY_MORPHOD,
-    GRAY_MORPHOD,
+    BINARY_MORPHOLOGY,
+    GRAY_MORPHOLOGY,
 };
 
 enum propertyType{
