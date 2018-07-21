@@ -1,53 +1,53 @@
 #include "basic_effect.h"
 
-using namespace cv;
+
 using namespace std;
 
 void BasicEffect::_sharpen(const cv::Mat &scr, cv::Mat &dst)
 {
-    Mat kernel(3,3,CV_32F,Scalar(0));
+    cv::Mat kernel(3,3,CV_32F,cv::Scalar(0));
     kernel.at<float>(1,1) = 5;
     kernel.at<float>(0,1) = -1;
     kernel.at<float>(2,1) = -1;
     kernel.at<float>(1,0) = -1;
     kernel.at<float>(1,2) = -1;
-    filter2D(scr,dst,scr.depth(),kernel);
-    dst.row(0).setTo(Scalar(0,0,0));
-    dst.row(dst.rows-1).setTo(Scalar(0,0,0));
-    dst.col(0).setTo(Scalar(0,0,0));
-    dst.col(dst.cols-1).setTo(Scalar(0,0,0));
+    cv::filter2D(scr,dst,scr.depth(),kernel);
+    dst.row(0).setTo(cv::Scalar(0,0,0));
+    dst.row(dst.rows-1).setTo(cv::Scalar(0,0,0));
+    dst.col(0).setTo(cv::Scalar(0,0,0));
+    dst.col(dst.cols-1).setTo(cv::Scalar(0,0,0));
 }
 
 void BasicEffect::_inversecolor(const cv::Mat &scr, cv::Mat &dst)
 {
-    Mat temp;
+    cv::Mat temp;
     temp = 255 -scr;
     dst = temp.clone();
 }
 
 void BasicEffect::_colortoblack(const cv::Mat &scr, cv::Mat &dst)
 {
-    Mat temp_1;
+    cv::Mat temp_1;
 
-    cvtColor(scr,temp_1,CV_BGR2GRAY);
-    cvtColor(temp_1,dst,COLOR_GRAY2BGR);
+    cv::cvtColor(scr,temp_1,CV_BGR2GRAY);
+    cv::cvtColor(temp_1,dst,cv::COLOR_GRAY2BGR);
 }
 
 void BasicEffect::_defog(const cv:: Mat &scr,cv::Mat &dst)
 {
-    Mat c;
-    Mat b = scr.clone();
+    cv::Mat c;
+    cv::Mat b = scr.clone();
     defog a;
     c = a.DeFog(b);
     dst = c.clone();
     a.~defog();
 }
 
-Mat defog::DeFog(Mat scr)
+cv::Mat defog::DeFog(cv::Mat scr)
 {
-    Mat a = darkChannelDefog(scr);
-    Mat b = getTImage();
-    Mat c = enhanceImage(a);
+    cv::Mat a = darkChannelDefog(scr);
+    cv::Mat b = getTImage();
+    cv::Mat c = enhanceImage(a);
     return a;
 }
 
@@ -56,30 +56,30 @@ defog::~defog()
 
 }
 
-Mat defog::minRGB(Mat src)
+cv::Mat defog::minRGB(cv::Mat src)
 {
-    Mat minRgb;
+    cv::Mat minRgb;
     if(src.empty())
         return minRgb;
 
-    minRgb= Mat::zeros(src.rows,src.cols,CV_8UC1);
+    minRgb= cv::Mat::zeros(src.rows,src.cols,CV_8UC1);
     for(int i=0;i<src.rows;i++)
         for(int j=0;j<src.cols;j++)
         {
             uchar g_minvalue =255;
             for(int c=0;c<3;c++)
             {
-                if(g_minvalue>src.at<Vec3b>(i,j)[c])
-                    g_minvalue=src.at<Vec3b>(i,j)[c];
+                if(g_minvalue>src.at<cv::Vec3b>(i,j)[c])
+                    g_minvalue=src.at<cv::Vec3b>(i,j)[c];
             }
             minRgb.at<uchar>(i,j)=g_minvalue;
         }
     return minRgb;
 }
 
-Mat defog::minFilter(cv::Mat src, int ksize)
+cv::Mat defog::minFilter(cv::Mat src, int ksize)
 {
-    Mat dst;
+    cv::Mat dst;
     if(src.channels()!=1)
         return dst  ;
     if(src.depth()>8)
@@ -87,7 +87,7 @@ Mat defog::minFilter(cv::Mat src, int ksize)
 
     int r=(ksize-1)/2;
 
-    dst=Mat::zeros(src.rows,src.cols,CV_8UC1);
+    dst=cv::Mat::zeros(src.rows,src.cols,CV_8UC1);
 
 
     for(int i=0;i<src.rows;i++)
@@ -105,23 +105,23 @@ Mat defog::minFilter(cv::Mat src, int ksize)
                 left=0;
             if(j+r>src.cols)
                 right=src.cols;
-            Mat ImROI=src(Range(top,bottom),Range(left,right));
+            cv::Mat ImROI=src(cv::Range(top,bottom),cv::Range(left,right));
             double min,max;
-            minMaxLoc(ImROI,&min,&max,0,0);
+            cv::minMaxLoc(ImROI,&min,&max,0,0);
             dst.at<uchar>(i,j)=min;
         }
     return dst;
 }
 
-Mat defog::grayStretch(const Mat src, double lowcut, double highcut)
+cv::Mat defog::grayStretch(const cv::Mat src, double lowcut, double highcut)
 {
     const int bins = 256;
     int hist_size=bins;
     float range[]={0,255};
     const float* ranges[]={range};
-    MatND desHist;
+    cv::MatND desHist;
     int channels=0;
-    calcHist(&src,1,&channels,Mat(),desHist,1,&hist_size,ranges,true,false);
+    cv::calcHist(&src,1,&channels,cv::Mat(),desHist,1,&hist_size,ranges,true,false);
     int pixelAmount=src.rows*src.cols;
     float Sum=0;
     int minValue,maxValue;
@@ -146,7 +146,7 @@ Mat defog::grayStretch(const Mat src, double lowcut, double highcut)
         }
     }
 
-    Mat dst=src;
+    cv::Mat dst=src;
     if(minValue>maxValue)
         return src;
 
@@ -169,29 +169,29 @@ Mat defog::grayStretch(const Mat src, double lowcut, double highcut)
     return dst;
 }
 
-Mat defog::darkChannelDefog(Mat src)
+cv::Mat defog::darkChannelDefog(cv::Mat src)
 {
-    Mat tempImage=minRGB(src);
+    cv::Mat tempImage=minRGB(src);
 
     int ksize=std::max(3,std::max((int)(src.cols*kernRatio),
                                   (int)(src.rows*kernRatio)));
     tempImage=minFilter(tempImage,ksize);
 
-    m_tImage=Mat::zeros(src.rows,src.cols,CV_64FC1);
+    m_tImage=cv::Mat::zeros(src.rows,src.cols,CV_64FC1);
     for(int i=0;i<src.rows;i++)
         for(int j=0;j<src.cols;j++)
             m_tImage.at<double>(i,j)=((255.0-
                                        (double)tempImage.at<uchar>(i,j)*wFactor)/255)-0.005;
 
-    double A[3];Point maxLoc;
-    minMaxLoc(tempImage,0,0,0,&maxLoc);
+    double A[3];cv::Point maxLoc;
+    cv::minMaxLoc(tempImage,0,0,0,&maxLoc);
     for(int c=0;c<src.channels();c++)
-        A[c]=src.at<Vec3b>(maxLoc.y,maxLoc.x)[c];
-    m_dstImage=Mat::zeros(src.rows,src.cols,CV_64FC3);
+        A[c]=src.at<cv::Vec3b>(maxLoc.y,maxLoc.x)[c];
+    m_dstImage=cv::Mat::zeros(src.rows,src.cols,CV_64FC3);
     for(int i=0;i<src.rows;i++)
         for(int j=0;j<src.cols;j++)
             for(int c=0;c<src.channels();c++)
-                m_dstImage.at<Vec3d>(i,j)[c]=(src.at<Vec3b>(i,j)[c]-
+                m_dstImage.at<cv::Vec3d>(i,j)[c]=(src.at<cv::Vec3b>(i,j)[c]-
                                               (1-m_tImage.at<double>(i,j))*A[c])/
                         std::max(m_tImage.at<double>(i,j),min_t);
     m_dstImage.convertTo(m_dstImage,CV_8UC3);
@@ -201,21 +201,21 @@ Mat defog::darkChannelDefog(Mat src)
 
 }
 
-Mat defog::enhanceImage(Mat src)
+cv::Mat defog::enhanceImage(cv::Mat src)
 {
-    Mat dst;
+    cv::Mat dst;
     cv::Mat channels[3];
-    split(src,channels);
+    cv::split(src,channels);
     for(int c=0;c<3;c++)
         channels[c]= grayStretch(channels[c],0.001,1);
-    merge(channels,3,dst);
+    cv::merge(channels,3,dst);
 
     return dst;
 }
 
-Mat defog::getTImage()
+cv::Mat defog::getTImage()
 {
-    Mat temp = Mat::zeros(m_tImage.rows,m_tImage.cols,CV_8UC1);
+    cv::Mat temp = cv::Mat::zeros(m_tImage.rows,m_tImage.cols,CV_8UC1);
     for(int i=0;i<m_tImage.rows;i++)
         for( int j=0;j<m_tImage.cols;j++)
         {
@@ -228,26 +228,26 @@ Mat defog::getTImage()
 
 void BasicEffect::_balance(const cv::Mat &scr,cv::Mat &dst)
 {
-    Mat image = dst.clone();
-    Mat mergeImg;
+    cv::Mat image = dst.clone();
+    cv::Mat mergeImg;
 
 
-    vector<Mat> splitBGR(image.channels());
+    vector<cv::Mat> splitBGR(image.channels());
 
-    split(image,splitBGR);
+    cv::split(image,splitBGR);
 
 
     for(int i=0; i<image.channels(); i++)
 
-        equalizeHist(splitBGR[i],splitBGR[i]);
+        cv::equalizeHist(splitBGR[i],splitBGR[i]);
 
 
-    merge(splitBGR,mergeImg);
+    cv::merge(splitBGR,mergeImg);
     dst = mergeImg.clone();
 }
 
 void BasicEffect::_soft(const cv::Mat &scr,cv::Mat &dst)
 {
-    Mat temp = scr.clone();
-    GaussianBlur(temp,dst,Size(1,1),0);
+    cv::Mat temp = scr.clone();
+    cv::GaussianBlur(temp,dst,cv::Size(1,1),0);
 }
