@@ -9,6 +9,8 @@ ViewModel::ViewModel()
     , subimage(new QImage())
     , undoEnabled(new bool(false))
     , redoEnabled(new bool(false))
+    , isBinary(new bool(false))
+    , isGray(new bool(false))
     , undoMsg(new QString())
     , redoMsg(new QString())
 {
@@ -47,6 +49,7 @@ void ViewModel::bindModel(std::shared_ptr<Model> model){
 }
 
 void ViewModel::execOpenFileCommand(const QString &path){
+    qDebug()<<"open file "<<path;
     model->open_file(path);
 }
 
@@ -494,9 +497,13 @@ std::shared_ptr<ICommandBase> ViewModel::getGrayMorphologyCommand()
 
 
 void ViewModel::setImageFromModel(){
+    qDebug() << "in view model set image from model";
     *image = model->getMain();
+    qDebug() << "in view model set image from model";
     *isBinary = model->isBinaryImage();
+    qDebug() << "in view model set image from model";
     *isGray = model->isGrayImage();
+    qDebug() << "in view model set image from model";
 }
 
 void ViewModel::setSubImageFromModel(){

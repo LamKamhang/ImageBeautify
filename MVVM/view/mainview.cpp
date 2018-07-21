@@ -26,6 +26,7 @@ MainView::MainView()
     , scaleFactor(1)
 {
     mainViewSink = std::make_shared<MainImageSink>(MainImageSink(this));
+    mainCommandSink = std::make_shared<MainCommandSink>(MainCommandSink(this));
 
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -715,17 +716,20 @@ void MainView::mouseMoveEvent(QMouseEvent *e){
 }
 
 void MainView::update(){
+    qDebug() << "in main view update1";
     imageLabel->setPixmap(QPixmap::fromImage(*image));
+    qDebug() << "in main view update2";
     scaleFactor = 1.0;
     scrollArea->setVisible(true);
-
+    qDebug() << "in main view update3";
 //    set actions enable
     updateActions();
-
+    qDebug() << "in main view update4";
     if (!fitToWindowAct->isChecked())
         imageLabel->adjustSize();
 
     setCursor(Qt::ArrowCursor);
+     qDebug() << "in main view update5";
 }
 
 void MainView::updateSubImage(){

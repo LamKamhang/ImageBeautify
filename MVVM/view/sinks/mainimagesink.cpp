@@ -1,5 +1,6 @@
 #include "mainimagesink.h"
 #include "../mainview.h"
+#include "QDebug"
 
 MainImageSink::MainImageSink(MainView *mainview)
     :mainview(mainview)
@@ -9,6 +10,7 @@ MainImageSink::MainImageSink(MainView *mainview)
 void MainImageSink::OnPropertyChanged(const propertyType pt)
 {
     if(pt == MAIN_IMAGE){
+        qDebug() << "in main image sink";
         mainview->update();
     } else if(pt == SUB_IMAGE){
         mainview->updateSubImage();

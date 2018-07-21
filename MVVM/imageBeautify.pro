@@ -29,12 +29,6 @@ LIBS += /usr/local/Cellar/opencv/3.4.1_2/lib/libopencv_highgui.dylib \
         /usr/local/Cellar/opencv/3.4.1_2/lib/libopencv_imgcodecs.dylib \
         /usr/local/Cellar/opencv/3.4.1_2/lib/libopencv_*.dylib
 
-#LIBS += /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_highgui.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_core.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_imgproc.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_imgcodecs.dylib \
-#        /usr/local/Cellar/opencv3/3.2.0/lib/libopencv_*.dylib
-
 INCLUDEPATH += /usr/local/Cellar/opencv/3.4.1_2/include/
 }
 
