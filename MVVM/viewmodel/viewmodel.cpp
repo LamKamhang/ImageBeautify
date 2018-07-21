@@ -438,6 +438,13 @@ std::shared_ptr<QString> ViewModel::getRedoMsg(){
     return redoMsg;
 }
 
+std::shared_ptr<bool> ViewModel::getIsBinary(){
+    return isBinary;
+}
+std::shared_ptr<bool> ViewModel::getIsGray(){
+    return isGray;
+}
+
 std::shared_ptr<ICommandBase> ViewModel::getCurveCommand()
 {
     qDebug() << "getCurveCommand";
@@ -488,6 +495,8 @@ std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
 
 void ViewModel::setImageFromModel(){
     *image = model->getMain();
+    *isBinary = model->isBinaryImage();
+    *isGray = model->isGrayImage();
 }
 
 void ViewModel::setSubImageFromModel(){

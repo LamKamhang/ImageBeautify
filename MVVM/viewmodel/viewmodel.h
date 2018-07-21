@@ -123,6 +123,8 @@ public:
     std::shared_ptr<bool> getRedoEnabled();
     std::shared_ptr<QString> getUndoMsg();
     std::shared_ptr<QString> getRedoMsg();
+    std::shared_ptr<bool> getIsBinary();
+    std::shared_ptr<bool> getIsGray();
 
     void setImageFromModel();
     void setSubImageFromModel();
@@ -133,15 +135,21 @@ private:
     std::shared_ptr<QImage> subimage;
     std::shared_ptr<Model> model;
 
+    // view log property
     std::shared_ptr<bool> undoEnabled;
     std::shared_ptr<bool> redoEnabled;
     std::shared_ptr<QString> undoMsg;
     std::shared_ptr<QString> redoMsg;
 
+    // image property
+    std::shared_ptr<bool> isBinary;
+    std::shared_ptr<bool> isGray;
+
     std::shared_ptr<ViewModelSink> viewModelSink;
 
     std::shared_ptr<OpenFileCommand> openfilecommand;
     std::shared_ptr<SaveFileCommand> savefilecommand;
+    std::shared_ptr<CheckImageCommand> checkimagecommand;
     std::shared_ptr<OpenSubFileCommand> opensubfilecommand;
     std::shared_ptr<OpenSubDialogCommand> opensubdialogcommand;
     std::shared_ptr<UndoCommand> undocommand;
