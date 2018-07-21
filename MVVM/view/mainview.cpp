@@ -392,8 +392,14 @@ void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> 
     houghCircleDetectionCommand->Exec();
 }
 
-void MainView::binaryMorphology(){}
-void MainView::grayMorphology(){}
+void MainView::binaryMorphology()
+{
+    
+}
+void MainView::grayMorphology()
+{
+    
+}
 
 /******************* special effects menu ********************/
 void MainView::initializeSpecialEffectsMenu(){
