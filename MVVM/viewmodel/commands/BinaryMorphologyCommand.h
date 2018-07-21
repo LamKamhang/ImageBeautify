@@ -5,11 +5,11 @@
 
 class ViewModel;
 
-class BinaryMorphodCommand
+class BinaryMorphologyCommand
     : public ICommandBase
 {
 public:
-    BinaryMorphodCommand(ViewModel* vm);
+    BinaryMorphologyCommand(ViewModel* vm);
     virtual void SetParameter(const std::shared_ptr<ParametersBase>& param);
     virtual void Exec();
 

@@ -8,7 +8,7 @@ using namespace std;
 // 浮雕
 void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
 {
-    cv::Mat img(src.size(), CV_8UC3);
+    cv::Mat img = src.clone();
 	for (int y=1; y<src.rows-1; y++)
 	{
         const uchar *p0 = src.ptr<uchar>(y);
@@ -36,7 +36,7 @@ void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
 // 雕刻
 void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 {
-    cv::Mat img(src.size(),CV_8UC3);
+    cv::Mat img = src.clone();
 	for (int y=1; y<src.rows-1; y++)
 	{
         const uchar *p0 = src.ptr<uchar>(y);
@@ -64,10 +64,10 @@ void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 // 虚幻
 void ArtEffect::_dilate(const cv::Mat &src, cv::Mat &dst)
 {
-    cv::Mat tmp(src);
+    cv::Mat tmp = src.clone();
     for (int i = 0; i < 2; ++i)
     {
-        dilate(tmp, tmp, getStructuringElement(MORPH_RECT, Size(5, 5)));
+        cv::dilate(tmp, tmp, getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5)));
     }
     tmp.copyTo((dst));
 }
@@ -75,10 +75,10 @@ void ArtEffect::_dilate(const cv::Mat &src, cv::Mat &dst)
 // 惊悚
 void ArtEffect::_erode(const cv::Mat &src, cv::Mat &dst)
 {
-    cv::Mat tmp(src);
+    cv::Mat tmp = src.clone();
     for (int i = 0; i < 1; ++i)
     {
-        erode(tmp, tmp, getStructuringElement(MORPH_RECT, Size(5, 5)));
+        cv::erode(tmp, tmp, getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5)));
     }
     tmp.copyTo(dst);
 }
@@ -86,17 +86,17 @@ void ArtEffect::_erode(const cv::Mat &src, cv::Mat &dst)
 // 磨砂玻璃
 void ArtEffect::_frostGlass(const cv::Mat &src, cv::Mat &dst)
 {
-	RNG rng; 
+    cv::RNG rng;
 	int randomNum; 
 	int Number = 5; 
-	cv::Mat tmp(src);
+    cv::Mat tmp = src.clone();
 	for (int i = 0; i < src.rows - Number; i++) 
 	for (int j = 0; j < src.cols - Number; j++) 
 	{ 
 		randomNum = rng.uniform(0, Number); 
-		tmp.at<Vec3b>(i, j)[0] = src.at<Vec3b>(i + randomNum, j + randomNum)[0]; 
-		tmp.at<Vec3b>(i, j)[1] = src.at<Vec3b>(i + randomNum, j + randomNum)[1]; 
-		tmp.at<Vec3b>(i, j)[2] = src.at<Vec3b>(i + randomNum, j + randomNum)[2]; 
+        tmp.at<cv::Vec3b>(i, j)[0] = src.at<cv::Vec3b>(i + randomNum, j + randomNum)[0];
+        tmp.at<cv::Vec3b>(i, j)[1] = src.at<cv::Vec3b>(i + randomNum, j + randomNum)[1];
+        tmp.at<cv::Vec3b>(i, j)[2] = src.at<cv::Vec3b>(i + randomNum, j + randomNum)[2];
 	}
 	tmp.copyTo(dst);
 }
@@ -108,14 +108,14 @@ void ArtEffect::_sketch(const cv::Mat &src, cv::Mat &dst)
 	int heigh=src.rows;
     cv::Mat gray0, gray1;
 	//去色
-	cvtColor(src,gray0,CV_BGR2GRAY);
+    cv::cvtColor(src,gray0,CV_BGR2GRAY);
 	//反色
-	addWeighted(gray0,-1,NULL,0,255,gray1);
+    cv::addWeighted(gray0,-1,NULL,0,255,gray1);
 	//高斯模糊,高斯核的Size与最后的效果有关
-	GaussianBlur(gray1,gray1,Size(11,11),0);
+    cv::GaussianBlur(gray1,gray1,cv::Size(11,11),0);
  
 	//融合：颜色减淡
-    cv::Mat img(gray1.size(),CV_8UC1);
+    cv::Mat img = gray1.clone();
 	for (int y=0; y<heigh; y++)
 	{
  
@@ -135,7 +135,7 @@ void ArtEffect::_sketch(const cv::Mat &src, cv::Mat &dst)
 // 油画
 void ArtEffect::_oilPaint(const cv::Mat &src, cv::Mat &dst)
 {
-	cv::Mat tmp(src);
+    cv::Mat tmp = src.clone();
 	for(int j=0;j<src.rows-2;j++)
 	{
 		//const uchar*current=src.ptr<const uchar>(j);//当前行
@@ -166,7 +166,7 @@ void ArtEffect::_oilPaint(const cv::Mat &src, cv::Mat &dst)
 // 木刻
 void ArtEffect::_woodCut(const cv::Mat &src, cv::Mat &dst)
 {
-	cv::Mat tmp(src);
+    cv::Mat tmp = src.clone();
 	for(int j=0;j<src.rows;j++)
 	{
 		const uchar*current=src.ptr<const uchar>(j);//当前行
@@ -182,13 +182,19 @@ void ArtEffect::_woodCut(const cv::Mat &src, cv::Mat &dst)
 	tmp.copyTo(dst);
 }
 
+// 反色
+void ArtEffect::_inverted(const cv::Mat &src, cv::Mat &dst)
+{
+    cv::Mat tmp = src.clone();
+    dst = 255 - tmp;
+}
 
 // 回忆
 void ArtEffect::_memory(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
-    cv::Mat img(src.size(),CV_8UC3);
+    cv::Mat img = src.clone();
 	for (int y=0; y<heigh; y++)
 	{
         const uchar* P0  = src.ptr<uchar>(y);
@@ -218,63 +224,63 @@ void ArtEffect::_memory(const cv::Mat &src, cv::Mat &dst)
 // 冰冻
 void ArtEffect::_freezing(const cv::Mat &src, cv::Mat &dst)
 {
-	int width=src.cols;
-	int heigh=src.rows;
-    cv::Mat tmp(src.size(),CV_8UC3);
-	for (int y=0;y<heigh;y++)
-	{
+    int width=src.cols;
+    int heigh=src.rows;
+    cv::Mat tmp = src.clone();
+    for (int y=0;y<heigh;y++)
+    {
         const uchar* imgP=src.ptr<uchar>(y);
-		uchar* dstP=tmp.ptr<uchar>(y);
-		for (int x=0;x<width;x++)
-		{
-			float b0=imgP[3*x];
-			float g0=imgP[3*x+1];
-			float r0=imgP[3*x+2];
- 
-			float b = (b0-g0-r0)*3/2;
-			float g = (g0-b0-r0)*3/2;
-			float r = (r0-g0-b0)*3/2;
- 
-			r = (r>255 ? 255 : (r<0? -r : r));
-			g = (g>255 ? 255 : (g<0? -g : g));
-			b = (b>255 ? 255 : (b<0? -b : b));
-			dstP[3*x] = (uchar)b;
-			dstP[3*x+1] = (uchar)g;
-			dstP[3*x+2] = (uchar)r;
-		}
-	}
+        uchar* dstP=tmp.ptr<uchar>(y);
+        for (int x=0;x<width;x++)
+        {
+            float b0=imgP[3*x];
+            float g0=imgP[3*x+1];
+            float r0=imgP[3*x+2];
+
+            float b = b0*255/(g0+r0+1);
+            float g = g0*255/(b0+r0+1);
+            float r = r0*255/(g0+b0+1);
+
+            r = (r>255 ? 255 : (r<0? 0 : r));
+            g = (g>255 ? 255 : (g<0? 0 : g));
+            b = (b>255 ? 255 : (b<0? 0 : b));
+
+            dstP[3*x] = (uchar)b;
+            dstP[3*x+1] = (uchar)g;
+            dstP[3*x+2] = (uchar)r;
+        }
+    }
     tmp.copyTo(dst);
 }
 
 // 熔铸
 void ArtEffect::_casting(const cv::Mat &src, cv::Mat &dst)
 {
-	int width=src.cols;
-	int heigh=src.rows;
-    cv::Mat tmp(src.size(),CV_8UC3);
-	for (int y=0;y<heigh;y++)
-	{
+    int width=src.cols;
+    int heigh=src.rows;
+    cv::Mat tmp = src.clone();
+    for (int y=0;y<heigh;y++)
+    {
         const uchar* imgP=src.ptr<uchar>(y);
-		uchar* dstP=tmp.ptr<uchar>(y);
-		for (int x=0;x<width;x++)
-		{
-			float b0=imgP[3*x];
-			float g0=imgP[3*x+1];
-			float r0=imgP[3*x+2];
- 
-			float b = b0*255/(g0+r0+1);
-			float g = g0*255/(b0+r0+1);
-			float r = r0*255/(g0+b0+1);
- 
-			r = (r>255 ? 255 : (r<0? 0 : r));
-			g = (g>255 ? 255 : (g<0? 0 : g));
-			b = (b>255 ? 255 : (b<0? 0 : b));
- 
-			dstP[3*x] = (uchar)b;
-			dstP[3*x+1] = (uchar)g;
-			dstP[3*x+2] = (uchar)r;
-		}
-	}
+        uchar* dstP=tmp.ptr<uchar>(y);
+        for (int x=0;x<width;x++)
+        {
+            float b0=imgP[3*x];
+            float g0=imgP[3*x+1];
+            float r0=imgP[3*x+2];
+
+            float b = (b0-g0-r0)*3/2;
+            float g = (g0-b0-r0)*3/2;
+            float r = (r0-g0-b0)*3/2;
+
+            r = (r>255 ? 255 : (r<0? -r : r));
+            g = (g>255 ? 255 : (g<0? -g : g));
+            b = (b>255 ? 255 : (b<0? -b : b));
+            dstP[3*x] = (uchar)b;
+            dstP[3*x+1] = (uchar)g;
+            dstP[3*x+2] = (uchar)r;
+        }
+    }
     tmp.copyTo(dst);
 }
 
@@ -283,7 +289,7 @@ void ArtEffect::_comicStrip(const cv::Mat &src, cv::Mat &dst)
 {
 	int width=src.cols;
 	int heigh=src.rows;
-    cv::Mat img(src.size(),CV_8UC3);
+    cv::Mat img = src.clone();
 	for (int y=0; y<heigh; y++)
 	{
         const uchar* P0  = src.ptr<uchar>(y);
@@ -307,7 +313,7 @@ void ArtEffect::_comicStrip(const cv::Mat &src, cv::Mat &dst)
 			P1[3*x+2] = (uchar)newR;
 		}
     }
-    cvtColor(img,dst,CV_BGR2GRAY);
-    normalize(dst,dst,255,0,CV_MINMAX);
+    cv::cvtColor(img,dst,CV_BGR2GRAY);
+    cv::normalize(dst,dst,255,0,CV_MINMAX);
 }
 

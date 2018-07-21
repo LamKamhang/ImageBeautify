@@ -485,7 +485,7 @@ QImage ImageOperations::gaussianFilter(QImage img, int col, int row, int x, int 
     QImage newImage(w, h, img.format());
     int size = row * col;
     double *gaussian = new double[size];
-    double sum;
+    double sum = 0;
     int mx = col/2, my = col/2;
     for(int i = 0; i < col; i++){
         for(int j = 0; j < row; j++){

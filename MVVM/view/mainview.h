@@ -24,6 +24,8 @@
 #include "../view/scaledialog.h"
 #include "../view/histogramdialog.h"
 #include "../view/algebraicdialog.h"
+#include "../view/binarymorphologydialog.h"
+#include "../view/graymorphologydialog.h"
 
 namespace UI {
 class MainView;
@@ -72,6 +74,7 @@ public:
     void setHistogramCommand(std::shared_ptr<ICommandBase>);
     void setAlgebraicCommand(std::shared_ptr<ICommandBase>);
     void setBinaryMorphologyCommand(std::shared_ptr<ICommandBase>);
+    void setGrayMorphologyCommand(std::shared_ptr<ICommandBase>);
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
     std::shared_ptr<ICommandNotification> getMainCommandSink();
@@ -132,6 +135,8 @@ private slots:
     void receiveApplyHistogram(std::shared_ptr<VectorParameters<int> >);
     void receiveApplyAlgebraic(std::shared_ptr<JsonParameters>);
     void receiveAlgebraicOpenFileImage2(QString);
+    void receiveApplyBinaryMorphology(std::shared_ptr<JsonParameters>);
+    void receiveApplyGrayMorphology(std::shared_ptr<JsonParameters>);
 
     // special effects
     void hotSpecialEffects();
@@ -223,6 +228,7 @@ private:
     std::shared_ptr<ICommandBase> histogramCommand;
     std::shared_ptr<ICommandBase> algebraicCommand;
     std::shared_ptr<ICommandBase> binaryMorphologyCommand;
+    std::shared_ptr<ICommandBase> grayMorphologyCommand;
 
 
     std::shared_ptr<MainImageSink> mainViewSink;

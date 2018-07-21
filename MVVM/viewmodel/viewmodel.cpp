@@ -3,12 +3,15 @@
 #include "commands/openfilecommand.h"
 #include "../common/util.h"
 #include <QDebug>
+#include <QIODevice>
 
 ViewModel::ViewModel()
     : image(new QImage())
     , subimage(new QImage())
     , undoEnabled(new bool(false))
     , redoEnabled(new bool(false))
+    , isBinary(new bool(false))
+    , isGray(new bool(false))
     , undoMsg(new QString())
     , redoMsg(new QString())
 {
@@ -37,8 +40,8 @@ ViewModel::ViewModel()
     scalecommand = std::make_shared<ScaleCommand>(this);
     histogramcommand = std::make_shared<HistogramCommand>(this);
     algebraiccommand = std::make_shared<AlgebraicCommand>(this);
-//    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
-//    graymorphodcommand = std::make_shared<GrayMorphodCommand>(this);
+    binarymorphologycommand = std::make_shared<BinaryMorphologyCommand>(this);
+    graymorphologycommand = std::make_shared<GrayMorphologyCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -47,6 +50,7 @@ void ViewModel::bindModel(std::shared_ptr<Model> model){
 }
 
 void ViewModel::execOpenFileCommand(const QString &path){
+    qDebug()<<"open file "<<path;
     model->open_file(path);
 }
 
@@ -348,13 +352,148 @@ void ViewModel::execAlgebraicCommand(std::shared_ptr<JsonParameters> json)
     }
 }
 
-void ViewModel::execBinaryMorphodCommand(std::shared_ptr<JsonParameters> json)
+void ViewModel::execBinaryMorphologyCommand(std::shared_ptr<JsonParameters> json)
 {
-    qDebug() << "execBinaryMorphodCommand";
+    qDebug() << "execBinaryMorphologyCommand";
+
+    QString desc = "Binary Morphology: Operation: ";
+    int size = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["size"])->getvalue();
+    std::vector<int> elem = std::static_pointer_cast<VectorParameters<int>, ParametersBase>((*json)["elem"])->getvalue();
+
+    int x = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["x"])->getvalue();
+    int y = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["y"])->getvalue();
+
+    int operation = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["operation"])->getvalue();
+    switch (operation) 
+    {
+        case DILATION:
+            desc += "Dilation, ";
+            desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+            model->commit(desc);
+            qDebug() << "dilation";
+            model->dilation(size, x, y, &elem[0]);
+            break;
+        case EROSION:
+            desc += "Erosion, ";
+            desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+            model->commit(desc);
+            qDebug() << "erosion";
+            model->erosion(size, x, y, &elem[0]);
+            break;
+        case OPENING:
+            desc += "Opening, ";
+            desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+            model->commit(desc);
+            qDebug() << "opening";
+            model->opening(size, x, y, &elem[0]);
+            break;
+        case CLOSING:
+            desc += "Closing, ";
+            desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+            model->commit(desc);
+            qDebug() << "closing";
+            model->closing(size, x, y, &elem[0]);
+            break;
+        case SKELETONIZATION:
+            desc += "Skeletonization, ";
+            desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+            model->commit(desc);
+            qDebug() << "skeletonization";
+            model->skeletonization(size, x, y, &elem[0]);
+            break;
+        case THINNING:
+            desc += "Thinning";
+            model->commit(desc);
+            qDebug() << "thinning";
+            model->thinning();
+            break;
+        case THICKING:
+            desc += "Thicking";
+            model->commit(desc);
+            qDebug() << "thicking";
+            model->thicking();
+            break;
+        case DISTANCE_TRANSFORM:
+            desc += "Distance Transform";
+            model->commit(desc);
+            qDebug() << "distanceTransform";
+            model->distanceTransform();
+            break;
+        case SKELETON_RECONSTRUCTION:
+            desc += "Skeleton Reconstruction, ";
+            desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+            model->commit(desc);
+            qDebug() << "skeletionReconstruct";
+            model->skeletionReconstruct(size, x, y, &elem[0]);
+            break;
+        case RECONSTRUCTION:
+            desc += "Reconstruction, ";
+            desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+            model->commit(desc);
+            qDebug() << "binaryReconstruction";
+            model->binaryReconstruction(size, x, y, &elem[0]);
+            break;
+        default:
+            break;
+    }
 }
-void ViewModel::execGrayMorphodCommand(std::shared_ptr<JsonParameters> json)
+void ViewModel::execGrayMorphologyCommand(std::shared_ptr<JsonParameters> json)
 {
-    qDebug() << "execGrayMorphodCommand";
+    qDebug() << "execGrayMorphologyCommand";
+    QString desc = "Grayscale Morphology: Operation: ";
+    int size = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["size"])->getvalue();
+    std::vector<int> elem = std::static_pointer_cast<VectorParameters<int>, ParametersBase>((*json)["elem"])->getvalue();
+
+    int x = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["x"])->getvalue();
+    int y = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["y"])->getvalue();
+
+    int operation = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["operation"])->getvalue();
+
+    switch (operation) {
+    case DILATION:
+        desc += "Dilation, ";
+        desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+        model->commit(desc);
+        model->dilation(size, x, y, &elem[0]);
+        break;
+    case EROSION:
+        desc += "Erosion, ";
+        desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+        model->commit(desc);
+        model->erosion(size, x, y, &elem[0]);
+        break;
+    case OPENING:
+        desc += "Opening, ";
+        desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+        model->commit(desc);
+        model->opening(size, x, y, &elem[0]);
+        break;
+    case CLOSING:
+        desc += "Closing, ";
+        desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+        model->commit(desc);
+        model->closing(size, x, y, &elem[0]);
+        break;
+    case OBR:
+        desc += "Opening By Reconstruction, ";
+        desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+        model->commit(desc);
+        model->obr(size, x, y, &elem[0]);
+        break;
+    case CBR:
+        desc += "Closing By Reconstruction, ";
+        desc += QIODevice::tr("Structure Element Size: %1x%1, Anchor: (%2, %3)").arg(size).arg(x).arg(y);
+        model->commit(desc);
+        model->cbr(size, x, y, &elem[0]);
+        break;
+    case WATERSHED:
+        desc += "Watershed";
+        model->commit(desc);
+        model->watershed();
+        break;
+    default:
+        break;
+    }
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
@@ -480,23 +619,27 @@ std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
     return algebraiccommand;
 }
 
-//std::shared_ptr<ICommandBase> ViewModel::getBinaryMorphodCommand()
-//{
-//    qDebug() << "getBinaryMorphodCommand";
-//    return binarymorphodcommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getBinaryMorphologyCommand()
+{
+   qDebug() << "getBinaryMorphologyCommand";
+   return binarymorphologycommand;
+}
 
-//std::shared_ptr<ICommandBase> ViewModel::getGrayMorphodCommand()
-//{
-//    qDebug() << "getGrayMorphodCommand";
-//    return graymorphodcommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getGrayMorphologyCommand()
+{
+   qDebug() << "getGrayMorphologyCommand";
+   return graymorphologycommand;
+}
 
 
 void ViewModel::setImageFromModel(){
+    qDebug() << "in view model set image from model";
     *image = model->getMain();
+    qDebug() << "in view model set image from model";
     *isBinary = model->isBinaryImage();
+    qDebug() << "in view model set image from model";
     *isGray = model->isGrayImage();
+    qDebug() << "in view model set image from model";
 }
 
 void ViewModel::setSubImageFromModel(){

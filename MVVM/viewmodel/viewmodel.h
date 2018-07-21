@@ -28,8 +28,8 @@
 #include "commands/ScaleCommand.h"
 #include "commands/HistogramCommand.h"
 #include "commands/AlgebraicCommand.h"
-//#include "commands/BinaryMorphodCommand.h"
-//#include "commands/GrayMorphodCommand.h"
+#include "commands/BinaryMorphologyCommand.h"
+#include "commands/GrayMorphologyCommand.h"
 #include "sinks/viewmodelsink.h"
 
 class OpenFileCommand;
@@ -54,8 +54,8 @@ class ClipCommand;
 class ScaleCommand;
 class HistogramCommand;
 class AlgebraicCommand;
-//class BinaryMorphodCommand;
-//class GrayMorphodCommand;
+class BinaryMorphologyCommand;
+class GrayMorphologyCommand;
 
 class ViewModel
     : public Proxy_PropertyNotification<ViewModel>
@@ -88,8 +88,8 @@ public:
     void execScaleCommand(std::shared_ptr<JsonParameters> json);
     void execHistogramCommand(std::shared_ptr<VectorParameters<int> > param);
     void execAlgebraicCommand(std::shared_ptr<JsonParameters> json);
-    void execBinaryMorphodCommand(std::shared_ptr<JsonParameters> json);
-    void execGrayMorphodCommand(std::shared_ptr<JsonParameters> json);
+    void execBinaryMorphologyCommand(std::shared_ptr<JsonParameters> json);
+    void execGrayMorphologyCommand(std::shared_ptr<JsonParameters> json);
 
     std::shared_ptr<ICommandBase> getOpenFileCommand();
     std::shared_ptr<ICommandBase> getSaveFileCommand();
@@ -114,8 +114,8 @@ public:
     std::shared_ptr<ICommandBase> getScaleCommand();
     std::shared_ptr<ICommandBase> getHistogramCommand();
     std::shared_ptr<ICommandBase> getAlgebraicCommand();
-//    std::shared_ptr<ICommandBase> getBinaryMorphodCommand();
-//    std::shared_ptr<ICommandBase> getGrayMorphodCommand();
+    std::shared_ptr<ICommandBase> getBinaryMorphologyCommand();
+    std::shared_ptr<ICommandBase> getGrayMorphologyCommand();
 
     std::shared_ptr<QImage> getImage();
     std::shared_ptr<QImage> getSubImage();
@@ -149,7 +149,6 @@ private:
 
     std::shared_ptr<OpenFileCommand> openfilecommand;
     std::shared_ptr<SaveFileCommand> savefilecommand;
-    std::shared_ptr<CheckImageCommand> checkimagecommand;
     std::shared_ptr<OpenSubFileCommand> opensubfilecommand;
     std::shared_ptr<OpenSubDialogCommand> opensubdialogcommand;
     std::shared_ptr<UndoCommand> undocommand;
@@ -171,8 +170,8 @@ private:
     std::shared_ptr<ScaleCommand> scalecommand;
     std::shared_ptr<HistogramCommand> histogramcommand;
     std::shared_ptr<AlgebraicCommand> algebraiccommand;
-//    std::shared_ptr<BinaryMorphodCommand> binarymorphodcommand;
-//    std::shared_ptr<GrayMorphodCommand> graymorphodcommand;
+    std::shared_ptr<BinaryMorphologyCommand> binarymorphologycommand;
+    std::shared_ptr<GrayMorphologyCommand> graymorphologycommand;
 
 };
 

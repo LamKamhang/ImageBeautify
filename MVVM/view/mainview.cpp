@@ -26,6 +26,7 @@ MainView::MainView()
     , scaleFactor(1)
 {
     mainViewSink = std::make_shared<MainImageSink>(MainImageSink(this));
+    mainCommandSink = std::make_shared<MainCommandSink>(MainCommandSink(this));
 
     imageLabel->setBackgroundRole(QPalette::Base);
     imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -392,21 +393,43 @@ void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> 
     houghCircleDetectionCommand->Exec();
 }
 
-void MainView::binaryMorphology(){
-    if(!(*isBinary)){
+void MainView::binaryMorphology()
+{
+    if(!*isBinary){
         QMessageBox msgBox(QMessageBox::Warning, tr("Warning"),
                            tr("Current image is not binary image."));
         msgBox.exec();
-        return ;
+        return;
     }
-    BinaryMorphoDialog *dialog = new BinaryMorphoDialog();
-    connect(dialog, SIGNAL(sendApplyBinaryMorpho(QJsonObject)),
-            this, SLOT(receiveApplyBinaryMorpho(QJsonObject)));
+    BinaryMorphologyDialog *dialog = new BinaryMorphologyDialog();
+    connect(dialog, SIGNAL(sendApplyBinaryMorphology(std::shared_ptr<JsonParameters>)), this,
+            SLOT(receiveApplyBinaryMorphology(std::shared_ptr<JsonParameters>)));
     dialog->exec();
 }
 
-void MainView::grayMorphology(){
+void MainView::grayMorphology()
+{
+    if(!*isGray){
+        QMessageBox msgBox(QMessageBox::Warning, tr("Warning"),
+                           tr("Current image is not gray-scale image."));
+        msgBox.exec();
+        return;
+    }
+    GrayMorphologyDialog *dialog = new GrayMorphologyDialog();
+    connect(dialog, SIGNAL(sendApplyGrayMorphology(std::shared_ptr<JsonParameters>)), this,
+            SLOT(receiveApplyGrayMorphology(std::shared_ptr<JsonParameters>)));
+    dialog->exec();
+}
 
+void MainView::receiveApplyBinaryMorphology(std::shared_ptr<JsonParameters> json)
+{
+    binaryMorphologyCommand->SetParameter(json);
+    binaryMorphologyCommand->Exec();
+}
+void MainView::receiveApplyGrayMorphology(std::shared_ptr<JsonParameters> json)
+{
+    grayMorphologyCommand->SetParameter(json);
+    grayMorphologyCommand->Exec();
 }
 
 /******************* special effects menu ********************/
@@ -574,6 +597,10 @@ void MainView::setBinaryMorphologyCommand(std::shared_ptr<ICommandBase> command)
     binaryMorphologyCommand = command;
 }
 
+void MainView::setGrayMorphologyCommand(std::shared_ptr<ICommandBase> command){
+    grayMorphologyCommand = command;
+}
+
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){
     openSubDialogCommand = command;
 }
@@ -691,17 +718,20 @@ void MainView::mouseMoveEvent(QMouseEvent *e){
 }
 
 void MainView::update(){
+    qDebug() << "in main view update1";
     imageLabel->setPixmap(QPixmap::fromImage(*image));
+    qDebug() << "in main view update2";
     scaleFactor = 1.0;
     scrollArea->setVisible(true);
-
+    qDebug() << "in main view update3";
 //    set actions enable
     updateActions();
-
+    qDebug() << "in main view update4";
     if (!fitToWindowAct->isChecked())
         imageLabel->adjustSize();
 
     setCursor(Qt::ArrowCursor);
+     qDebug() << "in main view update5";
 }
 
 void MainView::updateSubImage(){

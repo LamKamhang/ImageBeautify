@@ -38,8 +38,8 @@ enum commandsType{
     ALGEBRAIC_ADD,
     ALGEBRAIC_SUBTRACT,
     ALGEBRAIC_MULTIPLY,
-    BINARY_MORPHOD,
-    GRAY_MORPHOD,
+    BINARY_MORPHOLOGY,
+    GRAY_MORPHOLOGY,
 };
 
 enum propertyType{
@@ -54,3 +54,20 @@ enum ChannelType{
     GREEN,
     BLUE,
 };
+
+enum OperationType{
+    DILATION,
+    EROSION, 
+    OPENING, 
+    CLOSING,                      
+    THINNING, 
+    THICKING, 
+    DISTANCE_TRANSFORM,
+    SKELETONIZATION, 
+    SKELETON_RECONSTRUCTION,
+    RECONSTRUCTION,
+    OBR,
+    CBR,
+    WATERSHED,
+};
+

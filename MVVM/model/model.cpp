@@ -1,6 +1,7 @@
 #include "model.h"
 #include <QImageReader>
 #include <QImageWriter>
+#include <QDebug>
 
 const QImage& Model::getMain()
 {
@@ -23,6 +24,7 @@ bool Model::open_file(const QString &path)
     }
     else
     {
+        qDebug() << "in model open file " << path;
         QImage tmp(originImg);
 		mainImg = tmp;
         Fire_OnPropertyChanged(MAIN_IMAGE);
