@@ -16,6 +16,7 @@ ViewModel::ViewModel()
 
     openfilecommand = std::make_shared<OpenFileCommand>(this);
     savefilecommand = std::make_shared<SaveFileCommand>(this);
+    opensubfilecommand = std::make_shared<OpenSubFileCommand>(this);
     opensubdialogcommand = std::make_shared<OpenSubDialogCommand>(this);
     undocommand = std::make_shared<UndoCommand>(this);
     redocommand = std::make_shared<RedoCommand>(this);
@@ -35,7 +36,7 @@ ViewModel::ViewModel()
     clipcommand = std::make_shared<ClipCommand>(this);
 //    scalecommand = std::make_shared<ScaleCommand>(this);
 //    histogramcommand = std::make_shared<HistogramCommand>(this);
-//    algebraiccommand = std::make_shared<AlgebraicCommand>(this);
+    algebraiccommand = std::make_shared<AlgebraicCommand>(this);
 //    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
 //    graymorphodcommand = std::make_shared<GrayMorphodCommand>(this);
 }
@@ -51,6 +52,11 @@ void ViewModel::execOpenFileCommand(const QString &path){
 
 void ViewModel::execSaveFileCommand(const QString &path){
     model->save_file(path);
+}
+
+void ViewModel::execOpenSubFileCommand(const QString &path){
+    qDebug()<<"open_sub_file(path)";
+    model->open_sub_file(path);
 }
 
 void ViewModel::execOpenSubDialogCommand(){
@@ -280,7 +286,46 @@ void ViewModel::execHistogramCommand(std::shared_ptr<JsonParameters> json)
 void ViewModel::execAlgebraicCommand(std::shared_ptr<JsonParameters> json)
 {
     qDebug() << "execAlgebraicCommand";
+    QString operationDesc;
+    enum commandsType type = std::static_pointer_cast<EnumCommandParameters,ParametersBase>((*json)["type"])->getvalue();
+    bool dft = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["default"])->getvalue();
+    double param1 = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["param1"])->getvalue();
+    double param2 = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["param2"])->getvalue();
+    switch (type) {
+    case ALGEBRAIC_ADD:
+        if(dft){
+            operationDesc = "image1 + image2";
+            model->commit("Algebraic Operation: " + operationDesc);
+            model->imageAdd(1,1);
+        }
+        else{
+            operationDesc = QIODevice::tr("%1*image1 + %2*image2").arg(param1).arg(param2);
+            model->commit("Algebraic Operation: " + operationDesc);
+            model->imageAdd(param1,param2);
+        }
+        break;
+    case ALGEBRAIC_SUBTRACT:
+        if(dft){
+            operationDesc = "image1 - image2";
+            model->commit("Algebraic Operation: " + operationDesc);
+            model->imageSubtract(1,1);
+        }
+        else{
+            operationDesc = QIODevice::tr("%1*image1 - %2*image2").arg(param1).arg(param2);
+            model->commit("Algebraic Operation: " + operationDesc);
+            model->imageSubtract(param1,param2);
+        }
+        break;
+    case ALGEBRAIC_MULTIPLY:
+        operationDesc = "image1 * image2";
+        model->commit("Algebraic Operation: " + operationDesc);
+        model->imageMultiply();
+        break;
+    default:
+        break;
+    }
 }
+
 void ViewModel::execBinaryMorphodCommand(std::shared_ptr<JsonParameters> json)
 {
     qDebug() << "execBinaryMorphodCommand";
@@ -296,6 +341,10 @@ std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
 
 std::shared_ptr<ICommandBase> ViewModel::getSaveFileCommand(){
     return savefilecommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getOpenSubFileCommand(){
+    return opensubfilecommand;
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenSubDialogCommand(){
@@ -397,11 +446,10 @@ std::shared_ptr<ICommandBase> ViewModel::getClipCommand()
 //    return histogramcommand;
 //}
 
-//std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
-//{
-//    qDebug() << "getAlgebraicCommand";
-//    return algebraiccommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getAlgebraicCommand()
+{
+    return algebraiccommand;
+}
 
 //std::shared_ptr<ICommandBase> ViewModel::getBinaryMorphodCommand()
 //{

@@ -2,7 +2,6 @@
 #define ALGEBRAICDIALOG_H
 #include <QWidget>
 #include <QDialog>
-#include <QJsonObject>
 #include "../common/parameters.h"
 
 QT_BEGIN_NAMESPACE
@@ -58,8 +57,8 @@ public:
     void setImage2(std::shared_ptr<QImage> img);
 
 signals:
-    void sendApplyAlgebraicOperation(QJsonObject, QImage);
-    void openFileImage2(QString);
+    void sendApplyAlgebraicOperation(std::shared_ptr<JsonParameters>);
+    void sendOpenFileImage2(QString);
 
 private slots:
     void updateImage2();

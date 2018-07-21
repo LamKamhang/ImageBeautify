@@ -143,7 +143,6 @@ void AlgebraicDialog::operatorButtonClicked(QAbstractButton*){
             addContent->setGroupName("Subtract Setting");
         }
     }
-
 }
 
 void AlgebraicDialog::openFile(){
@@ -153,7 +152,8 @@ void AlgebraicDialog::openFile(){
     if(filePath == "")return;
 
     this->filePath = filePath;
-    emit openFileImage2(filePath);
+    qDebug()<<"sendOpenFileImage2(filePath)";
+    emit sendOpenFileImage2(filePath);
 }
 
 void AlgebraicDialog::updateImage2(){
@@ -187,24 +187,38 @@ void AlgebraicDialog::apply(){
         msgBox.exec();
         return;
     }
-    QJsonObject obj;
+    JsonParameters obj;
     bool dft;
-    obj.insert("operator", op);
+    enum commandsType type;
+    switch (op) {
+    case ADD:
+        type = ALGEBRAIC_ADD;
+        break;
+    case SUBTRACT:
+        type = ALGEBRAIC_SUBTRACT;
+        break;
+    case MULTIPLY:
+        type = ALGEBRAIC_MULTIPLY;
+        break;
+    default:
+        break;
+    }
+    obj.insert("type", std::make_shared<EnumCommandParameters>(type));
     switch(op){
     case ADD: case SUBTRACT:
         dft = addContent->isDefault();
-        obj.insert("default", dft);
+        obj.insert("default", std::make_shared<BoolParameters>(dft));
         if(!dft){
             double param1, param2;
             addContent->getParams(param1, param2);
-            obj.insert("param1", param1);
-            obj.insert("param2", param2);
+            obj.insert("param1", std::make_shared<DoubleParameters>(param1));
+            obj.insert("param2", std::make_shared<DoubleParameters>(param2));
         }
         break;
     default:
         break;
     }
-//    emit sendApplyAlgebraicOperation(obj);
+    emit sendApplyAlgebraicOperation(std::make_shared<JsonParameters>(obj));
     close();
 }
 
