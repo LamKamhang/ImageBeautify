@@ -513,7 +513,7 @@ void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
     else if(type == SKETCH)model->_sketch();
     else if(type == OILPAINT)model->_oilPaint();
     else if(type == WOODCUT)model->_woodCut();
-    else if(type == INVERTED);//model->_inverted();
+    else if(type == INVERTED)model->_inverted();
     else if(type == MEMORY)model->_memory();
     else if(type == FREEZING)model->_freezing();
     else if(type == CASTING)model->_casting();

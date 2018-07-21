@@ -222,11 +222,6 @@ void ArtEffect::_memory(const cv::Mat &src, cv::Mat &dst)
     img.copyTo(dst);
 }
 
-void ArtEffect::_inverted(const Mat &src, Mat &dst)
-{
-    // debug
-}
-
 // 冰冻
 void ArtEffect::_freezing(const cv::Mat &src, cv::Mat &dst)
 {

@@ -51,19 +51,12 @@ DEPENDPATH += $$PWD/../OpenCV/win32/include
 CONFIG += c++14
 
 HEADERS += \
-    APP/app.h \
+    app/app.h \
     common/etlbase.h \
     common/parameters.h \
     common/type.h \
     common/util.h \
     model/filters/art_effect.h \
-#    model/filters/basic_effect.h \
-#    model/filters/blur.h \
-#    model/filters/fasion_effect.h \
-#    model/filters/frame_effect.h \
-#    model/filters/hot_effect.h \
-#    model/filters/human_effect.h \
-#    model/filters/lemo_effect.h \
     model/imageoperation/aux_image_alg.h \
     model/logoperation/aux_log_alg.h \
     model/model.h \
@@ -71,6 +64,7 @@ HEADERS += \
     view/sinks/mainimagesink.h \
     view/algebraicdialog.h \
     view/binarymorphologydialog.h \
+    view/clickableqlabel.h \
     view/clipbox.h \
     view/clipdialog.h \
     view/curvecanvas.h \
@@ -86,8 +80,10 @@ HEADERS += \
     view/leveldialog.h \
     view/mainview.h \
     view/scaledialog.h \
+    view/specialeffectdialog.h \
     view/structureelementcanvas.h \
     viewmodel/commands/AlgebraicCommand.h \
+    viewmodel/commands/arteffectscommand.h \
     viewmodel/commands/BinaryMorphologyCommand.h \
     viewmodel/commands/channelcommand.h \
     viewmodel/commands/ClipCommand.h \
@@ -111,24 +107,14 @@ HEADERS += \
     viewmodel/commands/ScaleCommand.h \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h \
-    view/clipbox.h \
-    viewmodel/commands/opensubfilecommand.h \
-    view/sinks/maincommandsink.h \
-    view/specialeffectdialog.h \
-    view/clickableqlabel.h \
-    viewmodel/commands/arteffectscommand.h
+    viewmodel/viewmodel.h
 
 SOURCES += \
-    APP/app.cpp \
-    APP/main.cpp \
+    app/app.cpp \
+    app/main.cpp \
     common/util.cpp \
     model/filteroperation/filteroperation.cpp \
     model/filters/art_effect.cpp \
-#    model/filters/basic_effect.cpp \
-#    model/filters/blur.cpp \
-#    model/filters/human_effect.cpp \
-#    model/filters/lemo_effect.cpp \
     model/imageoperation/aux_image_alg.cpp \
     model/imageoperation/imageoperation.cpp \
     model/logoperation/aux_log_alg.cpp \
@@ -138,6 +124,7 @@ SOURCES += \
     view/sinks/mainimagesink.cpp \
     view/algebraicdialog.cpp \
     view/binarymorphologydialog.cpp \
+    view/clickableqlabel.cpp \
     view/clipbox.cpp \
     view/clipdialog.cpp \
     view/curvecanvas.cpp \
@@ -153,8 +140,10 @@ SOURCES += \
     view/leveldialog.cpp \
     view/mainview.cpp \
     view/scaledialog.cpp \
+    view/specialeffectdialog.cpp \
     view/structureelementcanvas.cpp \
     viewmodel/commands/AlgebraicCommand.cpp \
+    viewmodel/commands/arteffectscommand.cpp \
     viewmodel/commands/BinaryMorphologyCommand.cpp \
     viewmodel/commands/channelcommand.cpp \
     viewmodel/commands/ClipCommand.cpp \
@@ -178,11 +167,6 @@ SOURCES += \
     viewmodel/commands/ScaleCommand.cpp \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp \
-    view/clipbox.cpp \
-    viewmodel/commands/opensubfilecommand.cpp \
-    view/sinks/maincommandsink.cpp \
-    view/specialeffectdialog.cpp \
-    view/clickableqlabel.cpp \
-    viewmodel/commands/arteffectscommand.cpp
+    viewmodel/viewmodel.cpp
+
 
