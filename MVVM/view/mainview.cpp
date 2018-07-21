@@ -421,13 +421,15 @@ void MainView::grayMorphology()
     dialog->exec();
 }
 
-void MainView::receiveApplyBinaryMorphology(std::shared_ptr<JsonParameters>)
+void MainView::receiveApplyBinaryMorphology(std::shared_ptr<JsonParameters> json)
 {
-
+    binaryMorphologyCommand->SetParameter(json);
+    binaryMorphologyCommand->Exec();
 }
-void MainView::receiveApplyGrayMorphology(std::shared_ptr<JsonParameters>)
+void MainView::receiveApplyGrayMorphology(std::shared_ptr<JsonParameters> json)
 {
-
+    grayMorphologyCommand->SetParameter(json);
+    grayMorphologyCommand->Exec();
 }
 
 /******************* special effects menu ********************/

@@ -5,6 +5,7 @@
 #include <QJsonObject>
 #include "structureelementcanvas.h"
 #include "../common/parameters.h"
+#include "../common/type.h"
 QT_BEGIN_NAMESPACE
 class QButtonGroup;
 class QComboBox;
@@ -15,11 +16,6 @@ class BinaryMorphologyDialog : public QDialog
     Q_OBJECT
 
 public:
-    enum OperationType{DILATION = 0, EROSION, OPENING, CLOSING,
-                      THINING, THICKING, DISTANCE_TRANSFORM,
-                      SKELETONIZATION, SKELETON_RECONSTRUCTION,
-                      RECONSTRUCTION};
-
     BinaryMorphologyDialog();
 
 signals:

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "structureelementcanvas.h"
 #include "../common/parameters.h"
+#include "../common/type.h"
 
 QT_BEGIN_NAMESPACE
 class QButtonGroup;
@@ -15,9 +16,6 @@ class GrayMorphologyDialog : public QDialog
     Q_OBJECT
 
 public:
-    enum OperationType{DILATION = 0, EROSION, OPENING, CLOSING,
-                      OBR, CBR, WATERSHED};
-
     GrayMorphologyDialog();
 
 signals:

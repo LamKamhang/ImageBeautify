@@ -23,13 +23,13 @@ GrayMorphologyDialog::GrayMorphologyDialog()
 
     btnGroup = new QButtonGroup;
     btnGroup->setExclusive(true);
-    btnGroup->addButton(dilationBtn, 0);
-    btnGroup->addButton(erosionBtn, 1);
-    btnGroup->addButton(openingBtn, 2);
-    btnGroup->addButton(closingBtn, 3);
-    btnGroup->addButton(obrBtn, 4);
-    btnGroup->addButton(cbrBtn, 5);
-    btnGroup->addButton(watershedBtn, 6);
+    btnGroup->addButton(dilationBtn, DILATION);
+    btnGroup->addButton(erosionBtn, EROSION);
+    btnGroup->addButton(openingBtn, OPENING);
+    btnGroup->addButton(closingBtn, CLOSING);
+    btnGroup->addButton(obrBtn, OBR);
+    btnGroup->addButton(cbrBtn, CBR);
+    btnGroup->addButton(watershedBtn, WATERSHED);
 
     QHBoxLayout *btnLayout1 = new QHBoxLayout;
     btnLayout1->addWidget(dilationBtn);

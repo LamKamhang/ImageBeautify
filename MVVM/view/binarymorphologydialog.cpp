@@ -27,16 +27,16 @@ BinaryMorphologyDialog::BinaryMorphologyDialog()
 
     btnGroup = new QButtonGroup;
     btnGroup->setExclusive(true);
-    btnGroup->addButton(dilationBtn, 0);
-    btnGroup->addButton(erosionBtn, 1);
-    btnGroup->addButton(openingBtn, 2);
-    btnGroup->addButton(closingBtn, 3);
-    btnGroup->addButton(thinningBtn, 4);
-    btnGroup->addButton(thickingBtn, 5);
-    btnGroup->addButton(distanceTransBtn, 6);
-    btnGroup->addButton(skeletonizationBtn, 7);
-    btnGroup->addButton(skeleReconstructBtn, 8);
-    btnGroup->addButton(reconstructionBtn, 9);
+    btnGroup->addButton(dilationBtn, DILATION);
+    btnGroup->addButton(erosionBtn, EROSION);
+    btnGroup->addButton(openingBtn, OPENING);
+    btnGroup->addButton(closingBtn, CLOSING);
+    btnGroup->addButton(thinningBtn, THINNING);
+    btnGroup->addButton(thickingBtn, THICKING);
+    btnGroup->addButton(distanceTransBtn, DISTANCE_TRANSFORM);
+    btnGroup->addButton(skeletonizationBtn, SKELETONIZATION);
+    btnGroup->addButton(skeleReconstructBtn, SKELETON_RECONSTRUCTION);
+    btnGroup->addButton(reconstructionBtn, RECONSTRUCTION);
 
     QHBoxLayout *btnLayout1 = new QHBoxLayout;
     btnLayout1->addWidget(dilationBtn);
@@ -131,7 +131,7 @@ void BinaryMorphologyDialog::apply(){
 
 void BinaryMorphologyDialog::buttonGroupChanged(int index){
     OperationType type = (OperationType)index;
-    if(type == THINING || type == THICKING  || type == DISTANCE_TRANSFORM){
+    if(type == THINNING || type == THICKING  || type == DISTANCE_TRANSFORM){
         canvas->setEnabled(false);
         elementSizeBox->setEnabled(false);
     } else {
