@@ -107,7 +107,7 @@ HEADERS += \
     viewmodel/commands/otsucommand.h \
     viewmodel/commands/redocommand.h \
     viewmodel/commands/savefilecommand.h \
-#    viewmodel/commands/ScaleCommand.h \
+    viewmodel/commands/ScaleCommand.h \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
     viewmodel/viewmodel.h \
@@ -162,7 +162,7 @@ SOURCES += \
     viewmodel/commands/otsucommand.cpp \
     viewmodel/commands/redocommand.cpp \
     viewmodel/commands/savefilecommand.cpp \
-#    viewmodel/commands/ScaleCommand.cpp \
+    viewmodel/commands/ScaleCommand.cpp \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
     viewmodel/viewmodel.cpp \

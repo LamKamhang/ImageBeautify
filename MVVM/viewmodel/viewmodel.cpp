@@ -33,7 +33,7 @@ ViewModel::ViewModel()
     curvecommand = std::make_shared<CurveCommand>(this);
     levelcommand = std::make_shared<LevelCommand>(this);
     clipcommand = std::make_shared<ClipCommand>(this);
-//    scalecommand = std::make_shared<ScaleCommand>(this);
+   scalecommand = std::make_shared<ScaleCommand>(this);
 //    histogramcommand = std::make_shared<HistogramCommand>(this);
 //    algebraiccommand = std::make_shared<AlgebraicCommand>(this);
 //    binarymorphodcommand = std::make_shared<BinaryMorphodCommand>(this);
@@ -272,6 +272,26 @@ void ViewModel::execClipCommand(std::shared_ptr<JsonParameters> json)
 void ViewModel::execScaleCommand(std::shared_ptr<JsonParameters> json)
 {
     qDebug() << "execScaleCommand";
+    QString desc = "Scale/Rotation: Algorithms: ";
+
+    int type = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["algo"])->getvalue();
+    int scale = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["scale"])->getvalue();
+    int rotation = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["rotation"])->getvalue();
+
+    if(type == 0){
+        desc += "nearnest interpolation, ";
+        desc += "Scale: " + QString::number(scale) + ", ";
+        desc += "Rotation: " + QString::number(rotation);
+        model->commit(desc);
+        model->nearnestInterpolation(scale, rotation);
+    } else {
+        desc += "bilinear interpolation, ";
+        desc += "Scale: " + QString::number(scale) + ", ";
+        desc += "Rotation: " + QString::number(rotation);
+        model->commit(desc);
+        model->commit(desc);
+        model->nearnestInterpolation(scale, rotation);(scale, rotation);
+    }
 }
 void ViewModel::execHistogramCommand(std::shared_ptr<JsonParameters> json)
 {
@@ -385,11 +405,11 @@ std::shared_ptr<ICommandBase> ViewModel::getClipCommand()
     return clipcommand;
 }
 
-//std::shared_ptr<ICommandBase> ViewModel::getScaleCommand()
-//{
-//    qDebug() << "getScaleCommand";
-//    return scalecommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getScaleCommand()
+{
+    qDebug() << "getScaleCommand";
+    return scalecommand;
+}
 
 //std::shared_ptr<ICommandBase> ViewModel::getHistogramCommand()
 //{

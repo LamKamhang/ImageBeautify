@@ -272,12 +272,11 @@ void MainView::clip(){
 }
 
 void MainView::scale(){
-//    openSubDialogCommand->Exec();// set mainimg to subimg
-//    ScaleDialog *dialog = new ScaleDialog(subimage);
-//    connect(dialog,SIGNAL(sendApplyScale(std::shared_ptr<JsonParameters>))
-//            , this,SLOT(receiveApplyScale(std::shared_ptr<JsonParameters>)));
-//    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
-//    dialog->exec();
+   ScaleDialog *dialog = new ScaleDialog();
+   connect(dialog,SIGNAL(sendApplyScale(std::shared_ptr<JsonParameters>))
+           , this,SLOT(receiveApplyScale(std::shared_ptr<JsonParameters>)));
+   connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
+   dialog->exec();
 }
 
 void MainView::histogram(){

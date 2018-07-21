@@ -24,7 +24,7 @@
 #include "commands/CurveCommand.h"
 #include "commands/LevelCommand.h"
 #include "commands/ClipCommand.h"
-//#include "commands/ScaleCommand.h"
+#include "commands/ScaleCommand.h"
 //#include "commands/HistogramCommand.h"
 //#include "commands/AlgebraicCommand.h"
 //#include "commands/BinaryMorphodCommand.h"
@@ -48,7 +48,7 @@ class HueSaturaLightCommand;
 class CurveCommand;
 class LevelCommand;
 class ClipCommand;
-//class ScaleCommand;
+class ScaleCommand;
 //class HistogramCommand;
 //class AlgebraicCommand;
 //class BinaryMorphodCommand;
@@ -106,7 +106,7 @@ public:
     std::shared_ptr<ICommandBase> getCurveCommand();
     std::shared_ptr<ICommandBase> getLevelCommand();
     std::shared_ptr<ICommandBase> getClipCommand();
-//    std::shared_ptr<ICommandBase> getScaleCommand();
+   std::shared_ptr<ICommandBase> getScaleCommand();
 //    std::shared_ptr<ICommandBase> getHistogramCommand();
 //    std::shared_ptr<ICommandBase> getAlgebraicCommand();
 //    std::shared_ptr<ICommandBase> getBinaryMorphodCommand();
@@ -154,7 +154,7 @@ private:
     std::shared_ptr<CurveCommand> curvecommand;
     std::shared_ptr<LevelCommand> levelcommand;
     std::shared_ptr<ClipCommand> clipcommand;
-//    std::shared_ptr<ScaleCommand> scalecommand;
+   std::shared_ptr<ScaleCommand> scalecommand;
 //    std::shared_ptr<HistogramCommand> histogramcommand;
 //    std::shared_ptr<AlgebraicCommand> algebraiccommand;
 //    std::shared_ptr<BinaryMorphodCommand> binarymorphodcommand;
