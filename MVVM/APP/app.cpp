@@ -32,8 +32,8 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setHueSaturaLightCommand(viewmodel->getHueSaturaLightCommand());
 
     view->setCurveCommand(viewmodel->getCurveCommand()); 
-//    view->setLevelCommand(viewmodel->getLevelCommand());
-//    view->setClipCommand(viewmodel->getClipCommand());
+    view->setLevelCommand(viewmodel->getLevelCommand());
+    view->setClipCommand(viewmodel->getClipCommand());
 //    view->setScaleCommand(viewmodel->getScaleCommand());
 //    view->setHistogramCommand(viewmodel->getHistogramCommand());
 //    view->setAlgebraicCommand(viewmodel->getAlgebraicCommand());

@@ -22,8 +22,8 @@
 #include "commands/dualthresholdcommand.h"
 #include "commands/huesaturalightcommand.h"
 #include "commands/CurveCommand.h"
-//#include "commands/LevelCommand.h"
-//#include "commands/ClipCommand.h"
+#include "commands/LevelCommand.h"
+#include "commands/ClipCommand.h"
 //#include "commands/ScaleCommand.h"
 //#include "commands/HistogramCommand.h"
 //#include "commands/AlgebraicCommand.h"
@@ -50,8 +50,8 @@ class GrayScaleTransferCommand;
 class DualThresholdCommand;
 class HueSaturaLightCommand;
 class CurveCommand;
-//class LevelCommand;
-//class ClipCommand;
+class LevelCommand;
+class ClipCommand;
 //class ScaleCommand;
 //class HistogramCommand;
 //class AlgebraicCommand;
@@ -108,8 +108,8 @@ public:
     std::shared_ptr<ICommandBase> getHueSaturaLightCommand();
 
     std::shared_ptr<ICommandBase> getCurveCommand();
-//    std::shared_ptr<ICommandBase> getLevelCommand();
-//    std::shared_ptr<ICommandBase> getClipCommand();
+    std::shared_ptr<ICommandBase> getLevelCommand();
+    std::shared_ptr<ICommandBase> getClipCommand();
 //    std::shared_ptr<ICommandBase> getScaleCommand();
 //    std::shared_ptr<ICommandBase> getHistogramCommand();
 //    std::shared_ptr<ICommandBase> getAlgebraicCommand();
@@ -156,8 +156,8 @@ private:
     std::shared_ptr<HueSaturaLightCommand> huesaturalightcommand;
 
     std::shared_ptr<CurveCommand> curvecommand;
-//    std::shared_ptr<LevelCommand> levelcommand;
-//    std::shared_ptr<ClipCommand> clipcommand;
+    std::shared_ptr<LevelCommand> levelcommand;
+    std::shared_ptr<ClipCommand> clipcommand;
 //    std::shared_ptr<ScaleCommand> scalecommand;
 //    std::shared_ptr<HistogramCommand> histogramcommand;
 //    std::shared_ptr<AlgebraicCommand> algebraiccommand;

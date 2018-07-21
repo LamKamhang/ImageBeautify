@@ -11,5 +11,5 @@ void ClipCommand::SetParameter(const std::shared_ptr<ParametersBase> &param){
 
 void ClipCommand::Exec(){
     viewmodel->execClipCommand(json);
-    viewmodel->Fire_OnCommandComplete(BINARY_MCLIPORPHOD, true);
+    viewmodel->Fire_OnCommandComplete(CLIP, true);
 }

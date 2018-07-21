@@ -90,7 +90,7 @@ HEADERS += \
 #    viewmodel/commands/AlgebraicCommand.h \
 #    viewmodel/commands/BinaryMorphodCommand.h \
     viewmodel/commands/channelcommand.h \
-#    viewmodel/commands/ClipCommand.h \
+    viewmodel/commands/ClipCommand.h \
     viewmodel/commands/CurveCommand.h \
     viewmodel/commands/dualthresholdcommand.h \
     viewmodel/commands/edgedetectioncommand.h \
@@ -101,7 +101,7 @@ HEADERS += \
     viewmodel/commands/houghcircledetectioncommand.h \
     viewmodel/commands/houghlinedetectioncommand.h \
     viewmodel/commands/huesaturalightcommand.h \
-#    viewmodel/commands/LevelCommand.h \
+    viewmodel/commands/LevelCommand.h \
     viewmodel/commands/openfilecommand.h \
     viewmodel/commands/opensubdialogcommand.h \
     viewmodel/commands/otsucommand.h \
@@ -110,7 +110,8 @@ HEADERS += \
 #    viewmodel/commands/ScaleCommand.h \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h
+    viewmodel/viewmodel.h \
+    view/clipbox.h
 
 SOURCES += \
     app/app.cpp \
@@ -144,7 +145,7 @@ SOURCES += \
 #    viewmodel/commands/AlgebraicCommand.cpp \
 #    viewmodel/commands/BinaryMorphodCommand.cpp \
     viewmodel/commands/channelcommand.cpp \
-#    viewmodel/commands/ClipCommand.cpp \
+    viewmodel/commands/ClipCommand.cpp \
     viewmodel/commands/CurveCommand.cpp \
     viewmodel/commands/dualthresholdcommand.cpp \
     viewmodel/commands/edgedetectioncommand.cpp \
@@ -155,7 +156,7 @@ SOURCES += \
     viewmodel/commands/houghcircledetectioncommand.cpp \
     viewmodel/commands/houghlinedetectioncommand.cpp \
     viewmodel/commands/huesaturalightcommand.cpp \
-#    viewmodel/commands/LevelCommand.cpp \
+    viewmodel/commands/LevelCommand.cpp \
     viewmodel/commands/openfilecommand.cpp \
     viewmodel/commands/opensubdialogcommand.cpp \
     viewmodel/commands/otsucommand.cpp \
@@ -164,5 +165,6 @@ SOURCES += \
 #    viewmodel/commands/ScaleCommand.cpp \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp
+    viewmodel/viewmodel.cpp \
+    view/clipbox.cpp
 

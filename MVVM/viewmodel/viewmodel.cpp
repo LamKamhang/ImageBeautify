@@ -31,8 +31,8 @@ ViewModel::ViewModel()
     huesaturalightcommand = std::make_shared<HueSaturaLightCommand>(this);
 
     curvecommand = std::make_shared<CurveCommand>(this);
-//    levelcommand = std::make_shared<LevelCommand>(this);
-//    clipcommand = std::make_shared<ClipCommand>(this);
+    levelcommand = std::make_shared<LevelCommand>(this);
+    clipcommand = std::make_shared<ClipCommand>(this);
 //    scalecommand = std::make_shared<ScaleCommand>(this);
 //    histogramcommand = std::make_shared<HistogramCommand>(this);
 //    algebraiccommand = std::make_shared<AlgebraicCommand>(this);
@@ -243,10 +243,31 @@ void ViewModel::execCurveCommand(std::shared_ptr<JsonParameters> json)
 void ViewModel::execLevelCommand(std::shared_ptr<JsonParameters> json)
 {
     qDebug() << "execLevelCommand";
+    bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
+    ColorLevelData data = std::static_pointer_cast<ColorLevelDataParameters,ParametersBase>((*json)["data"])->getvalue();
+    qDebug() <<"apply = "<<apply;
+    qDebug() <<"blue = "<<data.Blue.Highlight;
+    qDebug() <<"blue = "<<data.Blue.Midtones;
+    qDebug() <<"blue = "<<data.Blue.OutHighlight;
+    qDebug() <<"blue = "<<data.Blue.OutShadow;
+    qDebug() <<"blue = "<<data.Blue.Shadow;
+    model->commit("Color Level Adjust");
+    model->colorLevel(&data);
+    if(apply)model->sub2main();
 }
+
 void ViewModel::execClipCommand(std::shared_ptr<JsonParameters> json)
 {
     qDebug() << "execClipCommand";
+    QString desc = "Clip: ";
+    int left = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["left"])->getvalue();
+    int right = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["right"])->getvalue();
+    int top = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["top"])->getvalue();
+    int bottom = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["bottom"])->getvalue();
+    desc += "X: from " + QString::number(left) + " to " + QString::number(right) + ", ";
+    desc += "Y: from " + QString::number(top) + " to " + QString::number(bottom);
+    model->commit(desc);
+    model->clip(left,right,top,bottom);
 }
 void ViewModel::execScaleCommand(std::shared_ptr<JsonParameters> json)
 {
@@ -352,17 +373,17 @@ std::shared_ptr<ICommandBase> ViewModel::getCurveCommand()
     return curvecommand;
 }
 
-//std::shared_ptr<ICommandBase> ViewModel::getLevelCommand()
-//{
-//    qDebug() << "getLevelCommand";
-//    return levelcommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getLevelCommand()
+{
+    qDebug() << "getLevelCommand";
+    return levelcommand;
+}
 
-//std::shared_ptr<ICommandBase> ViewModel::getClipCommand()
-//{
-//    qDebug() << "getClipCommand";
-//    return clipcommand;
-//}
+std::shared_ptr<ICommandBase> ViewModel::getClipCommand()
+{
+    qDebug() << "getClipCommand";
+    return clipcommand;
+}
 
 //std::shared_ptr<ICommandBase> ViewModel::getScaleCommand()
 //{
