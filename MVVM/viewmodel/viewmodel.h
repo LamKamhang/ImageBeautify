@@ -29,11 +29,7 @@
 //#include "commands/AlgebraicCommand.h"
 //#include "commands/BinaryMorphodCommand.h"
 //#include "commands/GrayMorphodCommand.h"
-
-
 #include "sinks/viewmodelsink.h"
-#include <opencv2/opencv.hpp>
-using namespace cv;
 
 class OpenFileCommand;
 class SaveFileCommand;
