@@ -393,7 +393,16 @@ void MainView::receiveApplyHoughCircleDetection(std::shared_ptr<JsonParameters> 
 }
 
 void MainView::binaryMorphology(){
-
+    if(!(*isBinary)){
+        QMessageBox msgBox(QMessageBox::Warning, tr("Warning"),
+                           tr("Current image is not binary image."));
+        msgBox.exec();
+        return ;
+    }
+    BinaryMorphoDialog *dialog = new BinaryMorphoDialog();
+    connect(dialog, SIGNAL(sendApplyBinaryMorpho(QJsonObject)),
+            this, SLOT(receiveApplyBinaryMorpho(QJsonObject)));
+    dialog->exec();
 }
 
 void MainView::grayMorphology(){
