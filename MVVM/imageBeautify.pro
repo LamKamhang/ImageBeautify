@@ -118,7 +118,7 @@ SOURCES += \
     app/main.cpp \
     common/util.cpp \
 #    model/filteroperation/filteroperation.cpp \
-    model/filters/art_effect.cpp \
+#    model/filters/art_effect.cpp \
 #    model/filters/basic_effect.cpp \
 #    model/filters/blur.cpp \
 #    model/filters/human_effect.cpp \
