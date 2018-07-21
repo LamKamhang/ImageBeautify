@@ -62,7 +62,7 @@ HEADERS += \
     common/parameters.h \
     common/type.h \
     common/util.h \
-    model/filters/art_effect.h \
+#    model/filters/art_effect.h \
 #    model/filters/basic_effect.h \
 #    model/filters/blur.h \
 #    model/filters/fasion_effect.h \
@@ -74,7 +74,7 @@ HEADERS += \
     model/logoperation/aux_log_alg.h \
     model/model.h \
     view/sinks/mainimagesink.h \
-    view/algebraicdialog.h \
+#    view/algebraicdialog.h \
     view/clipdialog.h \
     view/curvecanvas.h \
     view/curvedialog.h \
@@ -129,7 +129,7 @@ SOURCES += \
     model/logoperation/logoperation.cpp \
     model/model.cpp \
     view/sinks/mainimagesink.cpp \
-    view/algebraicdialog.cpp \
+#    view/algebraicdialog.cpp \
     view/clipdialog.cpp \
     view/curvecanvas.cpp \
     view/curvedialog.cpp \
