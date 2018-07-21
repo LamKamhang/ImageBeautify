@@ -112,7 +112,8 @@ HEADERS += \
     viewmodel/sinks/viewmodelsink.h \
     viewmodel/viewmodel.h \
     view/clipbox.h \
-    viewmodel/commands/opensubfilecommand.h
+    viewmodel/commands/opensubfilecommand.h \
+    view/sinks/maincommandsink.h
 
 SOURCES += \
     app/app.cpp \
@@ -168,5 +169,6 @@ SOURCES += \
     viewmodel/sinks/viewmodelsink.cpp \
     viewmodel/viewmodel.cpp \
     view/clipbox.cpp \
-    viewmodel/commands/opensubfilecommand.cpp
+    viewmodel/commands/opensubfilecommand.cpp \
+    view/sinks/maincommandsink.cpp
 
