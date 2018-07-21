@@ -227,7 +227,19 @@ void ViewModel::execHueSaturaLightCommand(std::shared_ptr<JsonParameters> json){
 void ViewModel::execCurveCommand(std::shared_ptr<JsonParameters> json)
 {
     qDebug() << "execCurveCommand";
+    bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
+    QString type = std::static_pointer_cast<QStringParameters,ParametersBase>((*json)["type"])->getvalue();
+    double a = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["a"])->getvalue();
+    double b = std::static_pointer_cast<DoubleParameters,ParametersBase>((*json)["b"])->getvalue();
+    QPoint p1 = std::static_pointer_cast<QPointParameters,ParametersBase>((*json)["p1"])->getvalue();
+    QPoint p2 = std::static_pointer_cast<QPointParameters,ParametersBase>((*json)["p2"])->getvalue();
+    if(type == "Linear")model->linearContrastAdjust(p1.x(),p1.y(),p2.x(),p2.y());
+    if(type == "Piecewice Linear")model->pieceLinContrastAdjust(p1.x(),p1.y(),p2.x(),p2.y());
+    if(type == "Logarithm")model->logContrastAdjust(a,b);
+    if(type == "Exponential")model->expContrastAdjust(a,b);
+    if(apply)model->sub2main();
 }
+
 void ViewModel::execLevelCommand(std::shared_ptr<JsonParameters> json)
 {
     qDebug() << "execLevelCommand";

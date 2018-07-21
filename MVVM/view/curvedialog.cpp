@@ -112,6 +112,8 @@ void CurveDialog::apply(){
     default:
         break;
     }
+    bool apply = true;
+    obj.insert("apply",std::make_shared<BoolParameters>(apply));
     obj.insert("type",std::make_shared<QStringParameters>(t));
     obj.insert("a",std::make_shared<DoubleParameters>(m_a));
     obj.insert("b",std::make_shared<DoubleParameters>(m_b));
@@ -124,6 +126,8 @@ void CurveDialog::apply(){
 void CurveDialog::logCurveChange(double a, double b){
     m_a = a; m_b = b;
     JsonParameters obj;
+    bool apply = false;
+    obj.insert("apply",std::make_shared<BoolParameters>(apply));
     QString t = "Logarithm";
     obj.insert("type",std::make_shared<QStringParameters>(t));
     obj.insert("a",std::make_shared<DoubleParameters>(m_a));
@@ -136,6 +140,8 @@ void CurveDialog::logCurveChange(double a, double b){
 void CurveDialog::expCurveChange(double a, double b){
     m_a = a; m_b = b;
     JsonParameters obj;
+    bool apply = false;
+    obj.insert("apply",std::make_shared<BoolParameters>(apply));
     QString t = "Exponential";
     obj.insert("type",std::make_shared<QStringParameters>(t));
     obj.insert("a",std::make_shared<DoubleParameters>(m_a));
@@ -149,6 +155,8 @@ void CurveDialog::linearCurveChange(QPoint p1, QPoint p2){
     QPoint tmp1(p1);m_p1 = tmp1;
     QPoint tmp2(p2);m_p2 = tmp2;
     JsonParameters obj;
+    bool apply = false;
+    obj.insert("apply",std::make_shared<BoolParameters>(apply));
     QString t = "Linear";
     obj.insert("type",std::make_shared<QStringParameters>(t));
     obj.insert("a",std::make_shared<DoubleParameters>(m_a));
@@ -162,6 +170,8 @@ void CurveDialog::pieceLinCurveChange(QPoint p1, QPoint p2){
     QPoint tmp1(p1);m_p1 = tmp1;
     QPoint tmp2(p2);m_p2 = tmp2;
     JsonParameters obj;
+    bool apply = false;
+    obj.insert("apply",std::make_shared<BoolParameters>(apply));
     QString t = "Piecewice Linear";
     obj.insert("type",std::make_shared<QStringParameters>(t));
     obj.insert("a",std::make_shared<DoubleParameters>(m_a));
