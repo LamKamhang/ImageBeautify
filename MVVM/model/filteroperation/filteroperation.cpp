@@ -1,15 +1,25 @@
 #include "../model.h"
 #include "../filters/art_effect.h"
 #include "../../common/util.h"
+#include <QDebug>
 
 // 浮雕
 void Model::_emboss()
 {
+    qDebug() << "before QImage2Mat";
+    if (mainImg.isNull())
+        qDebug() << "mainImg is Null";
+    else
+        qDebug() << "mainImg is not null";
     cv::Mat src = Tools::QImage2Mat(mainImg);
+    qDebug() << "after QImage2Mat";
     cv::Mat dst;
     ArtEffect::_emboss(src, dst);
-	subImg = Tools::Mat2QImage(dst);
+    qDebug() << "after emboss";
+    subImg = Tools::Mat2QImage(dst);
+    qDebug() << "after Mat2QImage";
     tmpImg = Tools::Mat2QImage(dst);
+    qDebug() << "after Mat2QImage 2";
 	Fire_OnPropertyChanged(SUB_IMAGE);
 }
 

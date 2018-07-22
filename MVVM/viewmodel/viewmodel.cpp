@@ -504,22 +504,58 @@ void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
     enum EffectsType type = std::static_pointer_cast<EnumEffectsParameters,ParametersBase>((*json)["type"])->getvalue();
     bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
     int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
-    if(type == NOEFFECTS);// mixture
-    else if(type == EMBOSS)model->_emboss();
-    else if(type == SCULPTURE)model->_sculpture();
-    else if(type == DILATE)model->_dilate();
-    else if(type == ERODE)model->_erode();
-    else if(type == FROSTGLASS)model->_frostGlass();
-    else if(type == SKETCH)model->_sketch();
-    else if(type == OILPAINT)model->_oilPaint();
-    else if(type == WOODCUT)model->_woodCut();
-    else if(type == INVERTED)model->_inverted();
-    else if(type == MEMORY)model->_memory();
-    else if(type == FREEZING)model->_freezing();
-    else if(type == CASTING)model->_casting();
-    else if(type == COMICSTRIP)model->_comicStrip();
+    switch (type) {
+    case NOEFFECTS:
+        ;// mixture
+        break;
+    case EMBOSS:
+        model->_emboss();
+        break;
+    case SCULPTURE:
+        model->_sculpture();
+        break;
+    case DILATE:
+        model->_dilate();
+        break;
+    case ERODE:
+        model->_erode();
+        break;
+    case FROSTGLASS:
+        model->_frostGlass();
+        break;
+    case SKETCH:
+        model->_sketch();
+        break;
+    case OILPAINT:
+        model->_oilPaint();
+        break;
+    case WOODCUT:
+        model->_woodCut();
+        break;
+    case INVERTED:
+        model->_inverted();
+        break;
+    case MEMORY:
+        model->_memory();
+        break;
+    case FREEZING:
+        model->_freezing();
+        break;
+    case CASTING:
+        model->_casting();
+        break;
+    case COMICSTRIP:
+        model->_comicStrip();
+        break;
+    default:
+        break;
+    }
 
-    if(apply)model->sub2main();
+    if(apply)
+    {
+        model->commit("Art Effect");
+        model->sub2main();
+    }
 }
 
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
