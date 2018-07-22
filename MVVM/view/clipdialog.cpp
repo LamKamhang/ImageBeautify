@@ -7,7 +7,7 @@ ClipDialog::ClipDialog(QPixmap pixmap)
 
     w = pixmap.width();
     h = pixmap.height();
-    maxWidth = 800;
+    maxWidth = 500;
     pixmap = pixmap.scaled(maxWidth, maxWidth * h / w, Qt::KeepAspectRatio);
     clipBox = new ClipBox(pixmap, this);
     clipBox->setMouseTracking(true);
