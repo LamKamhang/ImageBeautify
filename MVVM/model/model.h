@@ -30,6 +30,7 @@ public:
     bool origin2main();
     bool main2sub();
     bool sub2tmp();
+    bool mix_tmp_main(int alpha);
     
     // image operation.
     bool imageAdd(double param1, double param2);
@@ -113,6 +114,30 @@ public:
     // 黑白漫画
     void _comicStrip();
 
+    //锐化
+    void _sharpen();
+    //黑白
+    void _colortoblack();
+    //去雾气
+    void _defog();
+    //柔和
+    void _soft();
+    //均衡图
+    void _balance();
+    //怀旧
+    void _nostalgia();
+    //连环画
+    void _BlackComic();
+    //时光隧道
+    void _timetuunel();
+    //经典lomo
+    void _classiclomo();
+    // 美白
+    void _whiteFace();
+    // 美颜
+    void _beautifyFace();
+    // 粉红佳人
+    void _pinkLady();
 
 private:
     QImage originImg;

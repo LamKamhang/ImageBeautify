@@ -1,7 +1,7 @@
 #include "model.h"
 #include <QImageReader>
 #include <QImageWriter>
-#include <QDebug>
+#include <QRgb>
 
 const QImage& Model::getMain()
 {
@@ -116,6 +116,33 @@ bool Model::sub2tmp()
     else
     {
         tmpImg = subImg.copy();
+        return true;
+    }
+}
+
+bool Model::mix_tmp_main(int alpha)
+{
+    if (mainImg.height() != tmpImg.height() ||
+            mainImg.width() != tmpImg.width())
+    {
+        return false;
+    }
+    else
+    {
+        QRgb value;
+        subImg = mainImg.copy();
+        double dalpha = alpha * 1.0 / 100.0;
+        int height = mainImg.height();
+        int width = mainImg.width();
+        for (int i = 0; i < height; ++i)
+        {
+            for (int j = 0; j < width; ++j)
+            {
+                value = mainImg.color(i*width + j)*(1-dalpha) + tmpImg.color(i*width + j)*dalpha;
+                subImg.setPixel(i, j, value);
+            }
+        }
+        Fire_OnPropertyChanged(SUB_IMAGE);
         return true;
     }
 }

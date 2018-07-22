@@ -50,13 +50,19 @@ DEPENDPATH += $$PWD/../OpenCV/win32/include
 
 CONFIG += c++14
 
+
+
+RESOURCES += \
+    effectsicons.qrc
+
 HEADERS += \
-    app/app.h \
+    APP/app.h \
     common/etlbase.h \
     common/parameters.h \
     common/type.h \
     common/util.h \
     model/filters/art_effect.h \
+    model/filters/classic_effect.h \
     model/imageoperation/aux_image_alg.h \
     model/logoperation/aux_log_alg.h \
     model/model.h \
@@ -64,6 +70,7 @@ HEADERS += \
     view/sinks/mainimagesink.h \
     view/algebraicdialog.h \
     view/binarymorphologydialog.h \
+    view/classicspecialeffectdialog.h \
     view/clickableqlabel.h \
     view/clipbox.h \
     view/clipdialog.h \
@@ -86,6 +93,7 @@ HEADERS += \
     viewmodel/commands/arteffectscommand.h \
     viewmodel/commands/BinaryMorphologyCommand.h \
     viewmodel/commands/channelcommand.h \
+    viewmodel/commands/classiceffectscommand.h \
     viewmodel/commands/ClipCommand.h \
     viewmodel/commands/CurveCommand.h \
     viewmodel/commands/dualthresholdcommand.h \
@@ -107,16 +115,15 @@ HEADERS += \
     viewmodel/commands/ScaleCommand.h \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h \
-    view/classicspecialeffectdialog.h \
-    viewmodel/commands/classiceffectscommand.h
+    viewmodel/viewmodel.h
 
 SOURCES += \
-    app/app.cpp \
-    app/main.cpp \
+    APP/app.cpp \
+    APP/main.cpp \
     common/util.cpp \
     model/filteroperation/filteroperation.cpp \
     model/filters/art_effect.cpp \
+    model/filters/classic_effect.cpp \
     model/imageoperation/aux_image_alg.cpp \
     model/imageoperation/imageoperation.cpp \
     model/logoperation/aux_log_alg.cpp \
@@ -126,6 +133,7 @@ SOURCES += \
     view/sinks/mainimagesink.cpp \
     view/algebraicdialog.cpp \
     view/binarymorphologydialog.cpp \
+    view/classicspecialeffectdialog.cpp \
     view/clickableqlabel.cpp \
     view/clipbox.cpp \
     view/clipdialog.cpp \
@@ -148,6 +156,7 @@ SOURCES += \
     viewmodel/commands/arteffectscommand.cpp \
     viewmodel/commands/BinaryMorphologyCommand.cpp \
     viewmodel/commands/channelcommand.cpp \
+    viewmodel/commands/classiceffectscommand.cpp \
     viewmodel/commands/ClipCommand.cpp \
     viewmodel/commands/CurveCommand.cpp \
     viewmodel/commands/dualthresholdcommand.cpp \
@@ -169,11 +178,6 @@ SOURCES += \
     viewmodel/commands/ScaleCommand.cpp \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp \
-    view/classicspecialeffectdialog.cpp \
-    viewmodel/commands/classiceffectscommand.cpp
-
-RESOURCES += \
-    effectsicons.qrc
+    viewmodel/viewmodel.cpp
 
 
