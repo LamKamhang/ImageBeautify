@@ -477,6 +477,12 @@ void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
     enum EffectsType type = std::static_pointer_cast<EnumEffectsParameters,ParametersBase>((*json)["type"])->getvalue();
     bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
     int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
+    if(apply)
+    {
+        model->commit("Classic Effect");
+        model->sub2main();
+    }
+    else
     switch (type) {
     case NOEFFECTS:
         model->mix_tmp_main(alpha);
@@ -523,18 +529,18 @@ void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
     default:
         break;
     }
-
-    if(apply)
-    {
-        model->commit("Art Effect");
-        model->sub2main();
-    }
 }
 
 void ViewModel::execClassicEffectsCommand(std::shared_ptr<JsonParameters> json){
     enum EffectsType type = std::static_pointer_cast<EnumEffectsParameters,ParametersBase>((*json)["type"])->getvalue();
     bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
     int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
+    if(apply)
+    {
+        model->commit("Classic Effect");
+        model->sub2main();
+    }
+    else
     switch (type) {
     case NOEFFECTS:
         model->mix_tmp_main(alpha);
@@ -577,12 +583,6 @@ void ViewModel::execClassicEffectsCommand(std::shared_ptr<JsonParameters> json){
         break;
     default:
         break;
-    }
-
-    if(apply)
-    {
-        model->commit("Classic Effect");
-        model->sub2main();
     }
 }
 

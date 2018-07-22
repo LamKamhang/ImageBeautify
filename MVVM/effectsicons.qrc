@@ -15,4 +15,18 @@
         <file>Resource/art_effect/comicStrip.jpg</file>
         <file>Resource/art_effect/casting.jpg</file>
     </qresource>
+    <qresource prefix="/classicEffects">
+        <file>Resource/classic_effect/pinkLady.jpg</file>
+        <file>Resource/classic_effect/beautifyFace.jpg</file>
+        <file>Resource/classic_effect/whiteFace.jpg</file>
+        <file>Resource/classic_effect/classiclomo.jpg</file>
+        <file>Resource/classic_effect/timetuunel.jpg</file>
+        <file>Resource/classic_effect/BlackComic.jpg</file>
+        <file>Resource/classic_effect/nostalgia.jpg</file>
+        <file>Resource/classic_effect/balance.jpg</file>
+        <file>Resource/classic_effect/soft.jpg</file>
+        <file>Resource/classic_effect/defog.jpg</file>
+        <file>Resource/classic_effect/colortoblack.jpg</file>
+        <file>Resource/classic_effect/sharpen.jpg</file>
+    </qresource>
 </RCC>

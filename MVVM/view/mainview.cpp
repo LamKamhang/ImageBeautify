@@ -15,6 +15,7 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QString>
+#include <QVBoxLayout>
 #include "mainview.h"
 
 MainView::MainView()
@@ -564,11 +565,11 @@ void MainView::initializeAboutMenu(){
 
 void MainView::about(){
     QMessageBox::about(this, tr("About ImageBeautify"),
-                tr("<p><strong>版本：1.x版</strong></p>"
-"<p><strong>日期：</strong> 2018-07-11T15:43:53.668Z</p>"
-"<p><strong>架构：</strong> x64/</p>"
-"<p><strong>框架</strong> MVVM</p>"
-"<p><strong>作者：</strong> kk,  Xiang,  Ye.</p>"
+                tr("<p><strong>版本：2.0版</strong></p>"
+"<p><strong>日期：</strong> 2018-07-22T09:30:00.666Z</p>"
+"<p><strong>架构：</strong> Win x64 / MacOS</p>"
+"<p><strong>框架：</strong> MVVM</p>"
+"<p><strong>作者：</strong> kk, cc, ye</p>"
 "<p><strong>版权声明：</strong>本作品采用知识共享署名-非商业性使用-禁止演绎 3.0 中 国大陆许可协议进行许可。要查看该许可协议，可访问 <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/cn/' target='_blank' class='url'>http://creativecommons.org/licenses/by-nc-nd/3.0/cn/</a> 或者写 信到 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA。</p>"
 "<p>&nbsp;</p>"));
 }

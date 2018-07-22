@@ -136,18 +136,18 @@ ClassicSpecialEffectDialog::ClassicSpecialEffectDialog(std::shared_ptr<QImage> i
 
     // !! set icons !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    QImage icon1(":/artEffects/Resource/art_effect/emboss.jpg");
-    QImage icon2(":/artEffects/Resource/art_effect/sculpture.jpg");
-    QImage icon3(":/artEffects/Resource/art_effect/dilate.jpg");
-    QImage icon4(":/artEffects/Resource/art_effect/erode.jpg");
-    QImage icon5(":/artEffects/Resource/art_effect/frostGlass.jpg");
-    QImage icon6(":/artEffects/Resource/art_effect/sketch.jpg");
-    QImage icon7(":/artEffects/Resource/art_effect/oilPaint.jpg");
-    QImage icon8(":/artEffects/Resource/art_effect/woodCut.jpg");
-    QImage icon9(":/artEffects/Resource/art_effect/inverted.jpg");
-    QImage icon10(":/artEffects/Resource/art_effect/memory.jpg");
-    QImage icon11(":/artEffects/Resource/art_effect/freezing.jpg");
-    QImage icon12(":/artEffects/Resource/art_effect/casting.jpg");
+    QImage icon1(":/classicEffects/Resource/classic_effect/sharpen.jpg");
+    QImage icon2(":/classicEffects/Resource/classic_effect/colortoblack.jpg");
+    QImage icon3(":/classicEffects/Resource/classic_effect/defog.jpg");
+    QImage icon4(":/classicEffects/Resource/classic_effect/soft.jpg");
+    QImage icon5(":/classicEffects/Resource/classic_effect/balance.jpg");
+    QImage icon6(":/classicEffects/Resource/classic_effect/nostalgia.jpg");
+    QImage icon7(":/classicEffects/Resource/classic_effect/BlackComic.jpg");
+    QImage icon8(":/classicEffects/Resource/classic_effect/timetuunel.jpg");
+    QImage icon9(":/classicEffects/Resource/classic_effect/classiclomo.jpg");
+    QImage icon10(":/classicEffects/Resource/classic_effect/whiteFace.jpg");
+    QImage icon11(":/classicEffects/Resource/classic_effect/beautifyFace.jpg");
+    QImage icon12(":/classicEffects/Resource/classic_effect/pinkLady.jpg");
 
     specialeffects1->setPixmap(Icon2Pixmap(icon1));
     specialeffects2->setPixmap(Icon2Pixmap(icon2));
