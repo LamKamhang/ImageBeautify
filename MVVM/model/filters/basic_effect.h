@@ -29,6 +29,7 @@ public:
    static void _soft(const cv::Mat &scr,cv::Mat &dst);
    //均衡图
    static void _balance(const cv::Mat &scr,cv::Mat &dst);
+   //
 };
 
 class defog

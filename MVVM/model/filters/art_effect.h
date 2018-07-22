@@ -42,4 +42,5 @@ public:
     static void _casting(const cv::Mat &src, cv::Mat &dst);
     // 黑白漫画
     static void _comicStrip(const cv::Mat &src, cv::Mat &dst);
+
 };
