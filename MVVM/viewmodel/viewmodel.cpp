@@ -44,6 +44,7 @@ ViewModel::ViewModel()
     graymorphologycommand = std::make_shared<GrayMorphologyCommand>(this);
 
     arteffectscommand = std::make_shared<ArtEffectsCommand>(this);
+    classiceffectscommand = std::make_shared<ClassicEffectsCommand>(this);
 }
 
 void ViewModel::bindModel(std::shared_ptr<Model> model){
@@ -530,6 +531,58 @@ void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
     }
 }
 
+void ViewModel::execClassicEffectsCommand(std::shared_ptr<JsonParameters> json){
+    enum EffectsType type = std::static_pointer_cast<EnumEffectsParameters,ParametersBase>((*json)["type"])->getvalue();
+    bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
+    int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
+    switch (type) {
+    case SHARPEN:
+//        model->_SHARPEN();
+        break;
+    case COLORTOBLACK:
+//        model->_COLORTOBLACK();
+        break;
+    case DEFOG:
+//        model->_DEFOG();
+        break;
+    case SOFT:
+//        model->_SOFT();
+        break;
+    case BALANCE:
+//        model->_BALANCE();
+        break;
+    case NOSTALGIA:
+//        model->_NOSTALGIA();
+        break;
+    case BLACKCOMIC:
+//        model->_BLACKCOMIC();
+        break;
+    case TIMETUUNEL:
+//        model->_TIMETUUNEL();
+        break;
+    case CLASSICLOMO:
+//        model->_CLASSICLOMO();
+        break;
+    case WHITEFACE:
+//        model->_WHITEFACE();
+        break;
+    case BEAUTIFYFACE:
+//        model->_BEAUTIFYFACE();
+        break;
+    case PINKLADY:
+//        model->_PINKLADY();
+        break;
+    default:
+        break;
+    }
+
+    if(apply)
+    {
+        model->commit("Classic Effect");
+        model->sub2main();
+    }
+}
+
 std::shared_ptr<ICommandBase> ViewModel::getOpenFileCommand(){
     return openfilecommand;
 }
@@ -661,6 +714,11 @@ std::shared_ptr<ICommandBase> ViewModel::getGrayMorphologyCommand()
 std::shared_ptr<ICommandBase> ViewModel::getArtEffectsCommand()
 {
     return arteffectscommand;
+}
+
+std::shared_ptr<ICommandBase> ViewModel::getClassicEffectsCommand()
+{
+    return classiceffectscommand;
 }
 
 void ViewModel::setImageFromModel(){

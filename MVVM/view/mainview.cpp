@@ -437,19 +437,10 @@ void MainView::initializeSpecialEffectsMenu(){
     specialEffectsMenu = menuBar()->addMenu(tr("特效"));
     specialEffectsMenu->setEnabled(false);
 
-    specialEffectsMenu->addAction(tr("热门特效..."),this,SLOT(hotSpecialEffects()));
-    specialEffectsMenu->addAction(tr("基础特效..."),this,SLOT(basicSpecialEffects()));
-    specialEffectsMenu->addAction(tr("LOMO特效..."),this,SLOT(lomoSpecialEffects()));
-    specialEffectsMenu->addAction(tr("人像特效..."),this,SLOT(humanFaceSpecialEffects()));
-    specialEffectsMenu->addAction(tr("时尚特效..."),this,SLOT(fashionSpecialEffects()));
+    specialEffectsMenu->addAction(tr("经典特效..."),this,SLOT(classicSpecialEffects()));
     specialEffectsMenu->addAction(tr("艺术特效..."),this,SLOT(artSpecialEffects()));
 }
 
-void MainView::hotSpecialEffects(){}
-void MainView::basicSpecialEffects(){}
-void MainView::lomoSpecialEffects(){}
-void MainView::humanFaceSpecialEffects(){}
-void MainView::fashionSpecialEffects(){}
 void MainView::artSpecialEffects(){
     openSubDialogCommand->Exec();
     SpecialEffectDialog *dialog = new SpecialEffectDialog(subimage);
@@ -459,9 +450,23 @@ void MainView::artSpecialEffects(){
     dialog->exec();
 }
 
+void MainView::classicSpecialEffects(){
+    openSubDialogCommand->Exec();
+    ClassicSpecialEffectDialog *dialog = new ClassicSpecialEffectDialog(subimage);
+    connect(dialog,SIGNAL(sendApplySpecialEffect(std::shared_ptr<JsonParameters>))
+            , this, SLOT(receiveApplyClassicSpecialEffects(std::shared_ptr<JsonParameters>)));
+    connect(this,SIGNAL(subImageChanged()),dialog,SLOT(update()));
+    dialog->exec();
+}
+
 void MainView::receiveApplyArtSpecialEffects(std::shared_ptr<JsonParameters> json){
     artEffectsCommand->SetParameter(json);
     artEffectsCommand->Exec();
+}
+
+void MainView::receiveApplyClassicSpecialEffects(std::shared_ptr<JsonParameters> json){
+    classicEffectsCommand->SetParameter(json);
+    classicEffectsCommand->Exec();
 }
 
 /******************* frame menu ********************/
@@ -615,6 +620,10 @@ void MainView::setGrayMorphologyCommand(std::shared_ptr<ICommandBase> command){
 
 void MainView::setArtEffectsCommand(std::shared_ptr<ICommandBase> command){
     artEffectsCommand = command;
+}
+
+void MainView::setClassicEffectsCommand(std::shared_ptr<ICommandBase> command){
+    classicEffectsCommand = command;
 }
 
 void MainView::setOpenSubDialogCommand(std::shared_ptr<ICommandBase> command){

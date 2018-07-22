@@ -41,6 +41,7 @@ enum commandsType{
     BINARY_MORPHOLOGY,
     GRAY_MORPHOLOGY,
     ART_EFFECTS,
+    CLASSIC_EFFECTS,
 };
 
 enum propertyType{
@@ -74,6 +75,7 @@ enum OperationType{
 
 enum EffectsType{
     NOEFFECTS,
+// art effects
     EMBOSS,
     SCULPTURE,
     DILATE,
@@ -87,4 +89,17 @@ enum EffectsType{
     FREEZING,
     CASTING,
     COMICSTRIP,
+// classic effects
+    SHARPEN,
+    COLORTOBLACK,
+    DEFOG,
+    SOFT,
+    BALANCE,
+    NOSTALGIA,
+    BLACKCOMIC,
+    TIMETUUNEL,
+    CLASSICLOMO,
+    WHITEFACE,
+    BEAUTIFYFACE,
+    PINKLADY,
 };

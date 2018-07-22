@@ -107,7 +107,9 @@ HEADERS += \
     viewmodel/commands/ScaleCommand.h \
     viewmodel/commands/undocommand.h \
     viewmodel/sinks/viewmodelsink.h \
-    viewmodel/viewmodel.h
+    viewmodel/viewmodel.h \
+    view/classicspecialeffectdialog.h \
+    viewmodel/commands/classiceffectscommand.h
 
 SOURCES += \
     app/app.cpp \
@@ -167,7 +169,9 @@ SOURCES += \
     viewmodel/commands/ScaleCommand.cpp \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
-    viewmodel/viewmodel.cpp
+    viewmodel/viewmodel.cpp \
+    view/classicspecialeffectdialog.cpp \
+    viewmodel/commands/classiceffectscommand.cpp
 
 RESOURCES += \
     effectsicons.qrc
