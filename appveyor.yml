@@ -32,6 +32,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - cd buildMVVM
   - nmake
+  - cd %APPVEYOR_BUILD_FOLDER%
   - cd build MVC
   - nmake
   
