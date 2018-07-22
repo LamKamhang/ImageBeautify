@@ -479,7 +479,7 @@ void ViewModel::execArtEffectsCommand(std::shared_ptr<JsonParameters> json)
     int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
     switch (type) {
     case NOEFFECTS:
-        ;// mixture
+        model->mix_tmp_main(alpha);
         break;
     case EMBOSS:
         model->_emboss();
@@ -536,41 +536,44 @@ void ViewModel::execClassicEffectsCommand(std::shared_ptr<JsonParameters> json){
     bool apply = std::static_pointer_cast<BoolParameters,ParametersBase>((*json)["apply"])->getvalue();
     int alpha = std::static_pointer_cast<IntParameters,ParametersBase>((*json)["alpha"])->getvalue();
     switch (type) {
+    case NOEFFECTS:
+        model->mix_tmp_main(alpha);
+        break;
     case SHARPEN:
-//        model->_SHARPEN();
+        model->_sharpen();
         break;
     case COLORTOBLACK:
-//        model->_COLORTOBLACK();
+        model->_colortoblack();
         break;
     case DEFOG:
-//        model->_DEFOG();
+        model->_defog();
         break;
     case SOFT:
-//        model->_SOFT();
+        model->_soft();
         break;
     case BALANCE:
-//        model->_BALANCE();
+        model->_balance();
         break;
     case NOSTALGIA:
-//        model->_NOSTALGIA();
+        model->_nostalgia();
         break;
     case BLACKCOMIC:
-//        model->_BLACKCOMIC();
+        model->_BlackComic();
         break;
     case TIMETUUNEL:
-//        model->_TIMETUUNEL();
+        model->_timetuunel();
         break;
     case CLASSICLOMO:
-//        model->_CLASSICLOMO();
+        model->_classiclomo();
         break;
     case WHITEFACE:
-//        model->_WHITEFACE();
+        model->_whiteFace();
         break;
     case BEAUTIFYFACE:
-//        model->_BEAUTIFYFACE();
+        model->_beautifyFace();
         break;
     case PINKLADY:
-//        model->_PINKLADY();
+        model->_pinkLady();
         break;
     default:
         break;
