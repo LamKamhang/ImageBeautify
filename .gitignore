@@ -47,3 +47,6 @@ __MACOSX
 
 # pro user
 *.pro.user
+
+# temp image
+.img.jpg
