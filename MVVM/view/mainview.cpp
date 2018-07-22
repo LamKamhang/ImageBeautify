@@ -63,7 +63,7 @@ void MainView::initializeViews(){
     initializeEditMenu();
     initializeToolsMenu();
     initializeSpecialEffectsMenu();
-    initializeFrameMenu();
+//    initializeFrameMenu();
     initializeViewMenu();
     initializeAboutMenu();
 }
@@ -131,8 +131,8 @@ void MainView::initializeEditMenu(){
     copyAct->setShortcut(QKeySequence::Copy);
     copyAct->setEnabled(false);
 
-    QAction *pasteAct = editMenu->addAction(tr("粘贴"), this, &MainView::paste);
-    pasteAct->setShortcut(QKeySequence::Paste);
+//    QAction *pasteAct = editMenu->addAction(tr("粘贴"), this, &MainView::paste);
+//    pasteAct->setShortcut(QKeySequence::Paste);
 }
 
 void MainView::undo(){
@@ -471,14 +471,14 @@ void MainView::receiveApplyClassicSpecialEffects(std::shared_ptr<JsonParameters>
 
 /******************* frame menu ********************/
 void MainView::initializeFrameMenu(){
-    frameMenu = menuBar()->addMenu(tr("边框"));
-    frameMenu->setEnabled(false);
+//    frameMenu = menuBar()->addMenu(tr("边框"));
+//    frameMenu->setEnabled(false);
 
-    frameMenu->addAction(tr("炫彩边框..."),this,SLOT(colorfulFrame()));
-    frameMenu->addAction(tr("简单边框..."),this,SLOT(simpleFrame()));
-    frameMenu->addAction(tr("纹理边框..."),this,SLOT(textureFrame()));
-    frameMenu->addAction(tr("撕边边框..."),this,SLOT(tearFrame()));
-    frameMenu->addAction(tr("轻松边框..."),this,SLOT(relaxedFrame()));
+//    frameMenu->addAction(tr("炫彩边框..."),this,SLOT(colorfulFrame()));
+//    frameMenu->addAction(tr("简单边框..."),this,SLOT(simpleFrame()));
+//    frameMenu->addAction(tr("纹理边框..."),this,SLOT(textureFrame()));
+//    frameMenu->addAction(tr("撕边边框..."),this,SLOT(tearFrame()));
+//    frameMenu->addAction(tr("轻松边框..."),this,SLOT(relaxedFrame()));
 }
 
 void MainView::colorfulFrame(){}
@@ -801,7 +801,7 @@ void MainView::updateActions(){
 
     toolsMenu->setEnabled(!image->isNull());
     specialEffectsMenu->setEnabled(!image->isNull());
-    frameMenu->setEnabled(!image->isNull());
+//    frameMenu->setEnabled(!image->isNull());
 
     saveAsAct->setEnabled(!image->isNull());
     copyAct->setEnabled(!image->isNull());
