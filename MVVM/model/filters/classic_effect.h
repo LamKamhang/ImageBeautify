@@ -6,7 +6,7 @@
 #include <math.h>
 #include <iostream>
 
-class effect
+class ClassicEffect
 {
 public:
 	//锐化
