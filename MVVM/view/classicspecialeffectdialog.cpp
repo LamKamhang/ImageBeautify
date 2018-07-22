@@ -1,11 +1,11 @@
-#include "specialeffectdialog.h"
+#include "classicspecialeffectdialog.h"
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QScrollArea>
 #include <QHBoxLayout>
 #include <QPushButton>
 
-SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
+ClassicSpecialEffectDialog::ClassicSpecialEffectDialog(std::shared_ptr<QImage> img)
 {
     setImage(img);
     imageLabel = new QLabel;
@@ -21,83 +21,77 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     imageGroup->setLayout(imageLayout);
 
     // special effects clickable qlabels/groupboxs
-    ClickableQLabel *specialeffects1 = new ClickableQLabel(tr("浮雕"));
-    QGroupBox *segroupbox1 = new QGroupBox(tr("浮雕"));
+    ClickableQLabel *specialeffects1 = new ClickableQLabel(tr("锐化"));
+    QGroupBox *segroupbox1 = new QGroupBox(tr("锐化"));
     QVBoxLayout *selayout1 = new QVBoxLayout;
     selayout1->addWidget(specialeffects1);
     segroupbox1->setLayout(selayout1);
 
-    ClickableQLabel *specialeffects2 = new ClickableQLabel(tr("雕刻"));
-    QGroupBox *segroupbox2 = new QGroupBox(tr("雕刻"));
+    ClickableQLabel *specialeffects2 = new ClickableQLabel(tr("黑白"));
+    QGroupBox *segroupbox2 = new QGroupBox(tr("黑白"));
     QVBoxLayout *selayout2 = new QVBoxLayout;
     selayout2->addWidget(specialeffects2);
     segroupbox2->setLayout(selayout2);
 
-    ClickableQLabel *specialeffects3 = new ClickableQLabel(tr("虚幻"));
-    QGroupBox *segroupbox3 = new QGroupBox(tr("虚幻"));
+    ClickableQLabel *specialeffects3 = new ClickableQLabel(tr("去雾"));
+    QGroupBox *segroupbox3 = new QGroupBox(tr("去雾"));
     QVBoxLayout *selayout3 = new QVBoxLayout;
     selayout3->addWidget(specialeffects3);
     segroupbox3->setLayout(selayout3);
 
-    ClickableQLabel *specialeffects4 = new ClickableQLabel(tr("惊悚"));
-    QGroupBox *segroupbox4 = new QGroupBox(tr("惊悚"));
+    ClickableQLabel *specialeffects4 = new ClickableQLabel(tr("柔和"));
+    QGroupBox *segroupbox4 = new QGroupBox(tr("柔和"));
     QVBoxLayout *selayout4 = new QVBoxLayout;
     selayout4->addWidget(specialeffects4);
     segroupbox4->setLayout(selayout4);
 
-    ClickableQLabel *specialeffects5 = new ClickableQLabel(tr("磨砂玻璃"));
-    QGroupBox *segroupbox5 = new QGroupBox(tr("磨砂玻璃"));
+    ClickableQLabel *specialeffects5 = new ClickableQLabel(tr("均衡"));
+    QGroupBox *segroupbox5 = new QGroupBox(tr("均衡"));
     QVBoxLayout *selayout5 = new QVBoxLayout;
     selayout5->addWidget(specialeffects5);
     segroupbox5->setLayout(selayout5);
 
-    ClickableQLabel *specialeffects6 = new ClickableQLabel(tr("手稿"));
-    QGroupBox *segroupbox6 = new QGroupBox(tr("手稿"));
+    ClickableQLabel *specialeffects6 = new ClickableQLabel(tr("怀旧"));
+    QGroupBox *segroupbox6 = new QGroupBox(tr("怀旧"));
     QVBoxLayout *selayout6 = new QVBoxLayout;
     selayout6->addWidget(specialeffects6);
     segroupbox6->setLayout(selayout6);
 
-    ClickableQLabel *specialeffects7 = new ClickableQLabel(tr("油画"));
-    QGroupBox *segroupbox7 = new QGroupBox(tr("油画"));
+    ClickableQLabel *specialeffects7 = new ClickableQLabel(tr("连环画"));
+    QGroupBox *segroupbox7 = new QGroupBox(tr("连环画"));
     QVBoxLayout *selayout7 = new QVBoxLayout;
     selayout7->addWidget(specialeffects7);
     segroupbox7->setLayout(selayout7);
 
-    ClickableQLabel *specialeffects8 = new ClickableQLabel(tr("木刻"));
-    QGroupBox *segroupbox8 = new QGroupBox(tr("木刻"));
+    ClickableQLabel *specialeffects8 = new ClickableQLabel(tr("时光隧道"));
+    QGroupBox *segroupbox8 = new QGroupBox(tr("时光隧道"));
     QVBoxLayout *selayout8 = new QVBoxLayout;
     selayout8->addWidget(specialeffects8);
     segroupbox8->setLayout(selayout8);
 
-    ClickableQLabel *specialeffects9 = new ClickableQLabel(tr("反色"));
-    QGroupBox *segroupbox9 = new QGroupBox(tr("反色"));
+    ClickableQLabel *specialeffects9 = new ClickableQLabel(tr("经典lomo"));
+    QGroupBox *segroupbox9 = new QGroupBox(tr("经典lomo"));
     QVBoxLayout *selayout9 = new QVBoxLayout;
     selayout9->addWidget(specialeffects9);
     segroupbox9->setLayout(selayout9);
 
-    ClickableQLabel *specialeffects10 = new ClickableQLabel(tr("回忆"));
-    QGroupBox *segroupbox10 = new QGroupBox(tr("回忆"));
+    ClickableQLabel *specialeffects10 = new ClickableQLabel(tr("美白"));
+    QGroupBox *segroupbox10 = new QGroupBox(tr("美白"));
     QVBoxLayout *selayout10 = new QVBoxLayout;
     selayout10->addWidget(specialeffects10);
     segroupbox10->setLayout(selayout10);
 
-    ClickableQLabel *specialeffects11 = new ClickableQLabel(tr("冰冻"));
-    QGroupBox *segroupbox11 = new QGroupBox(tr("冰冻"));
+    ClickableQLabel *specialeffects11 = new ClickableQLabel(tr("美颜"));
+    QGroupBox *segroupbox11 = new QGroupBox(tr("美颜"));
     QVBoxLayout *selayout11 = new QVBoxLayout;
     selayout11->addWidget(specialeffects11);
     segroupbox11->setLayout(selayout11);
 
-    ClickableQLabel *specialeffects12 = new ClickableQLabel(tr("熔铸"));
-    QGroupBox *segroupbox12 = new QGroupBox(tr("熔铸"));
+    ClickableQLabel *specialeffects12 = new ClickableQLabel(tr("粉红佳人"));
+    QGroupBox *segroupbox12 = new QGroupBox(tr("粉红佳人"));
     QVBoxLayout *selayout12 = new QVBoxLayout;
     selayout12->addWidget(specialeffects12);
     segroupbox12->setLayout(selayout12);
-
-    ClickableQLabel *specialeffects13 = new ClickableQLabel(tr("黑白漫画"));
-    QGroupBox *segroupbox13 = new QGroupBox(tr("黑白漫画"));
-    QVBoxLayout *selayout13 = new QVBoxLayout;
-    selayout13->addWidget(specialeffects13);
-    segroupbox13->setLayout(selayout13);
 
     // groupboxs layout
     QVBoxLayout *segroupboxLayout = new QVBoxLayout;
@@ -113,7 +107,6 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     segroupbox10->setMaximumSize(seGroupMinWidth,seGroupMinHeight);
     segroupbox11->setMaximumSize(seGroupMinWidth,seGroupMinHeight);
     segroupbox12->setMaximumSize(seGroupMinWidth,seGroupMinHeight);
-    segroupbox13->setMaximumSize(seGroupMinWidth,seGroupMinHeight);
 
     segroupbox1->setMinimumSize(seGroupMinWidth,seGroupMinHeight);
     segroupbox2->setMinimumSize(seGroupMinWidth,seGroupMinHeight);
@@ -127,7 +120,6 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     segroupbox10->setMinimumSize(seGroupMinWidth,seGroupMinHeight);
     segroupbox11->setMinimumSize(seGroupMinWidth,seGroupMinHeight);
     segroupbox12->setMinimumSize(seGroupMinWidth,seGroupMinHeight);
-    segroupbox13->setMinimumSize(seGroupMinWidth,seGroupMinHeight);
 
     segroupboxLayout->addWidget(segroupbox1);
     segroupboxLayout->addWidget(segroupbox2);
@@ -141,7 +133,6 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     segroupboxLayout->addWidget(segroupbox10);
     segroupboxLayout->addWidget(segroupbox11);
     segroupboxLayout->addWidget(segroupbox12);
-    segroupboxLayout->addWidget(segroupbox13);
 
     // !! set icons !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -157,7 +148,6 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     QImage icon10(":/artEffects/Resource/art_effect/memory.jpg");
     QImage icon11(":/artEffects/Resource/art_effect/freezing.jpg");
     QImage icon12(":/artEffects/Resource/art_effect/casting.jpg");
-    QImage icon13(":/artEffects/Resource/art_effect/comicStrip.jpg");
 
     specialeffects1->setPixmap(Icon2Pixmap(icon1));
     specialeffects2->setPixmap(Icon2Pixmap(icon2));
@@ -171,7 +161,6 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     specialeffects10->setPixmap(Icon2Pixmap(icon10));
     specialeffects11->setPixmap(Icon2Pixmap(icon11));
     specialeffects12->setPixmap(Icon2Pixmap(icon12));
-    specialeffects13->setPixmap(Icon2Pixmap(icon13));
 
     // scroll area
     QGroupBox *scrollareagroup = new QGroupBox;
@@ -248,12 +237,11 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     connect(specialeffects10,SIGNAL(clicked()),this,SLOT(handlespecialeffects10()));
     connect(specialeffects11,SIGNAL(clicked()),this,SLOT(handlespecialeffects11()));
     connect(specialeffects12,SIGNAL(clicked()),this,SLOT(handlespecialeffects12()));
-    connect(specialeffects13,SIGNAL(clicked()),this,SLOT(handlespecialeffects13()));
     connect(alphaSlider,SIGNAL(sliderMoved(int)),this,SLOT(handlealphaslider(int)));
     connect(alphaSlider,SIGNAL(sliderReleased()),this,SLOT(handlealphaslider()));
 }
 
-QPixmap SpecialEffectDialog::Icon2Pixmap(QImage icon){
+QPixmap ClassicSpecialEffectDialog::Icon2Pixmap(QImage icon){
     QPixmap sepix = QPixmap::fromImage(icon);
     qreal h = sepix.height();
     qreal w = sepix.width();
@@ -264,11 +252,11 @@ QPixmap SpecialEffectDialog::Icon2Pixmap(QImage icon){
     return sepix;
 }
 
-void SpecialEffectDialog::setImage(std::shared_ptr<QImage> img){
+void ClassicSpecialEffectDialog::setImage(std::shared_ptr<QImage> img){
     image = img;
 }
 
-void SpecialEffectDialog::sendData(bool apply){
+void ClassicSpecialEffectDialog::sendData(bool apply){
     JsonParameters json;
     int value = 100;
     alphaSlider->setValue(value);
@@ -279,66 +267,61 @@ void SpecialEffectDialog::sendData(bool apply){
     emit sendApplySpecialEffect(std::make_shared<JsonParameters>(json));
 }
 
-void SpecialEffectDialog::apply(){
+void ClassicSpecialEffectDialog::apply(){
     sendData(true);
     close();
 }
 
-void SpecialEffectDialog::handlespecialeffects1(){
-    effectsType = EMBOSS;
+void ClassicSpecialEffectDialog::handlespecialeffects1(){
+    effectsType = SHARPEN;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects2(){
-    effectsType = SCULPTURE;
+void ClassicSpecialEffectDialog::handlespecialeffects2(){
+    effectsType = COLORTOBLACK;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects3(){
-    effectsType = DILATE;
+void ClassicSpecialEffectDialog::handlespecialeffects3(){
+    effectsType = DEFOG;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects4(){
-    effectsType = ERODE;
+void ClassicSpecialEffectDialog::handlespecialeffects4(){
+    effectsType = SOFT;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects5(){
-    effectsType = FROSTGLASS;
+void ClassicSpecialEffectDialog::handlespecialeffects5(){
+    effectsType = BALANCE;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects6(){
-    effectsType = SKETCH;
+void ClassicSpecialEffectDialog::handlespecialeffects6(){
+    effectsType = NOSTALGIA;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects7(){
-    effectsType = OILPAINT;
+void ClassicSpecialEffectDialog::handlespecialeffects7(){
+    effectsType = BLACKCOMIC;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects8(){
-    effectsType = WOODCUT;
+void ClassicSpecialEffectDialog::handlespecialeffects8(){
+    effectsType = TIMETUUNEL;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects9(){
-    effectsType = INVERTED;
+void ClassicSpecialEffectDialog::handlespecialeffects9(){
+    effectsType = CLASSICLOMO;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects10(){
-    effectsType = MEMORY;
+void ClassicSpecialEffectDialog::handlespecialeffects10(){
+    effectsType = WHITEFACE;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects11(){
-    effectsType = FREEZING;
+void ClassicSpecialEffectDialog::handlespecialeffects11(){
+    effectsType = BEAUTIFYFACE;
     sendData(false);
 }
-void SpecialEffectDialog::handlespecialeffects12(){
-    effectsType = CASTING;
-    sendData(false);
-}
-void SpecialEffectDialog::handlespecialeffects13(){
-    effectsType = COMICSTRIP;
+void ClassicSpecialEffectDialog::handlespecialeffects12(){
+    effectsType = PINKLADY;
     sendData(false);
 }
 
-
-void SpecialEffectDialog::handlealphaslider(int value){
+void ClassicSpecialEffectDialog::handlealphaslider(int value){
     alphaValue->setText(QString::number(value));
     JsonParameters json;
     bool apply = false;
@@ -349,7 +332,7 @@ void SpecialEffectDialog::handlealphaslider(int value){
     emit sendApplySpecialEffect(std::make_shared<JsonParameters>(json));
 }
 
-void SpecialEffectDialog::handlealphaslider(){
+void ClassicSpecialEffectDialog::handlealphaslider(){
     int value = alphaSlider->value();
     alphaValue->setText(QString::number(value));
     JsonParameters json;
@@ -361,7 +344,7 @@ void SpecialEffectDialog::handlealphaslider(){
     emit sendApplySpecialEffect(std::make_shared<JsonParameters>(json));
 }
 
-void SpecialEffectDialog::update(){
+void ClassicSpecialEffectDialog::update(){
     QPixmap pix = QPixmap::fromImage(*image);
     qreal h = pix.height();
     qreal w = pix.width();

@@ -14,7 +14,6 @@
 #include <map>
 #include <vector>
 #include <memory>
-
 #include "type.h"
 #include <QString>
 #include <QVector>
@@ -119,23 +118,6 @@ public:
 private:
     QPoint value;
 };
-
-//typedef struct
-//{
-//    int Shadow;
-//    float Midtones;
-//    int Highlight;
-//    int OutShadow;
-//    int OutHighlight;
-//}ColorLevelItem, *PColorLevelItem;
-
-//typedef struct
-//{
-//    ColorLevelItem Blue;
-//    ColorLevelItem Green;
-//    ColorLevelItem Red;
-//    ColorLevelItem RGB;
-//}ColorLevelData, *PColorLevelData;
 
 class ColorLevelDataParameters
     : public ParametersBase

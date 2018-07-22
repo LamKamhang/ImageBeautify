@@ -27,6 +27,7 @@
 #include "../view/binarymorphologydialog.h"
 #include "../view/graymorphologydialog.h"
 #include "../view/specialeffectdialog.h"
+#include "../view/classicspecialeffectdialog.h"
 
 namespace UI {
 class MainView;
@@ -78,6 +79,31 @@ public:
     void setGrayMorphologyCommand(std::shared_ptr<ICommandBase>);
 
     void setArtEffectsCommand(std::shared_ptr<ICommandBase>);
+    void setClassicEffectsCommand(std::shared_ptr<ICommandBase>);
+
+    // command exceptions
+    void HandleOpenFileException();
+    void HandleSaveFileException();
+    void HandleOpenSubFileException();
+    void HandleFilterException();
+    void HandleEdgeDetectionException();
+    void HandleHoughCircleDetectionException();
+    void HandleChannelException();
+    void HandleHoughLineDetectionException();
+    void HandleGrayScaleTransferException();
+    void HandleOtsuException();
+    void HandleOpenSubDialogException();
+    void HandleDualThresholdException();
+    void HandleHueSaturaLightException();
+    void HandleCurveException();
+    void HandleLevelException();
+    void HandleClipException();
+    void HandleScaleException();
+    void HandleHistogramException();
+    void HandleAlgebraicException();
+    void HandleBinaryMorphologyException();
+    void HandleGrayMorphologyException();
+    void HandleArtEffectsException();
 
     std::shared_ptr<IPropertyNotification> getMainViewSink();
     std::shared_ptr<ICommandNotification> getMainCommandSink();
@@ -142,15 +168,12 @@ private slots:
     void receiveApplyGrayMorphology(std::shared_ptr<JsonParameters>);
 
     // special effects
-    void hotSpecialEffects();
-    void basicSpecialEffects();
-    void lomoSpecialEffects();
-    void humanFaceSpecialEffects();
-    void fashionSpecialEffects();
     void artSpecialEffects();
+    void classicSpecialEffects();
 
     // special effects receiver
     void receiveApplyArtSpecialEffects(std::shared_ptr<JsonParameters>);
+    void receiveApplyClassicSpecialEffects(std::shared_ptr<JsonParameters>);
 
     // frame
     void colorfulFrame();
@@ -237,6 +260,7 @@ private:
     std::shared_ptr<ICommandBase> grayMorphologyCommand;
 
     std::shared_ptr<ICommandBase> artEffectsCommand;
+    std::shared_ptr<ICommandBase> classicEffectsCommand;
 
     std::shared_ptr<MainImageSink> mainViewSink;
     std::shared_ptr<MainCommandSink> mainCommandSink;

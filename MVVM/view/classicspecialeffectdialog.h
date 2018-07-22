@@ -1,5 +1,6 @@
-#ifndef SPECIALEFFECTDIALOG_H
-#define SPECIALEFFECTDIALOG_H
+#ifndef CLASSICSPECIALEFFECTDIALOG_H
+#define CLASSICSPECIALEFFECTDIALOG_H
+
 #include <QWidget>
 #include <QDialog>
 #include <QLabel>
@@ -8,11 +9,11 @@
 #include "clickableqlabel.h"
 #include "../common/parameters.h"
 
-class SpecialEffectDialog : public QDialog
+class ClassicSpecialEffectDialog : public QDialog
 {
     Q_OBJECT
 public:
-    SpecialEffectDialog(std::shared_ptr<QImage> img);
+    ClassicSpecialEffectDialog(std::shared_ptr<QImage> img);
     void setImage(std::shared_ptr<QImage> img);
 
 signals:
@@ -34,7 +35,6 @@ private slots:
     void handlespecialeffects10();
     void handlespecialeffects11();
     void handlespecialeffects12();
-    void handlespecialeffects13();
     void handlealphaslider();
     void handlealphaslider(int);
 
@@ -54,4 +54,4 @@ private:
     QLabel *imageLabel;
 };
 
-#endif // SPECIALEFFECTDIALOG_H
+#endif // CLASSICSPECIALEFFECTDIALOG_H

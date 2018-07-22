@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/artEffects">
+        <file>Resource/art_effect/woodCut.jpg</file>
+        <file>Resource/art_effect/sketch.jpg</file>
+        <file>Resource/art_effect/sculpture.jpg</file>
+        <file>Resource/art_effect/peiqi.jpg</file>
+        <file>Resource/art_effect/oilPaint.jpg</file>
+        <file>Resource/art_effect/memory.jpg</file>
+        <file>Resource/art_effect/inverted.jpg</file>
+        <file>Resource/art_effect/frostGlass.jpg</file>
+        <file>Resource/art_effect/freezing.jpg</file>
+        <file>Resource/art_effect/erode.jpg</file>
+        <file>Resource/art_effect/emboss.jpg</file>
+        <file>Resource/art_effect/dilate.jpg</file>
+        <file>Resource/art_effect/comicStrip.jpg</file>
+        <file>Resource/art_effect/casting.jpg</file>
+    </qresource>
+</RCC>

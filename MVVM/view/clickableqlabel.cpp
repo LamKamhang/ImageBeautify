@@ -5,12 +5,11 @@ ClickableQLabel::ClickableQLabel( const QString & text, QWidget * parent )
 {
     this->setText(text);
     this->setAlignment(Qt::AlignCenter);
-    connect( this, SIGNAL( clicked() ), this, SLOT( slotClicked() ) );
+//    connect( this, SIGNAL( clicked() ), this, SLOT( slotClicked() ) );
 }
 
 void ClickableQLabel::slotClicked()
 {
-    qDebug()<<"Clicked";
 }
 
 void ClickableQLabel::mousePressEvent ( QMouseEvent * event )

@@ -44,6 +44,7 @@ ImageBeautifyApp::ImageBeautifyApp()
     view->setGrayMorphologyCommand(viewmodel->getGrayMorphologyCommand());
 
     view->setArtEffectsCommand(viewmodel->getArtEffectsCommand());
+    view->setClassicEffectsCommand(viewmodel->getClassicEffectsCommand());
 
     viewmodel->AddPropertyNotification(view->getMainViewSink());
     viewmodel->AddCommandNotification(view->getMainCommandSink());
