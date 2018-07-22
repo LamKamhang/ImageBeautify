@@ -20,8 +20,10 @@ install:
 before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir buildMVVM buildMVC
-  - cd buildMVVM buildMVC
+  - cd buildMVVM
   - qmake ..\MVVM\imageBeautify.pro
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - cd buildMVC
   - qmake ..\MVC\imageBeautify.pro
 
 
@@ -30,7 +32,8 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - cd buildMVVM
   - nmake
-  - cd build MVC
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - cd buildMVC
   - nmake
   
   

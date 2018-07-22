@@ -73,23 +73,6 @@ void HumanEffect::_pinkLady(const cv::Mat &src, cv::Mat &dst)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void HumanEffect::_aux_func(cv::Mat &src, int alpha, int beta)
 {
 	for (int y = 0; y < src.rows; y++)
