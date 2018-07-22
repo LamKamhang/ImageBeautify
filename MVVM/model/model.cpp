@@ -25,8 +25,7 @@ bool Model::open_file(const QString &path)
     else
     {
         qDebug() << "in model open file " << path;
-        QImage tmp(originImg);
-		mainImg = tmp;
+        mainImg = originImg.copy();
         Fire_OnPropertyChanged(MAIN_IMAGE);
         return true;
     }
@@ -43,8 +42,7 @@ bool Model::open_sub_file(const QString &path)
     }
     else
     {
-        QImage tmp(tmpImg);
-		subImg = tmp;
+        subImg = tmpImg.copy();
         Fire_OnPropertyChanged(SUB_IMAGE);
         return true;
     }
@@ -61,8 +59,7 @@ bool Model::save_file(const QString &path)
         QImageWriter writer(path);
         if (writer.write(mainImg))
         {
-            QImage tmp(mainImg);
-		    originImg = tmp;
+            originImg = mainImg.copy();
             return true;
         }else
             return false;
@@ -77,8 +74,7 @@ bool Model::sub2main()
     }
     else
     {
-        QImage tmp(subImg);
-		mainImg = tmp;
+        mainImg = subImg.copy();
         Fire_OnPropertyChanged(MAIN_IMAGE);
         return true;
     }
@@ -92,8 +88,7 @@ bool Model::origin2main()
     }
     else
     {
-        QImage tmp(originImg);
-		mainImg = tmp;
+        mainImg = originImg.copy();
         Fire_OnPropertyChanged(MAIN_IMAGE);
         return true;
     }
@@ -107,8 +102,7 @@ bool Model::main2sub()
     }
     else
     {
-        QImage tmp(mainImg);
-		subImg = tmp;
+        subImg = mainImg.copy();
         Fire_OnPropertyChanged(SUB_IMAGE);
         return true;
     }
@@ -122,8 +116,7 @@ bool Model::sub2tmp()
     }
     else
     {
-        QImage tmp(subImg);
-        tmpImg = tmp;
+        tmpImg = subImg.copy();
         // Fire_OnPropertyChanged(TMP_IMAGE);
         return true;
     }
