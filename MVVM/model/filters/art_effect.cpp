@@ -4,7 +4,6 @@
 #include <cstring>
 
 using namespace std;
-using namespace cv;
 
 // 浮雕
 void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
@@ -30,8 +29,8 @@ void ArtEffect::_emboss(const cv::Mat &src, cv::Mat &dst)
 			}
 		}
 	}
-	cvtColor(img, dst, CV_BGR2GRAY);
-	normalize(dst, dst, 255, 0, CV_MINMAX);
+    cv::cvtColor(img, dst, CV_BGR2GRAY);
+    cv::normalize(dst, dst, 255, 0, CV_MINMAX);
 }
 
 // 雕刻
@@ -58,8 +57,8 @@ void ArtEffect::_sculpture(const cv::Mat &src, cv::Mat &dst)
 			}
 		}
 	}
-	cvtColor(img, dst, CV_BGR2GRAY);
-	normalize(dst, dst, 255, 0, CV_MINMAX);
+    cv::cvtColor(img, dst, CV_BGR2GRAY);
+    cv::normalize(dst, dst, 255, 0, CV_MINMAX);
 }
 
 // 虚幻
