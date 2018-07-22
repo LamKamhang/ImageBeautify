@@ -143,6 +143,7 @@ bool Model::mix_tmp_main(int alpha)
         //         subImg.setPixel(i, j, value);
         //     }
         // }
+        double dalpha = alpha * 1.0 / 100.0;
         cv::Mat src1 = Tools::QImage2Mat(mainImg);
         cv::Mat src2 = Tools::QImage2Mat(tmpImg);
         cv::Mat dst;
