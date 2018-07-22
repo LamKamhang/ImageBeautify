@@ -19,31 +19,44 @@ install:
 # Run qmake
 before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - mkdir build
-  - cd build
+  - mkdir buildMVVM buildMVC
+  - cd buildMVVM buildMVC
   - qmake ..\MVVM\imageBeautify.pro
+  - qmake ..\MVC\imageBeautify.pro
 
 
 # Build the projects
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - cd build
+  - cd buildMVVM
+  - nmake
+  - cd build MVC
   - nmake
   
   
 after_build:
-  - cd %APPVEYOR_BUILD_FOLDER%\build\release
+  - cd %APPVEYOR_BUILD_FOLDER%\buildMVVM\release
   - mkdir release
   - cd release
-  - xcopy %APPVEYOR_BUILD_FOLDER%\build\release\imageBeautify.exe %APPVEYOR_BUILD_FOLDER%\build\release\release\
+  - xcopy %APPVEYOR_BUILD_FOLDER%\buildMVVM\release\imageBeautify.exe %APPVEYOR_BUILD_FOLDER%\buildMVVM\release\release\
   - windeployqt imageBeautify.exe
+  - cd %APPVEYOR_BUILD_FOLDER%\buildMVC\release
+  - mkdir release
+  - cd release
+  - xcopy %APPVEYOR_BUILD_FOLDER%\buildMVC\release\imageBeautify.exe %APPVEYOR_BUILD_FOLDER%\buildMVC\release\release\
+  - windeployqt imageBeautify.exe
+
   
 
 artifacts:
-  - path: build\release\release\
-    name: image_beautify_bin
+  - path: buildMVVM\release\release\
+    name: MVVM_image_beautify_bin
   - path: MVVM\
-    name: image_beautify_src
+    name: MVVM_image_beautify_src
+  - path: buildMVC\release\release\
+    name: MVC_image_beautify_pre_bin
+  - path: MVC\
+    name: MVC_image_beautify_pre_src
 
 deploy:
   - provider: GitHub
