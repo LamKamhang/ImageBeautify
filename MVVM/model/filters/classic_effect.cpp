@@ -1,4 +1,4 @@
-#include "effect.h"
+#include "classic_effect.h"
 #include <opencv2/opencv.hpp>
 #include <string>
 #include <cstring>
@@ -6,45 +6,48 @@
 using namespace std;
 
 //锐化
-void ClassicEffect::_sharpen(const cv::Mat &scr, cv::Mat &dst)
+void ClassicEffect::_sharpen(const cv::Mat &src, cv::Mat &dst)
 {
+    cv::Mat tmp = src.clone();
     cv::Mat kernel(3,3,CV_32F,cv::Scalar(0));
     kernel.at<float>(1,1) = 5;
     kernel.at<float>(0,1) = -1;
     kernel.at<float>(2,1) = -1;
     kernel.at<float>(1,0) = -1;
     kernel.at<float>(1,2) = -1;
-    cv::filter2D(scr,dst,scr.depth(),kernel);
-    dst.row(0).setTo(cv::Scalar(0,0,0));
-    dst.row(dst.rows-1).setTo(cv::Scalar(0,0,0));
-    dst.col(0).setTo(cv::Scalar(0,0,0));
-    dst.col(dst.cols-1).setTo(cv::Scalar(0,0,0));
+    cv::filter2D(src,tmp,src.depth(),kernel);
+    tmp.row(0).setTo(cv::Scalar(0,0,0));
+    tmp.row(tmp.rows-1).setTo(cv::Scalar(0,0,0));
+    tmp.col(0).setTo(cv::Scalar(0,0,0));
+    tmp.col(tmp.cols-1).setTo(cv::Scalar(0,0,0));
+    dst = tmp.clone();
 }
 
 //黑白
-void ClassicEffect::_colortoblack(const cv::Mat &scr, cv::Mat &dst)
+void ClassicEffect::_colortoblack(const cv::Mat &src, cv::Mat &dst)
 {
-    cv::Mat temp_1;
+    cv::Mat tmp;
+    cv::Mat tmp2;
 
-    cv::cvtColor(scr,temp_1,CV_BGR2GRAY);
-    cv::cvtColor(temp_1,dst,cv::COLOR_GRAY2BGR);
+    cv::cvtColor(src,tmp,CV_BGR2GRAY);
+    cv::cvtColor(tmp,tmp2,cv::COLOR_GRAY2BGR);
+    tmp2.copyTo(dst);
 }
 
 //去雾气
-void ClassicEffect::_defog(const cv:: Mat &scr,cv::Mat &dst)
+void ClassicEffect::_defog(const cv:: Mat &src,cv::Mat &dst)
 {
     cv::Mat c;
-    cv::Mat b = scr.clone();
+    cv::Mat b = src.clone();
     defog a;
     c = a.DeFog(b);
     dst = c.clone();
-    a.~defog();
 }
 
 //均衡图
-void ClassicEffect::_balance(const cv::Mat &scr,cv::Mat &dst)
+void ClassicEffect::_balance(const cv::Mat &src,cv::Mat &dst)
 {
-    cv::Mat image = dst.clone();
+    cv::Mat image = src.clone();
     cv::Mat mergeImg;
 
 
@@ -63,19 +66,19 @@ void ClassicEffect::_balance(const cv::Mat &scr,cv::Mat &dst)
 }
 
 //柔和
-void ClassicEffect::_soft(const cv::Mat &scr,cv::Mat &dst)
+void ClassicEffect::_soft(const cv::Mat &src,cv::Mat &dst)
 {
-    cv::Mat temp = scr.clone();
+    cv::Mat temp = src.clone();
     cv::GaussianBlur(temp,dst,cv::Size(1,1),0);
 }
 
 //怀旧
-void ClassicEffect::_nostalgia(const cv::Mat &scr,cv::Mat &dst)
+void ClassicEffect::_nostalgia(const cv::Mat &src,cv::Mat &dst)
 {
 
-    int rowNum = scr.rows;
-    int colNum = scr.cols;
-    dst = scr.clone();
+    int rowNum = src.rows;
+    int colNum = src.cols;
+    dst = src.clone();
     for(int j = 0;j<rowNum;j++){
         uchar* data = dst.ptr<uchar>(j);
         for(int i = 0;i<colNum;i++){
@@ -95,11 +98,11 @@ void ClassicEffect::_nostalgia(const cv::Mat &scr,cv::Mat &dst)
 }
 
 //连环画
-void ClassicEffect::_BlackComic(const cv::Mat &scr,cv::Mat &dst)
+void ClassicEffect::_BlackComic(const cv::Mat &src,cv::Mat &dst)
 {
-    int rowNum = scr.rows;
-     int colNum = scr.cols;
-     dst = scr.clone();
+    int rowNum = src.rows;
+     int colNum = src.cols;
+     dst = src.clone();
 
      for(int j = 0;j<rowNum;j++){
          uchar* data = dst.ptr<uchar>(j);
@@ -128,9 +131,9 @@ void ClassicEffect::_BlackComic(const cv::Mat &scr,cv::Mat &dst)
 }
 
 //时光隧道
-void ClassicEffect::_timetuunel(const cv::Mat &scr,cv::Mat &dst)
+void ClassicEffect::_timetuunel(const cv::Mat &src,cv::Mat &dst)
 {
-	cv::Mat Img_in = scr.clone();
+    cv::Mat Img_in = src.clone();
 	cv::Mat temp = Img_in.clone();
 	cv::Point center(Img_in.cols/2,Img_in.rows/2);
 	cv::Mat Img_out(Img_in.size(), CV_32FC3);
@@ -177,19 +180,20 @@ void ClassicEffect::_timetuunel(const cv::Mat &scr,cv::Mat &dst)
 	        int m = ((x - center.x) * (x - center.x) + (y - center.y) *(y - center.y));
 	        if (m < (radius * radius))
 	        {
-	            Img_out.at<cv::Vec3f>(Point(x, y))[0] = temp.at<cv::Vec3b>(cv::Point(x, y))[0];
-	            Img_out.at<cv::Vec3f>(Point(x, y))[1] = temp.at<cv::Vec3b>(cv::Point(x, y))[1];
-	            Img_out.at<cv::Vec3f>(Point(x, y))[2] = temp.at<cv::Vec3b>(cv::Point(x, y))[2];
+                Img_out.at<cv::Vec3f>(cv::Point(x, y))[0] = temp.at<cv::Vec3b>(cv::Point(x, y))[0];
+                Img_out.at<cv::Vec3f>(cv::Point(x, y))[1] = temp.at<cv::Vec3b>(cv::Point(x, y))[1];
+                Img_out.at<cv::Vec3f>(cv::Point(x, y))[2] = temp.at<cv::Vec3b>(cv::Point(x, y))[2];
 	        }
 	    }
 	}
 	Img_out=Img_out/255.0;
+    dst = Img_out.clone();
 }
 
 //经典lomo
-void ClassicEffect::_classiclomo(const cv::Mat &scr,cv::Mat &dst)
+void ClassicEffect::_classiclomo(const cv::Mat &src,cv::Mat &dst)
 {
-    cv::Mat image= scr.clone();
+    cv::Mat image= src.clone();
     cv::Mat new_image = cv::Mat::zeros( image.size(), image.type() );
     for( int y = 0; y < image.rows; y++ )
     {
@@ -208,7 +212,6 @@ void ClassicEffect::_classiclomo(const cv::Mat &scr,cv::Mat &dst)
     cv::merge(splitBGR,mergeImg);
     cv::Mat blur_image = cv::Mat::zeros( image.size(), image.type() );
     cv::blur(new_image,blur_image,cv::Size( 8, 8), cv::Point(-1,-1),cv::BORDER_DEFAULT);
-    cv::Mat src=image;
     cv::Mat res,roi,reverse_roi,reverse_res;
     res=cv::Mat::zeros( image.size(), image.type() );
     reverse_res=cv::Mat::zeros( image.size(), image.type() );
@@ -292,15 +295,15 @@ void ClassicEffect::_classiclomo(const cv::Mat &scr,cv::Mat &dst)
 // 美白
 void ClassicEffect::_whiteFace(const cv::Mat &src, cv::Mat &dst)
 {
-    Mat matResult;
-    Mat tmp(src);
+    cv::Mat matResult;
+    cv::Mat tmp = src.clone();
     int bilateralFilterVal = 25;  // 双边模糊系数
     _aux_func(tmp, 1.1, 80);  // 调整对比度与亮度，参数2为对比度，参数3为亮度
-    GaussianBlur(tmp, tmp, Size(3, 3), 0, 0); // 高斯模糊，消除椒盐噪声
-    bilateralFilter(tmp, matResult, bilateralFilterVal, // 整体磨皮
+    cv::GaussianBlur(tmp, tmp, cv::Size(3, 3), 0, 0); // 高斯模糊，消除椒盐噪声
+    cv::bilateralFilter(tmp, matResult, bilateralFilterVal, // 整体磨皮
         bilateralFilterVal * 3, bilateralFilterVal / 3);
 
-    Mat matFinal;
+    cv::Mat matFinal;
 
     // 图像增强，使用非锐化掩蔽（Unsharpening Mask）方案。
     cv::GaussianBlur(matResult, matFinal, cv::Size(0, 0), 9);
@@ -309,17 +312,17 @@ void ClassicEffect::_whiteFace(const cv::Mat &src, cv::Mat &dst)
 }
 
 // 美颜
-void ClassicEffect::_beautifyFace(const Mat &src, Mat &dst)
+void ClassicEffect::_beautifyFace(const cv::Mat &src, cv::Mat &dst)
 {
-    Mat matResult;
-    Mat tmp(src);
+    cv::Mat matResult;
+    cv::Mat tmp = src.clone();
     int bilateralFilterVal = 30;  // 双边模糊系数
     _aux_func(tmp, 1.1, 60);  // 调整对比度与亮度，参数2为对比度，参数3为亮度
-    GaussianBlur(tmp, tmp, Size(5, 5), 0, 0); // 高斯模糊，消除椒盐噪声
-    bilateralFilter(tmp, matResult, bilateralFilterVal, // 整体磨皮
+    cv::GaussianBlur(tmp, tmp, cv::Size(5, 5), 0, 0); // 高斯模糊，消除椒盐噪声
+    cv::bilateralFilter(tmp, matResult, bilateralFilterVal, // 整体磨皮
         bilateralFilterVal * 2, bilateralFilterVal / 3);
 
-    Mat matFinal;
+    cv::Mat matFinal;
 
     // 图像增强，使用非锐化掩蔽（Unsharpening Mask）方案。
     cv::GaussianBlur(matResult, matFinal, cv::Size(0, 0), 9);
@@ -332,7 +335,7 @@ void ClassicEffect::_pinkLady(const cv::Mat &src, cv::Mat &dst)
 {
     int width=src.cols;
     int heigh=src.rows;
-    Mat img(src.size(),CV_8UC3);
+    cv::Mat img = src.clone();
     for (int y=0; y<heigh; y++)
     {
         const uchar* P0  = src.ptr<uchar>(y);
@@ -369,24 +372,19 @@ void ClassicEffect::_aux_func(cv::Mat &src, int alpha, int beta)
 		{
 			for (int c = 0; c < 3; c++)
 			{
-				src.at<Vec3b>(y, x)[c] = saturate_cast<uchar>(alpha*(src.at<Vec3b>(y, x)[c]) + beta);
+                src.at<cv::Vec3b>(y, x)[c] = cv::saturate_cast<uchar>(alpha*(src.at<cv::Vec3b>(y, x)[c]) + beta);
 			}
 		}
 	}
 }
 
 
-cv::Mat defog::DeFog(cv::Mat scr)
+cv::Mat defog::DeFog(cv::Mat src)
 {
-    cv::Mat a = darkChannelDefog(scr);
+    cv::Mat a = darkChannelDefog(src);
     cv::Mat b = getTImage();
     cv::Mat c = enhanceImage(a);
-    return a;
-}
-
-defog::~defog()
-{
-
+    return c;
 }
 
 cv::Mat defog::minRGB(cv::Mat src)

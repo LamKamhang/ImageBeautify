@@ -41,8 +41,7 @@ private:
 class defog
 {
 public:
-    Mat DeFog( Mat scr );
-    ~defog();
+    cv::Mat DeFog( cv::Mat scr );
 
     cv::Mat darkChannelDefog(cv::Mat);
     cv::Mat enhanceImage(cv::Mat);
