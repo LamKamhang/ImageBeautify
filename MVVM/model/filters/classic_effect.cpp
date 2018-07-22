@@ -248,7 +248,7 @@ void ClassicEffect::_classiclomo(const cv::Mat &src,cv::Mat &dst)
 
            lineType );
 
-    cv::ellipse(reverse_roi, cv::Point( image.cols/2, image.rows/2 ), cv::Size( image.cols/4.0, image.rows/2.0 ), angle,0,360,cv::Scalar( 0, 0, 0 ),thickness,lineType );
+    cv::ellipse(reverse_roi, cv::Point( image.cols/2, image.rows/2 ), cv::Size( image.cols/3.0, image.rows/2.0 ), angle,0,360,cv::Scalar( 255, 255, 255 ),thickness,lineType );
     cv::floodFill(reverse_roi, cv::Point(w/2, w/2), cv::Scalar( 0, 0, 0 ));
     cv::floodFill(roi, cv::Point(w/2, w/2), cv::Scalar( 255, 255, 255 ));
     image.copyTo(res,roi);

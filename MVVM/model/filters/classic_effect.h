@@ -10,23 +10,23 @@ class ClassicEffect
 {
 public:
 	//锐化
-	static void _sharpen(const cv::Mat &scr, cv::Mat &dst);
+	static void _sharpen(const cv::Mat &src, cv::Mat &dst);
 	//黑白
-	static void _colortoblack(const cv::Mat &scr, cv::Mat &dst);
+	static void _colortoblack(const cv::Mat &src, cv::Mat &dst);
 	//去雾气
-	static void _defog(const cv:: Mat &scr,cv::Mat &dst);
+    static void _defog(const cv:: Mat &src, cv::Mat &dst);
 	//柔和
-	static void _soft(const cv::Mat &scr,cv::Mat &dst);
+	static void _soft(const cv::Mat &src,cv::Mat &dst);
 	//均衡图
-	static void _balance(const cv::Mat &scr,cv::Mat &dst);
+	static void _balance(const cv::Mat &src,cv::Mat &dst);
 	//怀旧
-	static void _nostalgia(const cv::Mat &scr,cv::Mat &dst);
+	static void _nostalgia(const cv::Mat &src,cv::Mat &dst);
 	//连环画
-	static void _BlackComic(const cv::Mat &scr,cv::Mat &dst);
+	static void _BlackComic(const cv::Mat &src,cv::Mat &dst);
 	//时光隧道
-	static void _timetuunel(const cv::Mat &scr,cv::Mat &dst);
+	static void _timetuunel(const cv::Mat &src,cv::Mat &dst);
 	//经典lomo
-	static void _classiclomo(const cv::Mat &scr,cv::Mat &dst);
+	static void _classiclomo(const cv::Mat &src,cv::Mat &dst);
 	// 美白
 	static void _whiteFace(const cv::Mat &src, cv::Mat &dst);
 	// 美颜
@@ -41,7 +41,7 @@ private:
 class defog
 {
 public:
-    cv::Mat DeFog( cv::Mat scr );
+    cv::Mat DeFog( cv::Mat src );
 
     cv::Mat darkChannelDefog(cv::Mat);
     cv::Mat enhanceImage(cv::Mat);
