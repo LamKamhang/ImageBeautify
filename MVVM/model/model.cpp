@@ -2,6 +2,7 @@
 #include <QImageReader>
 #include <QImageWriter>
 #include <QRgb>
+#include "../common/util.h"
 
 const QImage& Model::getMain()
 {
@@ -129,19 +130,24 @@ bool Model::mix_tmp_main(int alpha)
     }
     else
     {
-        QRgb value;
-        subImg = mainImg.copy();
-        double dalpha = alpha * 1.0 / 100.0;
-        int height = mainImg.height();
-        int width = mainImg.width();
-        for (int i = 0; i < height; ++i)
-        {
-            for (int j = 0; j < width; ++j)
-            {
-                value = mainImg.color(i*width + j)*(1-dalpha) + tmpImg.color(i*width + j)*dalpha;
-                subImg.setPixel(i, j, value);
-            }
-        }
+        // QRgb value;
+        // subImg = mainImg.copy();
+        // double dalpha = alpha * 1.0 / 100.0;
+        // int height = mainImg.height();
+        // int width = mainImg.width();
+        // for (int i = 0; i < height; ++i)
+        // {
+        //     for (int j = 0; j < width; ++j)
+        //     {
+        //         value = mainImg.color(i*width + j)*(1-dalpha) + tmpImg.color(i*width + j)*dalpha;
+        //         subImg.setPixel(i, j, value);
+        //     }
+        // }
+        cv::Mat src1 = Tools::QImage2Mat(mainImg);
+        cv::Mat src2 = Tools::QImage2Mat(tmpImg);
+        cv::Mat dst;
+        cv::addWeighted(src1, 1 - dalpha, src2, dalpha, 0.0, dst);
+        subImg = Tools::Mat2QImage(dst);
         Fire_OnPropertyChanged(SUB_IMAGE);
         return true;
     }
