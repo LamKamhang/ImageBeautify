@@ -40,9 +40,12 @@ private slots:
 
 private:
     void sendData(bool apply);
+    QPixmap Icon2Pixmap(QImage icon);
 
     const int imageMaxHeight = 660;
     const int imageMaxWidth = 900;
+    const int seGroupMinWidth = 120;
+    const int seGroupMinHeight = 150;
 
     std::shared_ptr<QImage> image;
     enum EffectsType effectsType;

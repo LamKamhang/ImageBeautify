@@ -169,4 +169,7 @@ SOURCES += \
     viewmodel/sinks/viewmodelsink.cpp \
     viewmodel/viewmodel.cpp
 
+RESOURCES += \
+    effectsicons.qrc
+
 

@@ -693,6 +693,30 @@ void MainView::setAlgebraicCommand(std::shared_ptr<ICommandBase> command){
     algebraicCommand = command;
 }
 
+// command exceptions
+void MainView::HandleOpenFileException(){}
+void MainView::HandleSaveFileException(){}
+void MainView::HandleOpenSubFileException(){}
+void MainView::HandleFilterException(){}
+void MainView::HandleEdgeDetectionException(){}
+void MainView::HandleHoughCircleDetectionException(){}
+void MainView::HandleChannelException(){}
+void MainView::HandleHoughLineDetectionException(){}
+void MainView::HandleGrayScaleTransferException(){}
+void MainView::HandleOtsuException(){}
+void MainView::HandleOpenSubDialogException(){}
+void MainView::HandleDualThresholdException(){}
+void MainView::HandleHueSaturaLightException(){}
+void MainView::HandleCurveException(){}
+void MainView::HandleLevelException(){}
+void MainView::HandleClipException(){}
+void MainView::HandleScaleException(){}
+void MainView::HandleHistogramException(){}
+void MainView::HandleAlgebraicException(){}
+void MainView::HandleBinaryMorphologyException(){}
+void MainView::HandleGrayMorphologyException(){}
+void MainView::HandleArtEffectsException(){}
+
 std::shared_ptr<IPropertyNotification> MainView::getMainViewSink(){
     return std::static_pointer_cast<IPropertyNotification>(mainViewSink);
 }
@@ -734,20 +758,14 @@ void MainView::mouseMoveEvent(QMouseEvent *e){
 }
 
 void MainView::update(){
-    qDebug() << "in main view update1";
     imageLabel->setPixmap(QPixmap::fromImage(*image));
-    qDebug() << "in main view update2";
     scaleFactor = 1.0;
     scrollArea->setVisible(true);
-    qDebug() << "in main view update3";
-//    set actions enable
-    updateActions();
-    qDebug() << "in main view update4";
+    updateActions();//set actions enable
     if (!fitToWindowAct->isChecked())
         imageLabel->adjustSize();
 
     setCursor(Qt::ArrowCursor);
-     qDebug() << "in main view update5";
 }
 
 void MainView::updateSubImage(){

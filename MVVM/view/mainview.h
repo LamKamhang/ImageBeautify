@@ -79,6 +79,30 @@ public:
 
     void setArtEffectsCommand(std::shared_ptr<ICommandBase>);
 
+    // command exceptions
+    void HandleOpenFileException();
+    void HandleSaveFileException();
+    void HandleOpenSubFileException();
+    void HandleFilterException();
+    void HandleEdgeDetectionException();
+    void HandleHoughCircleDetectionException();
+    void HandleChannelException();
+    void HandleHoughLineDetectionException();
+    void HandleGrayScaleTransferException();
+    void HandleOtsuException();
+    void HandleOpenSubDialogException();
+    void HandleDualThresholdException();
+    void HandleHueSaturaLightException();
+    void HandleCurveException();
+    void HandleLevelException();
+    void HandleClipException();
+    void HandleScaleException();
+    void HandleHistogramException();
+    void HandleAlgebraicException();
+    void HandleBinaryMorphologyException();
+    void HandleGrayMorphologyException();
+    void HandleArtEffectsException();
+
     std::shared_ptr<IPropertyNotification> getMainViewSink();
     std::shared_ptr<ICommandNotification> getMainCommandSink();
 

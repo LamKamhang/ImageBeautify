@@ -24,7 +24,6 @@ bool Model::open_file(const QString &path)
     }
     else
     {
-        qDebug() << "in model open file " << path;
         mainImg = originImg.copy();
         Fire_OnPropertyChanged(MAIN_IMAGE);
         return true;
@@ -117,7 +116,6 @@ bool Model::sub2tmp()
     else
     {
         tmpImg = subImg.copy();
-        // Fire_OnPropertyChanged(TMP_IMAGE);
         return true;
     }
 }

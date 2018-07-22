@@ -103,7 +103,6 @@ public:
 	}
 	void Fire_OnPropertyChanged(const propertyType ppt)
 	{
-        qDebug() << "m array size " << m_array.size();
 		auto iter(m_array.begin());
 		for( ; iter != m_array.end(); ++ iter ) {
 			(*iter)->OnPropertyChanged(ppt);

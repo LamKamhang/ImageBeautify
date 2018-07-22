@@ -152,7 +152,6 @@ void AlgebraicDialog::openFile(){
     if(filePath == "")return;
 
     this->filePath = filePath;
-    qDebug()<<"sendOpenFileImage2(filePath)";
     emit sendOpenFileImage2(filePath);
 }
 

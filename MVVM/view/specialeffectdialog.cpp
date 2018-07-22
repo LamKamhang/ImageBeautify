@@ -101,8 +101,6 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
 
     // groupboxs layout
     QVBoxLayout *segroupboxLayout = new QVBoxLayout;
-    const int seGroupMinWidth = 120;
-    const int seGroupMinHeight = 150;
     segroupbox1->setMaximumSize(seGroupMinWidth,seGroupMinHeight);
     segroupbox2->setMaximumSize(seGroupMinWidth,seGroupMinHeight);
     segroupbox3->setMaximumSize(seGroupMinWidth,seGroupMinHeight);
@@ -147,13 +145,33 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
 
     // !! set icons !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    QPixmap sepix = QPixmap::fromImage(*image);
-    qreal h = sepix.height();
-    qreal w = sepix.width();
-    if(sepix.height() > sepix.width())
-        sepix = sepix.scaled(seGroupMinHeight*w/h,seGroupMinHeight,Qt::KeepAspectRatio);
-    else sepix = sepix.scaled(seGroupMinWidth,seGroupMinWidth*h/w,Qt::KeepAspectRatio);
-    specialeffects1->setPixmap(sepix);
+    QImage icon1(":/artEffects/Resource/art_effect/emboss.jpg");
+    QImage icon2(":/artEffects/Resource/art_effect/sculpture.jpg");
+    QImage icon3(":/artEffects/Resource/art_effect/dilate.jpg");
+    QImage icon4(":/artEffects/Resource/art_effect/erode.jpg");
+    QImage icon5(":/artEffects/Resource/art_effect/frostGlass.jpg");
+    QImage icon6(":/artEffects/Resource/art_effect/sketch.jpg");
+    QImage icon7(":/artEffects/Resource/art_effect/oilPaint.jpg");
+    QImage icon8(":/artEffects/Resource/art_effect/woodCut.jpg");
+    QImage icon9(":/artEffects/Resource/art_effect/inverted.jpg");
+    QImage icon10(":/artEffects/Resource/art_effect/memory.jpg");
+    QImage icon11(":/artEffects/Resource/art_effect/freezing.jpg");
+    QImage icon12(":/artEffects/Resource/art_effect/casting.jpg");
+    QImage icon13(":/artEffects/Resource/art_effect/comicStrip.jpg");
+
+    specialeffects1->setPixmap(Icon2Pixmap(icon1));
+    specialeffects2->setPixmap(Icon2Pixmap(icon2));
+    specialeffects3->setPixmap(Icon2Pixmap(icon3));
+    specialeffects4->setPixmap(Icon2Pixmap(icon4));
+    specialeffects5->setPixmap(Icon2Pixmap(icon5));
+    specialeffects6->setPixmap(Icon2Pixmap(icon6));
+    specialeffects7->setPixmap(Icon2Pixmap(icon7));
+    specialeffects8->setPixmap(Icon2Pixmap(icon8));
+    specialeffects9->setPixmap(Icon2Pixmap(icon9));
+    specialeffects10->setPixmap(Icon2Pixmap(icon10));
+    specialeffects11->setPixmap(Icon2Pixmap(icon11));
+    specialeffects12->setPixmap(Icon2Pixmap(icon12));
+    specialeffects13->setPixmap(Icon2Pixmap(icon13));
 
     // scroll area
     QGroupBox *scrollareagroup = new QGroupBox;
@@ -235,6 +253,17 @@ SpecialEffectDialog::SpecialEffectDialog(std::shared_ptr<QImage> img)
     connect(alphaSlider,SIGNAL(sliderReleased()),this,SLOT(handlealphaslider()));
 }
 
+QPixmap SpecialEffectDialog::Icon2Pixmap(QImage icon){
+    QPixmap sepix = QPixmap::fromImage(icon);
+    qreal h = sepix.height();
+    qreal w = sepix.width();
+    float rate = 0.7;
+    if(sepix.height() > sepix.width())
+        sepix = sepix.scaled(rate*seGroupMinHeight*w/h,rate*seGroupMinHeight,Qt::KeepAspectRatio);
+    else sepix = sepix.scaled(rate*seGroupMinWidth,rate*seGroupMinWidth*h/w,Qt::KeepAspectRatio);
+    return sepix;
+}
+
 void SpecialEffectDialog::setImage(std::shared_ptr<QImage> img){
     image = img;
 }
@@ -311,7 +340,6 @@ void SpecialEffectDialog::handlespecialeffects13(){
 
 void SpecialEffectDialog::handlealphaslider(int value){
     alphaValue->setText(QString::number(value));
-//    qDebug()<<"alpha value: "<<value;
     JsonParameters json;
     bool apply = false;
     enum EffectsType type = NOEFFECTS;
@@ -324,7 +352,6 @@ void SpecialEffectDialog::handlealphaslider(int value){
 void SpecialEffectDialog::handlealphaslider(){
     int value = alphaSlider->value();
     alphaValue->setText(QString::number(value));
-//    qDebug()<<"alpha value: "<<value;
     JsonParameters json;
     bool apply = false;
     enum EffectsType type = NOEFFECTS;
