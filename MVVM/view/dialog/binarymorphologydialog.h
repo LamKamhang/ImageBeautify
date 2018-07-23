@@ -4,8 +4,8 @@
 #include <QDialog>
 #include <QJsonObject>
 #include "structureelementcanvas.h"
-#include "../common/parameters.h"
-#include "../common/type.h"
+#include "../../common/parameters.h"
+#include "../../common/type.h"
 QT_BEGIN_NAMESPACE
 class QButtonGroup;
 class QComboBox;

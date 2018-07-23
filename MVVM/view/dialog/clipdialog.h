@@ -2,7 +2,7 @@
 #define CLIPDIALOG_H
 #include <QtWidgets>
 #include <QDialog>
-#include "../common/parameters.h"
+#include "../../common/parameters.h"
 #include "clipbox.h"
 
 QT_BEGIN_NAMESPACE

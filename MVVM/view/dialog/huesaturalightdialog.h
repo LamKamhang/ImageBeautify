@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QDialog>
-#include "../common/parameters.h"
+#include "../../common/parameters.h"
 QT_BEGIN_NAMESPACE
 class QImage;
 class QLineEdit;

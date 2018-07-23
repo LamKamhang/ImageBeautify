@@ -2,7 +2,7 @@
 #define CURVEDIALOG_H
 #include <QWidget>
 #include <QDialog>
-#include "../common/parameters.h"
+#include "../../common/parameters.h"
 #include "curvecanvas.h"
 
 QT_BEGIN_NAMESPACE

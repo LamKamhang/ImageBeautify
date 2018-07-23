@@ -2,7 +2,7 @@
 #define SCALEDIALOG_H
 #include <QWidget>
 #include <QDialog>
-#include "../common/parameters.h"
+#include "../../common/parameters.h"
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QButtonGroup;

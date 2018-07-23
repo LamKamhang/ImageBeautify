@@ -7,7 +7,7 @@
 #include <QComboBox>
 #include <QSlider>
 #include "clickableqlabel.h"
-#include "../common/parameters.h"
+#include "../../common/parameters.h"
 
 class ClassicSpecialEffectDialog : public QDialog
 {

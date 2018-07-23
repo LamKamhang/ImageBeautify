@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <vector>
 #include "histogramview.h"
-#include "../common/parameters.h"
+#include "../../common/parameters.h"
 
 class HistogramDialog : public QDialog
 {
