@@ -56,7 +56,7 @@ RESOURCES += \
     effectsicons.qrc
 
 HEADERS += \
-    APP/app.h \
+    app/app.h \
     common/etlbase.h \
     common/parameters.h \
     common/type.h \
@@ -66,29 +66,29 @@ HEADERS += \
     model/imageoperation/aux_image_alg.h \
     model/logoperation/aux_log_alg.h \
     model/model.h \
+    view/dialog/algebraicdialog.h \
+    view/dialog/binarymorphologydialog.h \
+    view/dialog/classicspecialeffectdialog.h \
+    view/dialog/clickableqlabel.h \
+    view/dialog/clipbox.h \
+    view/dialog/clipdialog.h \
+    view/dialog/curvecanvas.h \
+    view/dialog/curvedialog.h \
+    view/dialog/dualthresholddialog.h \
+    view/dialog/edgedetectiondialog.h \
+    view/dialog/filterdialog.h \
+    view/dialog/graymorphologydialog.h \
+    view/dialog/histogramdialog.h \
+    view/dialog/histogramview.h \
+    view/dialog/houghcircledetectiondialog.h \
+    view/dialog/huesaturalightdialog.h \
+    view/dialog/leveldialog.h \
+    view/dialog/scaledialog.h \
+    view/dialog/specialeffectdialog.h \
+    view/dialog/structureelementcanvas.h \
     view/sinks/maincommandsink.h \
     view/sinks/mainimagesink.h \
-    view/algebraicdialog.h \
-    view/binarymorphologydialog.h \
-    view/classicspecialeffectdialog.h \
-    view/clickableqlabel.h \
-    view/clipbox.h \
-    view/clipdialog.h \
-    view/curvecanvas.h \
-    view/curvedialog.h \
-    view/dualthresholddialog.h \
-    view/edgedetectiondialog.h \
-    view/filterdialog.h \
-    view/graymorphologydialog.h \
-    view/histogramdialog.h \
-    view/histogramview.h \
-    view/houghcircledetectiondialog.h \
-    view/huesaturalightdialog.h \
-    view/leveldialog.h \
     view/mainview.h \
-    view/scaledialog.h \
-    view/specialeffectdialog.h \
-    view/structureelementcanvas.h \
     viewmodel/commands/AlgebraicCommand.h \
     viewmodel/commands/arteffectscommand.h \
     viewmodel/commands/BinaryMorphologyCommand.h \
@@ -118,8 +118,8 @@ HEADERS += \
     viewmodel/viewmodel.h
 
 SOURCES += \
-    APP/app.cpp \
-    APP/main.cpp \
+    app/app.cpp \
+    app/main.cpp \
     common/util.cpp \
     model/filteroperation/filteroperation.cpp \
     model/filters/art_effect.cpp \
@@ -129,29 +129,29 @@ SOURCES += \
     model/logoperation/aux_log_alg.cpp \
     model/logoperation/logoperation.cpp \
     model/model.cpp \
+    view/dialog/algebraicdialog.cpp \
+    view/dialog/binarymorphologydialog.cpp \
+    view/dialog/classicspecialeffectdialog.cpp \
+    view/dialog/clickableqlabel.cpp \
+    view/dialog/clipbox.cpp \
+    view/dialog/clipdialog.cpp \
+    view/dialog/curvecanvas.cpp \
+    view/dialog/curvedialog.cpp \
+    view/dialog/dualthresholddialog.cpp \
+    view/dialog/edgedetectiondialog.cpp \
+    view/dialog/filterdialog.cpp \
+    view/dialog/graymorphologydialog.cpp \
+    view/dialog/histogramdialog.cpp \
+    view/dialog/histogramview.cpp \
+    view/dialog/houghcircledetectiondialog.cpp \
+    view/dialog/huesaturalightdialog.cpp \
+    view/dialog/leveldialog.cpp \
+    view/dialog/scaledialog.cpp \
+    view/dialog/specialeffectdialog.cpp \
+    view/dialog/structureelementcanvas.cpp \
     view/sinks/maincommandsink.cpp \
     view/sinks/mainimagesink.cpp \
-    view/algebraicdialog.cpp \
-    view/binarymorphologydialog.cpp \
-    view/classicspecialeffectdialog.cpp \
-    view/clickableqlabel.cpp \
-    view/clipbox.cpp \
-    view/clipdialog.cpp \
-    view/curvecanvas.cpp \
-    view/curvedialog.cpp \
-    view/dualthresholddialog.cpp \
-    view/edgedetectiondialog.cpp \
-    view/filterdialog.cpp \
-    view/graymorphologydialog.cpp \
-    view/histogramdialog.cpp \
-    view/histogramview.cpp \
-    view/houghcircledetectiondialog.cpp \
-    view/huesaturalightdialog.cpp \
-    view/leveldialog.cpp \
     view/mainview.cpp \
-    view/scaledialog.cpp \
-    view/specialeffectdialog.cpp \
-    view/structureelementcanvas.cpp \
     viewmodel/commands/AlgebraicCommand.cpp \
     viewmodel/commands/arteffectscommand.cpp \
     viewmodel/commands/BinaryMorphologyCommand.cpp \
@@ -179,5 +179,6 @@ SOURCES += \
     viewmodel/commands/undocommand.cpp \
     viewmodel/sinks/viewmodelsink.cpp \
     viewmodel/viewmodel.cpp
+
 
 
