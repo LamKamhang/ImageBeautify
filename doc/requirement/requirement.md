@@ -23,10 +23,10 @@
 外加`Model`的子模块算法层。
 
 #### App
-- 实现`Model`,`ViewModel`之间以及`ViewModel`,`View`之间的绑定，将各个模块装配起来。
+- 实现`Model`与`ViewModel`之间以及`ViewModel`与`View`之间的绑定，将各个模块装配起来。
 
 #### Model
-- 存储保存`cv:Mat`格式的数据
+- 存储保存`Mat`格式的图片数据
 - 封装调用算法层的函数，实现各种数据操作接口
 
 #### ViewModel
